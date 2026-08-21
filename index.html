@@ -6,7 +6,7 @@
 <meta name="referrer" content="no-referrer">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; style-src 'unsafe-inline' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; img-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; font-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; media-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; worker-src blob:; connect-src blob: data:; frame-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
 <title>dashboard-cockpit-16x9-prototype.html</title>
-<style>:root{color-scheme:light dark;background:light-dark(rgb(255 255 255), rgb(24 24 24))}html,body{margin:0}body{box-sizing:border-box;padding:1rem;background:inherit}iframe{display:block;width:100%;max-width:736px;height:calc(100vh - 2rem);margin:0 auto;border:0}</style>
+<style>:root{color-scheme:light dark;background:light-dark(#e9eef2,#071018)}html,body{width:100%;height:100%;margin:0;overflow:hidden}body{box-sizing:border-box;display:grid;place-items:center;padding:0;background:inherit}iframe{display:block;width:736px;max-width:none;height:414px;margin:0;border:0;transform-origin:center center;will-change:transform}</style>
 </head>
 <body>
 <iframe id="codex-visualization" sandbox="allow-scripts" scrolling="no" referrerpolicy="no-referrer" title="dashboard-cockpit-16x9-prototype.html" data-srcdoc="&lt;!doctype html&gt;
@@ -1121,8 +1121,17 @@ html&gt;body{padding:0}&lt;/style&gt;
       --cp-e-bg: light-dark(#f9e2e2, #472727);
       --cp-e-text: light-dark(#8d3c3c, #efa0a0);
       width: 100%;
+      height: 100%;
       color: var(--cp-text);
       font-family: Inter, &quot;PingFang SC&quot;, &quot;Microsoft YaHei&quot;, sans-serif;
+    }
+
+    html, html &gt; body {
+      width: 100%;
+      height: 100%;
+      min-height: 100%;
+      padding: 0;
+      overflow: hidden;
     }
 
     #cockpit-16x9-prototype * { box-sizing: border-box; }
@@ -1130,7 +1139,8 @@ html&gt;body{padding:0}&lt;/style&gt;
     #cockpit-16x9-prototype .cp-board {
       position: relative;
       width: 100%;
-      aspect-ratio: 16 / 9;
+      height: 100%;
+      aspect-ratio: auto;
       overflow: hidden;
       padding: 7px;
       background: var(--cp-board);
@@ -2053,7 +2063,19 @@ html&gt;body{padding:0}&lt;/style&gt;
   if (!(frame instanceof HTMLIFrameElement)) {
     return;
   }
+  const baseWidth = 736;
+  const baseHeight = 414;
   let viewportHeight = globalThis.innerHeight;
+
+  const fitFrame = () => {
+    const scale = Math.max(
+      0.1,
+      Math.min(globalThis.innerWidth / baseWidth, globalThis.innerHeight / baseHeight),
+    );
+    frame.style.transform = `scale(${scale})`;
+  };
+
+  fitFrame();
 
   const channel = new MessageChannel();
   channel.port1.addEventListener("message", (event) => {
@@ -2062,15 +2084,6 @@ html&gt;body{padding:0}&lt;/style&gt;
       return;
     }
     if (data.type === "height") {
-      const height = data.height;
-      if (
-        typeof height === "number" &&
-        Number.isFinite(height) &&
-        height >= 0 &&
-        height <= 10_000
-      ) {
-        frame.style.height = Math.ceil(height) + "px";
-      }
       return;
     }
     if (data.type === "scroll-to") {
@@ -2133,10 +2146,7 @@ html&gt;body{padding:0}&lt;/style&gt;
     return;
   }
   globalThis.addEventListener("resize", () => {
-    const height = Number.parseFloat(frame.style.height);
-    if (!Number.isFinite(height) || height <= viewportHeight) {
-      frame.style.removeProperty("height");
-    }
+    fitFrame();
     viewportHeight = globalThis.innerHeight;
     channel.port1.postMessage({ type: "measure" });
   });
