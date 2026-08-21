@@ -1,0 +1,2159 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; style-src 'unsafe-inline' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; img-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; font-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; media-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; worker-src blob:; connect-src blob: data:; frame-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>dashboard-cockpit-16x9-prototype.html</title>
+<style>:root{color-scheme:light dark;background:light-dark(rgb(255 255 255), rgb(24 24 24))}html,body{margin:0}body{box-sizing:border-box;padding:1rem;background:inherit}iframe{display:block;width:100%;max-width:736px;height:calc(100vh - 2rem);margin:0 auto;border:0}</style>
+</head>
+<body>
+<iframe id="codex-visualization" sandbox="allow-scripts" scrolling="no" referrerpolicy="no-referrer" title="dashboard-cockpit-16x9-prototype.html" data-srcdoc="&lt;!doctype html&gt;
+&lt;html lang=&quot;zh-CN&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;utf-8&quot;&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+&lt;meta name=&quot;referrer&quot; content=&quot;no-referrer&quot;&gt;
+&lt;meta http-equiv=&quot;Content-Security-Policy&quot; content=&quot;default-src 'none'; script-src 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; style-src 'unsafe-inline' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; img-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; font-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; media-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; worker-src blob:; connect-src blob: data:; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'&quot;&gt;
+&lt;title&gt;dashboard-cockpit-16x9-prototype.html&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;script&gt;(() =&gt; {
+  const root = document.documentElement;
+  const mediaQuery = globalThis.matchMedia(&quot;(prefers-color-scheme: dark)&quot;);
+  const apply = Reflect.apply;
+  const isArray = Array.isArray;
+  const parentWindow = globalThis.parent;
+  /**
+   * @param {object} prototype
+   * @param {string} property
+   */
+  const getPrototypeGetter = (prototype, property) =&gt; {
+    // oxlint-disable-next-line typescript/unbound-method -- invoked through captured Reflect.apply
+    const getter = Object.getOwnPropertyDescriptor(prototype, property)?.get;
+    if (getter == null) {
+      throw new Error(`Missing ${property} getter`);
+    }
+    return getter;
+  };
+  const getMessageData = getPrototypeGetter(MessageEvent.prototype, &quot;data&quot;);
+  const getMessagePorts = getPrototypeGetter(MessageEvent.prototype, &quot;ports&quot;);
+  const getMessageSource = getPrototypeGetter(MessageEvent.prototype, &quot;source&quot;);
+  // oxlint-disable-next-line typescript/unbound-method -- captured before the untrusted fragment runs
+  const addHostMessageListener = MessagePort.prototype.addEventListener;
+  // oxlint-disable-next-line typescript/unbound-method -- captured before the untrusted fragment runs
+  const postHostMessage = MessagePort.prototype.postMessage;
+  // oxlint-disable-next-line typescript/unbound-method -- captured before the untrusted fragment runs
+  const startHostPort = MessagePort.prototype.start;
+  // oxlint-disable-next-line typescript/unbound-method -- captured before the untrusted fragment runs
+  const stopMessagePropagation = Event.prototype.stopImmediatePropagation;
+  /** @type {MessagePort | null} */
+  let hostPort = null;
+  const postToHost = (type, payload) =&gt; {
+    if (hostPort != null) {
+      apply(postHostMessage, hostPort, [{ type, ...payload }]);
+    }
+  };
+  const openExternal = ({ href }) =&gt; {
+    if (globalThis.navigator.userActivation?.isActive === true) {
+      postToHost(&quot;open-external&quot;, { href });
+    }
+  };
+  const sendFollowUpMessage = ({ context, prompt, title }) =&gt; {
+    if (globalThis.navigator.userActivation?.isActive === true) {
+      postToHost(&quot;follow-up&quot;, { context, prompt, title });
+    }
+    return Promise.resolve();
+  };
+  const syncTheme = () =&gt; {
+    const theme = mediaQuery.matches ? &quot;dark&quot; : &quot;light&quot;;
+    root.dataset.theme = theme;
+    globalThis.openai = {
+      ...globalThis.openai,
+      openExternal,
+      sendFollowUpMessage,
+      theme,
+      visualizationStyleVariables: {},
+      visualizationTheme: theme,
+    };
+    globalThis.dispatchEvent(
+      new CustomEvent(&quot;openai:set_globals&quot;, {
+        detail: { globals: globalThis.openai },
+      }),
+    );
+  };
+  const sendHeight = () =&gt; {
+    postToHost(&quot;height&quot;, {
+      height: Math.ceil(
+        Math.max(
+          document.body.scrollHeight,
+          document.body.getBoundingClientRect().height,
+        ),
+      ),
+    });
+  };
+
+  globalThis.addEventListener(
+    &quot;message&quot;,
+    (event) =&gt; {
+      const data = apply(getMessageData, event, []);
+      const ports = apply(getMessagePorts, event, []);
+      const source = apply(getMessageSource, event, []);
+      if (
+        source !== parentWindow ||
+        typeof data !== &quot;object&quot; ||
+        data?.type !== &quot;codex-visualization-initialize&quot; ||
+        !isArray(ports) ||
+        ports.length !== 1
+      ) {
+        return;
+      }
+      apply(stopMessagePropagation, event, []);
+      const nextHostPort = ports[0];
+      try {
+        apply(addHostMessageListener, nextHostPort, [
+          &quot;message&quot;,
+          (event) =&gt; {
+            const data = apply(getMessageData, event, []);
+            if (typeof data === &quot;object&quot; &amp;&amp; data?.type === &quot;measure&quot;) {
+              sendHeight();
+            }
+          },
+        ]);
+        apply(startHostPort, nextHostPort, []);
+      } catch {
+        return;
+      }
+      hostPort = nextHostPort;
+      sendHeight();
+    },
+    { capture: true },
+  );
+  document.currentScript?.remove();
+  mediaQuery.addEventListener(&quot;change&quot;, syncTheme);
+  globalThis.addEventListener(&quot;click&quot;, (event) =&gt; {
+    if (event.defaultPrevented) {
+      return;
+    }
+    let element = null;
+    if (event.target instanceof globalThis.Element) {
+      element = event.target;
+    } else if (event.target instanceof globalThis.Node) {
+      element = event.target.parentElement;
+    }
+    const link = element?.closest(&quot;a[href]&quot;);
+    const href = link?.getAttribute(&quot;href&quot;);
+    if (href == null) {
+      return;
+    }
+    if (href.startsWith(&quot;#&quot;)) {
+      let id;
+      try {
+        id = decodeURIComponent(href.slice(1));
+      } catch {
+        return;
+      }
+      const target = id.length === 0 ? root : document.getElementById(id);
+      if (
+        target == null ||
+        globalThis.navigator.userActivation?.isActive !== true
+      ) {
+        return;
+      }
+      event.preventDefault();
+      postToHost(&quot;scroll-to&quot;, {
+        top: target.getBoundingClientRect().top + globalThis.scrollY,
+      });
+      return;
+    }
+    event.preventDefault();
+    openExternal({ href });
+  });
+  new ResizeObserver(sendHeight).observe(document.body);
+  syncTheme();
+})();
+&lt;/script&gt;
+&lt;style&gt;:root {
+  color-scheme: light dark;
+  background-color: var(
+    --background,
+    var(--color-background-primary, light-dark(rgb(255 255 255), rgb(24 24 24)))
+  ) !important;
+
+  /* Agent-facing contract; keep in sync with SKILL.md. */
+  --background: var(
+    --color-background-primary,
+    light-dark(rgb(255 255 255), rgb(24 24 24))
+  );
+  --foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --card: color-mix(in oklab, var(--foreground) 5%, var(--background));
+  --card-foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --popover: var(
+    --color-background-secondary,
+    light-dark(rgb(255 255 255), rgb(45 45 45))
+  );
+  --popover-foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --primary: var(
+    --color-text-info,
+    light-dark(rgb(51 156 255), rgb(131 195 255))
+  );
+  --primary-foreground: var(
+    --color-text-inverse,
+    light-dark(rgb(255 255 255), rgb(13 13 13))
+  );
+  --secondary: var(
+    --color-background-secondary,
+    light-dark(rgb(255 255 255 / 96%), rgb(54 54 54 / 96%))
+  );
+  --secondary-foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --muted: color-mix(in srgb, var(--foreground) 10%, transparent);
+  --muted-foreground: var(
+    --color-text-secondary,
+    light-dark(rgb(26 28 31 / 49.4%), rgb(255 255 255 / 49.8%))
+  );
+  --accent: var(
+    --color-background-info,
+    light-dark(rgb(229 242 255), rgb(13 39 63))
+  );
+  --accent-foreground: var(
+    --color-text-info,
+    light-dark(rgb(51 156 255), rgb(131 195 255))
+  );
+  --destructive: var(
+    --color-text-warning,
+    light-dark(rgb(226 85 7), rgb(255 133 73))
+  );
+  --border: var(
+    --color-border-secondary,
+    light-dark(rgb(26 28 31 / 8%), rgb(255 255 255 / 8.2%))
+  );
+  --input: var(
+    --color-border-primary,
+    light-dark(
+      rgb(26 28 31 / 11.8%),
+      color-mix(in oklab, rgb(0 0 0) 10%, transparent)
+    )
+  );
+  --ring: var(
+    --color-ring-primary,
+    light-dark(rgb(51 156 255), rgb(131 195 255 / 76%))
+  );
+  --font-size-base: var(--font-text-md-size, 14px);
+  --blue: light-dark(rgb(51 156 255), rgb(51 156 255));
+  --orange: light-dark(rgb(226 85 7), rgb(251 106 34));
+  --green: light-dark(rgb(0 162 64), rgb(64 201 119));
+  --red: light-dark(rgb(224 46 42), rgb(255 103 100));
+  --purple: light-dark(rgb(146 79 247), rgb(173 123 249));
+  --yellow: light-dark(rgb(255 195 0), rgb(255 210 64));
+  --viz-series-1: var(--primary);
+  --viz-series-2: light-dark(rgb(243 136 59), rgb(245 154 86));
+  --viz-series-3: light-dark(rgb(93 201 119), rgb(116 213 139));
+  --viz-series-4: light-dark(rgb(235 119 177), rgb(240 143 192));
+  --viz-series-5: light-dark(rgb(155 121 236), rgb(170 145 239));
+  --viz-series-6: light-dark(rgb(58 185 177), rgb(90 203 194));
+
+  /* Internal implementation variables; not part of the agent contract. */
+  --font-sans: -apple-system, system-ui, &quot;Segoe UI&quot;, sans-serif;
+  --font-mono:
+    ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;,
+    monospace;
+  --font-size-normal: max(11px, var(--font-size-base));
+  --font-size-tooltip: calc(var(--font-size-base) - 1px);
+  --font-size-small: max(11px, calc(var(--font-size-base) - 2px));
+  --font-size-h1: calc(var(--font-size-normal) * 1.7142857143);
+  --font-size-h2: calc(var(--font-size-normal) * 1.4285714286);
+  --font-size-h3: calc(var(--font-size-normal) * 1.2857142857);
+  --font-weight-normal: 430;
+  --font-weight-medium: 500;
+  --line-height-normal: calc(var(--font-size-normal) * 1.5);
+  --line-height-tooltip: calc(var(--font-size-tooltip) * 1.4285714286);
+  --line-height-small: calc(var(--font-size-small) + 4px);
+  --radius: var(--border-radius-lg, 12.5px);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-2xl: calc(var(--radius) * 1.6);
+  --radius-full: 9999px;
+  --shadow-sm: 0 1px 2px -1px rgb(0 0 0 / 8%);
+  --checkmark-image: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 17 17'%3E%3Cpath d='M12.8961 3.64101C13.1297 3.41418 13.4984 3.37523 13.7779 3.56581C14.0571 3.75635 14.1554 4.11331 14.0299 4.41347L13.9615 4.53847L7.71151 13.7045C7.59411 13.8767 7.4063 13.9877 7.19881 14.0072C6.99136 14.0267 6.78564 13.9533 6.63826 13.806L2.88826 10.056L2.79842 9.9457C2.6192 9.67407 2.64927 9.30496 2.88826 9.06581C3.12738 8.82669 3.49647 8.79676 3.76815 8.97597L3.8785 9.06581L7.03084 12.2182L12.8053 3.74941L12.8961 3.64101Z'/%3E%3C/svg%3E&quot;);
+
+  /* Legacy aliases; not part of the current agent contract. */
+  --viz-bg: transparent;
+  --viz-panel: var(--card);
+  --viz-border: var(--border);
+  --viz-text: var(--foreground);
+  --viz-muted: var(--muted-foreground);
+  --viz-accent: var(--primary);
+  --viz-accent-text: var(--primary-foreground);
+  --viz-accent-bg: var(--accent);
+  --viz-font-size: var(--font-size-base);
+  --viz-warning: var(--destructive);
+}
+
+:root[data-theme=&quot;light&quot;] {
+  color-scheme: light;
+}
+
+:root[data-theme=&quot;dark&quot;] {
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html &gt; body {
+  /* Preserve MCP aliases for older inline renderers without creating :root cycles. */
+  --color-background-primary: var(
+    --background,
+    light-dark(rgb(255 255 255), rgb(24 24 24))
+  );
+  --color-text-primary: var(
+    --foreground,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --color-border-secondary: var(
+    --border,
+    light-dark(rgb(26 28 31 / 8%), rgb(255 255 255 / 8.2%))
+  );
+
+  margin: 0;
+  padding: 5px;
+  color: var(--foreground);
+  background: transparent !important;
+  font-family: var(--font-sans) !important;
+  font-size: var(--font-size-normal);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-normal);
+}
+
+a {
+  color: color-mix(in srgb, var(--viz-accent) 80%, var(--viz-text) 20%);
+  cursor: pointer;
+  font-weight: var(--font-weight-medium, 500);
+  text-decoration: none;
+  text-underline-offset: 2px;
+}
+
+a:is(:hover, :focus-visible) {
+  text-decoration-line: underline;
+  text-decoration-style: dashed;
+  text-decoration-thickness: 0.5px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin-block: 0;
+}
+
+h1 {
+  font-size: var(--font-size-h1);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+h2 {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+h3,
+h4,
+h5,
+h6 {
+  font-size: var(--font-size-h3);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.3;
+}
+
+b,
+strong,
+th {
+  font-weight: var(--font-weight-medium);
+}
+
+code:not(pre code) {
+  display: inline;
+  padding: 1px 6px;
+  border-radius: var(--radius-sm);
+  corner-shape: superellipse(1.5);
+  background: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+  overflow-wrap: anywhere;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  word-break: break-word;
+}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  color: var(--foreground);
+  font: inherit;
+  text-align: start;
+}
+
+.table :is(th, td) {
+  padding-block: 10px;
+  padding-inline: 0 24px;
+  overflow-wrap: anywhere;
+  border-bottom: 1px solid var(--border);
+  text-align: start;
+  vertical-align: top;
+}
+
+.table-responsive &gt; .table :is(th, td) {
+  overflow-wrap: break-word;
+}
+
+.table :is(th, td):last-child {
+  padding-inline-end: 0;
+}
+
+.table :is(caption, thead th) {
+  font-weight: 600;
+}
+
+.table thead th {
+  padding-block: 8px;
+  border-bottom-color: color-mix(in srgb, var(--foreground) 16%, transparent);
+}
+
+.table tbody tr:last-child :is(th, td) {
+  border-bottom: 0;
+}
+
+.table.table-sm :is(th, td) {
+  padding-block: 6px;
+}
+
+.table.table-sm :is(th, td):not(:last-child) {
+  padding-inline-end: 16px;
+}
+
+.table :is(.text-end, [align=&quot;right&quot;]) {
+  text-align: end;
+  font-variant-numeric: tabular-nums;
+}
+
+.table :is(.text-center, [align=&quot;center&quot;]) {
+  text-align: center;
+}
+
+.table .text-nowrap {
+  white-space: nowrap;
+}
+
+#widget {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  padding: 0;
+  background: transparent !important;
+}
+
+.card {
+  min-width: 0;
+  padding: 12px;
+  overflow: hidden;
+  overflow-wrap: break-word;
+  border-radius: var(--radius-2xl);
+  corner-shape: superellipse(1.5);
+  color: var(--card-foreground);
+  background: var(--card);
+}
+
+#widget &gt; :not(.card, .progress) {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.tooltip {
+  position: fixed;
+  z-index: 50;
+  top: 0;
+  left: 0;
+  width: max-content;
+  max-width: min(
+    20rem,
+    var(--tooltip-available-width, calc(100vw - 10px)),
+    calc(100vw - 10px)
+  );
+  max-height: min(
+    var(--tooltip-available-height, calc(100vh - 10px)),
+    calc(100vh - 10px)
+  );
+  padding: 4px 8px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--popover-foreground);
+  background: var(--popover);
+  box-shadow: none;
+  font-size: var(--font-size-tooltip);
+  line-height: var(--line-height-tooltip);
+  overflow-wrap: break-word;
+  white-space: normal;
+  pointer-events: none;
+  user-select: none;
+}
+
+.viz-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(max(180px, 24%), 1fr));
+  gap: 10px;
+}
+
+.viz-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.viz-stat-value {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+.viz-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.progress {
+  display: flex;
+  height: 6px;
+  margin-block: calc((var(--line-height-normal, 1.5em) - 6px) / 2);
+  overflow: hidden;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: var(--muted);
+}
+
+.progress-bar {
+  height: 100%;
+  flex-shrink: 0;
+  border: 0;
+  background: var(--viz-series-1);
+}
+
+.viz-badge {
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  color: var(--accent-foreground);
+  background: var(--accent);
+  font-weight: var(--font-weight-medium);
+}
+
+small,
+.text-small,
+.viz-badge {
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-small);
+}
+
+.text-muted {
+  color: var(--muted-foreground);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.viz-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.viz-controls &gt; .form-label {
+  display: grid;
+  min-width: min(100%, 260px);
+  flex: 1 1 280px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 2px 12px;
+  margin-bottom: 0;
+}
+
+.viz-controls &gt; .form-label &gt; :is(.form-control, .form-range, .form-select) {
+  grid-column: 1 / -1;
+}
+
+.btn,
+.form-check-input,
+.form-control,
+.form-range,
+.form-select {
+  font: inherit;
+}
+
+.btn {
+  appearance: button;
+  display: inline-flex;
+  inline-size: fit-content;
+  max-inline-size: 100%;
+  min-height: 28px;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  margin: 0;
+  padding: 0 8px;
+  -webkit-app-region: no-drag;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--secondary-foreground);
+  background: var(--secondary);
+  cursor: var(--cursor-interaction, pointer);
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+.btn:is(.btn-block, .viz-tile) {
+  inline-size: 100%;
+}
+
+.btn.viz-tile {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+
+a.btn {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn:not(:disabled):hover {
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.btn-primary {
+  border-color: transparent;
+  color: var(--primary-foreground);
+  background: var(--foreground);
+  background-clip: padding-box;
+}
+
+.btn-primary .text-muted {
+  color: color-mix(in srgb, var(--primary-foreground) 50%, transparent);
+}
+
+.btn-primary:not(:disabled):hover {
+  background: color-mix(in srgb, var(--foreground) 80%, transparent);
+  background-clip: padding-box;
+}
+
+.btn-ghost {
+  border-color: transparent;
+  color: var(--muted-foreground);
+  background: transparent;
+}
+
+.btn-ghost:not(:disabled):hover {
+  color: var(--foreground);
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+[data-lucide] {
+  stroke-width: 1.6;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--foreground);
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  min-height: 28px;
+  padding: 0 8px;
+  outline: none;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--foreground);
+  background: var(--secondary);
+}
+
+.form-control::placeholder {
+  color: var(--muted-foreground);
+}
+
+.form-control[type=&quot;file&quot;] {
+  padding: 0;
+  overflow: hidden;
+  cursor: var(--cursor-interaction, pointer);
+}
+
+.form-control[type=&quot;file&quot;]::file-selector-button {
+  min-height: 26px;
+  margin-right: 8px;
+  padding: 0 8px;
+  border: 0;
+  border-right: 1px solid var(--input);
+  color: var(--secondary-foreground);
+  background: var(--secondary);
+  cursor: inherit;
+  font: inherit;
+}
+
+.form-control[type=&quot;file&quot;]:not(:disabled):hover::file-selector-button {
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.form-control-color[type=&quot;color&quot;] {
+  width: 40px;
+  height: 28px;
+  padding: 3px;
+  cursor: var(--cursor-interaction, pointer);
+}
+
+.form-control-color[type=&quot;color&quot;]::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+.form-control-color[type=&quot;color&quot;]::-webkit-color-swatch {
+  border: 0;
+  border-radius: calc(var(--radius-lg) - 4px);
+  corner-shape: superellipse(1.5);
+}
+
+textarea.form-control {
+  height: auto;
+  min-height: 72px;
+  padding: 8px 10px;
+  resize: vertical;
+}
+
+.form-control:focus-visible {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-control:disabled,
+.form-select:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.form-select {
+  appearance: none;
+  display: block;
+  width: 100%;
+  min-height: 28px;
+  margin: 0;
+  padding: 0 32px 0 8px;
+  outline: none;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--foreground);
+  background-color: var(--secondary);
+  background-image:
+    linear-gradient(45deg, transparent 50%, var(--muted-foreground) 50%),
+    linear-gradient(135deg, var(--muted-foreground) 50%, transparent 50%);
+  background-position:
+    calc(100% - 14px) 50%,
+    calc(100% - 10px) 50%;
+  background-repeat: no-repeat;
+  background-size: 4px 4px;
+  cursor: var(--cursor-interaction, default);
+}
+
+.form-select:not(:disabled):hover {
+  background-color: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.form-select:focus-visible {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-check {
+  display: flex;
+  min-height: 20px;
+  align-items: center;
+  gap: 6px;
+}
+
+.form-check-input {
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  flex: 0 0 auto;
+  margin: 0;
+  border: 1px solid var(--input);
+  color: var(--primary-foreground);
+  background-color: transparent;
+  cursor: var(--cursor-interaction, default);
+  transition:
+    background-color 150ms,
+    border-color 150ms,
+    box-shadow 150ms;
+}
+
+.form-check:not(.form-switch) .form-check-input[type=&quot;checkbox&quot;] {
+  border-color: var(--input);
+  border-radius: var(--radius-sm);
+  corner-shape: superellipse(1.5);
+  background-color: var(--secondary);
+  box-shadow: var(--shadow-sm);
+}
+
+.form-check:not(.form-switch)
+  .form-check-input:not(:disabled):not(:checked):hover {
+  background-color: var(--card);
+}
+
+.form-check:not(.form-switch) .form-check-input[type=&quot;checkbox&quot;]:checked {
+  border-color: var(--primary);
+  background-color: var(--primary);
+}
+
+.form-check:not(.form-switch)
+  .form-check-input[type=&quot;checkbox&quot;]:checked::before {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--primary-foreground);
+  content: &quot;&quot;;
+  mask: var(--checkmark-image) center / 12px 12px no-repeat;
+}
+
+.form-check-input[type=&quot;radio&quot;] {
+  width: 14px;
+  height: 14px;
+  border-radius: var(--radius-full);
+}
+
+.form-check-input[type=&quot;radio&quot;]:checked {
+  border: 2px solid var(--primary);
+  background:
+    radial-gradient(circle, var(--primary-foreground) 0 2.5px, transparent 3px),
+    var(--primary);
+}
+
+.form-check:not(.form-switch) .form-check-input:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+.form-check:not(.form-switch) .form-check-input:disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.form-check:not(.form-switch) .form-check-input:disabled + .form-check-label {
+  cursor: not-allowed;
+}
+
+.form-switch .form-check-input:disabled,
+.form-switch .form-check-input:disabled + .form-check-label {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.form-check-label {
+  color: var(--foreground);
+  cursor: var(--cursor-interaction, default);
+}
+
+.form-switch .form-check-input {
+  position: relative;
+  width: 32px;
+  height: 20px;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: var(--muted);
+  box-shadow: none;
+  transition: background-color 200ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.form-switch .form-check-input::before {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 16px;
+  height: 16px;
+  box-sizing: border-box;
+  border: 1px solid light-dark(var(--primary-foreground), var(--foreground));
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+  box-shadow: var(--shadow-sm);
+  content: &quot;&quot;;
+  transform: translate(2px, -50%);
+  transition: transform 200ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.form-switch .form-check-input:checked {
+  background: var(--primary);
+}
+
+.form-switch .form-check-input:checked::before {
+  transform: translate(14px, -50%);
+}
+
+.form-switch .form-check-input:focus-visible {
+  box-shadow: 0 0 0 2px var(--ring);
+}
+
+.form-range {
+  appearance: none;
+  display: block;
+  width: 100%;
+  height: 28px;
+  flex: 1;
+  margin: 0;
+  padding: 0;
+  outline: none;
+  border: 0;
+  accent-color: var(--primary);
+  background: linear-gradient(
+      color-mix(in srgb, var(--foreground) 7%, transparent),
+      color-mix(in srgb, var(--foreground) 7%, transparent)
+    )
+    center / 100% 2px no-repeat;
+}
+
+.form-range::-webkit-slider-runnable-track {
+  height: 28px;
+  background: transparent;
+}
+
+.form-range::-webkit-slider-thumb {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  margin-top: 4px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+}
+
+.form-range:focus-visible::-webkit-slider-thumb {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-range::-moz-range-track {
+  height: 28px;
+  background: transparent;
+}
+
+.form-range::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+}
+
+.form-range:focus-visible::-moz-range-thumb {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-range:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.btn:not(.btn-primary, .viz-tile):is(
+  [aria-pressed=&quot;true&quot;],
+  [aria-selected=&quot;true&quot;],
+  .is-selected
+) {
+  border-color: var(--primary);
+  color: var(--primary-foreground);
+  background: var(--primary);
+}
+
+.btn.viz-tile:is([aria-pressed=&quot;true&quot;], [aria-selected=&quot;true&quot;], .is-selected) {
+  border-color: var(--primary);
+  box-shadow: inset 0 0 0 1px var(--primary);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+#widget &gt; svg {
+  width: 100%;
+}
+
+/* Model-authored chart rules can otherwise stretch icons after these styles load. */
+svg.lucide {
+  display: block;
+  width: 16px !important;
+  height: 16px !important;
+  flex: none;
+  margin: 0 !important;
+  stroke-width: 1.6;
+}
+
+.text-warning,
+.text-destructive {
+  color: var(--destructive);
+}
+
+html&gt;body{padding:0}&lt;/style&gt;
+&lt;script&gt;
+(() =&gt; {
+  const root = document.documentElement;
+  const initialGlobals =
+    globalThis.__codexVisualizationInitialGlobals ?? globalThis.openai;
+  delete globalThis.__codexVisualizationInitialGlobals;
+  let appliedProperties = [];
+
+  const applyHostStyleVariables = (styleVariables) =&gt; {
+    if (styleVariables == null || typeof styleVariables !== &quot;object&quot;) {
+      return;
+    }
+    for (const property of appliedProperties) {
+      root.style.removeProperty(property);
+    }
+    appliedProperties = [];
+    for (const [property, value] of Object.entries(styleVariables)) {
+      if (property.startsWith(&quot;--&quot;) &amp;&amp; typeof value === &quot;string&quot;) {
+        root.style.setProperty(property, value);
+        appliedProperties.push(property);
+      }
+    }
+  };
+
+  const syncHostStyles = (globals) =&gt; {
+    applyHostStyleVariables(globals?.visualizationStyleVariables);
+  };
+
+  syncHostStyles(initialGlobals);
+  globalThis.addEventListener(&quot;openai:set_globals&quot;, (event) =&gt; {
+    syncHostStyles(event.detail?.globals);
+  });
+})();
+&lt;/script&gt;
+
+&lt;div id=&quot;cockpit-16x9-prototype&quot;&gt;
+  &lt;style&gt;
+    #cockpit-16x9-prototype {
+      color-scheme: light dark;
+      --cp-bg: light-dark(#e9eef2, #071018);
+      --cp-board: light-dark(#f4f7f9, #0a151f);
+      --cp-surface: light-dark(#ffffff, #101e2a);
+      --cp-surface-2: light-dark(#edf3f6, #142633);
+      --cp-text: light-dark(#18242e, #ecf6fb);
+      --cp-muted: light-dark(#687783, #93a9b8);
+      --cp-line: light-dark(#ced9e0, #29404f);
+      --cp-focus: light-dark(#196b85, #66cdea);
+      --cp-focus-soft: light-dark(#dceff5, #123a49);
+      --cp-warn: light-dark(#8a5d19, #f0bd69);
+      --cp-warn-soft: light-dark(#fff1da, #45341a);
+      --cp-a-bg: light-dark(#dff3e6, #153a29);
+      --cp-a-text: light-dark(#17603b, #85e1ab);
+      --cp-b-bg: light-dark(#dfeff7, #13394b);
+      --cp-b-text: light-dark(#175f7d, #7bc9eb);
+      --cp-c-bg: light-dark(#fff0d6, #493419);
+      --cp-c-text: light-dark(#885a14, #f4c16f);
+      --cp-d-bg: light-dark(#eee5fa, #382b49);
+      --cp-d-text: light-dark(#65418e, #c7a6ed);
+      --cp-e-bg: light-dark(#f9e2e2, #472727);
+      --cp-e-text: light-dark(#8d3c3c, #efa0a0);
+      width: 100%;
+      color: var(--cp-text);
+      font-family: Inter, &quot;PingFang SC&quot;, &quot;Microsoft YaHei&quot;, sans-serif;
+    }
+
+    #cockpit-16x9-prototype * { box-sizing: border-box; }
+
+    #cockpit-16x9-prototype .cp-board {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      padding: 7px;
+      background: var(--cp-board);
+      border: 1px solid var(--cp-line);
+      border-radius: 12px;
+      display: grid;
+      grid-template-rows: 36px 29px 61px minmax(0, 1.65fr) minmax(0, .9fr);
+      gap: 6px;
+    }
+
+    #cockpit-16x9-prototype .cp-header,
+    #cockpit-16x9-prototype .cp-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-width: 0;
+      gap: 8px;
+    }
+
+    #cockpit-16x9-prototype .cp-heading { min-width: 150px; }
+    #cockpit-16x9-prototype .cp-title { font-weight: 500; font-size: 14px; white-space: nowrap; }
+    #cockpit-16x9-prototype .cp-time { color: var(--cp-muted); font-size: 11px; margin-top: 1px; white-space: nowrap; }
+
+    #cockpit-16x9-prototype .cp-review-controls,
+    #cockpit-16x9-prototype .cp-module-tabs {
+      display: flex;
+      align-items: center;
+      min-width: 0;
+      gap: 3px;
+    }
+
+    #cockpit-16x9-prototype .cp-review-controls {
+      padding: 3px;
+      background: var(--cp-surface-2);
+      border-radius: 7px;
+    }
+
+    #cockpit-16x9-prototype button {
+      font: inherit;
+    }
+
+    #cockpit-16x9-prototype .cp-profile,
+    #cockpit-16x9-prototype .cp-module,
+    #cockpit-16x9-prototype .cp-info-toggle,
+    #cockpit-16x9-prototype .cp-close,
+    #cockpit-16x9-prototype .cp-drill-action {
+      appearance: none;
+      border: 0;
+      color: var(--cp-muted);
+      background: transparent;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    #cockpit-16x9-prototype .cp-profile { padding: 5px 8px; font-size: 11px; }
+    #cockpit-16x9-prototype .cp-profile[aria-pressed=&quot;true&quot;] {
+      background: var(--cp-focus-soft);
+      color: var(--cp-focus);
+    }
+
+    #cockpit-16x9-prototype .cp-module-tabs {
+      overflow: hidden;
+      flex: 1;
+    }
+
+    #cockpit-16x9-prototype .cp-module {
+      height: 27px;
+      padding: 0 9px;
+      white-space: nowrap;
+      font-size: 11px;
+    }
+
+    #cockpit-16x9-prototype .cp-module[aria-selected=&quot;true&quot;] {
+      color: var(--cp-focus);
+      background: var(--cp-focus-soft);
+    }
+
+    #cockpit-16x9-prototype .cp-module:disabled {
+      cursor: not-allowed;
+      opacity: .4;
+    }
+
+    #cockpit-16x9-prototype .cp-info-toggle {
+      white-space: nowrap;
+      padding: 5px 8px;
+      border: 1px solid var(--cp-line);
+      font-size: 11px;
+    }
+
+    #cockpit-16x9-prototype .cp-info-toggle[aria-pressed=&quot;true&quot;] {
+      color: var(--cp-focus);
+      border-color: var(--cp-focus);
+      background: var(--cp-focus-soft);
+    }
+
+    #cockpit-16x9-prototype .cp-kpis {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 6px;
+      min-height: 0;
+    }
+
+    #cockpit-16x9-prototype .cp-kpi,
+    #cockpit-16x9-prototype .cp-panel {
+      appearance: none;
+      min-width: 0;
+      min-height: 0;
+      color: var(--cp-text);
+      background: var(--cp-surface);
+      border: 1px solid var(--cp-line);
+      border-radius: 8px;
+      text-align: left;
+      cursor: pointer;
+      overflow: hidden;
+      position: relative;
+    }
+
+    #cockpit-16x9-prototype .cp-kpi:hover,
+    #cockpit-16x9-prototype .cp-panel:hover,
+    #cockpit-16x9-prototype .cp-kpi:focus-visible,
+    #cockpit-16x9-prototype .cp-panel:focus-visible { border-color: var(--cp-focus); }
+
+    #cockpit-16x9-prototype .cp-kpi { padding: 8px 9px; }
+    #cockpit-16x9-prototype .cp-kpi-head,
+    #cockpit-16x9-prototype .cp-panel-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 5px;
+    }
+
+    #cockpit-16x9-prototype .cp-label,
+    #cockpit-16x9-prototype .cp-panel-title { color: var(--cp-muted); font-size: 11px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    #cockpit-16x9-prototype .cp-value { font-size: 18px; margin-top: 6px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+    #cockpit-16x9-prototype .cp-unit,
+    #cockpit-16x9-prototype .cp-note { color: var(--cp-muted); font-size: 11px; }
+    #cockpit-16x9-prototype .cp-note { margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+    #cockpit-16x9-prototype .cp-grade {
+      display: none;
+      min-width: 19px;
+      height: 18px;
+      align-items: center;
+      justify-content: center;
+      border-radius: 5px;
+      font-size: 10px;
+      font-weight: 500;
+      padding: 0 5px;
+    }
+
+    #cockpit-16x9-prototype[data-review=&quot;on&quot;] .cp-grade { display: inline-flex; }
+    #cockpit-16x9-prototype .cp-grade-a { background: var(--cp-a-bg); color: var(--cp-a-text); }
+    #cockpit-16x9-prototype .cp-grade-b { background: var(--cp-b-bg); color: var(--cp-b-text); }
+    #cockpit-16x9-prototype .cp-grade-c { background: var(--cp-c-bg); color: var(--cp-c-text); }
+    #cockpit-16x9-prototype .cp-grade-d { background: var(--cp-d-bg); color: var(--cp-d-text); }
+    #cockpit-16x9-prototype .cp-grade-e { background: var(--cp-e-bg); color: var(--cp-e-text); }
+
+    #cockpit-16x9-prototype .cp-main-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 6fr) minmax(0, 3fr);
+      gap: 6px;
+      min-height: 0;
+    }
+
+    #cockpit-16x9-prototype .cp-bottom-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 6px;
+      min-height: 0;
+    }
+
+    #cockpit-16x9-prototype .cp-panel {
+      padding: 7px 8px;
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr);
+      gap: 2px;
+    }
+    #cockpit-16x9-prototype .cp-panel-body { display: block; min-height: 0; overflow: hidden; }
+
+    #cockpit-16x9-prototype .cp-chart {
+      display: block;
+      width: 100%;
+      height: 100%;
+      min-height: 54px;
+      margin-top: 3px;
+    }
+
+    #cockpit-16x9-prototype .cp-chart .grid { stroke: var(--cp-line); stroke-width: 1; opacity: .55; }
+    #cockpit-16x9-prototype .cp-chart .series { fill: none; stroke: var(--cp-focus); stroke-width: 2; vector-effect: non-scaling-stroke; }
+    #cockpit-16x9-prototype .cp-chart .series-2 { fill: none; stroke: var(--cp-muted); stroke-width: 1.5; vector-effect: non-scaling-stroke; }
+    #cockpit-16x9-prototype .cp-chart rect.bar { fill: var(--cp-focus); opacity: .82; }
+    #cockpit-16x9-prototype .cp-chart rect.track { fill: var(--cp-surface-2); }
+
+    #cockpit-16x9-prototype .cp-bar-list {
+      display: grid;
+      align-content: center;
+      gap: 3px;
+      height: 100%;
+      padding-top: 3px;
+    }
+
+    #cockpit-16x9-prototype .cp-bar-item {
+      display: grid;
+      grid-template-columns: minmax(54px, .8fr) minmax(32px, 1.4fr) 30px;
+      align-items: center;
+      gap: 5px;
+      color: var(--cp-muted);
+      font-size: 11px;
+      min-width: 0;
+    }
+
+    #cockpit-16x9-prototype .cp-bar-item &gt; span:first-child {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    #cockpit-16x9-prototype .cp-bar-track {
+      display: block;
+      height: 7px;
+      border-radius: 4px;
+      background: var(--cp-surface-2);
+      overflow: hidden;
+    }
+
+    #cockpit-16x9-prototype .cp-bar-fill {
+      display: block;
+      height: 100%;
+      border-radius: inherit;
+      background: var(--cp-focus);
+    }
+
+    #cockpit-16x9-prototype .cp-fallback {
+      display: none;
+      position: absolute;
+      left: 7px;
+      bottom: 5px;
+      max-width: calc(100% - 14px);
+      color: var(--cp-warn);
+      background: var(--cp-warn-soft);
+      border-radius: 4px;
+      padding: 2px 5px;
+      font-size: 9px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    #cockpit-16x9-prototype[data-review=&quot;on&quot;] .cp-fallback { display: block; }
+    #cockpit-16x9-prototype[data-review=&quot;on&quot;] .cp-bottom-grid .cp-fallback { display: none; }
+
+    #cockpit-16x9-prototype .cp-depth {
+      display: none;
+      color: var(--cp-muted);
+      font-size: 10px;
+      white-space: nowrap;
+    }
+
+    #cockpit-16x9-prototype[data-review=&quot;on&quot;] .cp-depth { display: inline; }
+
+    #cockpit-16x9-prototype .cp-drawer-backdrop {
+      display: none;
+      position: absolute;
+      inset: 0;
+      background: light-dark(rgba(23, 35, 44, .16), rgba(0, 0, 0, .38));
+      z-index: 8;
+    }
+
+    #cockpit-16x9-prototype .cp-drawer-backdrop.is-open { display: block; }
+
+    #cockpit-16x9-prototype .cp-drawer {
+      position: absolute;
+      top: 7px;
+      right: 7px;
+      bottom: 7px;
+      width: min(46%, 560px);
+      background: var(--cp-surface);
+      border: 1px solid var(--cp-line);
+      border-radius: 9px;
+      z-index: 9;
+      padding: 11px;
+      display: grid;
+      grid-template-rows: auto auto minmax(0, 1fr) auto;
+      gap: 8px;
+      transform: translateX(calc(100% + 14px));
+      transition: transform .18s ease;
+    }
+
+    #cockpit-16x9-prototype .cp-drawer.is-open { transform: translateX(0); }
+
+    #cockpit-16x9-prototype .cp-drawer-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    #cockpit-16x9-prototype .cp-drawer-title { font-weight: 500; }
+    #cockpit-16x9-prototype .cp-drawer-subtitle { color: var(--cp-muted); font-size: 11px; margin-top: 2px; }
+    #cockpit-16x9-prototype .cp-close { padding: 4px 7px; border: 1px solid var(--cp-line); }
+
+    #cockpit-16x9-prototype .cp-breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      color: var(--cp-muted);
+      font-size: 10px;
+      min-width: 0;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    #cockpit-16x9-prototype .cp-breadcrumb strong { color: var(--cp-focus); font-weight: 500; }
+
+    #cockpit-16x9-prototype .cp-drill-view {
+      min-height: 0;
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr);
+      gap: 7px;
+    }
+
+    #cockpit-16x9-prototype .cp-drill-summary {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 5px;
+    }
+
+    #cockpit-16x9-prototype .cp-drill-stat {
+      padding: 6px;
+      background: var(--cp-surface-2);
+      border-radius: 6px;
+    }
+
+    #cockpit-16x9-prototype .cp-drill-stat span { display: block; color: var(--cp-muted); font-size: 9px; }
+    #cockpit-16x9-prototype .cp-drill-stat strong { display: block; margin-top: 3px; font-size: 13px; font-weight: 500; }
+
+    #cockpit-16x9-prototype .cp-drill-list {
+      display: grid;
+      align-content: start;
+      gap: 4px;
+      min-height: 0;
+    }
+
+    #cockpit-16x9-prototype .cp-drill-row {
+      display: grid;
+      grid-template-columns: 1fr 64px 78px;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 6px;
+      border-bottom: 1px solid var(--cp-line);
+      font-size: 10px;
+    }
+
+    #cockpit-16x9-prototype .cp-drill-row span:nth-child(2),
+    #cockpit-16x9-prototype .cp-drill-row span:nth-child(3) { text-align: right; font-variant-numeric: tabular-nums; }
+
+    #cockpit-16x9-prototype .cp-drill-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 7px;
+      min-width: 0;
+    }
+
+    #cockpit-16x9-prototype .cp-drill-limit { color: var(--cp-muted); font-size: 10px; min-width: 0; }
+    #cockpit-16x9-prototype .cp-drill-action {
+      background: var(--cp-focus-soft);
+      color: var(--cp-focus);
+      padding: 6px 9px;
+      white-space: nowrap;
+    }
+
+    #cockpit-16x9-prototype .cp-drill-action:disabled { opacity: .45; cursor: not-allowed; }
+
+    #cockpit-16x9-prototype .cp-provenance {
+      display: none;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 5px 10px;
+      padding-top: 7px;
+      border-top: 1px solid var(--cp-line);
+      font-size: 9px;
+    }
+
+    #cockpit-16x9-prototype[data-review=&quot;on&quot;] .cp-provenance { display: grid; }
+    #cockpit-16x9-prototype .cp-prov-label { color: var(--cp-muted); }
+    #cockpit-16x9-prototype .cp-prov-value { margin-top: 2px; word-break: break-word; }
+
+    @media (prefers-reduced-motion: reduce) {
+      #cockpit-16x9-prototype .cp-drawer { transition: none; }
+    }
+
+    @media (max-width: 620px) {
+      #cockpit-16x9-prototype .cp-board {
+        aspect-ratio: auto;
+        grid-template-rows: auto auto auto auto auto;
+      }
+      #cockpit-16x9-prototype .cp-header,
+      #cockpit-16x9-prototype .cp-nav { align-items: flex-start; flex-wrap: wrap; }
+      #cockpit-16x9-prototype .cp-review-controls { width: 100%; }
+      #cockpit-16x9-prototype .cp-profile { flex: 1; }
+      #cockpit-16x9-prototype .cp-module-tabs { width: 100%; flex-wrap: wrap; }
+      #cockpit-16x9-prototype .cp-kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      #cockpit-16x9-prototype .cp-main-grid,
+      #cockpit-16x9-prototype .cp-bottom-grid { grid-template-columns: 1fr; }
+      #cockpit-16x9-prototype .cp-panel { min-height: 132px; }
+      #cockpit-16x9-prototype .cp-drawer { width: calc(100% - 14px); }
+      #cockpit-16x9-prototype .cp-drawer.is-open { position: absolute; }
+    }
+  &lt;/style&gt;
+
+  &lt;section class=&quot;cp-board&quot; aria-label=&quot;16比9营收运营驾驶舱结构原型&quot;&gt;
+    &lt;header class=&quot;cp-header&quot;&gt;
+      &lt;div class=&quot;cp-heading&quot;&gt;
+        &lt;div id=&quot;cp-page-title&quot; class=&quot;cp-title&quot;&gt;经营总览&lt;/div&gt;
+        &lt;div class=&quot;cp-time&quot;&gt;2026-08-19 10:30 · 模拟数据 · 目标画布 1920×1080&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;cp-review-controls&quot; aria-label=&quot;数据能力版本&quot;&gt;
+        &lt;button type=&quot;button&quot; class=&quot;cp-profile&quot; data-profile=&quot;basic&quot; aria-pressed=&quot;false&quot;&gt;基础&lt;/button&gt;
+        &lt;button type=&quot;button&quot; class=&quot;cp-profile&quot; data-profile=&quot;standard&quot; aria-pressed=&quot;true&quot;&gt;标准&lt;/button&gt;
+        &lt;button type=&quot;button&quot; class=&quot;cp-profile&quot; data-profile=&quot;enhanced&quot; aria-pressed=&quot;false&quot;&gt;增强&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/header&gt;
+
+    &lt;nav class=&quot;cp-nav&quot; aria-label=&quot;驾驶舱模块&quot;&gt;
+      &lt;div id=&quot;cp-module-tabs&quot; class=&quot;cp-module-tabs&quot;&gt;&lt;/div&gt;
+      &lt;span id=&quot;cp-depth&quot; class=&quot;cp-depth&quot;&gt;可钻取深度 2/3&lt;/span&gt;
+      &lt;button id=&quot;cp-info-toggle&quot; type=&quot;button&quot; class=&quot;cp-info-toggle&quot; aria-pressed=&quot;true&quot;&gt;数据评审&lt;/button&gt;
+    &lt;/nav&gt;
+
+    &lt;div id=&quot;cp-kpis&quot; class=&quot;cp-kpis&quot; aria-label=&quot;核心指标&quot;&gt;&lt;/div&gt;
+    &lt;div id=&quot;cp-main-grid&quot; class=&quot;cp-main-grid&quot; aria-label=&quot;核心分析区&quot;&gt;&lt;/div&gt;
+    &lt;div id=&quot;cp-bottom-grid&quot; class=&quot;cp-bottom-grid&quot; aria-label=&quot;辅助分析区&quot;&gt;&lt;/div&gt;
+
+    &lt;div id=&quot;cp-backdrop&quot; class=&quot;cp-drawer-backdrop&quot;&gt;&lt;/div&gt;
+    &lt;aside id=&quot;cp-drawer&quot; class=&quot;cp-drawer&quot; aria-label=&quot;数据钻取与来源说明&quot; aria-hidden=&quot;true&quot;&gt;
+      &lt;div class=&quot;cp-drawer-head&quot;&gt;
+        &lt;div&gt;
+          &lt;div id=&quot;cp-drawer-title&quot; class=&quot;cp-drawer-title&quot;&gt;&lt;/div&gt;
+          &lt;div id=&quot;cp-drawer-subtitle&quot; class=&quot;cp-drawer-subtitle&quot;&gt;&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;button id=&quot;cp-close&quot; type=&quot;button&quot; class=&quot;cp-close&quot; aria-label=&quot;关闭钻取面板&quot;&gt;关闭&lt;/button&gt;
+      &lt;/div&gt;
+      &lt;div id=&quot;cp-breadcrumb&quot; class=&quot;cp-breadcrumb&quot;&gt;&lt;/div&gt;
+      &lt;div class=&quot;cp-drill-view&quot;&gt;
+        &lt;div id=&quot;cp-drill-summary&quot; class=&quot;cp-drill-summary&quot;&gt;&lt;/div&gt;
+        &lt;div id=&quot;cp-drill-list&quot; class=&quot;cp-drill-list&quot;&gt;&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+        &lt;div class=&quot;cp-drill-footer&quot;&gt;
+          &lt;span id=&quot;cp-drill-limit&quot; class=&quot;cp-drill-limit&quot;&gt;&lt;/span&gt;
+          &lt;button id=&quot;cp-drill-action&quot; type=&quot;button&quot; class=&quot;cp-drill-action&quot;&gt;继续下钻&lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div id=&quot;cp-provenance&quot; class=&quot;cp-provenance&quot;&gt;&lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/aside&gt;
+  &lt;/section&gt;
+
+  &lt;script&gt;
+    (() =&gt; {
+      const root = document.getElementById('cockpit-16x9-prototype');
+      const profileRank = { basic: 1, standard: 2, enhanced: 3 };
+      const profileLabels = { basic: '基础版', standard: '标准版', enhanced: '增强版' };
+      let profile = 'standard';
+      let moduleId = 'overview';
+      let reviewMode = true;
+      let selectedComponent = null;
+      let drillStep = 1;
+
+      const components = {
+        F01:{name:'周期缴费总额',value:'¥286,420',note:'较上一周期 +8.4%',level:'B',priority:'P0',endpoint:'/financial/pay-type + /financial/payment-overview',fields:'pay_type_id, totalPayment',formula:'Σ 各缴费方式金额',ref:'REST 073、088',fallback:'核心指标，不替换',type:'line'},
+        F02:{name:'周期缴费笔数',value:'4,862',unit:'笔',note:'较上一周期 +5.2%',level:'B',priority:'P0',endpoint:'/financial/payment-overview',fields:'totalNum',formula:'Σ 各缴费方式笔数',ref:'REST 088',fallback:'核心指标，不替换',type:'bars'},
+        F03:{name:'平均单笔缴费',value:'58.91',unit:'元',note:'金额 ÷ 笔数',level:'B',priority:'P1',endpoint:'依赖 F01、F02',fields:'totalPayment, totalNum',formula:'缴费总额 / 缴费笔数',ref:'REST 088 派生',fallback:'笔数为0时显示 --',type:'bars'},
+        F04:{name:'较上一周期',value:'+8.4%',note:'等长周期比较',level:'B',priority:'P1',endpoint:'/financial/payment-overview',fields:'当前期与上一期汇总',formula:'(本期-上期)/上期',ref:'REST 088 派生',fallback:'上期为0时仅显示差额',type:'line'},
+        F05:{name:'营收金额与笔数趋势',value:'',note:'小时 / 日粒度',level:'B',priority:'P0',endpoint:'/financial/payment-overview',fields:'totalPayment, totalNum',formula:'按时间桶和缴费方式聚合',ref:'REST 073、088；手册「财务详情」',fallback:'降低刷新频率并使用缓存',type:'line'},
+        F06:{name:'缴费方式构成',value:'',note:'金额与笔数双口径',level:'B',priority:'P0',endpoint:'/financial/pay-type + /payment-overview',fields:'pay_name, totalPayment, totalNum',formula:'单方式金额 / 全方式金额',ref:'REST 073、088；手册「按缴费方式统计」',fallback:'可替代产品收入排行',type:'bars'},
+        F08:{name:'退费金额',value:'¥12,680',note:'退费率 4.4%',level:'D',priority:'P0',endpoint:'需全局退费汇总',fields:'期望 refund_amount, refund_count',formula:'同周期全局退费汇总',ref:'手册「财务管理-退费」',fallback:'替换为平均单笔缴费',type:'bars'},
+        F09:{name:'净收入',value:'¥273,740',note:'缴费 - 退费 - 调整',level:'E',priority:'P0',endpoint:'待建立完整财务数据闭环',fields:'payment, refund, reversal, adjustment',formula:'双方确认财务口径',ref:'手册相关财务功能',fallback:'改名为「缴费收入」',type:'line'},
+        F10:{name:'产品收入排行',value:'',note:'TOP 产品',level:'D',priority:'P0',endpoint:'需产品维度全局收入接口',fields:'product_id, product_name, revenue',formula:'需确认退款与历史归属',ref:'手册「产品收入统计」',fallback:'替换为 F06 缴费方式构成',type:'bars'},
+        F11:{name:'用户组收入排行',value:'',note:'TOP 用户组',level:'D',priority:'P1',endpoint:'需用户组维度收入接口',fields:'group_id, group_name, revenue',formula:'需确认历史用户组归属',ref:'手册「按用户组收入统计」',fallback:'替换为在线用户组分布',type:'bars'},
+        F12:{name:'结算统计',value:'¥241,600',note:'本月已结算',level:'D',priority:'P1',endpoint:'需结算统计接口',fields:'period, product/group, amount',formula:'按结算周期汇总',ref:'手册「结算统计」',fallback:'替换为月缴费趋势',type:'line'},
+        O01:{name:'当前在线用户',value:'8,426',unit:'人',note:'实时账号数',level:'A',priority:'P0',endpoint:'/base/get-online-count',fields:'data.user_count',formula:'直接展示',ref:'REST 170',fallback:'核心在线指标',type:'line'},
+        O02:{name:'当前在线设备',value:'10,315',unit:'台',note:'人均 1.22 台',level:'A',priority:'P0',endpoint:'/base/get-online-count',fields:'data.device_count',formula:'直接展示',ref:'REST 170',fallback:'核心在线指标',type:'line'},
+        O03:{name:'在线用户趋势',value:'',note:'5分钟粒度',level:'A',priority:'P0',endpoint:'/online-report/index?type=user',fields:'data.detail, data.table',formula:'接口时间序列',ref:'REST 167；手册「在线数统计」',fallback:'降级为当前在线分布',type:'line'},
+        O04:{name:'在线设备趋势',value:'',note:'5分钟粒度',level:'A',priority:'P1',endpoint:'/online-report/index?type=device',fields:'data.detail, data.table',formula:'接口时间序列',ref:'REST 167',fallback:'与在线用户趋势合并',type:'line'},
+        O05:{name:'在线用户组分布',value:'',note:'账号 / 设备',level:'A',priority:'P1',endpoint:'/base/get-online-count',fields:'group_sort[]',formula:'按用户组展示',ref:'REST 170',fallback:'替代用户组收入排行',type:'bars'},
+        O06:{name:'在线产品分布',value:'',note:'在线产品结构',level:'A',priority:'P1',endpoint:'/base/get-online-count',fields:'product_sort[]',formula:'按产品展示在线用户',ref:'REST 170；手册「产品分布」',fallback:'替换为在线用户组分布',type:'bars'},
+        O07:{name:'产品订购用户',value:'21,480',unit:'人次',note:'存在多产品重复',level:'A',priority:'P1',endpoint:'/base/get-online-count',fields:'product_sort[].user_count',formula:'按产品直接展示',ref:'REST 170',fallback:'不求和作为总用户数',type:'bars'},
+        O08:{name:'用户组注册用户',value:'24,936',unit:'人',note:'范围待确认',level:'A',priority:'P1',endpoint:'/base/get-online-count',fields:'group_sort[].user_count',formula:'按用户组直接展示',ref:'REST 170',fallback:'需确认过期/禁用范围',type:'bars'},
+        O11:{name:'策略 / 终端 / OS',value:'',note:'多维在线结构',level:'C',priority:'P1',endpoint:'/online-report/other',fields:'legend, xAxis, series（待验证）',formula:'按 type 切换统计维度',ref:'REST 168；手册「运营-在线分析」',fallback:'替换为在线产品分布',type:'bars'},
+        U01:{name:'昨日认证次数',value:'31,908',unit:'次',note:'固定昨日口径',level:'A',priority:'P1',endpoint:'/api/v1/detail/auth-count',fields:'data',formula:'直接展示',ref:'REST 143',fallback:'认证诊断基础指标',type:'bars'},
+        U02:{name:'日联网用户',value:'16,284',unit:'人',note:'按下线时间统计',level:'A',priority:'P1',endpoint:'/detail/count',fields:'data.count',formula:'指定日期接口统计',ref:'REST 172',fallback:'单日 KPI',type:'line'},
+        U03:{name:'月联网活跃用户',value:'18,642',unit:'人',note:'月份参数待确认',level:'C',priority:'P0',endpoint:'/detail/month-count',fields:'data.count',formula:'月度活跃账号数',ref:'REST 173',fallback:'替换为日联网用户',type:'line'},
+        U04:{name:'流量 TOP',value:'',note:'账号总流量排行',level:'A',priority:'P1',endpoint:'/detail/top',fields:'user_name, total_bytes',formula:'时间范围内降序',ref:'REST 145',fallback:'替换为在线产品分布',type:'bars'},
+        U05:{name:'认证失败原因',value:'',note:'TOP 错误原因',level:'C',priority:'P1',endpoint:'/log/auth-error-total',fields:'响应字段待真实样本',formula:'按错误原因统计次数',ref:'REST 163；手册「认证错误」',fallback:'替换为昨日认证次数',type:'bars'},
+        U06:{name:'用户总数',value:'24,936',unit:'人',note:'无筛选范围待验证',level:'C',priority:'P1',endpoint:'/user/super-search',fields:'_meta.totalCount',formula:'无筛选查询总数',ref:'REST 021',fallback:'隐藏或使用用户组汇总',type:'bars'},
+        U07:{name:'今日新开户',value:'286',unit:'人',note:'较昨日 +12%',level:'D',priority:'P1',endpoint:'需开户统计接口',fields:'created_date, count',formula:'自然日开户数',ref:'手册「系统概况-用户情况」',fallback:'替换为日联网用户',type:'line'},
+        U08:{name:'过期用户',value:'1,248',unit:'人',note:'本月到期 326',level:'D',priority:'P1',endpoint:'需过期用户统计接口',fields:'expire_date, status, count',formula:'按过期状态统计',ref:'手册「系统概况-用户情况」',fallback:'用户状态区整体隐藏',type:'bars'},
+        U09:{name:'销户用户',value:'438',unit:'人',note:'本月 41',level:'D',priority:'P2',endpoint:'需销户统计接口',fields:'cancel_date, count',formula:'按销户时间统计',ref:'手册「系统概况-用户情况」',fallback:'隐藏',type:'bars'},
+        U10:{name:'系统资源监控',value:'',note:'CPU / 内存 / 负载',level:'D',priority:'P2',endpoint:'需监控平台或新增接口',fields:'cpu, memory, load, server_status',formula:'实时或分钟级采样',ref:'手册「业务监控-实时监控」',fallback:'系统运维模块禁用',type:'line'},
+        U11:{name:'故障与工单',value:'',note:'认证故障 / 用户反馈',level:'D',priority:'P2',endpoint:'需工单或故障数据源',fields:'type, status, created_at, count',formula:'按状态和类型汇总',ref:'手册「网络故障管理」「FAQ」',fallback:'隐藏',type:'bars'}
+      };
+
+      const modules = [
+        {id:'overview',name:'经营总览',min:1},
+        {id:'finance',name:'财务分析',min:1},
+        {id:'users',name:'用户分析',min:1},
+        {id:'online',name:'在线运营',min:1},
+        {id:'auth',name:'认证质量',min:1},
+        {id:'ops',name:'系统运维',min:3}
+      ];
+
+      const layouts = {
+        overview:{
+          basic:{k:['F01','F02','F03','O01','O02','U01'],m:['F06','F05','O03'],b:['O06','U04','U01','U02'],fb:{F06:'F10 不可用 → 使用缴费方式构成',U01:'U05 待验证 → 使用昨日认证次数'}},
+          standard:{k:['F01','F02','F03','U03','O01','O02'],m:['F06','F05','O03'],b:['O11','U04','U05','O06'],fb:{F06:'F10 需对方补充 → 使用缴费方式构成'}},
+          enhanced:{k:['F09','F01','F08','U03','O01','O02'],m:['F06','F05','F10'],b:['O03','F11','U05','U04'],fb:{}}
+        },
+        finance:{
+          basic:{k:['F01','F02','F03','F04','O01','O02'],m:['F06','F05','F02'],b:['F04','F03','O06','U04'],fb:{F06:'F10 不可用 → 使用缴费方式构成',F02:'全局流水不可用 → 使用缴费笔数'}},
+          standard:{k:['F01','F02','F03','F04','O01','U03'],m:['F06','F05','F02'],b:['F04','F03','U04','O06'],fb:{F06:'F10 需对方补充 → 使用缴费方式构成'}},
+          enhanced:{k:['F09','F01','F08','F02','F03','F12'],m:['F10','F05','F11'],b:['F12','F06','F04','F08'],fb:{}}
+        },
+        users:{
+          basic:{k:['U02','U01','O01','O02','O07','O08'],m:['O05','U02','O06'],b:['U04','O03','O07','O08'],fb:{U02:'U03 待验证 → 使用日联网用户'}},
+          standard:{k:['U06','U03','U02','O07','O08','O01'],m:['O05','U02','O06'],b:['U04','O03','O11','U01'],fb:{}},
+          enhanced:{k:['U06','U07','U08','U09','U03','O01'],m:['O05','U02','O06'],b:['U04','O07','O08','U01'],fb:{}}
+        },
+        online:{
+          basic:{k:['O01','O02','U02','U01','O07','O08'],m:['O05','O03','O06'],b:['O04','U04','U01','U02'],fb:{O06:'O11 待验证 → 使用在线产品分布'}},
+          standard:{k:['O01','O02','U03','U02','O07','O08'],m:['O05','O03','O11'],b:['O04','O06','U04','U05'],fb:{}},
+          enhanced:{k:['O01','O02','U03','U06','O07','O08'],m:['O05','O03','O11'],b:['O04','O06','U04','U05'],fb:{}}
+        },
+        auth:{
+          basic:{k:['U01','U02','O01','O02','U04','F01'],m:['U01','O03','U04'],b:['O05','O06','U02','O04'],fb:{U01:'U05 待验证 → 使用昨日认证次数'}},
+          standard:{k:['U01','U03','U02','O01','O02','U06'],m:['U05','O03','U04'],b:['O11','O05','O06','U01'],fb:{}},
+          enhanced:{k:['U01','U03','U02','O01','U07','U06'],m:['U05','O03','U04'],b:['U11','O11','O05','O06'],fb:{}}
+        },
+        ops:{
+          enhanced:{k:['U10','U11','O01','O02','U05','U01'],m:['U10','O03','U11'],b:['U05','O11','O04','U04'],fb:{}}
+        }
+      };
+
+      const chartLabels = {
+        F06:['电子钱包','微信支付','支付宝','其他'],F10:['产品 A','产品 B','产品 C','其他'],F11:['用户组 A','用户组 B','用户组 C','其他'],
+        O05:['用户组 A','用户组 B','用户组 C','其他'],O06:['产品 A','产品 B','产品 C','其他'],O11:['Windows','Android','iOS','其他'],
+        U04:['账号 1024','账号 0872','账号 3156','其他'],U05:['密码错误','账号状态','并发限制','其他'],U11:['认证故障','网络故障','用户反馈','其他']
+      };
+
+      function grade(item){ return `&lt;span class=&quot;cp-grade cp-grade-${item.level.toLowerCase()}&quot;&gt;${item.level}&lt;/span&gt;`; }
+
+      function lineChart(item){
+        return `&lt;svg class=&quot;cp-chart&quot; viewBox=&quot;0 0 320 80&quot; preserveAspectRatio=&quot;none&quot; role=&quot;img&quot; aria-label=&quot;${item.name}趋势示意&quot;&gt;
+          &lt;title&gt;${item.name}趋势示意&lt;/title&gt;&lt;desc&gt;用于结构原型的模拟趋势数据&lt;/desc&gt;
+          &lt;line class=&quot;grid&quot; x1=&quot;0&quot; y1=&quot;12&quot; x2=&quot;320&quot; y2=&quot;12&quot;&gt;&lt;/line&gt;&lt;line class=&quot;grid&quot; x1=&quot;0&quot; y1=&quot;40&quot; x2=&quot;320&quot; y2=&quot;40&quot;&gt;&lt;/line&gt;&lt;line class=&quot;grid&quot; x1=&quot;0&quot; y1=&quot;68&quot; x2=&quot;320&quot; y2=&quot;68&quot;&gt;&lt;/line&gt;
+          &lt;polyline class=&quot;series-2&quot; points=&quot;0,65 40,58 80,62 120,48 160,52 200,34 240,40 280,27 320,31&quot;&gt;&lt;/polyline&gt;
+          &lt;polyline class=&quot;series&quot; points=&quot;0,69 40,63 80,54 120,58 160,38 200,42 240,24 280,32 320,15&quot;&gt;&lt;/polyline&gt;
+        &lt;/svg&gt;`;
+      }
+
+      function barsChart(item){
+        const labels = chartLabels[item.id] || ['类别 A','类别 B','类别 C','其他'];
+        const widths = [82,64,47,29];
+        return `&lt;span class=&quot;cp-bar-list&quot; role=&quot;img&quot; aria-label=&quot;${item.name}分布示意&quot;&gt;${labels.map((label,i)=&gt;`&lt;span class=&quot;cp-bar-item&quot;&gt;&lt;span&gt;${label}&lt;/span&gt;&lt;span class=&quot;cp-bar-track&quot;&gt;&lt;span class=&quot;cp-bar-fill&quot; style=&quot;width:${widths[i]}%&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span&gt;${widths[i]}%&lt;/span&gt;&lt;/span&gt;`).join('')}&lt;/span&gt;`;
+      }
+
+      function kpiHtml(id){
+        const item = {...components[id],id};
+        return `&lt;button type=&quot;button&quot; class=&quot;cp-kpi&quot; data-component=&quot;${id}&quot; aria-label=&quot;查看${item.name}详情&quot;&gt;
+          &lt;span class=&quot;cp-kpi-head&quot;&gt;&lt;span class=&quot;cp-label&quot;&gt;${item.name}&lt;/span&gt;${grade(item)}&lt;/span&gt;
+          &lt;span class=&quot;cp-value&quot;&gt;${item.value} &lt;span class=&quot;cp-unit&quot;&gt;${item.unit || ''}&lt;/span&gt;&lt;/span&gt;
+          &lt;span class=&quot;cp-note&quot;&gt;${item.note}&lt;/span&gt;
+        &lt;/button&gt;`;
+      }
+
+      function panelHtml(id, fallback){
+        const item = {...components[id],id};
+        const chart = item.type === 'line' ? lineChart(item) : barsChart(item);
+        return `&lt;button type=&quot;button&quot; class=&quot;cp-panel&quot; data-component=&quot;${id}&quot; aria-label=&quot;钻取${item.name}&quot;&gt;
+          &lt;span class=&quot;cp-panel-head&quot;&gt;&lt;span class=&quot;cp-panel-title&quot;&gt;${item.name}&lt;/span&gt;${grade(item)}&lt;/span&gt;
+          &lt;span class=&quot;cp-panel-body&quot;&gt;${chart}&lt;/span&gt;
+          ${fallback ? `&lt;span class=&quot;cp-fallback&quot;&gt;${fallback}&lt;/span&gt;` : ''}
+        &lt;/button&gt;`;
+      }
+
+      function renderTabs(){
+        const host = root.querySelector('#cp-module-tabs');
+        host.innerHTML = modules.map(mod =&gt; `&lt;button type=&quot;button&quot; class=&quot;cp-module&quot; data-module=&quot;${mod.id}&quot; aria-selected=&quot;${mod.id===moduleId}&quot; ${profileRank[profile] &lt; mod.min ? 'disabled' : ''}&gt;${mod.name}&lt;/button&gt;`).join('');
+        host.querySelectorAll('[data-module]').forEach(button =&gt; button.addEventListener('click', () =&gt; {
+          moduleId = button.dataset.module;
+          closeDrawer();
+          render();
+        }));
+      }
+
+      function render(){
+        if (moduleId === 'ops' &amp;&amp; profileRank[profile] &lt; 3) moduleId = 'overview';
+        const layout = layouts[moduleId][profile] || layouts[moduleId].enhanced;
+        root.querySelector('#cp-page-title').textContent = modules.find(m=&gt;m.id===moduleId).name;
+        root.querySelector('#cp-depth').textContent = `可钻取深度 ${profileRank[profile]}/3`;
+        root.querySelectorAll('[data-profile]').forEach(button =&gt; button.setAttribute('aria-pressed', String(button.dataset.profile===profile)));
+        root.querySelector('#cp-info-toggle').setAttribute('aria-pressed', String(reviewMode));
+        root.dataset.review = reviewMode ? 'on' : 'off';
+        renderTabs();
+        root.querySelector('#cp-kpis').innerHTML = layout.k.map(kpiHtml).join('');
+        root.querySelector('#cp-main-grid').innerHTML = layout.m.map(id =&gt; panelHtml(id, layout.fb[id])).join('');
+        root.querySelector('#cp-bottom-grid').innerHTML = layout.b.map(id =&gt; panelHtml(id, layout.fb[id])).join('');
+        root.querySelectorAll('[data-component]').forEach(button =&gt; button.addEventListener('click', () =&gt; openDrawer(button.dataset.component)));
+      }
+
+      function drillRows(item, step){
+        const labelSets = {
+          1:['总体汇总','当前周期','上一周期','变化'],
+          2:chartLabels[item.id] || ['类别 A','类别 B','类别 C','其他'],
+          3:item.id.startsWith('O') ? ['账号 10086','账号 10247','账号 11308','账号 12456'] : item.id.startsWith('U') ? ['错误记录 001','错误记录 002','错误记录 003','错误记录 004'] : ['流水 20260819001','流水 20260819002','流水 20260819003','流水 20260819004']
+        };
+        const labels = labelSets[step];
+        return labels.map((label,i)=&gt;`&lt;div class=&quot;cp-drill-row&quot;&gt;&lt;span&gt;${label}&lt;/span&gt;&lt;span&gt;${[8426,4862,1284,438][i].toLocaleString()}&lt;/span&gt;&lt;span&gt;${['38.4%','27.8%','19.6%','14.2%'][i]}&lt;/span&gt;&lt;/div&gt;`).join('');
+      }
+
+      function openDrawer(id){
+        selectedComponent = id;
+        drillStep = 1;
+        root.querySelector('#cp-backdrop').classList.add('is-open');
+        root.querySelector('#cp-drawer').classList.add('is-open');
+        root.querySelector('#cp-drawer').setAttribute('aria-hidden','false');
+        renderDrawer();
+      }
+
+      function closeDrawer(){
+        root.querySelector('#cp-backdrop').classList.remove('is-open');
+        root.querySelector('#cp-drawer').classList.remove('is-open');
+        root.querySelector('#cp-drawer').setAttribute('aria-hidden','true');
+        selectedComponent = null;
+      }
+
+      function renderDrawer(){
+        if (!selectedComponent) return;
+        const item = {...components[selectedComponent],id:selectedComponent};
+        const depth = profileRank[profile];
+        const steps = ['指标汇总','结构分析','明细记录'];
+        root.querySelector('#cp-drawer-title').textContent = item.name;
+        root.querySelector('#cp-drawer-subtitle').textContent = `${profileLabels[profile]} · ${item.priority} · 数据等级 ${item.level}`;
+        root.querySelector('#cp-breadcrumb').innerHTML = steps.map((label,i)=&gt;`${i ? '&lt;span&gt;›&lt;/span&gt;' : ''}&lt;span class=&quot;${i+1===drillStep?'current':''}&quot;&gt;${i+1===drillStep?`&lt;strong&gt;${label}&lt;/strong&gt;`:label}&lt;/span&gt;`).join('');
+        root.querySelector('#cp-drill-summary').innerHTML = `&lt;div class=&quot;cp-drill-stat&quot;&gt;&lt;span&gt;当前值&lt;/span&gt;&lt;strong&gt;${item.value || '286,420'}&lt;/strong&gt;&lt;/div&gt;&lt;div class=&quot;cp-drill-stat&quot;&gt;&lt;span&gt;数据层级&lt;/span&gt;&lt;strong&gt;${item.level}&lt;/strong&gt;&lt;/div&gt;&lt;div class=&quot;cp-drill-stat&quot;&gt;&lt;span&gt;可用深度&lt;/span&gt;&lt;strong&gt;${depth}/3&lt;/strong&gt;&lt;/div&gt;`;
+        root.querySelector('#cp-drill-list').innerHTML = drillRows(item,drillStep);
+        const action = root.querySelector('#cp-drill-action');
+        const canContinue = drillStep &lt; depth;
+        action.disabled = !canContinue;
+        action.textContent = canContinue ? '继续下钻' : '当前版本到此层';
+        root.querySelector('#cp-drill-limit').textContent = depth &lt; 3 ? `升级到${depth===1?'标准':'增强'}版后可继续查看${steps[depth]}` : '增强版支持到明细记录';
+        const prov = [
+          ['数据/接口来源',item.endpoint],['关键字段',item.fields],['计算口径',item.formula],['文档参考点',item.ref],['确认状态',item.level==='A'||item.level==='B'?'S1 · 文档确认':'S0/S1 · 待沟通验证'],['降级策略',item.fallback]
+        ];
+        root.querySelector('#cp-provenance').innerHTML = prov.map(([label,value])=&gt;`&lt;div&gt;&lt;div class=&quot;cp-prov-label&quot;&gt;${label}&lt;/div&gt;&lt;div class=&quot;cp-prov-value&quot;&gt;${value}&lt;/div&gt;&lt;/div&gt;`).join('');
+      }
+
+      root.querySelectorAll('[data-profile]').forEach(button =&gt; button.addEventListener('click', () =&gt; {
+        profile = button.dataset.profile;
+        if (selectedComponent) drillStep = Math.min(drillStep,profileRank[profile]);
+        render();
+        if (selectedComponent) renderDrawer();
+      }));
+      root.querySelector('#cp-info-toggle').addEventListener('click', () =&gt; { reviewMode=!reviewMode; render(); if(selectedComponent) renderDrawer(); });
+      root.querySelector('#cp-close').addEventListener('click', closeDrawer);
+      root.querySelector('#cp-backdrop').addEventListener('click', closeDrawer);
+      root.querySelector('#cp-drill-action').addEventListener('click', () =&gt; { if(drillStep&lt;profileRank[profile]){ drillStep+=1; renderDrawer(); } });
+      root.dataset.review='on';
+      render();
+    })();
+  &lt;/script&gt;
+&lt;/div&gt;
+
+
+&lt;style id=&quot;codex-visualization-document-scrollbar&quot;&gt;html,body{scrollbar-width:none!important}html::-webkit-scrollbar,body::-webkit-scrollbar{display:none!important}&lt;/style&gt;
+
+&lt;script src=&quot;https://unpkg.com/@floating-ui/core@1.7.3/dist/floating-ui.core.umd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@floating-ui/dom@1.7.4/dist/floating-ui.dom.umd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+(() =&gt; {
+  if (window.FloatingUIDOM == null) {
+    return;
+  }
+  const { autoUpdate, computePosition, flip, offset, shift, size } =
+    window.FloatingUIDOM;
+  const tooltipPlacements = new Set([&quot;top&quot;, &quot;right&quot;, &quot;bottom&quot;, &quot;left&quot;]);
+  const tooltipId = `codex-visualization-tooltip-${
+    window.crypto?.randomUUID?.() ?? Date.now().toString(36)
+  }`;
+  const tooltipGap = 5;
+  const hoverDelay = 700;
+  const skipDelay = 300;
+  let activeTrigger = null;
+  let pendingTrigger = null;
+  let tooltip = null;
+  let openTimeout = null;
+  let autoUpdateCleanup = null;
+  let positionRequest = 0;
+  let skipDelayUntil = 0;
+
+  const getTrigger = (target) =&gt;
+    target?.nodeType === Node.ELEMENT_NODE
+      ? target.closest(&quot;[data-tooltip]&quot;)
+      : null;
+  const containsTarget = (trigger, target) =&gt;
+    target?.nodeType != null &amp;&amp; trigger.contains(target);
+  const getContent = (trigger) =&gt;
+    trigger.getAttribute(&quot;data-tooltip&quot;)?.trim() ?? &quot;&quot;;
+  const getPlacement = (trigger) =&gt; {
+    const placement = trigger.getAttribute(&quot;data-tooltip-placement&quot;);
+    return tooltipPlacements.has(placement) ? placement : &quot;top&quot;;
+  };
+  const getTooltip = () =&gt; {
+    if (tooltip == null) {
+      tooltip = document.createElement(&quot;div&quot;);
+      tooltip.id = tooltipId;
+      tooltip.className = &quot;tooltip&quot;;
+      tooltip.setAttribute(&quot;role&quot;, &quot;tooltip&quot;);
+    }
+    return tooltip;
+  };
+  const setDescribedBy = (trigger, described) =&gt; {
+    const ids = new Set(
+      (trigger.getAttribute(&quot;aria-describedby&quot;) ?? &quot;&quot;)
+        .split(/\s+/)
+        .filter(Boolean),
+    );
+    if (described) {
+      ids.add(tooltipId);
+    } else {
+      ids.delete(tooltipId);
+    }
+    if (ids.size === 0) {
+      trigger.removeAttribute(&quot;aria-describedby&quot;);
+    } else {
+      trigger.setAttribute(&quot;aria-describedby&quot;, [...ids].join(&quot; &quot;));
+    }
+  };
+  const clearOpenTimeout = () =&gt; {
+    if (openTimeout != null) {
+      window.clearTimeout(openTimeout);
+      openTimeout = null;
+    }
+    pendingTrigger = null;
+  };
+  const closeTooltip = (activateSkipDelay = true) =&gt; {
+    clearOpenTimeout();
+    positionRequest += 1;
+    autoUpdateCleanup?.();
+    autoUpdateCleanup = null;
+    if (activeTrigger == null) {
+      return;
+    }
+    setDescribedBy(activeTrigger, false);
+    activeTrigger = null;
+    tooltip?.remove();
+    if (activateSkipDelay) {
+      skipDelayUntil = Date.now() + skipDelay;
+    }
+  };
+  const updatePosition = (trigger, floating) =&gt; {
+    const request = ++positionRequest;
+    void computePosition(trigger, floating, {
+      middleware: [
+        offset(tooltipGap),
+        flip({ padding: tooltipGap }),
+        shift({ padding: tooltipGap }),
+        size({
+          padding: tooltipGap,
+          apply({ availableHeight, availableWidth, elements }) {
+            elements.floating.style.setProperty(
+              &quot;--tooltip-available-width&quot;,
+              `${Math.max(0, availableWidth)}px`,
+            );
+            elements.floating.style.setProperty(
+              &quot;--tooltip-available-height&quot;,
+              `${Math.max(0, availableHeight)}px`,
+            );
+          },
+        }),
+      ],
+      placement: getPlacement(trigger),
+      strategy: &quot;fixed&quot;,
+    })
+      .then(({ x, y }) =&gt; {
+        if (activeTrigger !== trigger || request !== positionRequest) {
+          return;
+        }
+        const scale = window.devicePixelRatio || 1;
+        floating.style.transform = `translate(${Math.round(x * scale) / scale}px, ${Math.round(y * scale) / scale}px)`;
+        floating.style.visibility = &quot;visible&quot;;
+      })
+      .catch(() =&gt; {
+        if (activeTrigger === trigger &amp;&amp; request === positionRequest) {
+          closeTooltip(false);
+        }
+      });
+  };
+  const openTooltip = (trigger) =&gt; {
+    const content = getContent(trigger);
+    if (!trigger.isConnected || content.length === 0) {
+      return;
+    }
+    clearOpenTimeout();
+    if (activeTrigger === trigger) {
+      return;
+    }
+    closeTooltip();
+    const floating = getTooltip();
+    floating.textContent = content;
+    floating.style.visibility = &quot;hidden&quot;;
+    floating.style.transform = &quot;translate(0, 0)&quot;;
+    document.body.appendChild(floating);
+    activeTrigger = trigger;
+    setDescribedBy(trigger, true);
+    autoUpdateCleanup = autoUpdate(trigger, floating, () =&gt; {
+      updatePosition(trigger, floating);
+    });
+  };
+  const requestOpen = (trigger, immediate = false) =&gt; {
+    if (
+      getContent(trigger).length === 0 ||
+      activeTrigger === trigger ||
+      pendingTrigger === trigger
+    ) {
+      return;
+    }
+    clearOpenTimeout();
+    pendingTrigger = trigger;
+    const delay =
+      immediate || activeTrigger != null || Date.now() &lt; skipDelayUntil
+        ? 0
+        : hoverDelay;
+    if (delay === 0) {
+      openTooltip(trigger);
+      return;
+    }
+    openTimeout = window.setTimeout(() =&gt; {
+      openTimeout = null;
+      pendingTrigger = null;
+      openTooltip(trigger);
+    }, delay);
+  };
+  const handlePointerOpen = (event) =&gt; {
+    if (event.pointerType === &quot;touch&quot;) {
+      return;
+    }
+    const trigger = getTrigger(event.target);
+    if (trigger == null || containsTarget(trigger, event.relatedTarget)) {
+      return;
+    }
+    requestOpen(trigger);
+  };
+  const handleLeave = (event) =&gt; {
+    const trigger = getTrigger(event.target);
+    if (trigger == null || containsTarget(trigger, event.relatedTarget)) {
+      return;
+    }
+    if (activeTrigger === trigger || pendingTrigger === trigger) {
+      closeTooltip();
+    }
+  };
+  const handleFocusIn = (event) =&gt; {
+    const trigger = getTrigger(event.target);
+    if (trigger?.matches(&quot;:focus-visible&quot;)) {
+      requestOpen(trigger, true);
+    }
+  };
+  const handleKeyDown = (event) =&gt; {
+    if (event.key === &quot;Escape&quot;) {
+      closeTooltip();
+    }
+  };
+  const handleContextMenu = (event) =&gt; {
+    const trigger = getTrigger(event.target);
+    if (activeTrigger === trigger || pendingTrigger === trigger) {
+      closeTooltip();
+    }
+  };
+  const destroy = () =&gt; {
+    closeTooltip(false);
+    document.removeEventListener(&quot;pointerover&quot;, handlePointerOpen);
+    document.removeEventListener(&quot;pointerout&quot;, handleLeave);
+    document.removeEventListener(&quot;focusin&quot;, handleFocusIn);
+    document.removeEventListener(&quot;focusout&quot;, handleLeave);
+    document.removeEventListener(&quot;keydown&quot;, handleKeyDown);
+    document.removeEventListener(&quot;contextmenu&quot;, handleContextMenu);
+    tooltip = null;
+  };
+
+  document.addEventListener(&quot;pointerover&quot;, handlePointerOpen);
+  document.addEventListener(&quot;pointerout&quot;, handleLeave);
+  document.addEventListener(&quot;focusin&quot;, handleFocusIn);
+  document.addEventListener(&quot;focusout&quot;, handleLeave);
+  document.addEventListener(&quot;keydown&quot;, handleKeyDown);
+  document.addEventListener(&quot;contextmenu&quot;, handleContextMenu);
+  window.addEventListener(&quot;pagehide&quot;, destroy, { once: true });
+})();
+&lt;/script&gt;
+&lt;script id=&quot;codex-visualization-lucide&quot; async src=&quot;https://unpkg.com/lucide@1.17.0/dist/umd/lucide.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+(() =&gt; {
+  const initialize = () =&gt; {
+    globalThis.lucide?.createIcons({ attrs: { width: 16, height: 16 } });
+  };
+  if (globalThis.lucide != null) {
+    initialize();
+    return;
+  }
+  document
+    .getElementById(&quot;codex-visualization-lucide&quot;)
+    ?.addEventListener(&quot;load&quot;, initialize, { once: true });
+})();
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+"></iframe>
+<script>(() => {
+  const frame = document.getElementById("codex-visualization");
+  if (!(frame instanceof HTMLIFrameElement)) {
+    return;
+  }
+  let viewportHeight = globalThis.innerHeight;
+
+  const channel = new MessageChannel();
+  channel.port1.addEventListener("message", (event) => {
+    const data = event.data;
+    if (typeof data !== "object" || data == null) {
+      return;
+    }
+    if (data.type === "height") {
+      const height = data.height;
+      if (
+        typeof height === "number" &&
+        Number.isFinite(height) &&
+        height >= 0 &&
+        height <= 10_000
+      ) {
+        frame.style.height = Math.ceil(height) + "px";
+      }
+      return;
+    }
+    if (data.type === "scroll-to") {
+      const top = data.top;
+      if (
+        typeof top === "number" &&
+        Number.isFinite(top) &&
+        top >= 0 &&
+        globalThis.navigator.userActivation?.isActive === true
+      ) {
+        globalThis.scrollTo({
+          top: Math.ceil(
+            globalThis.scrollY + frame.getBoundingClientRect().top + top,
+          ),
+        });
+      }
+      return;
+    }
+    if (data.type === "open-external") {
+      const rawHref = data.href;
+      if (typeof rawHref !== "string") {
+        return;
+      }
+      let href;
+      try {
+        const url = new URL(rawHref, document.baseURI);
+        if (url.protocol !== "https:") {
+          return;
+        }
+        href = url.href;
+      } catch {
+        return;
+      }
+      if (globalThis.navigator.userActivation?.isActive === true) {
+        const anchor = document.createElement("a");
+        anchor.href = href;
+        anchor.rel = "noopener noreferrer";
+        anchor.target = "_blank";
+        document.body.appendChild(anchor);
+        anchor.click();
+        anchor.remove();
+      }
+      return;
+    }
+    if (data.type === "follow-up") {
+      const prompt = data.prompt;
+      if (
+        typeof prompt !== "string" ||
+        globalThis.navigator.userActivation?.isActive !== true
+      ) {
+        return;
+      }
+      const title = data.title;
+      globalThis.prompt(typeof title === "string" ? title : prompt, prompt);
+    }
+  });
+  channel.port1.start();
+  const srcdoc = frame.dataset.srcdoc;
+  if (srcdoc == null) {
+    return;
+  }
+  globalThis.addEventListener("resize", () => {
+    const height = Number.parseFloat(frame.style.height);
+    if (!Number.isFinite(height) || height <= viewportHeight) {
+      frame.style.removeProperty("height");
+    }
+    viewportHeight = globalThis.innerHeight;
+    channel.port1.postMessage({ type: "measure" });
+  });
+  frame.addEventListener(
+    "load",
+    () => {
+      frame.contentWindow?.postMessage(
+        { type: "codex-visualization-initialize" },
+        "*",
+        [channel.port2],
+      );
+    },
+    { once: true },
+  );
+  frame.srcdoc = srcdoc;
+  delete frame.dataset.srcdoc;
+})();
+</script>
+</body>
+</html>
