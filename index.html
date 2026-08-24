@@ -1351,6 +1351,18 @@ html&gt;body{padding:0}&lt;/style&gt;
     #srun-cockpit-v3[data-review=&quot;on&quot;] .sc-provenance { display: grid; }
     #srun-cockpit-v3 .sc-prov-label { color: var(--sc-muted); font-size: 10px; }
     #srun-cockpit-v3 .sc-prov-value { margin-top: 2px; font-size: 11px; word-break: break-word; }
+    #srun-cockpit-v3 .sc-scale-help {
+      display: none;
+      gap: 4px;
+      padding: 8px 9px;
+      border-radius: 7px;
+      color: var(--sc-muted);
+      background: var(--sc-surface-2);
+      font-size: 10px;
+      line-height: 1.45;
+    }
+    #srun-cockpit-v3[data-review=&quot;on&quot;] .sc-scale-help { display: grid; }
+    #srun-cockpit-v3 .sc-scale-help strong { color: var(--sc-text); font-weight: 650; }
 
     #srun-cockpit-v3 .sc-notice {
       display: none;
@@ -1451,6 +1463,10 @@ html&gt;body{padding:0}&lt;/style&gt;
           &lt;button id=&quot;sc-drill-next&quot; type=&quot;button&quot; class=&quot;sc-drill-button&quot;&gt;继续下钻&lt;/button&gt;
         &lt;/div&gt;
         &lt;div id=&quot;sc-provenance&quot; class=&quot;sc-provenance&quot;&gt;&lt;/div&gt;
+        &lt;div id=&quot;sc-scale-help&quot; class=&quot;sc-scale-help&quot;&gt;
+          &lt;div&gt;&lt;strong&gt;证据：&lt;/strong&gt;A 直接返回 · B 组合派生 · C 待真实样本 · D 需对方补充 · E 目标蓝图&lt;/div&gt;
+          &lt;div&gt;&lt;strong&gt;联调：&lt;/strong&gt;S0 未确认 · S1 文档确认 · S2 已有样本 · S3 联调验证 · S4 不可用/关闭&lt;/div&gt;
+        &lt;/div&gt;
       &lt;/div&gt;
     &lt;/aside&gt;
     &lt;div id=&quot;sc-notice&quot; class=&quot;sc-notice&quot; role=&quot;status&quot;&gt;&lt;/div&gt;
@@ -1463,6 +1479,21 @@ html&gt;body{padding:0}&lt;/style&gt;
       const profileRank = { basic: 1, standard: 2, enhanced: 3 };
       const periodLabels = { today: &#x27;今日&#x27;, &#x27;7d&#x27;: &#x27;近 7 日&#x27;, month: &#x27;本月&#x27; };
       const grainLabels = { hour: &#x27;小时&#x27;, day: &#x27;日&#x27;, month: &#x27;月&#x27; };
+      const evidenceMeanings = {
+        A: &#x27;接口直接返回，可直接展示&#x27;,
+        B: &#x27;由已发布接口组合或计算得到&#x27;,
+        &#x27;A/B&#x27;: &#x27;包含直接字段与派生口径&#x27;,
+        C: &#x27;接口存在，但需真实样本验证&#x27;,
+        D: &#x27;手册存在能力，需对方补充数据&#x27;,
+        E: &#x27;目标蓝图，需多来源和口径闭环&#x27;
+      };
+      const statusMeanings = {
+        S0: &#x27;尚未向对方确认&#x27;,
+        S1: &#x27;文档已确认，尚未取得真实响应&#x27;,
+        S2: &#x27;已取得真实或脱敏样本&#x27;,
+        S3: &#x27;已完成接口联调和口径验证&#x27;,
+        S4: &#x27;不可提供、无权限或已决定关闭&#x27;
+      };
 
       const profiles = {
         basic: {
@@ -1669,8 +1700,8 @@ html&gt;body{padding:0}&lt;/style&gt;
       let drillStep = 0;
       let noticeTimer = null;
 
-      const evidenceBadge = item =&gt; `&lt;span class=&quot;sc-evidence&quot; data-level=&quot;${item.evidence.charAt(0)}&quot;&gt;证据 ${item.evidence}&lt;/span&gt;`;
-      const statusBadge = item =&gt; `&lt;span class=&quot;sc-state&quot;&gt;联调 ${item.status}&lt;/span&gt;`;
+      const evidenceBadge = item =&gt; `&lt;span class=&quot;sc-evidence&quot; data-level=&quot;${item.evidence.charAt(0)}&quot; title=&quot;文档证据 ${item.evidence}：${evidenceMeanings[item.evidence] || &#x27;待解释&#x27;}&quot;&gt;证据 ${item.evidence}&lt;/span&gt;`;
+      const statusBadge = item =&gt; `&lt;span class=&quot;sc-state&quot; title=&quot;联调状态 ${item.status}：${statusMeanings[item.status] || &#x27;待确认&#x27;}&quot;&gt;联调 ${item.status}&lt;/span&gt;`;
 
       function points(values, width = 320, height = 112) {
         const min = Math.min(...values);
@@ -1809,8 +1840,8 @@ html&gt;body{padding:0}&lt;/style&gt;
           [&#x27;关键字段&#x27;, item.fields],
           [&#x27;计算口径&#x27;, item.formula],
           [&#x27;文档参考&#x27;, item.ref],
-          [&#x27;文档证据&#x27;, item.evidence],
-          [&#x27;联调状态&#x27;, `${item.status} · 当前模拟数据`]
+          [&#x27;文档证据&#x27;, `${item.evidence} · ${evidenceMeanings[item.evidence] || &#x27;待解释&#x27;}`],
+          [&#x27;联调状态&#x27;, `${item.status} · ${statusMeanings[item.status] || &#x27;待确认&#x27;} · 当前模拟数据`]
         ];
         root.querySelector(&#x27;#sc-provenance&#x27;).innerHTML = provenance.map(([label, value]) =&gt; `&lt;div&gt;&lt;div class=&quot;sc-prov-label&quot;&gt;${label}&lt;/div&gt;&lt;div class=&quot;sc-prov-value&quot;&gt;${value}&lt;/div&gt;&lt;/div&gt;`).join(&#x27;&#x27;);
       }
