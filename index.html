@@ -5,175 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="referrer" content="no-referrer">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; style-src 'unsafe-inline' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; img-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; font-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; media-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; worker-src blob:; connect-src blob: data:; frame-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-<title>dashboard-cockpit-16x9-prototype.html</title>
-<style>:root{color-scheme:light dark;background:light-dark(#e9eef2,#071018)}html,body{width:100%;height:100%;margin:0;overflow:hidden}body{box-sizing:border-box;background:inherit}iframe{display:block;width:100%;height:100%;margin:0;border:0}</style>
+<title>营收运营驾驶舱 V3</title>
+<style>:root{color-scheme:light dark;background:light-dark(rgb(255 255 255),rgb(24 24 24))}html,body{width:100%;height:100%;margin:0;overflow:hidden}body{box-sizing:border-box;background:inherit}iframe{display:block;width:100%;height:100%;margin:0;border:0}</style>
 </head>
 <body>
-<iframe id="codex-visualization" sandbox="allow-scripts" scrolling="no" referrerpolicy="no-referrer" title="dashboard-cockpit-16x9-prototype.html" data-srcdoc="&lt;!doctype html&gt;
-&lt;html lang=&quot;zh-CN&quot;&gt;
+<iframe sandbox="allow-scripts" referrerpolicy="no-referrer" title="营收运营驾驶舱 V3" srcdoc="&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;
 &lt;head&gt;
 &lt;meta charset=&quot;utf-8&quot;&gt;
 &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
 &lt;meta name=&quot;referrer&quot; content=&quot;no-referrer&quot;&gt;
-&lt;meta http-equiv=&quot;Content-Security-Policy&quot; content=&quot;default-src 'none'; script-src 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; style-src 'unsafe-inline' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; img-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; font-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; media-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; worker-src blob:; connect-src blob: data:; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'&quot;&gt;
-&lt;title&gt;dashboard-cockpit-16x9-prototype.html&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-&lt;script&gt;(() =&gt; {
-  const root = document.documentElement;
-  const mediaQuery = globalThis.matchMedia(&quot;(prefers-color-scheme: dark)&quot;);
-  const apply = Reflect.apply;
-  const isArray = Array.isArray;
-  const parentWindow = globalThis.parent;
-  /**
-   * @param {object} prototype
-   * @param {string} property
-   */
-  const getPrototypeGetter = (prototype, property) =&gt; {
-    // oxlint-disable-next-line typescript/unbound-method -- invoked through captured Reflect.apply
-    const getter = Object.getOwnPropertyDescriptor(prototype, property)?.get;
-    if (getter == null) {
-      throw new Error(`Missing ${property} getter`);
-    }
-    return getter;
-  };
-  const getMessageData = getPrototypeGetter(MessageEvent.prototype, &quot;data&quot;);
-  const getMessagePorts = getPrototypeGetter(MessageEvent.prototype, &quot;ports&quot;);
-  const getMessageSource = getPrototypeGetter(MessageEvent.prototype, &quot;source&quot;);
-  // oxlint-disable-next-line typescript/unbound-method -- captured before the untrusted fragment runs
-  const addHostMessageListener = MessagePort.prototype.addEventListener;
-  // oxlint-disable-next-line typescript/unbound-method -- captured before the untrusted fragment runs
-  const postHostMessage = MessagePort.prototype.postMessage;
-  // oxlint-disable-next-line typescript/unbound-method -- captured before the untrusted fragment runs
-  const startHostPort = MessagePort.prototype.start;
-  // oxlint-disable-next-line typescript/unbound-method -- captured before the untrusted fragment runs
-  const stopMessagePropagation = Event.prototype.stopImmediatePropagation;
-  /** @type {MessagePort | null} */
-  let hostPort = null;
-  const postToHost = (type, payload) =&gt; {
-    if (hostPort != null) {
-      apply(postHostMessage, hostPort, [{ type, ...payload }]);
-    }
-  };
-  const openExternal = ({ href }) =&gt; {
-    if (globalThis.navigator.userActivation?.isActive === true) {
-      postToHost(&quot;open-external&quot;, { href });
-    }
-  };
-  const sendFollowUpMessage = ({ context, prompt, title }) =&gt; {
-    if (globalThis.navigator.userActivation?.isActive === true) {
-      postToHost(&quot;follow-up&quot;, { context, prompt, title });
-    }
-    return Promise.resolve();
-  };
-  const syncTheme = () =&gt; {
-    const theme = mediaQuery.matches ? &quot;dark&quot; : &quot;light&quot;;
-    root.dataset.theme = theme;
-    globalThis.openai = {
-      ...globalThis.openai,
-      openExternal,
-      sendFollowUpMessage,
-      theme,
-      visualizationStyleVariables: {},
-      visualizationTheme: theme,
-    };
-    globalThis.dispatchEvent(
-      new CustomEvent(&quot;openai:set_globals&quot;, {
-        detail: { globals: globalThis.openai },
-      }),
-    );
-  };
-  const sendHeight = () =&gt; {
-    postToHost(&quot;height&quot;, {
-      height: Math.ceil(
-        Math.max(
-          document.body.scrollHeight,
-          document.body.getBoundingClientRect().height,
-        ),
-      ),
-    });
-  };
-
-  globalThis.addEventListener(
-    &quot;message&quot;,
-    (event) =&gt; {
-      const data = apply(getMessageData, event, []);
-      const ports = apply(getMessagePorts, event, []);
-      const source = apply(getMessageSource, event, []);
-      if (
-        source !== parentWindow ||
-        typeof data !== &quot;object&quot; ||
-        data?.type !== &quot;codex-visualization-initialize&quot; ||
-        !isArray(ports) ||
-        ports.length !== 1
-      ) {
-        return;
-      }
-      apply(stopMessagePropagation, event, []);
-      const nextHostPort = ports[0];
-      try {
-        apply(addHostMessageListener, nextHostPort, [
-          &quot;message&quot;,
-          (event) =&gt; {
-            const data = apply(getMessageData, event, []);
-            if (typeof data === &quot;object&quot; &amp;&amp; data?.type === &quot;measure&quot;) {
-              sendHeight();
-            }
-          },
-        ]);
-        apply(startHostPort, nextHostPort, []);
-      } catch {
-        return;
-      }
-      hostPort = nextHostPort;
-      sendHeight();
-    },
-    { capture: true },
-  );
-  document.currentScript?.remove();
-  mediaQuery.addEventListener(&quot;change&quot;, syncTheme);
-  globalThis.addEventListener(&quot;click&quot;, (event) =&gt; {
-    if (event.defaultPrevented) {
-      return;
-    }
-    let element = null;
-    if (event.target instanceof globalThis.Element) {
-      element = event.target;
-    } else if (event.target instanceof globalThis.Node) {
-      element = event.target.parentElement;
-    }
-    const link = element?.closest(&quot;a[href]&quot;);
-    const href = link?.getAttribute(&quot;href&quot;);
-    if (href == null) {
-      return;
-    }
-    if (href.startsWith(&quot;#&quot;)) {
-      let id;
-      try {
-        id = decodeURIComponent(href.slice(1));
-      } catch {
-        return;
-      }
-      const target = id.length === 0 ? root : document.getElementById(id);
-      if (
-        target == null ||
-        globalThis.navigator.userActivation?.isActive !== true
-      ) {
-        return;
-      }
-      event.preventDefault();
-      postToHost(&quot;scroll-to&quot;, {
-        top: target.getBoundingClientRect().top + globalThis.scrollY,
-      });
-      return;
-    }
-    event.preventDefault();
-    openExternal({ href });
-  });
-  new ResizeObserver(sendHeight).observe(document.body);
-  syncTheme();
-})();
-&lt;/script&gt;
+&lt;meta http-equiv=&quot;Content-Security-Policy&quot; content=&quot;default-src &#x27;none&#x27;; script-src &#x27;unsafe-inline&#x27; &#x27;unsafe-eval&#x27; &#x27;wasm-unsafe-eval&#x27; blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; style-src &#x27;unsafe-inline&#x27; blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; img-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; font-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; media-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; worker-src blob:; connect-src blob: data:; frame-src &#x27;none&#x27;; object-src &#x27;none&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;&quot;&gt;
+&lt;title&gt;营收运营驾驶舱 V3&lt;/title&gt;
 &lt;style&gt;:root {
   color-scheme: light dark;
   background-color: var(
@@ -288,7 +131,7 @@
   --radius-2xl: calc(var(--radius) * 1.6);
   --radius-full: 9999px;
   --shadow-sm: 0 1px 2px -1px rgb(0 0 0 / 8%);
-  --checkmark-image: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 17 17'%3E%3Cpath d='M12.8961 3.64101C13.1297 3.41418 13.4984 3.37523 13.7779 3.56581C14.0571 3.75635 14.1554 4.11331 14.0299 4.41347L13.9615 4.53847L7.71151 13.7045C7.59411 13.8767 7.4063 13.9877 7.19881 14.0072C6.99136 14.0267 6.78564 13.9533 6.63826 13.806L2.88826 10.056L2.79842 9.9457C2.6192 9.67407 2.64927 9.30496 2.88826 9.06581C3.12738 8.82669 3.49647 8.79676 3.76815 8.97597L3.8785 9.06581L7.03084 12.2182L12.8053 3.74941L12.8961 3.64101Z'/%3E%3C/svg%3E&quot;);
+  --checkmark-image: url(&quot;data:image/svg+xml,%3Csvg xmlns=&#x27;http://www.w3.org/2000/svg&#x27; viewBox=&#x27;0 0 17 17&#x27;%3E%3Cpath d=&#x27;M12.8961 3.64101C13.1297 3.41418 13.4984 3.37523 13.7779 3.56581C14.0571 3.75635 14.1554 4.11331 14.0299 4.41347L13.9615 4.53847L7.71151 13.7045C7.59411 13.8767 7.4063 13.9877 7.19881 14.0072C6.99136 14.0267 6.78564 13.9533 6.63826 13.806L2.88826 10.056L2.79842 9.9457C2.6192 9.67407 2.64927 9.30496 2.88826 9.06581C3.12738 8.82669 3.49647 8.79676 3.76815 8.97597L3.8785 9.06581L7.03084 12.2182L12.8053 3.74941L12.8961 3.64101Z&#x27;/%3E%3C/svg%3E&quot;);
 
   /* Legacy aliases; not part of the current agent contract. */
   --viz-bg: transparent;
@@ -1060,74 +903,37 @@ svg.lucide {
 }
 
 html&gt;body{padding:0}&lt;/style&gt;
-&lt;script&gt;
-(() =&gt; {
-  const root = document.documentElement;
-  const initialGlobals =
-    globalThis.__codexVisualizationInitialGlobals ?? globalThis.openai;
-  delete globalThis.__codexVisualizationInitialGlobals;
-  let appliedProperties = [];
-
-  const applyHostStyleVariables = (styleVariables) =&gt; {
-    if (styleVariables == null || typeof styleVariables !== &quot;object&quot;) {
-      return;
-    }
-    for (const property of appliedProperties) {
-      root.style.removeProperty(property);
-    }
-    appliedProperties = [];
-    for (const [property, value] of Object.entries(styleVariables)) {
-      if (property.startsWith(&quot;--&quot;) &amp;&amp; typeof value === &quot;string&quot;) {
-        root.style.setProperty(property, value);
-        appliedProperties.push(property);
-      }
-    }
-  };
-
-  const syncHostStyles = (globals) =&gt; {
-    applyHostStyleVariables(globals?.visualizationStyleVariables);
-  };
-
-  syncHostStyles(initialGlobals);
-  globalThis.addEventListener(&quot;openai:set_globals&quot;, (event) =&gt; {
-    syncHostStyles(event.detail?.globals);
-  });
-})();
-&lt;/script&gt;
-
-&lt;div id=&quot;cockpit-16x9-prototype&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div id=&quot;srun-cockpit-v3&quot;&gt;
   &lt;style&gt;
-    #cockpit-16x9-prototype {
+    #srun-cockpit-v3 {
       color-scheme: light dark;
-      --cp-bg: light-dark(#e9eef2, #071018);
-      --cp-board: light-dark(#f4f7f9, #0a151f);
-      --cp-surface: light-dark(#ffffff, #101e2a);
-      --cp-surface-2: light-dark(#edf3f6, #142633);
-      --cp-text: light-dark(#18242e, #ecf6fb);
-      --cp-muted: light-dark(#687783, #93a9b8);
-      --cp-line: light-dark(#ced9e0, #29404f);
-      --cp-focus: light-dark(#196b85, #66cdea);
-      --cp-focus-soft: light-dark(#dceff5, #123a49);
-      --cp-warn: light-dark(#8a5d19, #f0bd69);
-      --cp-warn-soft: light-dark(#fff1da, #45341a);
-      --cp-a-bg: light-dark(#dff3e6, #153a29);
-      --cp-a-text: light-dark(#17603b, #85e1ab);
-      --cp-b-bg: light-dark(#dfeff7, #13394b);
-      --cp-b-text: light-dark(#175f7d, #7bc9eb);
-      --cp-c-bg: light-dark(#fff0d6, #493419);
-      --cp-c-text: light-dark(#885a14, #f4c16f);
-      --cp-d-bg: light-dark(#eee5fa, #382b49);
-      --cp-d-text: light-dark(#65418e, #c7a6ed);
-      --cp-e-bg: light-dark(#f9e2e2, #472727);
-      --cp-e-text: light-dark(#8d3c3c, #efa0a0);
+      --sc-bg: light-dark(#eaf0f4, #071119);
+      --sc-board: light-dark(#f5f8fa, #0a151e);
+      --sc-surface: light-dark(#ffffff, #10202b);
+      --sc-surface-2: light-dark(#edf3f6, #152936);
+      --sc-surface-3: light-dark(#e4edf2, #1b3341);
+      --sc-text: light-dark(#17252f, #edf7fb);
+      --sc-muted: light-dark(#657681, #94aab8);
+      --sc-line: light-dark(#cbd8df, #294554);
+      --sc-accent: light-dark(#126f88, #67d4ee);
+      --sc-accent-soft: light-dark(#d9eef4, #103947);
+      --sc-positive: light-dark(#1b7350, #78d8a9);
+      --sc-positive-soft: light-dark(#ddf2e7, #153a2c);
+      --sc-warning: light-dark(#8a5d18, #f0be70);
+      --sc-warning-soft: light-dark(#fff0d4, #49361a);
+      --sc-danger: light-dark(#9b4646, #ef9696);
+      --sc-danger-soft: light-dark(#fae4e4, #492929);
+      --sc-purple: light-dark(#68469a, #c5a5ee);
       width: 100%;
       height: 100%;
-      display: grid;
-      place-items: center;
+      min-width: 960px;
+      min-height: 620px;
       overflow: hidden;
-      background: var(--cp-bg);
-      color: var(--cp-text);
-      font-family: Inter, &quot;PingFang SC&quot;, &quot;Microsoft YaHei&quot;, sans-serif;
+      background: var(--sc-bg);
+      color: var(--sc-text);
+      font-family: Inter, &quot;PingFang SC&quot;, &quot;Microsoft YaHei&quot;, system-ui, sans-serif;
     }
 
     html, html &gt; body {
@@ -1139,712 +945,892 @@ html&gt;body{padding:0}&lt;/style&gt;
       overflow: hidden;
     }
 
-    #cockpit-16x9-prototype * { box-sizing: border-box; }
+    #srun-cockpit-v3 * { box-sizing: border-box; }
+    #srun-cockpit-v3 button, #srun-cockpit-v3 select { font: inherit; }
 
-    #cockpit-16x9-prototype .cp-board {
+    #srun-cockpit-v3 .sc-shell {
       position: relative;
-      width: min(100vw, 177.7778vh);
-      height: min(100vh, 56.25vw);
-      aspect-ratio: 16 / 9;
-      overflow: hidden;
-      padding: clamp(10px, .78vw, 16px);
-      background: var(--cp-board);
-      border: 1px solid var(--cp-line);
-      border-radius: clamp(12px, .9vw, 18px);
-      display: grid;
-      grid-template-rows: clamp(52px, 5.9vh, 66px) clamp(40px, 4.5vh, 50px) clamp(94px, 10.7vh, 116px) minmax(0, 1.65fr) minmax(0, .9fr);
-      gap: clamp(8px, .56vw, 12px);
-    }
-
-    #cockpit-16x9-prototype .cp-header,
-    #cockpit-16x9-prototype .cp-nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      min-width: 0;
-      gap: clamp(8px, .65vw, 14px);
-    }
-
-    #cockpit-16x9-prototype .cp-heading { min-width: 230px; }
-    #cockpit-16x9-prototype .cp-title { font-weight: 600; font-size: clamp(18px, 1.15vw, 22px); white-space: nowrap; }
-    #cockpit-16x9-prototype .cp-time { color: var(--cp-muted); font-size: clamp(12px, .72vw, 14px); margin-top: 3px; white-space: nowrap; }
-
-    #cockpit-16x9-prototype .cp-review-controls,
-    #cockpit-16x9-prototype .cp-module-tabs {
-      display: flex;
-      align-items: center;
-      min-width: 0;
-      gap: clamp(3px, .25vw, 6px);
-    }
-
-    #cockpit-16x9-prototype .cp-review-controls {
-      padding: 4px;
-      background: var(--cp-surface-2);
-      border-radius: 9px;
-    }
-
-    #cockpit-16x9-prototype button {
-      font: inherit;
-    }
-
-    #cockpit-16x9-prototype .cp-profile,
-    #cockpit-16x9-prototype .cp-module,
-    #cockpit-16x9-prototype .cp-info-toggle,
-    #cockpit-16x9-prototype .cp-close,
-    #cockpit-16x9-prototype .cp-drill-action {
-      appearance: none;
-      border: 0;
-      color: var(--cp-muted);
-      background: transparent;
-      cursor: pointer;
-      border-radius: 5px;
-    }
-
-    #cockpit-16x9-prototype .cp-profile { padding: 7px clamp(10px, .7vw, 14px); font-size: clamp(12px, .72vw, 14px); }
-    #cockpit-16x9-prototype .cp-profile[aria-pressed=&quot;true&quot;] {
-      background: var(--cp-focus-soft);
-      color: var(--cp-focus);
-    }
-
-    #cockpit-16x9-prototype .cp-module-tabs {
-      overflow: hidden;
-      flex: 1;
-    }
-
-    #cockpit-16x9-prototype .cp-module {
-      height: clamp(34px, 3.6vh, 40px);
-      padding: 0 clamp(10px, .72vw, 15px);
-      white-space: nowrap;
-      font-size: clamp(12px, .72vw, 14px);
-    }
-
-    #cockpit-16x9-prototype .cp-module[aria-selected=&quot;true&quot;] {
-      color: var(--cp-focus);
-      background: var(--cp-focus-soft);
-    }
-
-    #cockpit-16x9-prototype .cp-module:disabled {
-      cursor: not-allowed;
-      opacity: .4;
-    }
-
-    #cockpit-16x9-prototype .cp-info-toggle {
-      white-space: nowrap;
-      padding: 7px clamp(10px, .68vw, 14px);
-      border: 1px solid var(--cp-line);
-      font-size: clamp(12px, .72vw, 14px);
-    }
-
-    #cockpit-16x9-prototype .cp-info-toggle[aria-pressed=&quot;true&quot;] {
-      color: var(--cp-focus);
-      border-color: var(--cp-focus);
-      background: var(--cp-focus-soft);
-    }
-
-    #cockpit-16x9-prototype .cp-kpis {
-      display: grid;
-      grid-template-columns: repeat(6, minmax(0, 1fr));
-      gap: clamp(8px, .56vw, 12px);
-      min-height: 0;
-    }
-
-    #cockpit-16x9-prototype .cp-kpi,
-    #cockpit-16x9-prototype .cp-panel {
-      appearance: none;
-      min-width: 0;
-      min-height: 0;
-      color: var(--cp-text);
-      background: var(--cp-surface);
-      border: 1px solid var(--cp-line);
-      border-radius: clamp(8px, .55vw, 12px);
-      text-align: left;
-      cursor: pointer;
-      overflow: hidden;
-      position: relative;
-    }
-
-    #cockpit-16x9-prototype .cp-kpi:hover,
-    #cockpit-16x9-prototype .cp-panel:hover,
-    #cockpit-16x9-prototype .cp-kpi:focus-visible,
-    #cockpit-16x9-prototype .cp-panel:focus-visible { border-color: var(--cp-focus); }
-
-    #cockpit-16x9-prototype .cp-kpi { padding: clamp(10px, .68vw, 14px) clamp(11px, .75vw, 15px); }
-    #cockpit-16x9-prototype .cp-kpi-head,
-    #cockpit-16x9-prototype .cp-panel-head {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 7px;
-    }
-
-    #cockpit-16x9-prototype .cp-label,
-    #cockpit-16x9-prototype .cp-panel-title { color: var(--cp-muted); font-size: clamp(12px, .73vw, 14px); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    #cockpit-16x9-prototype .cp-value { font-size: clamp(22px, 1.5vw, 30px); line-height: 1.05; margin-top: clamp(7px, .65vh, 10px); font-variant-numeric: tabular-nums; white-space: nowrap; }
-    #cockpit-16x9-prototype .cp-unit,
-    #cockpit-16x9-prototype .cp-note { color: var(--cp-muted); font-size: clamp(11px, .66vw, 13px); }
-    #cockpit-16x9-prototype .cp-note { margin-top: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-
-    #cockpit-16x9-prototype .cp-grade {
-      display: none;
-      min-width: 24px;
-      height: 22px;
-      align-items: center;
-      justify-content: center;
-      border-radius: 5px;
-      font-size: 12px;
-      font-weight: 500;
-      padding: 0 5px;
-    }
-
-    #cockpit-16x9-prototype[data-review=&quot;on&quot;] .cp-grade { display: inline-flex; }
-    #cockpit-16x9-prototype .cp-grade-a { background: var(--cp-a-bg); color: var(--cp-a-text); }
-    #cockpit-16x9-prototype .cp-grade-b { background: var(--cp-b-bg); color: var(--cp-b-text); }
-    #cockpit-16x9-prototype .cp-grade-c { background: var(--cp-c-bg); color: var(--cp-c-text); }
-    #cockpit-16x9-prototype .cp-grade-d { background: var(--cp-d-bg); color: var(--cp-d-text); }
-    #cockpit-16x9-prototype .cp-grade-e { background: var(--cp-e-bg); color: var(--cp-e-text); }
-
-    #cockpit-16x9-prototype .cp-main-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 3fr) minmax(0, 6fr) minmax(0, 3fr);
-      gap: clamp(8px, .56vw, 12px);
-      min-height: 0;
-    }
-
-    #cockpit-16x9-prototype .cp-bottom-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: clamp(8px, .56vw, 12px);
-      min-height: 0;
-    }
-
-    #cockpit-16x9-prototype .cp-panel {
-      padding: clamp(10px, .68vw, 14px);
-      display: grid;
-      grid-template-rows: auto minmax(0, 1fr);
-      gap: 5px;
-    }
-    #cockpit-16x9-prototype .cp-panel-body { display: block; min-height: 0; overflow: hidden; }
-
-    #cockpit-16x9-prototype .cp-chart {
-      display: block;
       width: 100%;
       height: 100%;
-      min-height: 76px;
-      margin-top: 5px;
+      padding: clamp(12px, 1vw, 20px);
+      display: grid;
+      grid-template-rows: auto auto minmax(0, 1fr);
+      gap: clamp(8px, .7vw, 13px);
+      background:
+        linear-gradient(90deg, color-mix(in srgb, var(--sc-accent) 4%, transparent) 1px, transparent 1px) 0 0 / 46px 46px,
+        var(--sc-board);
     }
 
-    #cockpit-16x9-prototype .cp-chart .grid { stroke: var(--cp-line); stroke-width: 1; opacity: .55; }
-    #cockpit-16x9-prototype .cp-chart .series { fill: none; stroke: var(--cp-focus); stroke-width: 2; vector-effect: non-scaling-stroke; }
-    #cockpit-16x9-prototype .cp-chart .series-2 { fill: none; stroke: var(--cp-muted); stroke-width: 1.5; vector-effect: non-scaling-stroke; }
-    #cockpit-16x9-prototype .cp-chart rect.bar { fill: var(--cp-focus); opacity: .82; }
-    #cockpit-16x9-prototype .cp-chart rect.track { fill: var(--cp-surface-2); }
-
-    #cockpit-16x9-prototype .cp-bar-list {
-      display: grid;
-      align-content: center;
-      gap: clamp(5px, .55vh, 8px);
-      height: 100%;
-      padding-top: 5px;
-    }
-
-    #cockpit-16x9-prototype .cp-bar-item {
-      display: grid;
-      grid-template-columns: minmax(76px, .8fr) minmax(44px, 1.4fr) 38px;
+    #srun-cockpit-v3 .sc-topbar,
+    #srun-cockpit-v3 .sc-context,
+    #srun-cockpit-v3 .sc-profile-controls,
+    #srun-cockpit-v3 .sc-filter-group,
+    #srun-cockpit-v3 .sc-module-tabs,
+    #srun-cockpit-v3 .sc-capability-line {
+      display: flex;
       align-items: center;
-      gap: 5px;
-      color: var(--cp-muted);
-      font-size: clamp(11px, .68vw, 13px);
       min-width: 0;
     }
 
-    #cockpit-16x9-prototype .cp-bar-item &gt; span:first-child {
+    #srun-cockpit-v3 .sc-topbar {
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    #srun-cockpit-v3 .sc-brand { min-width: 230px; }
+    #srun-cockpit-v3 .sc-title {
+      font-size: clamp(19px, 1.25vw, 25px);
+      line-height: 1.05;
+      font-weight: 680;
+      letter-spacing: .01em;
+    }
+    #srun-cockpit-v3 .sc-subtitle {
+      margin-top: 5px;
+      color: var(--sc-muted);
+      font-size: clamp(11px, .66vw, 13px);
+      white-space: nowrap;
+    }
+
+    #srun-cockpit-v3 .sc-profile-controls {
+      gap: 4px;
+      padding: 4px;
+      border: 1px solid var(--sc-line);
+      border-radius: 10px;
+      background: var(--sc-surface-2);
+    }
+
+    #srun-cockpit-v3 .sc-profile,
+    #srun-cockpit-v3 .sc-module,
+    #srun-cockpit-v3 .sc-period,
+    #srun-cockpit-v3 .sc-review,
+    #srun-cockpit-v3 .sc-close,
+    #srun-cockpit-v3 .sc-drill-button,
+    #srun-cockpit-v3 .sc-crumb {
+      appearance: none;
+      border: 0;
+      border-radius: 6px;
+      color: var(--sc-muted);
+      background: transparent;
+      cursor: pointer;
+    }
+
+    #srun-cockpit-v3 .sc-profile {
+      padding: 8px clamp(12px, .85vw, 17px);
+      font-size: clamp(12px, .72vw, 14px);
+      font-weight: 560;
+      white-space: nowrap;
+    }
+    #srun-cockpit-v3 .sc-profile[aria-pressed=&quot;true&quot;] {
+      color: var(--sc-accent);
+      background: var(--sc-surface);
+      box-shadow: 0 0 0 1px var(--sc-line);
+    }
+
+    #srun-cockpit-v3 .sc-context {
+      gap: clamp(8px, .7vw, 14px);
+      min-height: 74px;
+      padding: 8px 10px;
+      border: 1px solid var(--sc-line);
+      border-radius: 12px;
+      background: color-mix(in srgb, var(--sc-surface) 94%, transparent);
+    }
+
+    #srun-cockpit-v3 .sc-left-context {
+      min-width: 0;
+      flex: 1 1 auto;
+      display: grid;
+      gap: 6px;
+    }
+    #srun-cockpit-v3 .sc-module-tabs { gap: 4px; overflow: hidden; }
+    #srun-cockpit-v3 .sc-module {
+      padding: 7px 11px;
+      font-size: clamp(11px, .68vw, 13px);
+      white-space: nowrap;
+    }
+    #srun-cockpit-v3 .sc-module[aria-selected=&quot;true&quot;] {
+      color: var(--sc-accent);
+      background: var(--sc-accent-soft);
+    }
+
+    #srun-cockpit-v3 .sc-capability-line {
+      gap: 7px;
+      color: var(--sc-muted);
+      font-size: clamp(10px, .62vw, 12px);
+      white-space: nowrap;
+      overflow: hidden;
+    }
+    #srun-cockpit-v3 .sc-profile-name { color: var(--sc-text); font-weight: 650; }
+    #srun-cockpit-v3 .sc-capability-tag {
+      display: inline-flex;
+      align-items: center;
+      height: 21px;
+      padding: 0 7px;
+      border-radius: 5px;
+      background: var(--sc-surface-2);
+      color: var(--sc-muted);
+    }
+    #srun-cockpit-v3 .sc-blueprint-tag {
+      color: var(--sc-warning);
+      background: var(--sc-warning-soft);
+    }
+
+    #srun-cockpit-v3 .sc-filters {
+      flex: 0 0 auto;
+      display: grid;
+      justify-items: end;
+      gap: 7px;
+    }
+    #srun-cockpit-v3 .sc-filter-group { gap: 4px; }
+    #srun-cockpit-v3 .sc-period {
+      padding: 6px 9px;
+      font-size: clamp(10px, .62vw, 12px);
+      border: 1px solid transparent;
+    }
+    #srun-cockpit-v3 .sc-period[aria-pressed=&quot;true&quot;] {
+      color: var(--sc-accent);
+      border-color: var(--sc-line);
+      background: var(--sc-accent-soft);
+    }
+    #srun-cockpit-v3 .sc-grain {
+      height: 30px;
+      padding: 0 8px;
+      border: 1px solid var(--sc-line);
+      border-radius: 6px;
+      color: var(--sc-muted);
+      background: var(--sc-surface);
+      font-size: clamp(10px, .62vw, 12px);
+    }
+    #srun-cockpit-v3 .sc-review {
+      padding: 6px 9px;
+      border: 1px solid var(--sc-line);
+      font-size: clamp(10px, .62vw, 12px);
+      white-space: nowrap;
+    }
+    #srun-cockpit-v3 .sc-review[aria-pressed=&quot;true&quot;] {
+      color: var(--sc-warning);
+      border-color: var(--sc-warning);
+      background: var(--sc-warning-soft);
+    }
+    #srun-cockpit-v3 .sc-refresh {
+      color: var(--sc-muted);
+      font-size: clamp(10px, .58vw, 11px);
+      white-space: nowrap;
+    }
+
+    #srun-cockpit-v3 .sc-content {
+      min-height: 0;
+      display: grid;
+      grid-template-rows: clamp(94px, 12.4vh, 126px) minmax(0, 1fr);
+      gap: clamp(8px, .7vw, 13px);
+    }
+
+    #srun-cockpit-v3 .sc-kpi-grid,
+    #srun-cockpit-v3 .sc-panel-grid { min-height: 0; display: grid; gap: clamp(8px, .65vw, 12px); }
+    #srun-cockpit-v3 .sc-kpi-grid { grid-template-columns: repeat(var(--sc-kpi-count), minmax(0, 1fr)); }
+    #srun-cockpit-v3 .sc-panel-grid {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      grid-template-rows: repeat(2, minmax(0, 1fr));
+    }
+
+    #srun-cockpit-v3 .sc-kpi,
+    #srun-cockpit-v3 .sc-panel {
+      appearance: none;
+      min-width: 0;
+      min-height: 0;
+      overflow: hidden;
+      position: relative;
+      color: var(--sc-text);
+      background: var(--sc-surface);
+      border: 1px solid var(--sc-line);
+      border-radius: 11px;
+      text-align: left;
+      cursor: pointer;
+    }
+    #srun-cockpit-v3 .sc-kpi:hover,
+    #srun-cockpit-v3 .sc-panel:hover,
+    #srun-cockpit-v3 .sc-kpi:focus-visible,
+    #srun-cockpit-v3 .sc-panel:focus-visible { border-color: var(--sc-accent); outline: none; }
+
+    #srun-cockpit-v3 .sc-kpi { padding: clamp(10px, .75vw, 15px); display: grid; align-content: space-between; }
+    #srun-cockpit-v3 .sc-kpi-head,
+    #srun-cockpit-v3 .sc-panel-head,
+    #srun-cockpit-v3 .sc-panel-foot,
+    #srun-cockpit-v3 .sc-status-line {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      min-width: 0;
+    }
+    #srun-cockpit-v3 .sc-kpi-head &gt; span:last-child,
+    #srun-cockpit-v3 .sc-panel-head &gt; span:last-child {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    #srun-cockpit-v3 .sc-status-line { justify-content: flex-start; }
+    #srun-cockpit-v3 .sc-label,
+    #srun-cockpit-v3 .sc-panel-title {
+      min-width: 0;
+      color: var(--sc-muted);
+      font-size: clamp(11px, .7vw, 14px);
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
     }
-
-    #cockpit-16x9-prototype .cp-bar-track {
-      display: block;
-      height: clamp(7px, .7vh, 10px);
-      border-radius: 4px;
-      background: var(--cp-surface-2);
-      overflow: hidden;
-    }
-
-    #cockpit-16x9-prototype .cp-bar-fill {
-      display: block;
-      height: 100%;
-      border-radius: inherit;
-      background: var(--cp-focus);
-    }
-
-    #cockpit-16x9-prototype .cp-fallback {
-      display: none;
-      position: absolute;
-      left: 10px;
-      bottom: 8px;
-      max-width: calc(100% - 20px);
-      color: var(--cp-warn);
-      background: var(--cp-warn-soft);
-      border-radius: 4px;
-      padding: 3px 7px;
-      font-size: clamp(10px, .58vw, 12px);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    #cockpit-16x9-prototype[data-review=&quot;on&quot;] .cp-fallback { display: block; }
-    #cockpit-16x9-prototype[data-review=&quot;on&quot;] .cp-bottom-grid .cp-fallback { display: none; }
-
-    #cockpit-16x9-prototype .cp-depth {
-      display: none;
-      color: var(--cp-muted);
-      font-size: clamp(11px, .64vw, 13px);
+    #srun-cockpit-v3 .sc-value {
+      margin-top: 5px;
+      font-size: clamp(21px, 1.55vw, 31px);
+      line-height: 1;
+      font-weight: 680;
+      font-variant-numeric: tabular-nums;
       white-space: nowrap;
     }
+    #srun-cockpit-v3 .sc-unit { color: var(--sc-muted); font-size: .45em; font-weight: 500; }
+    #srun-cockpit-v3 .sc-note { color: var(--sc-muted); font-size: clamp(10px, .61vw, 12px); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    #srun-cockpit-v3 .sc-trend-up { color: var(--sc-positive); }
+    #srun-cockpit-v3 .sc-trend-warn { color: var(--sc-warning); }
 
-    #cockpit-16x9-prototype[data-review=&quot;on&quot;] .cp-depth { display: inline; }
+    #srun-cockpit-v3 .sc-evidence,
+    #srun-cockpit-v3 .sc-state {
+      display: none;
+      flex: 0 0 auto;
+      height: 20px;
+      align-items: center;
+      padding: 0 6px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 650;
+    }
+    #srun-cockpit-v3[data-review=&quot;on&quot;] .sc-evidence,
+    #srun-cockpit-v3[data-review=&quot;on&quot;] .sc-state { display: inline-flex; }
+    #srun-cockpit-v3 .sc-evidence { color: var(--sc-accent); background: var(--sc-accent-soft); }
+    #srun-cockpit-v3 .sc-evidence[data-level=&quot;C&quot;],
+    #srun-cockpit-v3 .sc-evidence[data-level=&quot;D&quot;] { color: var(--sc-warning); background: var(--sc-warning-soft); }
+    #srun-cockpit-v3 .sc-state { color: var(--sc-muted); background: var(--sc-surface-2); }
 
-    #cockpit-16x9-prototype .cp-drawer-backdrop {
+    #srun-cockpit-v3 .sc-panel {
+      padding: clamp(10px, .72vw, 14px);
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr) auto;
+      gap: 7px;
+    }
+    #srun-cockpit-v3 .sc-panel-body { min-height: 0; overflow: hidden; }
+    #srun-cockpit-v3 .sc-panel-foot { color: var(--sc-muted); font-size: clamp(9px, .56vw, 11px); }
+    #srun-cockpit-v3 .sc-source-mini { display: none; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    #srun-cockpit-v3[data-review=&quot;on&quot;] .sc-source-mini { display: inline; }
+    #srun-cockpit-v3 .sc-live-dot {
+      width: 6px;
+      height: 6px;
+      flex: 0 0 auto;
+      border-radius: 50%;
+      background: var(--sc-positive);
+      box-shadow: 0 0 0 3px var(--sc-positive-soft);
+    }
+
+    #srun-cockpit-v3 .sc-chart { width: 100%; height: 100%; min-height: 88px; }
+    #srun-cockpit-v3 .sc-chart-grid { stroke: var(--sc-line); stroke-width: 1; opacity: .62; }
+    #srun-cockpit-v3 .sc-chart-primary { fill: none; stroke: var(--sc-accent); stroke-width: 2.2; vector-effect: non-scaling-stroke; }
+    #srun-cockpit-v3 .sc-chart-secondary { fill: none; stroke: var(--sc-purple); stroke-width: 1.7; vector-effect: non-scaling-stroke; }
+    #srun-cockpit-v3 .sc-chart-area { fill: var(--sc-accent-soft); opacity: .72; }
+    #srun-cockpit-v3 .sc-chart-label { fill: var(--sc-muted); font-size: 9px; }
+    #srun-cockpit-v3 .sc-chart-legend { fill: var(--sc-text); font-size: 9px; }
+
+    #srun-cockpit-v3 .sc-bars { height: 100%; display: grid; align-content: center; gap: clamp(7px, .7vh, 11px); }
+    #srun-cockpit-v3 .sc-bar-row {
+      display: grid;
+      grid-template-columns: minmax(70px, .9fr) minmax(56px, 1.5fr) minmax(52px, .55fr);
+      align-items: center;
+      gap: 7px;
+      color: var(--sc-muted);
+      font-size: clamp(10px, .62vw, 12px);
+    }
+    #srun-cockpit-v3 .sc-bar-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    #srun-cockpit-v3 .sc-bar-track { height: 8px; border-radius: 4px; overflow: hidden; background: var(--sc-surface-2); }
+    #srun-cockpit-v3 .sc-bar-fill { display: block; height: 100%; border-radius: inherit; background: var(--sc-accent); }
+    #srun-cockpit-v3 .sc-bar-value { text-align: right; color: var(--sc-text); font-variant-numeric: tabular-nums; }
+
+    #srun-cockpit-v3 .sc-backdrop {
       display: none;
       position: absolute;
       inset: 0;
-      background: light-dark(rgba(23, 35, 44, .16), rgba(0, 0, 0, .38));
-      z-index: 8;
+      z-index: 20;
+      background: light-dark(rgba(13, 27, 35, .22), rgba(0, 0, 0, .52));
     }
-
-    #cockpit-16x9-prototype .cp-drawer-backdrop.is-open { display: block; }
-
-    #cockpit-16x9-prototype .cp-drawer {
+    #srun-cockpit-v3 .sc-backdrop.is-open { display: block; }
+    #srun-cockpit-v3 .sc-drawer {
       position: absolute;
-      top: clamp(12px, .85vw, 18px);
-      right: clamp(12px, .85vw, 18px);
-      bottom: clamp(12px, .85vw, 18px);
-      width: clamp(560px, 36vw, 680px);
-      background: var(--cp-surface);
-      border: 1px solid var(--cp-line);
-      border-radius: clamp(12px, .75vw, 16px);
-      z-index: 9;
-      padding: clamp(16px, 1vw, 22px);
+      z-index: 21;
+      top: 12px;
+      right: 12px;
+      bottom: 12px;
+      width: min(710px, 48vw);
+      min-width: 560px;
       display: grid;
-      grid-template-rows: auto auto minmax(0, 1fr) auto;
-      gap: clamp(10px, .75vh, 16px);
+      grid-template-rows: auto auto auto minmax(0, 1fr) auto;
+      gap: 12px;
       overflow: hidden;
+      padding: clamp(16px, 1vw, 22px);
+      border: 1px solid var(--sc-line);
+      border-radius: 14px;
+      background: var(--sc-surface);
       transform: translateX(calc(100% + 24px));
       transition: transform .18s ease;
+      box-shadow: -18px 0 48px rgba(0, 0, 0, .12);
     }
+    #srun-cockpit-v3 .sc-drawer.is-open { transform: translateX(0); }
+    #srun-cockpit-v3 .sc-drawer-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; min-width: 0; }
+    #srun-cockpit-v3 .sc-drawer-heading { min-width: 0; }
+    #srun-cockpit-v3 .sc-drawer-title { font-size: clamp(18px, 1.1vw, 22px); font-weight: 680; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    #srun-cockpit-v3 .sc-drawer-subtitle { margin-top: 5px; color: var(--sc-muted); font-size: clamp(11px, .66vw, 13px); }
+    #srun-cockpit-v3 .sc-close { flex: 0 0 auto; padding: 7px 11px; border: 1px solid var(--sc-line); font-size: 12px; }
 
-    #cockpit-16x9-prototype .cp-drawer.is-open { transform: translateX(0); }
+    #srun-cockpit-v3 .sc-crumbs { display: flex; align-items: center; gap: 5px; min-width: 0; overflow: hidden; }
+    #srun-cockpit-v3 .sc-crumb { padding: 5px 7px; font-size: 12px; white-space: nowrap; }
+    #srun-cockpit-v3 .sc-crumb[aria-current=&quot;step&quot;] { color: var(--sc-accent); background: var(--sc-accent-soft); }
+    #srun-cockpit-v3 .sc-crumb:disabled { cursor: not-allowed; opacity: .36; }
+    #srun-cockpit-v3 .sc-crumb-arrow { color: var(--sc-muted); font-size: 11px; }
 
-    #cockpit-16x9-prototype .cp-drawer-head {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 12px;
-    }
+    #srun-cockpit-v3 .sc-drawer-summary { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+    #srun-cockpit-v3 .sc-drawer-stat { min-width: 0; padding: 10px; border-radius: 7px; background: var(--sc-surface-2); }
+    #srun-cockpit-v3 .sc-drawer-stat span { display: block; color: var(--sc-muted); font-size: 10px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    #srun-cockpit-v3 .sc-drawer-stat strong { display: block; margin-top: 5px; font-size: clamp(15px, .95vw, 19px); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
-    #cockpit-16x9-prototype .cp-drawer-head &gt; div { min-width: 0; }
-    #cockpit-16x9-prototype .cp-drawer-title { font-size: clamp(17px, 1vw, 20px); font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    #cockpit-16x9-prototype .cp-drawer-subtitle { color: var(--cp-muted); font-size: clamp(12px, .7vw, 14px); margin-top: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    #cockpit-16x9-prototype .cp-close { flex: 0 0 auto; padding: 7px 11px; border: 1px solid var(--cp-line); font-size: 13px; }
+    #srun-cockpit-v3 .sc-drill-content { min-height: 0; overflow: auto; scrollbar-width: thin; padding-right: 3px; }
+    #srun-cockpit-v3 .sc-level-title { font-size: 14px; font-weight: 650; }
+    #srun-cockpit-v3 .sc-level-note { margin-top: 4px; color: var(--sc-muted); font-size: 11px; }
+    #srun-cockpit-v3 .sc-table-wrap { margin-top: 10px; min-width: 0; overflow-x: auto; border: 1px solid var(--sc-line); border-radius: 8px; }
+    #srun-cockpit-v3 .sc-table { width: 100%; min-width: 510px; border-collapse: collapse; table-layout: fixed; font-size: 11px; }
+    #srun-cockpit-v3 .sc-table th,
+    #srun-cockpit-v3 .sc-table td { padding: 9px 8px; border-bottom: 1px solid var(--sc-line); text-align: left; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    #srun-cockpit-v3 .sc-table th { color: var(--sc-muted); background: var(--sc-surface-2); font-weight: 550; }
+    #srun-cockpit-v3 .sc-table td:not(:first-child),
+    #srun-cockpit-v3 .sc-table th:not(:first-child) { text-align: right; }
+    #srun-cockpit-v3 .sc-table tr:last-child td { border-bottom: 0; }
 
-    #cockpit-16x9-prototype .cp-breadcrumb {
-      display: flex;
-      align-items: center;
-      gap: 7px;
-      color: var(--cp-muted);
-      font-size: clamp(11px, .66vw, 13px);
-      min-width: 0;
-      white-space: nowrap;
-      overflow: hidden;
-    }
-
-    #cockpit-16x9-prototype .cp-breadcrumb strong { color: var(--cp-focus); font-weight: 500; }
-
-    #cockpit-16x9-prototype .cp-drill-view {
-      min-height: 0;
-      display: grid;
-      grid-template-rows: auto minmax(0, 1fr);
-      gap: 10px;
-      overflow: hidden;
-    }
-
-    #cockpit-16x9-prototype .cp-drill-summary {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 8px;
-    }
-
-    #cockpit-16x9-prototype .cp-drill-stat {
-      min-width: 0;
-      padding: 10px;
-      background: var(--cp-surface-2);
-      border-radius: 6px;
-    }
-
-    #cockpit-16x9-prototype .cp-drill-stat span { display: block; color: var(--cp-muted); font-size: clamp(10px, .62vw, 12px); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    #cockpit-16x9-prototype .cp-drill-stat strong { display: block; margin-top: 5px; font-size: clamp(15px, .92vw, 18px); font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-
-    #cockpit-16x9-prototype .cp-drill-list {
-      display: grid;
-      align-content: start;
-      gap: 2px;
-      min-height: 0;
-      overflow-x: hidden;
-      overflow-y: auto;
-      padding-right: 4px;
-      scrollbar-width: thin;
-    }
-
-    #cockpit-16x9-prototype .cp-drill-row {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(78px, auto) minmax(98px, auto);
-      align-items: center;
-      gap: 10px;
-      padding: 8px 6px;
-      border-bottom: 1px solid var(--cp-line);
-      font-size: clamp(11px, .66vw, 13px);
-    }
-
-    #cockpit-16x9-prototype .cp-drill-row span:first-child {
-      min-width: 0;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    #cockpit-16x9-prototype .cp-drill-row span:nth-child(2),
-    #cockpit-16x9-prototype .cp-drill-row span:nth-child(3) { text-align: right; font-variant-numeric: tabular-nums; }
-
-    #cockpit-16x9-prototype .cp-drill-footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      min-width: 0;
-      flex-wrap: wrap;
-    }
-
-    #cockpit-16x9-prototype .cp-drill-limit { color: var(--cp-muted); font-size: clamp(11px, .65vw, 13px); min-width: 0; }
-    #cockpit-16x9-prototype .cp-drill-action {
-      background: var(--cp-focus-soft);
-      color: var(--cp-focus);
-      margin-left: auto;
-      padding: 8px 12px;
-      white-space: nowrap;
-    }
-
-    #cockpit-16x9-prototype .cp-drill-action:disabled { opacity: .45; cursor: not-allowed; }
-
-    #cockpit-16x9-prototype .cp-provenance {
+    #srun-cockpit-v3 .sc-drawer-bottom { min-width: 0; display: grid; gap: 10px; }
+    #srun-cockpit-v3 .sc-drill-footer { display: flex; align-items: center; justify-content: space-between; gap: 10px; min-width: 0; }
+    #srun-cockpit-v3 .sc-limit { min-width: 0; color: var(--sc-muted); font-size: 11px; }
+    #srun-cockpit-v3 .sc-drill-button { flex: 0 0 auto; padding: 8px 12px; color: var(--sc-accent); background: var(--sc-accent-soft); }
+    #srun-cockpit-v3 .sc-drill-button:disabled { cursor: not-allowed; opacity: .42; }
+    #srun-cockpit-v3 .sc-provenance {
       display: none;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 8px 14px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px 12px;
       padding-top: 10px;
-      border-top: 1px solid var(--cp-line);
-      font-size: clamp(10px, .6vw, 12px);
+      border-top: 1px solid var(--sc-line);
+    }
+    #srun-cockpit-v3[data-review=&quot;on&quot;] .sc-provenance { display: grid; }
+    #srun-cockpit-v3 .sc-prov-label { color: var(--sc-muted); font-size: 10px; }
+    #srun-cockpit-v3 .sc-prov-value { margin-top: 2px; font-size: 11px; word-break: break-word; }
+
+    #srun-cockpit-v3 .sc-notice {
+      display: none;
+      position: absolute;
+      left: 50%;
+      bottom: 18px;
+      z-index: 30;
+      transform: translateX(-50%);
+      padding: 8px 12px;
+      border: 1px solid var(--sc-line);
+      border-radius: 8px;
+      color: var(--sc-text);
+      background: var(--sc-surface);
+      font-size: 12px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, .16);
+    }
+    #srun-cockpit-v3 .sc-notice.is-open { display: block; }
+
+    @media (max-width: 1280px) {
+      #srun-cockpit-v3 .sc-shell { padding: 9px; gap: 8px; }
+      #srun-cockpit-v3 .sc-context { min-height: 68px; padding: 6px 8px; }
+      #srun-cockpit-v3 .sc-drawer { width: min(680px, 58vw); }
+      #srun-cockpit-v3 .sc-panel, #srun-cockpit-v3 .sc-kpi { padding: 9px; }
+      #srun-cockpit-v3 .sc-capability-tag:nth-last-child(2) { display: none; }
     }
 
-    #cockpit-16x9-prototype[data-review=&quot;on&quot;] .cp-provenance { display: grid; }
-    #cockpit-16x9-prototype .cp-prov-label { color: var(--cp-muted); }
-    #cockpit-16x9-prototype .cp-prov-value { margin-top: 2px; word-break: break-word; }
+    @media (max-height: 760px) {
+      #srun-cockpit-v3 .sc-shell { padding: 8px; gap: 7px; }
+      #srun-cockpit-v3 .sc-context { min-height: 62px; }
+      #srun-cockpit-v3 .sc-content { grid-template-rows: 88px minmax(0, 1fr); gap: 7px; }
+      #srun-cockpit-v3 .sc-subtitle, #srun-cockpit-v3 .sc-capability-line { margin-top: 2px; }
+      #srun-cockpit-v3 .sc-panel { gap: 4px; }
+      #srun-cockpit-v3 .sc-panel-foot { display: none; }
+      #srun-cockpit-v3 .sc-bars { gap: 5px; }
+      #srun-cockpit-v3 .sc-drawer { top: 8px; right: 8px; bottom: 8px; gap: 8px; padding: 14px; }
+      #srun-cockpit-v3 .sc-table th, #srun-cockpit-v3 .sc-table td { padding-block: 7px; }
+    }
 
     @media (prefers-reduced-motion: reduce) {
-      #cockpit-16x9-prototype .cp-drawer { transition: none; }
-    }
-
-    @media (max-width: 1200px) {
-      #cockpit-16x9-prototype .cp-board { padding: 9px; gap: 7px; }
-      #cockpit-16x9-prototype .cp-heading { min-width: 190px; }
-      #cockpit-16x9-prototype .cp-module { padding-inline: 9px; }
-      #cockpit-16x9-prototype .cp-kpis,
-      #cockpit-16x9-prototype .cp-main-grid,
-      #cockpit-16x9-prototype .cp-bottom-grid { gap: 7px; }
-      #cockpit-16x9-prototype .cp-kpi,
-      #cockpit-16x9-prototype .cp-panel { padding: 9px; }
-      #cockpit-16x9-prototype .cp-drawer { width: min(72%, 620px); }
-    }
-
-    @media (max-width: 900px) {
-      #cockpit-16x9-prototype .cp-time { display: none; }
-      #cockpit-16x9-prototype .cp-heading { min-width: 120px; }
-      #cockpit-16x9-prototype .cp-profile { padding-inline: 8px; }
-      #cockpit-16x9-prototype .cp-depth { display: none !important; }
-      #cockpit-16x9-prototype .cp-drawer {
-        inset: 10px;
-        width: auto;
-        padding: 14px;
-      }
-      #cockpit-16x9-prototype .cp-provenance { grid-template-columns: 1fr; }
-      #cockpit-16x9-prototype .cp-drill-row { grid-template-columns: minmax(0, 1fr) auto auto; }
+      #srun-cockpit-v3 .sc-drawer { transition: none; }
     }
   &lt;/style&gt;
 
-  &lt;section class=&quot;cp-board&quot; aria-label=&quot;16比9营收运营驾驶舱结构原型&quot;&gt;
-    &lt;header class=&quot;cp-header&quot;&gt;
-      &lt;div class=&quot;cp-heading&quot;&gt;
-        &lt;div id=&quot;cp-page-title&quot; class=&quot;cp-title&quot;&gt;经营总览&lt;/div&gt;
-        &lt;div class=&quot;cp-time&quot;&gt;2026-08-19 10:30 · 模拟数据 · 目标画布 1920×1080&lt;/div&gt;
+  &lt;section class=&quot;sc-shell&quot; aria-label=&quot;营收运营驾驶舱结构原型 V3&quot;&gt;
+    &lt;header class=&quot;sc-topbar&quot;&gt;
+      &lt;div class=&quot;sc-brand&quot;&gt;
+        &lt;div id=&quot;sc-page-title&quot; class=&quot;sc-title&quot;&gt;经营总览&lt;/div&gt;
+        &lt;div class=&quot;sc-subtitle&quot;&gt;模拟数据 · 口径时区 Asia/Shanghai · 原型版本 V3&lt;/div&gt;
       &lt;/div&gt;
-      &lt;div class=&quot;cp-review-controls&quot; aria-label=&quot;数据能力版本&quot;&gt;
-        &lt;button type=&quot;button&quot; class=&quot;cp-profile&quot; data-profile=&quot;basic&quot; aria-pressed=&quot;false&quot;&gt;基础&lt;/button&gt;
-        &lt;button type=&quot;button&quot; class=&quot;cp-profile&quot; data-profile=&quot;standard&quot; aria-pressed=&quot;true&quot;&gt;标准&lt;/button&gt;
-        &lt;button type=&quot;button&quot; class=&quot;cp-profile&quot; data-profile=&quot;enhanced&quot; aria-pressed=&quot;false&quot;&gt;增强&lt;/button&gt;
+      &lt;div class=&quot;sc-profile-controls&quot; aria-label=&quot;能力版本&quot;&gt;
+        &lt;button type=&quot;button&quot; class=&quot;sc-profile&quot; data-profile=&quot;basic&quot; aria-pressed=&quot;false&quot;&gt;基础 · 运行可见&lt;/button&gt;
+        &lt;button type=&quot;button&quot; class=&quot;sc-profile&quot; data-profile=&quot;standard&quot; aria-pressed=&quot;true&quot;&gt;标准 · 运营分析&lt;/button&gt;
+        &lt;button type=&quot;button&quot; class=&quot;sc-profile&quot; data-profile=&quot;enhanced&quot; aria-pressed=&quot;false&quot;&gt;增强 · 经营闭环&lt;/button&gt;
       &lt;/div&gt;
     &lt;/header&gt;
 
-    &lt;nav class=&quot;cp-nav&quot; aria-label=&quot;驾驶舱模块&quot;&gt;
-      &lt;div id=&quot;cp-module-tabs&quot; class=&quot;cp-module-tabs&quot;&gt;&lt;/div&gt;
-      &lt;span id=&quot;cp-depth&quot; class=&quot;cp-depth&quot;&gt;可钻取深度 2/3&lt;/span&gt;
-      &lt;button id=&quot;cp-info-toggle&quot; type=&quot;button&quot; class=&quot;cp-info-toggle&quot; aria-pressed=&quot;true&quot;&gt;数据评审&lt;/button&gt;
-    &lt;/nav&gt;
-
-    &lt;div id=&quot;cp-kpis&quot; class=&quot;cp-kpis&quot; aria-label=&quot;核心指标&quot;&gt;&lt;/div&gt;
-    &lt;div id=&quot;cp-main-grid&quot; class=&quot;cp-main-grid&quot; aria-label=&quot;核心分析区&quot;&gt;&lt;/div&gt;
-    &lt;div id=&quot;cp-bottom-grid&quot; class=&quot;cp-bottom-grid&quot; aria-label=&quot;辅助分析区&quot;&gt;&lt;/div&gt;
-
-    &lt;div id=&quot;cp-backdrop&quot; class=&quot;cp-drawer-backdrop&quot;&gt;&lt;/div&gt;
-    &lt;aside id=&quot;cp-drawer&quot; class=&quot;cp-drawer&quot; aria-label=&quot;数据钻取与来源说明&quot; aria-hidden=&quot;true&quot;&gt;
-      &lt;div class=&quot;cp-drawer-head&quot;&gt;
-        &lt;div&gt;
-          &lt;div id=&quot;cp-drawer-title&quot; class=&quot;cp-drawer-title&quot;&gt;&lt;/div&gt;
-          &lt;div id=&quot;cp-drawer-subtitle&quot; class=&quot;cp-drawer-subtitle&quot;&gt;&lt;/div&gt;
-        &lt;/div&gt;
-        &lt;button id=&quot;cp-close&quot; type=&quot;button&quot; class=&quot;cp-close&quot; aria-label=&quot;关闭钻取面板&quot;&gt;关闭&lt;/button&gt;
+    &lt;section class=&quot;sc-context&quot; aria-label=&quot;模块与时间范围&quot;&gt;
+      &lt;div class=&quot;sc-left-context&quot;&gt;
+        &lt;nav id=&quot;sc-module-tabs&quot; class=&quot;sc-module-tabs&quot; aria-label=&quot;驾驶舱模块&quot;&gt;&lt;/nav&gt;
+        &lt;div id=&quot;sc-capability-line&quot; class=&quot;sc-capability-line&quot;&gt;&lt;/div&gt;
       &lt;/div&gt;
-      &lt;div id=&quot;cp-breadcrumb&quot; class=&quot;cp-breadcrumb&quot;&gt;&lt;/div&gt;
-      &lt;div class=&quot;cp-drill-view&quot;&gt;
-        &lt;div id=&quot;cp-drill-summary&quot; class=&quot;cp-drill-summary&quot;&gt;&lt;/div&gt;
-        &lt;div id=&quot;cp-drill-list&quot; class=&quot;cp-drill-list&quot;&gt;&lt;/div&gt;
-      &lt;/div&gt;
-      &lt;div&gt;
-        &lt;div class=&quot;cp-drill-footer&quot;&gt;
-          &lt;span id=&quot;cp-drill-limit&quot; class=&quot;cp-drill-limit&quot;&gt;&lt;/span&gt;
-          &lt;button id=&quot;cp-drill-action&quot; type=&quot;button&quot; class=&quot;cp-drill-action&quot;&gt;继续下钻&lt;/button&gt;
+      &lt;div class=&quot;sc-filters&quot;&gt;
+        &lt;div class=&quot;sc-filter-group&quot; aria-label=&quot;时间范围&quot;&gt;
+          &lt;button type=&quot;button&quot; class=&quot;sc-period&quot; data-period=&quot;today&quot; aria-pressed=&quot;false&quot;&gt;今日&lt;/button&gt;
+          &lt;button type=&quot;button&quot; class=&quot;sc-period&quot; data-period=&quot;7d&quot; aria-pressed=&quot;true&quot;&gt;近 7 日&lt;/button&gt;
+          &lt;button type=&quot;button&quot; class=&quot;sc-period&quot; data-period=&quot;month&quot; aria-pressed=&quot;false&quot;&gt;本月&lt;/button&gt;
+          &lt;select id=&quot;sc-grain&quot; class=&quot;sc-grain&quot; aria-label=&quot;统计粒度&quot;&gt;
+            &lt;option value=&quot;hour&quot;&gt;小时&lt;/option&gt;
+            &lt;option value=&quot;day&quot; selected&gt;日&lt;/option&gt;
+            &lt;option value=&quot;month&quot;&gt;月&lt;/option&gt;
+          &lt;/select&gt;
+          &lt;button id=&quot;sc-review&quot; type=&quot;button&quot; class=&quot;sc-review&quot; aria-pressed=&quot;true&quot;&gt;数据评审&lt;/button&gt;
         &lt;/div&gt;
-        &lt;div id=&quot;cp-provenance&quot; class=&quot;cp-provenance&quot;&gt;&lt;/div&gt;
+        &lt;div id=&quot;sc-refresh&quot; class=&quot;sc-refresh&quot;&gt;全局刷新 10:30 · 在线延迟 1 分钟 · 财务延迟 15 分钟&lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/section&gt;
+
+    &lt;main class=&quot;sc-content&quot;&gt;
+      &lt;div id=&quot;sc-kpi-grid&quot; class=&quot;sc-kpi-grid&quot; aria-label=&quot;核心指标&quot;&gt;&lt;/div&gt;
+      &lt;div id=&quot;sc-panel-grid&quot; class=&quot;sc-panel-grid&quot; aria-label=&quot;分析图表&quot;&gt;&lt;/div&gt;
+    &lt;/main&gt;
+
+    &lt;div id=&quot;sc-backdrop&quot; class=&quot;sc-backdrop&quot;&gt;&lt;/div&gt;
+    &lt;aside id=&quot;sc-drawer&quot; class=&quot;sc-drawer&quot; aria-hidden=&quot;true&quot; aria-label=&quot;指标钻取与数据来源&quot;&gt;
+      &lt;div class=&quot;sc-drawer-head&quot;&gt;
+        &lt;div class=&quot;sc-drawer-heading&quot;&gt;
+          &lt;div id=&quot;sc-drawer-title&quot; class=&quot;sc-drawer-title&quot;&gt;&lt;/div&gt;
+          &lt;div id=&quot;sc-drawer-subtitle&quot; class=&quot;sc-drawer-subtitle&quot;&gt;&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;button id=&quot;sc-close&quot; type=&quot;button&quot; class=&quot;sc-close&quot; aria-label=&quot;关闭抽屉&quot;&gt;关闭&lt;/button&gt;
+      &lt;/div&gt;
+      &lt;div id=&quot;sc-crumbs&quot; class=&quot;sc-crumbs&quot; aria-label=&quot;钻取层级&quot;&gt;&lt;/div&gt;
+      &lt;div id=&quot;sc-drawer-summary&quot; class=&quot;sc-drawer-summary&quot;&gt;&lt;/div&gt;
+      &lt;div id=&quot;sc-drill-content&quot; class=&quot;sc-drill-content&quot;&gt;&lt;/div&gt;
+      &lt;div class=&quot;sc-drawer-bottom&quot;&gt;
+        &lt;div class=&quot;sc-drill-footer&quot;&gt;
+          &lt;span id=&quot;sc-limit&quot; class=&quot;sc-limit&quot;&gt;&lt;/span&gt;
+          &lt;button id=&quot;sc-drill-next&quot; type=&quot;button&quot; class=&quot;sc-drill-button&quot;&gt;继续下钻&lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div id=&quot;sc-provenance&quot; class=&quot;sc-provenance&quot;&gt;&lt;/div&gt;
       &lt;/div&gt;
     &lt;/aside&gt;
+    &lt;div id=&quot;sc-notice&quot; class=&quot;sc-notice&quot; role=&quot;status&quot;&gt;&lt;/div&gt;
   &lt;/section&gt;
 
   &lt;script&gt;
     (() =&gt; {
-      const root = document.getElementById('cockpit-16x9-prototype');
+      const root = document.getElementById(&#x27;srun-cockpit-v3&#x27;);
+      const pageTitle = root.querySelector(&#x27;#sc-page-title&#x27;);
       const profileRank = { basic: 1, standard: 2, enhanced: 3 };
-      const profileLabels = { basic: '基础版', standard: '标准版', enhanced: '增强版' };
-      let profile = 'standard';
-      let moduleId = 'overview';
-      let reviewMode = true;
-      let selectedComponent = null;
-      let drillStep = 1;
+      const periodLabels = { today: &#x27;今日&#x27;, &#x27;7d&#x27;: &#x27;近 7 日&#x27;, month: &#x27;本月&#x27; };
+      const grainLabels = { hour: &#x27;小时&#x27;, day: &#x27;日&#x27;, month: &#x27;月&#x27; };
 
-      const components = {
-        F01:{name:'周期缴费总额',value:'¥286,420',note:'较上一周期 +8.4%',level:'B',priority:'P0',endpoint:'/financial/pay-type + /financial/payment-overview',fields:'pay_type_id, totalPayment',formula:'Σ 各缴费方式金额',ref:'REST 073、088',fallback:'核心指标，不替换',type:'line'},
-        F02:{name:'周期缴费笔数',value:'4,862',unit:'笔',note:'较上一周期 +5.2%',level:'B',priority:'P0',endpoint:'/financial/payment-overview',fields:'totalNum',formula:'Σ 各缴费方式笔数',ref:'REST 088',fallback:'核心指标，不替换',type:'bars'},
-        F03:{name:'平均单笔缴费',value:'58.91',unit:'元',note:'金额 ÷ 笔数',level:'B',priority:'P1',endpoint:'依赖 F01、F02',fields:'totalPayment, totalNum',formula:'缴费总额 / 缴费笔数',ref:'REST 088 派生',fallback:'笔数为0时显示 --',type:'bars'},
-        F04:{name:'较上一周期',value:'+8.4%',note:'等长周期比较',level:'B',priority:'P1',endpoint:'/financial/payment-overview',fields:'当前期与上一期汇总',formula:'(本期-上期)/上期',ref:'REST 088 派生',fallback:'上期为0时仅显示差额',type:'line'},
-        F05:{name:'营收金额与笔数趋势',value:'',note:'小时 / 日粒度',level:'B',priority:'P0',endpoint:'/financial/payment-overview',fields:'totalPayment, totalNum',formula:'按时间桶和缴费方式聚合',ref:'REST 073、088；手册「财务详情」',fallback:'降低刷新频率并使用缓存',type:'line'},
-        F06:{name:'缴费方式构成',value:'',note:'金额与笔数双口径',level:'B',priority:'P0',endpoint:'/financial/pay-type + /payment-overview',fields:'pay_name, totalPayment, totalNum',formula:'单方式金额 / 全方式金额',ref:'REST 073、088；手册「按缴费方式统计」',fallback:'可替代产品收入排行',type:'bars'},
-        F08:{name:'退费金额',value:'¥12,680',note:'退费率 4.4%',level:'D',priority:'P0',endpoint:'需全局退费汇总',fields:'期望 refund_amount, refund_count',formula:'同周期全局退费汇总',ref:'手册「财务管理-退费」',fallback:'替换为平均单笔缴费',type:'bars'},
-        F09:{name:'净收入',value:'¥273,740',note:'缴费 - 退费 - 调整',level:'E',priority:'P0',endpoint:'待建立完整财务数据闭环',fields:'payment, refund, reversal, adjustment',formula:'双方确认财务口径',ref:'手册相关财务功能',fallback:'改名为「缴费收入」',type:'line'},
-        F10:{name:'产品收入排行',value:'',note:'TOP 产品',level:'D',priority:'P0',endpoint:'需产品维度全局收入接口',fields:'product_id, product_name, revenue',formula:'需确认退款与历史归属',ref:'手册「产品收入统计」',fallback:'替换为 F06 缴费方式构成',type:'bars'},
-        F11:{name:'用户组收入排行',value:'',note:'TOP 用户组',level:'D',priority:'P1',endpoint:'需用户组维度收入接口',fields:'group_id, group_name, revenue',formula:'需确认历史用户组归属',ref:'手册「按用户组收入统计」',fallback:'替换为在线用户组分布',type:'bars'},
-        F12:{name:'结算统计',value:'¥241,600',note:'本月已结算',level:'D',priority:'P1',endpoint:'需结算统计接口',fields:'period, product/group, amount',formula:'按结算周期汇总',ref:'手册「结算统计」',fallback:'替换为月缴费趋势',type:'line'},
-        O01:{name:'当前在线用户',value:'8,426',unit:'人',note:'实时账号数',level:'A',priority:'P0',endpoint:'/base/get-online-count',fields:'data.user_count',formula:'直接展示',ref:'REST 170',fallback:'核心在线指标',type:'line'},
-        O02:{name:'当前在线设备',value:'10,315',unit:'台',note:'人均 1.22 台',level:'A',priority:'P0',endpoint:'/base/get-online-count',fields:'data.device_count',formula:'直接展示',ref:'REST 170',fallback:'核心在线指标',type:'line'},
-        O03:{name:'在线用户趋势',value:'',note:'5分钟粒度',level:'A',priority:'P0',endpoint:'/online-report/index?type=user',fields:'data.detail, data.table',formula:'接口时间序列',ref:'REST 167；手册「在线数统计」',fallback:'降级为当前在线分布',type:'line'},
-        O04:{name:'在线设备趋势',value:'',note:'5分钟粒度',level:'A',priority:'P1',endpoint:'/online-report/index?type=device',fields:'data.detail, data.table',formula:'接口时间序列',ref:'REST 167',fallback:'与在线用户趋势合并',type:'line'},
-        O05:{name:'在线用户组分布',value:'',note:'账号 / 设备',level:'A',priority:'P1',endpoint:'/base/get-online-count',fields:'group_sort[]',formula:'按用户组展示',ref:'REST 170',fallback:'替代用户组收入排行',type:'bars'},
-        O06:{name:'在线产品分布',value:'',note:'在线产品结构',level:'A',priority:'P1',endpoint:'/base/get-online-count',fields:'product_sort[]',formula:'按产品展示在线用户',ref:'REST 170；手册「产品分布」',fallback:'替换为在线用户组分布',type:'bars'},
-        O07:{name:'产品订购用户',value:'21,480',unit:'人次',note:'存在多产品重复',level:'A',priority:'P1',endpoint:'/base/get-online-count',fields:'product_sort[].user_count',formula:'按产品直接展示',ref:'REST 170',fallback:'不求和作为总用户数',type:'bars'},
-        O08:{name:'用户组注册用户',value:'24,936',unit:'人',note:'范围待确认',level:'A',priority:'P1',endpoint:'/base/get-online-count',fields:'group_sort[].user_count',formula:'按用户组直接展示',ref:'REST 170',fallback:'需确认过期/禁用范围',type:'bars'},
-        O11:{name:'策略 / 终端 / OS',value:'',note:'多维在线结构',level:'C',priority:'P1',endpoint:'/online-report/other',fields:'legend, xAxis, series（待验证）',formula:'按 type 切换统计维度',ref:'REST 168；手册「运营-在线分析」',fallback:'替换为在线产品分布',type:'bars'},
-        U01:{name:'昨日认证次数',value:'31,908',unit:'次',note:'固定昨日口径',level:'A',priority:'P1',endpoint:'/api/v1/detail/auth-count',fields:'data',formula:'直接展示',ref:'REST 143',fallback:'认证诊断基础指标',type:'bars'},
-        U02:{name:'日联网用户',value:'16,284',unit:'人',note:'按下线时间统计',level:'A',priority:'P1',endpoint:'/detail/count',fields:'data.count',formula:'指定日期接口统计',ref:'REST 172',fallback:'单日 KPI',type:'line'},
-        U03:{name:'月联网活跃用户',value:'18,642',unit:'人',note:'月份参数待确认',level:'C',priority:'P0',endpoint:'/detail/month-count',fields:'data.count',formula:'月度活跃账号数',ref:'REST 173',fallback:'替换为日联网用户',type:'line'},
-        U04:{name:'流量 TOP',value:'',note:'账号总流量排行',level:'A',priority:'P1',endpoint:'/detail/top',fields:'user_name, total_bytes',formula:'时间范围内降序',ref:'REST 145',fallback:'替换为在线产品分布',type:'bars'},
-        U05:{name:'认证失败原因',value:'',note:'TOP 错误原因',level:'C',priority:'P1',endpoint:'/log/auth-error-total',fields:'响应字段待真实样本',formula:'按错误原因统计次数',ref:'REST 163；手册「认证错误」',fallback:'替换为昨日认证次数',type:'bars'},
-        U06:{name:'用户总数',value:'24,936',unit:'人',note:'无筛选范围待验证',level:'C',priority:'P1',endpoint:'/user/super-search',fields:'_meta.totalCount',formula:'无筛选查询总数',ref:'REST 021',fallback:'隐藏或使用用户组汇总',type:'bars'},
-        U07:{name:'今日新开户',value:'286',unit:'人',note:'较昨日 +12%',level:'D',priority:'P1',endpoint:'需开户统计接口',fields:'created_date, count',formula:'自然日开户数',ref:'手册「系统概况-用户情况」',fallback:'替换为日联网用户',type:'line'},
-        U08:{name:'过期用户',value:'1,248',unit:'人',note:'本月到期 326',level:'D',priority:'P1',endpoint:'需过期用户统计接口',fields:'expire_date, status, count',formula:'按过期状态统计',ref:'手册「系统概况-用户情况」',fallback:'用户状态区整体隐藏',type:'bars'},
-        U09:{name:'销户用户',value:'438',unit:'人',note:'本月 41',level:'D',priority:'P2',endpoint:'需销户统计接口',fields:'cancel_date, count',formula:'按销户时间统计',ref:'手册「系统概况-用户情况」',fallback:'隐藏',type:'bars'},
-        U10:{name:'系统资源监控',value:'',note:'CPU / 内存 / 负载',level:'D',priority:'P2',endpoint:'需监控平台或新增接口',fields:'cpu, memory, load, server_status',formula:'实时或分钟级采样',ref:'手册「业务监控-实时监控」',fallback:'系统运维模块禁用',type:'line'},
-        U11:{name:'故障与工单',value:'',note:'认证故障 / 用户反馈',level:'D',priority:'P2',endpoint:'需工单或故障数据源',fields:'type, status, created_at, count',formula:'按状态和类型汇总',ref:'手册「网络故障管理」「FAQ」',fallback:'隐藏',type:'bars'}
-      };
-
-      const modules = [
-        {id:'overview',name:'经营总览',min:1},
-        {id:'finance',name:'财务分析',min:1},
-        {id:'users',name:'用户分析',min:1},
-        {id:'online',name:'在线运营',min:1},
-        {id:'auth',name:'认证质量',min:1},
-        {id:'ops',name:'系统运维',min:3}
-      ];
-
-      const layouts = {
-        overview:{
-          basic:{k:['F01','F02','F03','O01','O02','U01'],m:['F06','F05','O03'],b:['O06','U04','U01','U02'],fb:{F06:'F10 不可用 → 使用缴费方式构成',U01:'U05 待验证 → 使用昨日认证次数'}},
-          standard:{k:['F01','F02','F03','U03','O01','O02'],m:['F06','F05','O03'],b:['O11','U04','U05','O06'],fb:{F06:'F10 需对方补充 → 使用缴费方式构成'}},
-          enhanced:{k:['F09','F01','F08','U03','O01','O02'],m:['F06','F05','F10'],b:['O03','F11','U05','U04'],fb:{}}
+      const profiles = {
+        basic: {
+          name: &#x27;基础版 · 运行可见&#x27;,
+          modules: [&#x27;overview&#x27;, &#x27;online&#x27;, &#x27;auth&#x27;],
+          scope: &#x27;文档确定性接口 · 聚合视图&#x27;,
+          drill: &#x27;最多 1 层&#x27;,
+          extra: &#x27;不开放账号明细&#x27;,
+          blueprint: &#x27;增强候选 8 项&#x27;
         },
-        finance:{
-          basic:{k:['F01','F02','F03','F04','O01','O02'],m:['F06','F05','F02'],b:['F04','F03','O06','U04'],fb:{F06:'F10 不可用 → 使用缴费方式构成',F02:'全局流水不可用 → 使用缴费笔数'}},
-          standard:{k:['F01','F02','F03','F04','O01','U03'],m:['F06','F05','F02'],b:['F04','F03','U04','O06'],fb:{F06:'F10 需对方补充 → 使用缴费方式构成'}},
-          enhanced:{k:['F09','F01','F08','F02','F03','F12'],m:['F10','F05','F11'],b:['F12','F06','F04','F08'],fb:{}}
+        standard: {
+          name: &#x27;标准版 · 运营分析&#x27;,
+          modules: [&#x27;overview&#x27;, &#x27;finance&#x27;, &#x27;users&#x27;, &#x27;online&#x27;, &#x27;auth&#x27;],
+          scope: &#x27;聚合 + 维度分析 · 账号 360 入口&#x27;,
+          drill: &#x27;最多 2 层&#x27;,
+          extra: &#x27;C 级需真实样本&#x27;,
+          blueprint: &#x27;增强候选 5 项&#x27;
         },
-        users:{
-          basic:{k:['U02','U01','O01','O02','O07','O08'],m:['O05','U02','O06'],b:['U04','O03','O07','O08'],fb:{U02:'U03 待验证 → 使用日联网用户'}},
-          standard:{k:['U06','U03','U02','O07','O08','O01'],m:['O05','U02','O06'],b:['U04','O03','O11','U01'],fb:{}},
-          enhanced:{k:['U06','U07','U08','U09','U03','O01'],m:['O05','U02','O06'],b:['U04','O07','O08','U01'],fb:{}}
-        },
-        online:{
-          basic:{k:['O01','O02','U02','U01','O07','O08'],m:['O05','O03','O06'],b:['O04','U04','U01','U02'],fb:{O06:'O11 待验证 → 使用在线产品分布'}},
-          standard:{k:['O01','O02','U03','U02','O07','O08'],m:['O05','O03','O11'],b:['O04','O06','U04','U05'],fb:{}},
-          enhanced:{k:['O01','O02','U03','U06','O07','O08'],m:['O05','O03','O11'],b:['O04','O06','U04','U05'],fb:{}}
-        },
-        auth:{
-          basic:{k:['U01','U02','O01','O02','U04','F01'],m:['U01','O03','U04'],b:['O05','O06','U02','O04'],fb:{U01:'U05 待验证 → 使用昨日认证次数'}},
-          standard:{k:['U01','U03','U02','O01','O02','U06'],m:['U05','O03','U04'],b:['O11','O05','O06','U01'],fb:{}},
-          enhanced:{k:['U01','U03','U02','O01','U07','U06'],m:['U05','O03','U04'],b:['U11','O11','O05','O06'],fb:{}}
-        },
-        ops:{
-          enhanced:{k:['U10','U11','O01','O02','U05','U01'],m:['U10','O03','U11'],b:['U05','O11','O04','U04'],fb:{}}
+        enhanced: {
+          name: &#x27;增强版 · 经营闭环&#x27;,
+          modules: [&#x27;overview&#x27;, &#x27;finance&#x27;, &#x27;users&#x27;, &#x27;online&#x27;, &#x27;auth&#x27;, &#x27;ops&#x27;],
+          scope: &#x27;A-D 级能力 · 补充数据接入&#x27;,
+          drill: &#x27;按指标最多 3 层&#x27;,
+          extra: &#x27;含权限化明细&#x27;,
+          blueprint: &#x27;E 级蓝图未启用&#x27;
         }
       };
 
-      const chartLabels = {
-        F06:['电子钱包','微信支付','支付宝','其他'],F10:['产品 A','产品 B','产品 C','其他'],F11:['用户组 A','用户组 B','用户组 C','其他'],
-        O05:['用户组 A','用户组 B','用户组 C','其他'],O06:['产品 A','产品 B','产品 C','其他'],O11:['Windows','Android','iOS','其他'],
-        U04:['账号 1024','账号 0872','账号 3156','其他'],U05:['密码错误','账号状态','并发限制','其他'],U11:['认证故障','网络故障','用户反馈','其他']
+      const modules = {
+        overview: &#x27;经营总览&#x27;,
+        finance: &#x27;财务分析&#x27;,
+        users: &#x27;用户分析&#x27;,
+        online: &#x27;在线运营&#x27;,
+        auth: &#x27;认证质量&#x27;,
+        ops: &#x27;系统运维&#x27;
       };
 
-      function grade(item){ return `&lt;span class=&quot;cp-grade cp-grade-${item.level.toLowerCase()}&quot;&gt;${item.level}&lt;/span&gt;`; }
+      const components = {
+        F01:{name:&#x27;周期缴费总额&#x27;,value:&#x27;¥286,420&#x27;,unit:&#x27;&#x27;,note:&#x27;较上一周期 +8.4%&#x27;,trend:&#x27;up&#x27;,evidence:&#x27;B&#x27;,status:&#x27;S1&#x27;,source:&#x27;/financial/pay-type + /financial/payment-overview&#x27;,fields:&#x27;pay_type_id, totalPayment&#x27;,formula:&#x27;按缴费方式求和&#x27;,ref:&#x27;REST 073、088&#x27;,model:&#x27;financeTotal&#x27;,type:&#x27;line&#x27;,series:[19,24,21,31,38,43,52],series2:[17,19,24,26,31,38,41],legend:[&#x27;缴费金额&#x27;,&#x27;上一周期&#x27;],chartUnit:&#x27;万元&#x27;},
+        F02:{name:&#x27;周期缴费笔数&#x27;,value:&#x27;4,862&#x27;,unit:&#x27;笔&#x27;,note:&#x27;较上一周期 +5.2%&#x27;,trend:&#x27;up&#x27;,evidence:&#x27;B&#x27;,status:&#x27;S1&#x27;,source:&#x27;/financial/payment-overview&#x27;,fields:&#x27;totalNum&#x27;,formula:&#x27;按缴费方式求和&#x27;,ref:&#x27;REST 088&#x27;,model:&#x27;financeCount&#x27;,type:&#x27;line&#x27;,series:[520,608,574,661,706,834,959],legend:[&#x27;缴费笔数&#x27;],chartUnit:&#x27;笔&#x27;},
+        F03:{name:&#x27;平均单笔缴费&#x27;,value:&#x27;58.91&#x27;,unit:&#x27;元&#x27;,note:&#x27;金额 ÷ 笔数&#x27;,evidence:&#x27;B&#x27;,status:&#x27;S1&#x27;,source:&#x27;F01 + F02 派生&#x27;,fields:&#x27;totalPayment, totalNum&#x27;,formula:&#x27;缴费总额 / 缴费笔数&#x27;,ref:&#x27;REST 088 派生&#x27;,model:&#x27;financeAverage&#x27;,type:&#x27;bars&#x27;,bars:[[&#x27;电子钱包&#x27;,&#x27;62.40元&#x27;,84],[&#x27;微信支付&#x27;,&#x27;57.80元&#x27;,77],[&#x27;支付宝&#x27;,&#x27;54.60元&#x27;,72],[&#x27;其他&#x27;,&#x27;46.20元&#x27;,61]]},
+        F04:{name:&#x27;周期变化&#x27;,value:&#x27;+8.4%&#x27;,unit:&#x27;&#x27;,note:&#x27;等长周期比较&#x27;,trend:&#x27;up&#x27;,evidence:&#x27;B&#x27;,status:&#x27;S1&#x27;,source:&#x27;/financial/payment-overview&#x27;,fields:&#x27;当前期、上一等长周期&#x27;,formula:&#x27;(本期-上期)/上期&#x27;,ref:&#x27;REST 088 派生&#x27;,model:&#x27;financeCompare&#x27;,type:&#x27;line&#x27;,series:[5.1,3.7,6.2,4.8,7.1,6.4,8.4],legend:[&#x27;环比变化&#x27;],chartUnit:&#x27;%&#x27;},
+        F05:{name:&#x27;缴费金额与笔数趋势&#x27;,value:&#x27;&#x27;,note:&#x27;金额与笔数双口径&#x27;,evidence:&#x27;B&#x27;,status:&#x27;S1&#x27;,source:&#x27;/financial/payment-overview&#x27;,fields:&#x27;totalPayment, totalNum&#x27;,formula:&#x27;按时间桶与缴费方式聚合&#x27;,ref:&#x27;REST 073、088；手册财务详情&#x27;,model:&#x27;financeTotal&#x27;,type:&#x27;line&#x27;,series:[24,31,28,42,39,49,57],series2:[21,25,27,32,36,41,46],legend:[&#x27;金额&#x27;,&#x27;笔数指数&#x27;],chartUnit:&#x27;指数&#x27;},
+        F06:{name:&#x27;缴费方式构成&#x27;,value:&#x27;&#x27;,note:&#x27;金额占比 · 4 类&#x27;,evidence:&#x27;B&#x27;,status:&#x27;S1&#x27;,source:&#x27;/financial/pay-type + /financial/payment-overview&#x27;,fields:&#x27;pay_name, totalPayment, totalNum&#x27;,formula:&#x27;单方式金额 / 总金额&#x27;,ref:&#x27;REST 073、088&#x27;,model:&#x27;financeMethod&#x27;,type:&#x27;bars&#x27;,bars:[[&#x27;电子钱包&#x27;,&#x27;¥118,420&#x27;,82],[&#x27;微信支付&#x27;,&#x27;¥86,760&#x27;,60],[&#x27;支付宝&#x27;,&#x27;¥61,940&#x27;,43],[&#x27;其他&#x27;,&#x27;¥19,300&#x27;,14]]},
+        F08:{name:&#x27;退费金额&#x27;,value:&#x27;¥12,680&#x27;,unit:&#x27;&#x27;,note:&#x27;需要全局退费数据&#x27;,trend:&#x27;warn&#x27;,evidence:&#x27;D&#x27;,status:&#x27;S0&#x27;,source:&#x27;需对方提供全局退费汇总&#x27;,fields:&#x27;refund_amount, refund_count&#x27;,formula:&#x27;同周期全局汇总&#x27;,ref:&#x27;手册财务管理-退费&#x27;,model:&#x27;refund&#x27;,type:&#x27;line&#x27;,series:[1.1,1.8,1.4,2.2,1.7,2.5,2.0],legend:[&#x27;退费金额&#x27;],chartUnit:&#x27;千元&#x27;},
+        F10:{name:&#x27;产品收入排行&#x27;,value:&#x27;&#x27;,note:&#x27;需要产品维度收入&#x27;,evidence:&#x27;D&#x27;,status:&#x27;S0&#x27;,source:&#x27;需对方提供产品收入接口&#x27;,fields:&#x27;product_id, product_name, revenue&#x27;,formula:&#x27;需确认退款和历史归属&#x27;,ref:&#x27;手册产品收入统计&#x27;,model:&#x27;productRevenue&#x27;,type:&#x27;bars&#x27;,bars:[[&#x27;产品 A&#x27;,&#x27;¥96,800&#x27;,88],[&#x27;产品 B&#x27;,&#x27;¥78,420&#x27;,71],[&#x27;产品 C&#x27;,&#x27;¥54,300&#x27;,49],[&#x27;其他&#x27;,&#x27;¥56,900&#x27;,52]]},
+        F11:{name:&#x27;用户组收入排行&#x27;,value:&#x27;&#x27;,note:&#x27;需要用户组维度收入&#x27;,evidence:&#x27;D&#x27;,status:&#x27;S0&#x27;,source:&#x27;需对方提供用户组收入接口&#x27;,fields:&#x27;group_id, group_name, revenue&#x27;,formula:&#x27;按确认后的历史归属汇总&#x27;,ref:&#x27;手册用户组收入统计&#x27;,model:&#x27;groupRevenue&#x27;,type:&#x27;bars&#x27;,bars:[[&#x27;用户组 A&#x27;,&#x27;¥84,100&#x27;,91],[&#x27;用户组 B&#x27;,&#x27;¥71,800&#x27;,78],[&#x27;用户组 C&#x27;,&#x27;¥52,600&#x27;,57],[&#x27;其他&#x27;,&#x27;¥77,920&#x27;,84]]},
+        F12:{name:&#x27;结算统计&#x27;,value:&#x27;¥241,600&#x27;,unit:&#x27;&#x27;,note:&#x27;本月已结算&#x27;,evidence:&#x27;D&#x27;,status:&#x27;S0&#x27;,source:&#x27;需对方提供结算统计&#x27;,fields:&#x27;period, product/group, amount, status&#x27;,formula:&#x27;按结算周期汇总&#x27;,ref:&#x27;手册结算统计&#x27;,model:&#x27;settlement&#x27;,type:&#x27;line&#x27;,series:[18,28,35,44,61,76,89],legend:[&#x27;结算进度&#x27;],chartUnit:&#x27;%&#x27;},
+        O01:{name:&#x27;当前在线用户&#x27;,value:&#x27;8,426&#x27;,unit:&#x27;人&#x27;,note:&#x27;实时账号快照&#x27;,evidence:&#x27;A&#x27;,status:&#x27;S1&#x27;,source:&#x27;/base/get-online-count&#x27;,fields:&#x27;data.user_count&#x27;,formula:&#x27;直接展示&#x27;,ref:&#x27;REST 170&#x27;,model:&#x27;onlineUser&#x27;,type:&#x27;line&#x27;,series:[6120,7035,7520,6984,7840,8120,8426],legend:[&#x27;在线用户&#x27;],chartUnit:&#x27;人&#x27;},
+        O02:{name:&#x27;当前在线设备&#x27;,value:&#x27;10,315&#x27;,unit:&#x27;台&#x27;,note:&#x27;人均 1.22 台&#x27;,evidence:&#x27;A&#x27;,status:&#x27;S1&#x27;,source:&#x27;/base/get-online-count&#x27;,fields:&#x27;data.device_count&#x27;,formula:&#x27;直接展示&#x27;,ref:&#x27;REST 170&#x27;,model:&#x27;onlineDevice&#x27;,type:&#x27;line&#x27;,series:[7440,8160,8810,8420,9360,9840,10315],legend:[&#x27;在线设备&#x27;],chartUnit:&#x27;台&#x27;},
+        O03:{name:&#x27;在线用户趋势&#x27;,value:&#x27;&#x27;,note:&#x27;约 5 分钟粒度&#x27;,evidence:&#x27;A&#x27;,status:&#x27;S1&#x27;,source:&#x27;/online-report/index?type=user&#x27;,fields:&#x27;data.detail, data.table&#x27;,formula:&#x27;接口时间序列&#x27;,ref:&#x27;REST 167；手册在线数统计&#x27;,model:&#x27;onlineUser&#x27;,type:&#x27;line&#x27;,series:[6900,7230,7810,7480,8130,7980,8426],series2:[7020,7110,7350,7620,7770,8010,8150],legend:[&#x27;今日&#x27;,&#x27;昨日&#x27;],chartUnit:&#x27;人&#x27;},
+        O04:{name:&#x27;在线设备趋势&#x27;,value:&#x27;&#x27;,note:&#x27;约 5 分钟粒度&#x27;,evidence:&#x27;A&#x27;,status:&#x27;S1&#x27;,source:&#x27;/online-report/index?type=device&#x27;,fields:&#x27;data.detail, data.table&#x27;,formula:&#x27;接口时间序列&#x27;,ref:&#x27;REST 167&#x27;,model:&#x27;onlineDevice&#x27;,type:&#x27;line&#x27;,series:[8240,8610,9180,8870,9510,9860,10315],series2:[8050,8320,8710,9020,9240,9480,9720],legend:[&#x27;今日&#x27;,&#x27;昨日&#x27;],chartUnit:&#x27;台&#x27;},
+        O05:{name:&#x27;在线用户组分布&#x27;,value:&#x27;&#x27;,note:&#x27;账号与设备双口径&#x27;,evidence:&#x27;A&#x27;,status:&#x27;S1&#x27;,source:&#x27;/base/get-online-count&#x27;,fields:&#x27;group_sort[]&#x27;,formula:&#x27;按用户组直接展示&#x27;,ref:&#x27;REST 170&#x27;,model:&#x27;onlineGroup&#x27;,type:&#x27;bars&#x27;,bars:[[&#x27;用户组 A&#x27;,&#x27;2,840人&#x27;,84],[&#x27;用户组 B&#x27;,&#x27;2,126人&#x27;,63],[&#x27;用户组 C&#x27;,&#x27;1,705人&#x27;,50],[&#x27;其他&#x27;,&#x27;1,755人&#x27;,52]]},
+        O06:{name:&#x27;在线产品分布&#x27;,value:&#x27;&#x27;,note:&#x27;当前在线产品结构&#x27;,evidence:&#x27;A&#x27;,status:&#x27;S1&#x27;,source:&#x27;/base/get-online-count&#x27;,fields:&#x27;product_sort[]&#x27;,formula:&#x27;按产品直接展示&#x27;,ref:&#x27;REST 170；手册在线分析&#x27;,model:&#x27;onlineProduct&#x27;,type:&#x27;bars&#x27;,bars:[[&#x27;产品 A&#x27;,&#x27;3,126人&#x27;,89],[&#x27;产品 B&#x27;,&#x27;2,408人&#x27;,69],[&#x27;产品 C&#x27;,&#x27;1,684人&#x27;,48],[&#x27;其他&#x27;,&#x27;1,208人&#x27;,35]]},
+        O09:{name:&#x27;在线设备明细&#x27;,value:&#x27;10,315&#x27;,unit:&#x27;台&#x27;,note:&#x27;标准版开放列表&#x27;,evidence:&#x27;A&#x27;,status:&#x27;S1&#x27;,source:&#x27;/base/online-equipment&#x27;,fields:&#x27;user_name, user_ip, user_mac, bytes_in/out, add_time, os_name&#x27;,formula:&#x27;分页明细&#x27;,ref:&#x27;REST 在线设备接口&#x27;,model:&#x27;onlineDevice&#x27;,type:&#x27;bars&#x27;,bars:[[&#x27;Windows&#x27;,&#x27;4,620台&#x27;,92],[&#x27;Android&#x27;,&#x27;2,860台&#x27;,57],[&#x27;iOS&#x27;,&#x27;1,946台&#x27;,39],[&#x27;其他&#x27;,&#x27;889台&#x27;,18]]},
+        O11:{name:&#x27;终端与 OS 结构&#x27;,value:&#x27;&#x27;,note:&#x27;响应结构待样本确认&#x27;,evidence:&#x27;C&#x27;,status:&#x27;S0&#x27;,source:&#x27;/online-report/other&#x27;,fields:&#x27;legend, xAxis, series&#x27;,formula:&#x27;按 type 切换维度&#x27;,ref:&#x27;REST 168；手册在线分析&#x27;,model:&#x27;terminal&#x27;,type:&#x27;bars&#x27;,bars:[[&#x27;Windows&#x27;,&#x27;44.8%&#x27;,90],[&#x27;Android&#x27;,&#x27;27.7%&#x27;,56],[&#x27;iOS&#x27;,&#x27;18.9%&#x27;,38],[&#x27;其他&#x27;,&#x27;8.6%&#x27;,17]]},
+        U01:{name:&#x27;昨日认证次数&#x27;,value:&#x27;31,908&#x27;,unit:&#x27;次&#x27;,note:&#x27;固定昨日口径&#x27;,evidence:&#x27;A&#x27;,status:&#x27;S1&#x27;,source:&#x27;/api/v1/detail/auth-count&#x27;,fields:&#x27;data&#x27;,formula:&#x27;直接展示&#x27;,ref:&#x27;REST 143&#x27;,model:&#x27;authVolume&#x27;,type:&#x27;line&#x27;,series:[3160,4010,4860,5120,4770,5240,4748],legend:[&#x27;认证次数&#x27;],chartUnit:&#x27;次&#x27;},
+        U02:{name:&#x27;日联网用户&#x27;,value:&#x27;16,284&#x27;,unit:&#x27;人&#x27;,note:&#x27;按下线时间统计&#x27;,evidence:&#x27;A&#x27;,status:&#x27;S1&#x27;,source:&#x27;/detail/count&#x27;,fields:&#x27;data.count&#x27;,formula:&#x27;指定日期直接展示&#x27;,ref:&#x27;REST 172&#x27;,model:&#x27;activeUser&#x27;,type:&#x27;line&#x27;,series:[14920,15380,15110,15840,16020,15980,16284],legend:[&#x27;日联网用户&#x27;],chartUnit:&#x27;人&#x27;},
+        U03:{name:&#x27;月联网活跃用户&#x27;,value:&#x27;18,642&#x27;,unit:&#x27;人&#x27;,note:&#x27;月份参数待联调&#x27;,evidence:&#x27;C&#x27;,status:&#x27;S0&#x27;,source:&#x27;/detail/month-count&#x27;,fields:&#x27;data.count&#x27;,formula:&#x27;月度去重账号数&#x27;,ref:&#x27;REST 173&#x27;,model:&#x27;activeUser&#x27;,type:&#x27;line&#x27;,series:[16810,17240,17680,17390,18120,18410,18642],legend:[&#x27;月活跃用户&#x27;],chartUnit:&#x27;人&#x27;},
+        U04:{name:&#x27;流量 Top&#x27;,value:&#x27;&#x27;,note:&#x27;账号总流量排行&#x27;,evidence:&#x27;A&#x27;,status:&#x27;S1&#x27;,source:&#x27;/detail/top&#x27;,fields:&#x27;user_name, total_bytes&#x27;,formula:&#x27;周期内按总流量降序&#x27;,ref:&#x27;REST 145&#x27;,model:&#x27;traffic&#x27;,type:&#x27;bars&#x27;,bars:[[&#x27;usr_10**&#x27;,&#x27;842 GB&#x27;,92],[&#x27;usr_08**&#x27;,&#x27;731 GB&#x27;,80],[&#x27;usr_31**&#x27;,&#x27;596 GB&#x27;,65],[&#x27;usr_22**&#x27;,&#x27;468 GB&#x27;,51]]},
+        U05:{name:&#x27;认证失败分析&#x27;,value:&#x27;1,284&#x27;,unit:&#x27;次&#x27;,note:&#x27;失败率需口径确认&#x27;,trend:&#x27;warn&#x27;,evidence:&#x27;A/B&#x27;,status:&#x27;S1&#x27;,source:&#x27;/log/auth-err + /log/login&#x27;,fields:&#x27;auth_err, top_err_msg, top_auth_err, err_msg&#x27;,formula:&#x27;失败总数及原因/账号聚合&#x27;,ref:&#x27;REST 157、158&#x27;,model:&#x27;authError&#x27;,type:&#x27;bars&#x27;,bars:[[&#x27;密码错误&#x27;,&#x27;516次&#x27;,100],[&#x27;账号状态&#x27;,&#x27;294次&#x27;,57],[&#x27;并发限制&#x27;,&#x27;187次&#x27;,36],[&#x27;其他&#x27;,&#x27;287次&#x27;,56]]},
+        U06:{name:&#x27;用户总数&#x27;,value:&#x27;24,936&#x27;,unit:&#x27;人&#x27;,note:&#x27;无筛选范围待确认&#x27;,evidence:&#x27;C&#x27;,status:&#x27;S0&#x27;,source:&#x27;/user/super-search&#x27;,fields:&#x27;_meta.totalCount&#x27;,formula:&#x27;无筛选分页总数&#x27;,ref:&#x27;REST 021&#x27;,model:&#x27;userBase&#x27;,type:&#x27;bars&#x27;,bars:[[&#x27;正常&#x27;,&#x27;21,580人&#x27;,91],[&#x27;暂停&#x27;,&#x27;1,724人&#x27;,7],[&#x27;产品到期&#x27;,&#x27;1,248人&#x27;,5],[&#x27;其他&#x27;,&#x27;384人&#x27;,2]]},
+        U08:{name:&#x27;产品到期预警&#x27;,value:&#x27;326&#x27;,unit:&#x27;人&#x27;,note:&#x27;未来 30 天&#x27;,trend:&#x27;warn&#x27;,evidence:&#x27;C&#x27;,status:&#x27;S0&#x27;,source:&#x27;/product/expire&#x27;,fields:&#x27;user_name, products_id, expired_at, group_id&#x27;,formula:&#x27;按到期时间窗分页统计&#x27;,ref:&#x27;REST 100&#x27;,model:&#x27;expiry&#x27;,type:&#x27;bars&#x27;,bars:[[&#x27;7 天内&#x27;,&#x27;84人&#x27;,26],[&#x27;8-15 天&#x27;,&#x27;102人&#x27;,31],[&#x27;16-30 天&#x27;,&#x27;140人&#x27;,43],[&#x27;已过期&#x27;,&#x27;待确认&#x27;,12]]},
+        U10:{name:&#x27;系统资源监控&#x27;,value:&#x27;正常&#x27;,unit:&#x27;&#x27;,note:&#x27;需要监控数据源&#x27;,evidence:&#x27;D&#x27;,status:&#x27;S0&#x27;,source:&#x27;需监控平台或新增接口&#x27;,fields:&#x27;cpu, memory, load, service_status&#x27;,formula:&#x27;分钟级采样&#x27;,ref:&#x27;手册业务监控&#x27;,model:&#x27;ops&#x27;,type:&#x27;line&#x27;,series:[42,47,51,46,59,54,57],series2:[61,63,65,64,68,70,69],legend:[&#x27;CPU&#x27;,&#x27;内存&#x27;],chartUnit:&#x27;%&#x27;},
+        U11:{name:&#x27;故障与工单&#x27;,value:&#x27;7&#x27;,unit:&#x27;起&#x27;,note:&#x27;2 起处理中&#x27;,trend:&#x27;warn&#x27;,evidence:&#x27;D&#x27;,status:&#x27;S0&#x27;,source:&#x27;需工单或故障数据源&#x27;,fields:&#x27;type, status, created_at, affected_users&#x27;,formula:&#x27;按状态与类型汇总&#x27;,ref:&#x27;手册网络故障管理&#x27;,model:&#x27;fault&#x27;,type:&#x27;bars&#x27;,bars:[[&#x27;认证故障&#x27;,&#x27;3起&#x27;,75],[&#x27;网络故障&#x27;,&#x27;2起&#x27;,50],[&#x27;用户反馈&#x27;,&#x27;2起&#x27;,50],[&#x27;超时 SLA&#x27;,&#x27;1起&#x27;,25]]}
+      };
 
-      function lineChart(item){
-        return `&lt;svg class=&quot;cp-chart&quot; viewBox=&quot;0 0 320 80&quot; preserveAspectRatio=&quot;none&quot; role=&quot;img&quot; aria-label=&quot;${item.name}趋势示意&quot;&gt;
-          &lt;title&gt;${item.name}趋势示意&lt;/title&gt;&lt;desc&gt;用于结构原型的模拟趋势数据&lt;/desc&gt;
-          &lt;line class=&quot;grid&quot; x1=&quot;0&quot; y1=&quot;12&quot; x2=&quot;320&quot; y2=&quot;12&quot;&gt;&lt;/line&gt;&lt;line class=&quot;grid&quot; x1=&quot;0&quot; y1=&quot;40&quot; x2=&quot;320&quot; y2=&quot;40&quot;&gt;&lt;/line&gt;&lt;line class=&quot;grid&quot; x1=&quot;0&quot; y1=&quot;68&quot; x2=&quot;320&quot; y2=&quot;68&quot;&gt;&lt;/line&gt;
-          &lt;polyline class=&quot;series-2&quot; points=&quot;0,65 40,58 80,62 120,48 160,52 200,34 240,40 280,27 320,31&quot;&gt;&lt;/polyline&gt;
-          &lt;polyline class=&quot;series&quot; points=&quot;0,69 40,63 80,54 120,58 160,38 200,42 240,24 280,32 320,15&quot;&gt;&lt;/polyline&gt;
+      const layouts = {
+        basic: {
+          overview:{k:[&#x27;F01&#x27;,&#x27;F02&#x27;,&#x27;O01&#x27;,&#x27;O02&#x27;],p:[[&#x27;O03&#x27;,7],[&#x27;F06&#x27;,5],[&#x27;O05&#x27;,4],[&#x27;O06&#x27;,4],[&#x27;U01&#x27;,4]]},
+          online:{k:[&#x27;O01&#x27;,&#x27;O02&#x27;,&#x27;U02&#x27;,&#x27;U01&#x27;],p:[[&#x27;O03&#x27;,7],[&#x27;O05&#x27;,5],[&#x27;O04&#x27;,4],[&#x27;O06&#x27;,4],[&#x27;U04&#x27;,4]]},
+          auth:{k:[&#x27;U01&#x27;,&#x27;U02&#x27;,&#x27;O01&#x27;,&#x27;O02&#x27;],p:[[&#x27;U01&#x27;,7],[&#x27;O03&#x27;,5],[&#x27;U04&#x27;,4],[&#x27;O05&#x27;,4],[&#x27;O06&#x27;,4]]}
+        },
+        standard: {
+          overview:{k:[&#x27;F01&#x27;,&#x27;F02&#x27;,&#x27;F03&#x27;,&#x27;U03&#x27;,&#x27;O01&#x27;,&#x27;O02&#x27;],p:[[&#x27;F05&#x27;,6],[&#x27;F06&#x27;,3],[&#x27;O03&#x27;,3],[&#x27;U05&#x27;,3],[&#x27;U04&#x27;,3],[&#x27;O05&#x27;,3],[&#x27;O06&#x27;,3]]},
+          finance:{k:[&#x27;F01&#x27;,&#x27;F02&#x27;,&#x27;F03&#x27;,&#x27;F04&#x27;,&#x27;O01&#x27;,&#x27;U03&#x27;],p:[[&#x27;F05&#x27;,6],[&#x27;F06&#x27;,3],[&#x27;F02&#x27;,3],[&#x27;F04&#x27;,3],[&#x27;U04&#x27;,3],[&#x27;O06&#x27;,3],[&#x27;O03&#x27;,3]]},
+          users:{k:[&#x27;U06&#x27;,&#x27;U03&#x27;,&#x27;U02&#x27;,&#x27;U08&#x27;,&#x27;O01&#x27;,&#x27;O02&#x27;],p:[[&#x27;U02&#x27;,6],[&#x27;U04&#x27;,3],[&#x27;U08&#x27;,3],[&#x27;O05&#x27;,3],[&#x27;O06&#x27;,3],[&#x27;O03&#x27;,3],[&#x27;U01&#x27;,3]]},
+          online:{k:[&#x27;O01&#x27;,&#x27;O02&#x27;,&#x27;U03&#x27;,&#x27;U02&#x27;,&#x27;O09&#x27;,&#x27;U01&#x27;],p:[[&#x27;O03&#x27;,6],[&#x27;O05&#x27;,3],[&#x27;O06&#x27;,3],[&#x27;O04&#x27;,3],[&#x27;O09&#x27;,3],[&#x27;U04&#x27;,3],[&#x27;O11&#x27;,3]]},
+          auth:{k:[&#x27;U01&#x27;,&#x27;U05&#x27;,&#x27;U02&#x27;,&#x27;U03&#x27;,&#x27;O01&#x27;,&#x27;O02&#x27;],p:[[&#x27;U05&#x27;,6],[&#x27;U01&#x27;,3],[&#x27;O03&#x27;,3],[&#x27;U04&#x27;,3],[&#x27;O05&#x27;,3],[&#x27;O11&#x27;,3],[&#x27;O06&#x27;,3]]}
+        },
+        enhanced: {
+          overview:{k:[&#x27;F01&#x27;,&#x27;F08&#x27;,&#x27;F02&#x27;,&#x27;U03&#x27;,&#x27;O01&#x27;,&#x27;O02&#x27;],p:[[&#x27;F05&#x27;,6],[&#x27;F10&#x27;,3],[&#x27;F06&#x27;,3],[&#x27;F11&#x27;,3],[&#x27;U05&#x27;,3],[&#x27;O03&#x27;,3],[&#x27;U08&#x27;,3]]},
+          finance:{k:[&#x27;F01&#x27;,&#x27;F08&#x27;,&#x27;F02&#x27;,&#x27;F03&#x27;,&#x27;F04&#x27;,&#x27;F12&#x27;],p:[[&#x27;F05&#x27;,6],[&#x27;F10&#x27;,3],[&#x27;F11&#x27;,3],[&#x27;F06&#x27;,3],[&#x27;F12&#x27;,3],[&#x27;F08&#x27;,3],[&#x27;U04&#x27;,3]]},
+          users:{k:[&#x27;U06&#x27;,&#x27;U08&#x27;,&#x27;U03&#x27;,&#x27;U02&#x27;,&#x27;O01&#x27;,&#x27;O02&#x27;],p:[[&#x27;U02&#x27;,6],[&#x27;U08&#x27;,3],[&#x27;U04&#x27;,3],[&#x27;O05&#x27;,3],[&#x27;O06&#x27;,3],[&#x27;U05&#x27;,3],[&#x27;O03&#x27;,3]]},
+          online:{k:[&#x27;O01&#x27;,&#x27;O02&#x27;,&#x27;O09&#x27;,&#x27;U03&#x27;,&#x27;U02&#x27;,&#x27;U01&#x27;],p:[[&#x27;O03&#x27;,6],[&#x27;O05&#x27;,3],[&#x27;O06&#x27;,3],[&#x27;O04&#x27;,3],[&#x27;O09&#x27;,3],[&#x27;O11&#x27;,3],[&#x27;U04&#x27;,3]]},
+          auth:{k:[&#x27;U01&#x27;,&#x27;U05&#x27;,&#x27;U02&#x27;,&#x27;U03&#x27;,&#x27;O01&#x27;,&#x27;O02&#x27;],p:[[&#x27;U05&#x27;,6],[&#x27;U01&#x27;,3],[&#x27;O03&#x27;,3],[&#x27;U04&#x27;,3],[&#x27;O05&#x27;,3],[&#x27;O11&#x27;,3],[&#x27;U08&#x27;,3]]},
+          ops:{k:[&#x27;U10&#x27;,&#x27;U11&#x27;,&#x27;O01&#x27;,&#x27;O02&#x27;,&#x27;U05&#x27;,&#x27;U01&#x27;],p:[[&#x27;U10&#x27;,6],[&#x27;U11&#x27;,3],[&#x27;O03&#x27;,3],[&#x27;U05&#x27;,3],[&#x27;O11&#x27;,3],[&#x27;O04&#x27;,3],[&#x27;U04&#x27;,3]]}
+        }
+      };
+
+      const drillModels = {
+        financeTotal:{
+          summary:[[&#x27;周期缴费&#x27;,&#x27;¥286,420&#x27;],[&#x27;缴费笔数&#x27;,&#x27;4,862 笔&#x27;],[&#x27;平均单笔&#x27;,&#x27;58.91 元&#x27;]],
+          levels:[
+            {title:&#x27;周期经营摘要&#x27;,note:&#x27;金额、笔数和上一等长周期使用同一时间边界。&#x27;,columns:[&#x27;口径&#x27;,&#x27;当前周期&#x27;,&#x27;上一周期&#x27;,&#x27;变化&#x27;],rows:[[&#x27;缴费金额&#x27;,&#x27;¥286,420&#x27;,&#x27;¥264,210&#x27;,&#x27;+8.4%&#x27;],[&#x27;缴费笔数&#x27;,&#x27;4,862&#x27;,&#x27;4,621&#x27;,&#x27;+5.2%&#x27;],[&#x27;平均单笔&#x27;,&#x27;58.91元&#x27;,&#x27;57.18元&#x27;,&#x27;+3.0%&#x27;],[&#x27;有缴费方式&#x27;,&#x27;4类&#x27;,&#x27;4类&#x27;,&#x27;持平&#x27;]]},
+            {title:&#x27;按日期拆分&#x27;,note:&#x27;由 payment-overview 按时间桶、缴费方式循环调用后聚合。&#x27;,columns:[&#x27;日期&#x27;,&#x27;缴费金额&#x27;,&#x27;缴费笔数&#x27;,&#x27;平均单笔&#x27;],rows:[[&#x27;08-13&#x27;,&#x27;¥31,420&#x27;,&#x27;538&#x27;,&#x27;58.40元&#x27;],[&#x27;08-14&#x27;,&#x27;¥38,760&#x27;,&#x27;642&#x27;,&#x27;60.37元&#x27;],[&#x27;08-15&#x27;,&#x27;¥36,280&#x27;,&#x27;618&#x27;,&#x27;58.71元&#x27;],[&#x27;08-16&#x27;,&#x27;¥42,940&#x27;,&#x27;721&#x27;,&#x27;59.56元&#x27;],[&#x27;08-17&#x27;,&#x27;¥39,510&#x27;,&#x27;684&#x27;,&#x27;57.76元&#x27;],[&#x27;08-18&#x27;,&#x27;¥45,720&#x27;,&#x27;773&#x27;,&#x27;59.15元&#x27;],[&#x27;08-19&#x27;,&#x27;¥51,790&#x27;,&#x27;886&#x27;,&#x27;58.45元&#x27;]]}
+          ]
+        },
+        financeCount:{
+          summary:[[&#x27;周期笔数&#x27;,&#x27;4,862&#x27;],[&#x27;日均笔数&#x27;,&#x27;695&#x27;],[&#x27;最高日&#x27;,&#x27;886&#x27;]],
+          levels:[
+            {title:&#x27;缴费笔数摘要&#x27;,note:&#x27;只使用 totalNum，不把单用户缴费记录当作全局流水。&#x27;,columns:[&#x27;指标&#x27;,&#x27;本周期&#x27;,&#x27;上周期&#x27;,&#x27;变化&#x27;],rows:[[&#x27;总笔数&#x27;,&#x27;4,862&#x27;,&#x27;4,621&#x27;,&#x27;+5.2%&#x27;],[&#x27;日均笔数&#x27;,&#x27;695&#x27;,&#x27;660&#x27;,&#x27;+5.3%&#x27;],[&#x27;最高日&#x27;,&#x27;886&#x27;,&#x27;821&#x27;,&#x27;+7.9%&#x27;],[&#x27;最低日&#x27;,&#x27;538&#x27;,&#x27;512&#x27;,&#x27;+5.1%&#x27;]]},
+            {title:&#x27;按缴费方式拆分&#x27;,note:&#x27;需先取得完整缴费方式字典。&#x27;,columns:[&#x27;缴费方式&#x27;,&#x27;笔数&#x27;,&#x27;金额&#x27;,&#x27;笔数占比&#x27;],rows:[[&#x27;电子钱包&#x27;,&#x27;1,986&#x27;,&#x27;¥118,420&#x27;,&#x27;40.8%&#x27;],[&#x27;微信支付&#x27;,&#x27;1,468&#x27;,&#x27;¥86,760&#x27;,&#x27;30.2%&#x27;],[&#x27;支付宝&#x27;,&#x27;1,102&#x27;,&#x27;¥61,940&#x27;,&#x27;22.7%&#x27;],[&#x27;其他&#x27;,&#x27;306&#x27;,&#x27;¥19,300&#x27;,&#x27;6.3%&#x27;]]}
+          ]
+        },
+        financeAverage:{
+          summary:[[&#x27;总体客单价&#x27;,&#x27;58.91元&#x27;],[&#x27;最高方式&#x27;,&#x27;电子钱包&#x27;],[&#x27;上期&#x27;,&#x27;57.18元&#x27;]],
+          levels:[
+            {title:&#x27;平均单笔缴费&#x27;,note:&#x27;总笔数为 0 时显示 --，不显示无穷或 0 元。&#x27;,columns:[&#x27;缴费方式&#x27;,&#x27;金额&#x27;,&#x27;笔数&#x27;,&#x27;平均单笔&#x27;],rows:[[&#x27;电子钱包&#x27;,&#x27;¥118,420&#x27;,&#x27;1,898&#x27;,&#x27;62.39元&#x27;],[&#x27;微信支付&#x27;,&#x27;¥86,760&#x27;,&#x27;1,501&#x27;,&#x27;57.80元&#x27;],[&#x27;支付宝&#x27;,&#x27;¥61,940&#x27;,&#x27;1,134&#x27;,&#x27;54.62元&#x27;],[&#x27;其他&#x27;,&#x27;¥19,300&#x27;,&#x27;418&#x27;,&#x27;46.17元&#x27;]]},
+            {title:&#x27;按日期观察客单价&#x27;,note:&#x27;用于判断金额变化由笔数还是客单价驱动。&#x27;,columns:[&#x27;日期&#x27;,&#x27;平均单笔&#x27;,&#x27;金额变化&#x27;,&#x27;笔数变化&#x27;],rows:[[&#x27;08-15&#x27;,&#x27;58.71元&#x27;,&#x27;-6.4%&#x27;,&#x27;-3.7%&#x27;],[&#x27;08-16&#x27;,&#x27;59.56元&#x27;,&#x27;+18.4%&#x27;,&#x27;+16.7%&#x27;],[&#x27;08-17&#x27;,&#x27;57.76元&#x27;,&#x27;-8.0%&#x27;,&#x27;-5.1%&#x27;],[&#x27;08-18&#x27;,&#x27;59.15元&#x27;,&#x27;+15.7%&#x27;,&#x27;+13.0%&#x27;],[&#x27;08-19&#x27;,&#x27;58.45元&#x27;,&#x27;+13.3%&#x27;,&#x27;+14.6%&#x27;]]}
+          ]
+        },
+        financeCompare:{
+          summary:[[&#x27;金额环比&#x27;,&#x27;+8.4%&#x27;],[&#x27;笔数环比&#x27;,&#x27;+5.2%&#x27;],[&#x27;客单价环比&#x27;,&#x27;+3.0%&#x27;]],
+          levels:[
+            {title:&#x27;等长周期比较&#x27;,note:&#x27;当前周期和上一周期必须使用相同时长、时区与缴费方式范围。&#x27;,columns:[&#x27;指标&#x27;,&#x27;本期&#x27;,&#x27;上期&#x27;,&#x27;差额&#x27;],rows:[[&#x27;缴费金额&#x27;,&#x27;¥286,420&#x27;,&#x27;¥264,210&#x27;,&#x27;+¥22,210&#x27;],[&#x27;缴费笔数&#x27;,&#x27;4,862&#x27;,&#x27;4,621&#x27;,&#x27;+241&#x27;],[&#x27;平均单笔&#x27;,&#x27;58.91元&#x27;,&#x27;57.18元&#x27;,&#x27;+1.73元&#x27;]]},
+            {title:&#x27;变化贡献&#x27;,note:&#x27;用于解释总体变化来自哪些缴费方式。&#x27;,columns:[&#x27;缴费方式&#x27;,&#x27;本期金额&#x27;,&#x27;变化额&#x27;,&#x27;贡献度&#x27;],rows:[[&#x27;电子钱包&#x27;,&#x27;¥118,420&#x27;,&#x27;+¥10,840&#x27;,&#x27;48.8%&#x27;],[&#x27;微信支付&#x27;,&#x27;¥86,760&#x27;,&#x27;+¥6,210&#x27;,&#x27;28.0%&#x27;],[&#x27;支付宝&#x27;,&#x27;¥61,940&#x27;,&#x27;+¥4,680&#x27;,&#x27;21.1%&#x27;],[&#x27;其他&#x27;,&#x27;¥19,300&#x27;,&#x27;+¥480&#x27;,&#x27;2.1%&#x27;]]}
+          ]
+        },
+        financeMethod:{
+          summary:[[&#x27;缴费方式&#x27;,&#x27;4类&#x27;],[&#x27;第一方式&#x27;,&#x27;电子钱包&#x27;],[&#x27;金额占比&#x27;,&#x27;41.3%&#x27;]],
+          levels:[
+            {title:&#x27;缴费方式构成&#x27;,note:&#x27;金额和笔数同时展示，避免只看金额占比。&#x27;,columns:[&#x27;缴费方式&#x27;,&#x27;缴费金额&#x27;,&#x27;缴费笔数&#x27;,&#x27;金额占比&#x27;],rows:[[&#x27;电子钱包&#x27;,&#x27;¥118,420&#x27;,&#x27;1,898&#x27;,&#x27;41.3%&#x27;],[&#x27;微信支付&#x27;,&#x27;¥86,760&#x27;,&#x27;1,501&#x27;,&#x27;30.3%&#x27;],[&#x27;支付宝&#x27;,&#x27;¥61,940&#x27;,&#x27;1,134&#x27;,&#x27;21.6%&#x27;],[&#x27;其他&#x27;,&#x27;¥19,300&#x27;,&#x27;418&#x27;,&#x27;6.8%&#x27;]]},
+            {title:&#x27;方式的日期趋势&#x27;,note:&#x27;选择某个方式后按日查看金额和笔数。&#x27;,columns:[&#x27;日期&#x27;,&#x27;电子钱包金额&#x27;,&#x27;笔数&#x27;,&#x27;平均单笔&#x27;],rows:[[&#x27;08-15&#x27;,&#x27;¥15,820&#x27;,&#x27;252&#x27;,&#x27;62.78元&#x27;],[&#x27;08-16&#x27;,&#x27;¥17,460&#x27;,&#x27;281&#x27;,&#x27;62.14元&#x27;],[&#x27;08-17&#x27;,&#x27;¥16,940&#x27;,&#x27;269&#x27;,&#x27;62.97元&#x27;],[&#x27;08-18&#x27;,&#x27;¥18,670&#x27;,&#x27;302&#x27;,&#x27;61.82元&#x27;],[&#x27;08-19&#x27;,&#x27;¥20,310&#x27;,&#x27;326&#x27;,&#x27;62.30元&#x27;]]}
+          ]
+        },
+        refund:{
+          summary:[[&#x27;退费金额&#x27;,&#x27;¥12,680&#x27;],[&#x27;退费笔数&#x27;,&#x27;待提供&#x27;],[&#x27;退费率&#x27;,&#x27;待确认&#x27;]],
+          levels:[
+            {title:&#x27;退费能力确认&#x27;,note:&#x27;当前为手册证据和模拟值，现有 REST 只证明单用户退费查询。&#x27;,columns:[&#x27;所需能力&#x27;,&#x27;文档状态&#x27;,&#x27;联调状态&#x27;,&#x27;降级&#x27;],rows:[[&#x27;全局退费汇总&#x27;,&#x27;手册可见&#x27;,&#x27;S0&#x27;,&#x27;隐藏退费率&#x27;],[&#x27;退费明细&#x27;,&#x27;需补接口&#x27;,&#x27;S0&#x27;,&#x27;停在汇总&#x27;],[&#x27;原订单关联&#x27;,&#x27;需补字段&#x27;,&#x27;S0&#x27;,&#x27;不计算净额&#x27;],[&#x27;退费原因&#x27;,&#x27;需补字典&#x27;,&#x27;S0&#x27;,&#x27;不展示原因分布&#x27;]]},
+            {title:&#x27;模拟退费结构&#x27;,note:&#x27;仅用于沟通希望对方提供的最小数据结构。&#x27;,columns:[&#x27;退费类型&#x27;,&#x27;金额&#x27;,&#x27;笔数&#x27;,&#x27;占比&#x27;],rows:[[&#x27;产品退订&#x27;,&#x27;¥5,420&#x27;,&#x27;68&#x27;,&#x27;42.7%&#x27;],[&#x27;重复缴费&#x27;,&#x27;¥3,160&#x27;,&#x27;41&#x27;,&#x27;24.9%&#x27;],[&#x27;人工调整&#x27;,&#x27;¥2,480&#x27;,&#x27;29&#x27;,&#x27;19.6%&#x27;],[&#x27;其他&#x27;,&#x27;¥1,620&#x27;,&#x27;18&#x27;,&#x27;12.8%&#x27;]]}
+          ]
+        },
+        productRevenue:{summary:[[&#x27;产品数&#x27;,&#x27;4&#x27;],[&#x27;Top 产品&#x27;,&#x27;产品 A&#x27;],[&#x27;数据状态&#x27;,&#x27;待提供&#x27;]],levels:[{title:&#x27;产品收入能力确认&#x27;,note:&#x27;手册存在产品收入报表，REST 未证明全局接口。&#x27;,columns:[&#x27;产品&#x27;,&#x27;模拟金额&#x27;,&#x27;订单数&#x27;,&#x27;证据&#x27;],rows:[[&#x27;产品 A&#x27;,&#x27;¥96,800&#x27;,&#x27;1,424&#x27;,&#x27;D&#x27;],[&#x27;产品 B&#x27;,&#x27;¥78,420&#x27;,&#x27;1,218&#x27;,&#x27;D&#x27;],[&#x27;产品 C&#x27;,&#x27;¥54,300&#x27;,&#x27;986&#x27;,&#x27;D&#x27;],[&#x27;其他&#x27;,&#x27;¥56,900&#x27;,&#x27;1,234&#x27;,&#x27;D&#x27;]]},{title:&#x27;需要对方补充的字段&#x27;,note:&#x27;退款和历史产品归属必须一起确认。&#x27;,columns:[&#x27;字段&#x27;,&#x27;必要性&#x27;,&#x27;口径问题&#x27;,&#x27;状态&#x27;],rows:[[&#x27;product_id/name&#x27;,&#x27;必需&#x27;,&#x27;历史名称&#x27;,&#x27;S0&#x27;],[&#x27;payment_amount&#x27;,&#x27;必需&#x27;,&#x27;失败/冲正&#x27;,&#x27;S0&#x27;],[&#x27;refund_amount&#x27;,&#x27;必需&#x27;,&#x27;原订单归属&#x27;,&#x27;S0&#x27;],[&#x27;order_count&#x27;,&#x27;建议&#x27;,&#x27;订单去重&#x27;,&#x27;S0&#x27;]]}]},
+        groupRevenue:{summary:[[&#x27;用户组数&#x27;,&#x27;4&#x27;],[&#x27;Top 用户组&#x27;,&#x27;用户组 A&#x27;],[&#x27;数据状态&#x27;,&#x27;待提供&#x27;]],levels:[{title:&#x27;用户组收入能力确认&#x27;,note:&#x27;当前仅有手册证据。&#x27;,columns:[&#x27;用户组&#x27;,&#x27;模拟金额&#x27;,&#x27;用户数&#x27;,&#x27;证据&#x27;],rows:[[&#x27;用户组 A&#x27;,&#x27;¥84,100&#x27;,&#x27;7,842&#x27;,&#x27;D&#x27;],[&#x27;用户组 B&#x27;,&#x27;¥71,800&#x27;,&#x27;6,315&#x27;,&#x27;D&#x27;],[&#x27;用户组 C&#x27;,&#x27;¥52,600&#x27;,&#x27;4,982&#x27;,&#x27;D&#x27;],[&#x27;其他&#x27;,&#x27;¥77,920&#x27;,&#x27;5,797&#x27;,&#x27;D&#x27;]]},{title:&#x27;归属口径确认&#x27;,note:&#x27;需要明确按交易时归属还是当前用户组归属。&#x27;,columns:[&#x27;口径项&#x27;,&#x27;方案 A&#x27;,&#x27;方案 B&#x27;,&#x27;待确认&#x27;],rows:[[&#x27;用户组归属&#x27;,&#x27;交易时&#x27;,&#x27;当前&#x27;,&#x27;是&#x27;],[&#x27;跨组用户&#x27;,&#x27;保留历史&#x27;,&#x27;追溯重算&#x27;,&#x27;是&#x27;],[&#x27;退费归属&#x27;,&#x27;原组&#x27;,&#x27;当前组&#x27;,&#x27;是&#x27;]]}]},
+        settlement:{summary:[[&#x27;本月已结&#x27;,&#x27;¥241,600&#x27;],[&#x27;完成率&#x27;,&#x27;89%&#x27;],[&#x27;未结金额&#x27;,&#x27;¥29,820&#x27;]],levels:[{title:&#x27;结算概览&#x27;,note:&#x27;当前为目标数据结构，不代表接口已提供。&#x27;,columns:[&#x27;结算状态&#x27;,&#x27;金额&#x27;,&#x27;批次&#x27;,&#x27;占比&#x27;],rows:[[&#x27;已结算&#x27;,&#x27;¥241,600&#x27;,&#x27;12&#x27;,&#x27;89.0%&#x27;],[&#x27;待结算&#x27;,&#x27;¥21,420&#x27;,&#x27;3&#x27;,&#x27;7.9%&#x27;],[&#x27;调整中&#x27;,&#x27;¥8,400&#x27;,&#x27;2&#x27;,&#x27;3.1%&#x27;]]},{title:&#x27;按产品结算&#x27;,note:&#x27;需对方提供结算周期、产品/用户组及调整字段。&#x27;,columns:[&#x27;产品&#x27;,&#x27;应结&#x27;,&#x27;已结&#x27;,&#x27;状态&#x27;],rows:[[&#x27;产品 A&#x27;,&#x27;¥92,800&#x27;,&#x27;¥92,800&#x27;,&#x27;已完成&#x27;],[&#x27;产品 B&#x27;,&#x27;¥76,240&#x27;,&#x27;¥70,100&#x27;,&#x27;部分完成&#x27;],[&#x27;产品 C&#x27;,&#x27;¥53,400&#x27;,&#x27;¥49,900&#x27;,&#x27;部分完成&#x27;],[&#x27;其他&#x27;,&#x27;¥49,580&#x27;,&#x27;¥28,800&#x27;,&#x27;处理中&#x27;]]}]},
+        onlineUser:{
+          summary:[[&#x27;在线账号&#x27;,&#x27;8,426&#x27;],[&#x27;在线设备&#x27;,&#x27;10,315&#x27;],[&#x27;更新时间&#x27;,&#x27;10:30&#x27;]],
+          levels:[
+            {title:&#x27;当前在线概览&#x27;,note:&#x27;账号数和设备数均使用 get-online-count 的直接返回值。&#x27;,columns:[&#x27;指标&#x27;,&#x27;当前值&#x27;,&#x27;较 1 小时前&#x27;,&#x27;口径&#x27;],rows:[[&#x27;在线账号&#x27;,&#x27;8,426&#x27;,&#x27;+4.8%&#x27;,&#x27;账号去重待确认&#x27;],[&#x27;在线设备&#x27;,&#x27;10,315&#x27;,&#x27;+5.2%&#x27;,&#x27;设备去重待确认&#x27;],[&#x27;人均设备&#x27;,&#x27;1.22&#x27;,&#x27;+0.01&#x27;,&#x27;派生&#x27;],[&#x27;数据延迟&#x27;,&#x27;1分钟&#x27;,&#x27;持平&#x27;,&#x27;模拟&#x27;]]},
+            {title:&#x27;用户组在线分布&#x27;,note:&#x27;点击用户组可作为同模块联动筛选。&#x27;,columns:[&#x27;用户组&#x27;,&#x27;在线账号&#x27;,&#x27;在线设备&#x27;,&#x27;设备/账号&#x27;],rows:[[&#x27;用户组 A&#x27;,&#x27;2,840&#x27;,&#x27;3,612&#x27;,&#x27;1.27&#x27;],[&#x27;用户组 B&#x27;,&#x27;2,126&#x27;,&#x27;2,548&#x27;,&#x27;1.20&#x27;],[&#x27;用户组 C&#x27;,&#x27;1,705&#x27;,&#x27;2,036&#x27;,&#x27;1.19&#x27;],[&#x27;其他&#x27;,&#x27;1,755&#x27;,&#x27;2,119&#x27;,&#x27;1.21&#x27;]]},
+            {title:&#x27;在线会话明细&#x27;,note:&#x27;账号、IP 和 MAC 默认脱敏；同账号可能有多条设备会话。&#x27;,columns:[&#x27;账号&#x27;,&#x27;用户 IP&#x27;,&#x27;设备 MAC&#x27;,&#x27;上线时间&#x27;],rows:[[&#x27;usr_10**&#x27;,&#x27;10.24.8.**&#x27;,&#x27;A4:7B:**:**:12:8E&#x27;,&#x27;10:24:16&#x27;],[&#x27;usr_08**&#x27;,&#x27;10.24.11.**&#x27;,&#x27;5C:91:**:**:7D:20&#x27;,&#x27;10:21:03&#x27;],[&#x27;usr_31**&#x27;,&#x27;10.25.3.**&#x27;,&#x27;8A:4F:**:**:19:B1&#x27;,&#x27;10:18:44&#x27;],[&#x27;usr_22**&#x27;,&#x27;10.27.9.**&#x27;,&#x27;C2:18:**:**:A0:36&#x27;,&#x27;10:16:27&#x27;]]}
+          ]
+        },
+        onlineDevice:{
+          summary:[[&#x27;在线设备&#x27;,&#x27;10,315&#x27;],[&#x27;在线账号&#x27;,&#x27;8,426&#x27;],[&#x27;主要 OS&#x27;,&#x27;Windows&#x27;]],
+          levels:[
+            {title:&#x27;在线设备概览&#x27;,note:&#x27;设备总数使用 get-online-count，不以列表数组长度计算。&#x27;,columns:[&#x27;指标&#x27;,&#x27;当前值&#x27;,&#x27;上个快照&#x27;,&#x27;变化&#x27;],rows:[[&#x27;在线设备&#x27;,&#x27;10,315&#x27;,&#x27;9,804&#x27;,&#x27;+5.2%&#x27;],[&#x27;在线账号&#x27;,&#x27;8,426&#x27;,&#x27;8,040&#x27;,&#x27;+4.8%&#x27;],[&#x27;人均设备&#x27;,&#x27;1.22&#x27;,&#x27;1.22&#x27;,&#x27;持平&#x27;],[&#x27;活跃 OS&#x27;,&#x27;4类&#x27;,&#x27;4类&#x27;,&#x27;持平&#x27;]]},
+            {title:&#x27;操作系统结构&#x27;,note:&#x27;O11 的真实 schema 和 type 字典仍需样本确认。&#x27;,columns:[&#x27;操作系统&#x27;,&#x27;设备数&#x27;,&#x27;占比&#x27;,&#x27;状态&#x27;],rows:[[&#x27;Windows&#x27;,&#x27;4,620&#x27;,&#x27;44.8%&#x27;,&#x27;模拟&#x27;],[&#x27;Android&#x27;,&#x27;2,860&#x27;,&#x27;27.7%&#x27;,&#x27;模拟&#x27;],[&#x27;iOS&#x27;,&#x27;1,946&#x27;,&#x27;18.9%&#x27;,&#x27;模拟&#x27;],[&#x27;其他&#x27;,&#x27;889&#x27;,&#x27;8.6%&#x27;,&#x27;模拟&#x27;]]},
+            {title:&#x27;设备明细&#x27;,note:&#x27;来源为 online-equipment；字段需按角色控制。&#x27;,columns:[&#x27;账号&#x27;,&#x27;设备 MAC&#x27;,&#x27;OS&#x27;,&#x27;上行/下行&#x27;],rows:[[&#x27;usr_10**&#x27;,&#x27;A4:7B:**:**:12:8E&#x27;,&#x27;Windows&#x27;,&#x27;1.8/6.4 GB&#x27;],[&#x27;usr_08**&#x27;,&#x27;5C:91:**:**:7D:20&#x27;,&#x27;Android&#x27;,&#x27;0.9/4.1 GB&#x27;],[&#x27;usr_31**&#x27;,&#x27;8A:4F:**:**:19:B1&#x27;,&#x27;iOS&#x27;,&#x27;1.2/3.8 GB&#x27;],[&#x27;usr_22**&#x27;,&#x27;C2:18:**:**:A0:36&#x27;,&#x27;Windows&#x27;,&#x27;0.7/3.2 GB&#x27;]]}
+          ]
+        },
+        onlineGroup:{summary:[[&#x27;在线账号&#x27;,&#x27;8,426&#x27;],[&#x27;用户组&#x27;,&#x27;4类&#x27;],[&#x27;Top 用户组&#x27;,&#x27;用户组 A&#x27;]],levels:[{title:&#x27;在线用户组分布&#x27;,note:&#x27;账号和设备使用两个不同字段。&#x27;,columns:[&#x27;用户组&#x27;,&#x27;在线账号&#x27;,&#x27;在线设备&#x27;,&#x27;注册用户&#x27;],rows:[[&#x27;用户组 A&#x27;,&#x27;2,840&#x27;,&#x27;3,612&#x27;,&#x27;7,842&#x27;],[&#x27;用户组 B&#x27;,&#x27;2,126&#x27;,&#x27;2,548&#x27;,&#x27;6,315&#x27;],[&#x27;用户组 C&#x27;,&#x27;1,705&#x27;,&#x27;2,036&#x27;,&#x27;4,982&#x27;],[&#x27;其他&#x27;,&#x27;1,755&#x27;,&#x27;2,119&#x27;,&#x27;5,797&#x27;]]},{title:&#x27;用户组结构比较&#x27;,note:&#x27;注册用户范围是否包含过期、禁用或销户仍需确认。&#x27;,columns:[&#x27;用户组&#x27;,&#x27;在线率&#x27;,&#x27;设备/账号&#x27;,&#x27;口径状态&#x27;],rows:[[&#x27;用户组 A&#x27;,&#x27;36.2%&#x27;,&#x27;1.27&#x27;,&#x27;待确认&#x27;],[&#x27;用户组 B&#x27;,&#x27;33.7%&#x27;,&#x27;1.20&#x27;,&#x27;待确认&#x27;],[&#x27;用户组 C&#x27;,&#x27;34.2%&#x27;,&#x27;1.19&#x27;,&#x27;待确认&#x27;],[&#x27;其他&#x27;,&#x27;30.3%&#x27;,&#x27;1.21&#x27;,&#x27;待确认&#x27;]]}]},
+        onlineProduct:{summary:[[&#x27;在线账号&#x27;,&#x27;8,426&#x27;],[&#x27;产品&#x27;,&#x27;4类&#x27;],[&#x27;Top 产品&#x27;,&#x27;产品 A&#x27;]],levels:[{title:&#x27;在线产品分布&#x27;,note:&#x27;产品订购用户可能重复，不得求和当作总用户数。&#x27;,columns:[&#x27;产品&#x27;,&#x27;在线账号&#x27;,&#x27;在线设备&#x27;,&#x27;订购用户&#x27;],rows:[[&#x27;产品 A&#x27;,&#x27;3,126&#x27;,&#x27;3,882&#x27;,&#x27;8,420&#x27;],[&#x27;产品 B&#x27;,&#x27;2,408&#x27;,&#x27;2,905&#x27;,&#x27;6,840&#x27;],[&#x27;产品 C&#x27;,&#x27;1,684&#x27;,&#x27;2,004&#x27;,&#x27;4,730&#x27;],[&#x27;其他&#x27;,&#x27;1,208&#x27;,&#x27;1,524&#x27;,&#x27;3,910&#x27;]]},{title:&#x27;产品在线结构&#x27;,note:&#x27;只表示当前在线结构，不可替代产品收入排行。&#x27;,columns:[&#x27;产品&#x27;,&#x27;在线占比&#x27;,&#x27;设备/账号&#x27;,&#x27;证据&#x27;],rows:[[&#x27;产品 A&#x27;,&#x27;37.1%&#x27;,&#x27;1.24&#x27;,&#x27;A&#x27;],[&#x27;产品 B&#x27;,&#x27;28.6%&#x27;,&#x27;1.21&#x27;,&#x27;A&#x27;],[&#x27;产品 C&#x27;,&#x27;20.0%&#x27;,&#x27;1.19&#x27;,&#x27;A&#x27;],[&#x27;其他&#x27;,&#x27;14.3%&#x27;,&#x27;1.26&#x27;,&#x27;A&#x27;]]}]},
+        terminal:{summary:[[&#x27;主要 OS&#x27;,&#x27;Windows&#x27;],[&#x27;设备占比&#x27;,&#x27;44.8%&#x27;],[&#x27;联调状态&#x27;,&#x27;S0&#x27;]],levels:[{title:&#x27;终端与 OS 模拟结构&#x27;,note:&#x27;接口 schema 为空，当前只用于确认期望展示。&#x27;,columns:[&#x27;类别&#x27;,&#x27;设备数&#x27;,&#x27;占比&#x27;,&#x27;证据&#x27;],rows:[[&#x27;Windows&#x27;,&#x27;4,620&#x27;,&#x27;44.8%&#x27;,&#x27;C&#x27;],[&#x27;Android&#x27;,&#x27;2,860&#x27;,&#x27;27.7%&#x27;,&#x27;C&#x27;],[&#x27;iOS&#x27;,&#x27;1,946&#x27;,&#x27;18.9%&#x27;,&#x27;C&#x27;],[&#x27;其他&#x27;,&#x27;889&#x27;,&#x27;8.6%&#x27;,&#x27;C&#x27;]]},{title:&#x27;需确认的 type 字典&#x27;,note:&#x27;每个拟采用的 type 都要取得真实样本和单位。&#x27;,columns:[&#x27;维度&#x27;,&#x27;期望 type&#x27;,&#x27;单位&#x27;,&#x27;状态&#x27;],rows:[[&#x27;操作系统&#x27;,&#x27;待确认&#x27;,&#x27;设备数&#x27;,&#x27;S0&#x27;],[&#x27;终端类型&#x27;,&#x27;待确认&#x27;,&#x27;设备数&#x27;,&#x27;S0&#x27;],[&#x27;计费策略&#x27;,&#x27;待确认&#x27;,&#x27;用户/时长&#x27;,&#x27;S0&#x27;],[&#x27;控制策略&#x27;,&#x27;待确认&#x27;,&#x27;用户/流量&#x27;,&#x27;S0&#x27;]]}]},
+        authVolume:{
+          summary:[[&#x27;昨日认证&#x27;,&#x27;31,908&#x27;],[&#x27;统计口径&#x27;,&#x27;固定昨日&#x27;],[&#x27;联调状态&#x27;,&#x27;S1&#x27;]],
+          levels:[
+            {title:&#x27;认证量摘要&#x27;,note:&#x27;auth-count 固定为昨日，不伪装成任意日期趋势。&#x27;,columns:[&#x27;指标&#x27;,&#x27;数值&#x27;,&#x27;时间范围&#x27;,&#x27;证据&#x27;],rows:[[&#x27;认证次数&#x27;,&#x27;31,908&#x27;,&#x27;昨日自然日&#x27;,&#x27;A&#x27;],[&#x27;日联网用户&#x27;,&#x27;16,284&#x27;,&#x27;指定日期&#x27;,&#x27;A&#x27;],[&#x27;人均认证&#x27;,&#x27;1.96&#x27;,&#x27;派生&#x27;,&#x27;B&#x27;],[&#x27;失败次数&#x27;,&#x27;1,284&#x27;,&#x27;近7日模拟&#x27;,&#x27;A/B&#x27;]]},
+            {title:&#x27;认证时段分布&#x27;,note:&#x27;如需小时趋势，应由认证日志或聚合接口支持。&#x27;,columns:[&#x27;时段&#x27;,&#x27;认证次数&#x27;,&#x27;占比&#x27;,&#x27;异常提示&#x27;],rows:[[&#x27;00-06&#x27;,&#x27;3,160&#x27;,&#x27;9.9%&#x27;,&#x27;正常&#x27;],[&#x27;06-12&#x27;,&#x27;8,870&#x27;,&#x27;27.8%&#x27;,&#x27;正常&#x27;],[&#x27;12-18&#x27;,&#x27;11,420&#x27;,&#x27;35.8%&#x27;,&#x27;峰值&#x27;],[&#x27;18-24&#x27;,&#x27;8,458&#x27;,&#x27;26.5%&#x27;,&#x27;正常&#x27;]]}
+          ]
+        },
+        authError:{
+          summary:[[&#x27;失败次数&#x27;,&#x27;1,284&#x27;],[&#x27;Top 原因&#x27;,&#x27;密码错误&#x27;],[&#x27;联调状态&#x27;,&#x27;S1&#x27;]],
+          levels:[
+            {title:&#x27;认证失败摘要&#x27;,note:&#x27;聚合接口可提供错误趋势、错误原因和高频账号；失败率仍需统一分母。&#x27;,columns:[&#x27;分析视角&#x27;,&#x27;Top 项&#x27;,&#x27;次数&#x27;,&#x27;占比&#x27;],rows:[[&#x27;错误原因&#x27;,&#x27;密码错误&#x27;,&#x27;516&#x27;,&#x27;40.2%&#x27;],[&#x27;高频账号&#x27;,&#x27;usr_10**&#x27;,&#x27;42&#x27;,&#x27;3.3%&#x27;],[&#x27;峰值时段&#x27;,&#x27;09:00-10:00&#x27;,&#x27;186&#x27;,&#x27;14.5%&#x27;],[&#x27;NAS 节点&#x27;,&#x27;10.1.0.**&#x27;,&#x27;274&#x27;,&#x27;21.3%&#x27;]]},
+            {title:&#x27;错误原因与高频账号&#x27;,note:&#x27;来自 log/auth-err 的 top_err_msg 与 top_auth_err。&#x27;,columns:[&#x27;错误原因&#x27;,&#x27;次数&#x27;,&#x27;高频账号&#x27;,&#x27;账号次数&#x27;],rows:[[&#x27;密码错误&#x27;,&#x27;516&#x27;,&#x27;usr_10**&#x27;,&#x27;42&#x27;],[&#x27;账号状态异常&#x27;,&#x27;294&#x27;,&#x27;usr_08**&#x27;,&#x27;31&#x27;],[&#x27;并发限制&#x27;,&#x27;187&#x27;,&#x27;usr_31**&#x27;,&#x27;28&#x27;],[&#x27;其他&#x27;,&#x27;287&#x27;,&#x27;usr_22**&#x27;,&#x27;24&#x27;]]},
+            {title:&#x27;认证失败日志&#x27;,note:&#x27;来自 log/login；账号、IP、NAS 和 MAC 默认脱敏。&#x27;,columns:[&#x27;账号&#x27;,&#x27;错误原因&#x27;,&#x27;用户 IP&#x27;,&#x27;时间&#x27;],rows:[[&#x27;usr_10**&#x27;,&#x27;密码错误&#x27;,&#x27;10.24.8.**&#x27;,&#x27;10:24:16&#x27;],[&#x27;usr_08**&#x27;,&#x27;账号状态异常&#x27;,&#x27;10.24.11.**&#x27;,&#x27;10:21:03&#x27;],[&#x27;usr_31**&#x27;,&#x27;并发限制&#x27;,&#x27;10.25.3.**&#x27;,&#x27;10:18:44&#x27;],[&#x27;usr_22**&#x27;,&#x27;密码错误&#x27;,&#x27;10.27.9.**&#x27;,&#x27;10:16:27&#x27;]]}
+          ]
+        },
+        activeUser:{
+          summary:[[&#x27;日联网用户&#x27;,&#x27;16,284&#x27;],[&#x27;月活跃&#x27;,&#x27;18,642&#x27;],[&#x27;月口径&#x27;,&#x27;待联调&#x27;]],
+          levels:[
+            {title:&#x27;联网活跃概览&#x27;,note:&#x27;日统计和月统计必须分别标明口径，不能与当前在线快照混用。&#x27;,columns:[&#x27;指标&#x27;,&#x27;人数&#x27;,&#x27;周期&#x27;,&#x27;状态&#x27;],rows:[[&#x27;当前在线&#x27;,&#x27;8,426&#x27;,&#x27;实时快照&#x27;,&#x27;S1&#x27;],[&#x27;日联网用户&#x27;,&#x27;16,284&#x27;,&#x27;指定自然日&#x27;,&#x27;S1&#x27;],[&#x27;月联网活跃&#x27;,&#x27;18,642&#x27;,&#x27;本月&#x27;,&#x27;S0&#x27;],[&#x27;用户总数&#x27;,&#x27;24,936&#x27;,&#x27;当前范围&#x27;,&#x27;S0&#x27;]]},
+            {title:&#x27;活跃趋势与覆盖&#x27;,note:&#x27;月参数格式、去重规则和用户总数范围仍需确认。&#x27;,columns:[&#x27;日期&#x27;,&#x27;日联网用户&#x27;,&#x27;相对总量&#x27;,&#x27;状态&#x27;],rows:[[&#x27;08-15&#x27;,&#x27;15,110&#x27;,&#x27;60.6%&#x27;,&#x27;模拟&#x27;],[&#x27;08-16&#x27;,&#x27;15,840&#x27;,&#x27;63.5%&#x27;,&#x27;模拟&#x27;],[&#x27;08-17&#x27;,&#x27;16,020&#x27;,&#x27;64.2%&#x27;,&#x27;模拟&#x27;],[&#x27;08-18&#x27;,&#x27;15,980&#x27;,&#x27;64.1%&#x27;,&#x27;模拟&#x27;],[&#x27;08-19&#x27;,&#x27;16,284&#x27;,&#x27;65.3%&#x27;,&#x27;模拟&#x27;]]}
+          ]
+        },
+        traffic:{
+          summary:[[&#x27;Top 账号&#x27;,&#x27;usr_10**&#x27;],[&#x27;周期流量&#x27;,&#x27;842 GB&#x27;],[&#x27;单位&#x27;,&#x27;Byte 转 GB&#x27;]],
+          levels:[
+            {title:&#x27;流量 Top 账号&#x27;,note:&#x27;主排行来源为 detail/top，需确认是否包含上下行总和。&#x27;,columns:[&#x27;账号&#x27;,&#x27;总流量&#x27;,&#x27;占 Top10&#x27;,&#x27;排名&#x27;],rows:[[&#x27;usr_10**&#x27;,&#x27;842 GB&#x27;,&#x27;14.8%&#x27;,&#x27;1&#x27;],[&#x27;usr_08**&#x27;,&#x27;731 GB&#x27;,&#x27;12.9%&#x27;,&#x27;2&#x27;],[&#x27;usr_31**&#x27;,&#x27;596 GB&#x27;,&#x27;10.5%&#x27;,&#x27;3&#x27;],[&#x27;usr_22**&#x27;,&#x27;468 GB&#x27;,&#x27;8.2%&#x27;,&#x27;4&#x27;]]},
+            {title:&#x27;选中账号的日流量与时长&#x27;,note:&#x27;必须先选择账号，再调用 day-byte 和 day-time。&#x27;,columns:[&#x27;日期&#x27;,&#x27;上行&#x27;,&#x27;下行&#x27;,&#x27;在线时长&#x27;],rows:[[&#x27;08-15&#x27;,&#x27;38 GB&#x27;,&#x27;92 GB&#x27;,&#x27;8.2h&#x27;],[&#x27;08-16&#x27;,&#x27;41 GB&#x27;,&#x27;108 GB&#x27;,&#x27;9.4h&#x27;],[&#x27;08-17&#x27;,&#x27;35 GB&#x27;,&#x27;97 GB&#x27;,&#x27;8.7h&#x27;],[&#x27;08-18&#x27;,&#x27;44 GB&#x27;,&#x27;121 GB&#x27;,&#x27;10.1h&#x27;],[&#x27;08-19&#x27;,&#x27;47 GB&#x27;,&#x27;126 GB&#x27;,&#x27;10.6h&#x27;]]},
+            {title:&#x27;账号上网明细&#x27;,note:&#x27;来源为 /details；字段、历史范围和会话主键需真实样本。&#x27;,columns:[&#x27;开始时间&#x27;,&#x27;结束时间&#x27;,&#x27;IP&#x27;,&#x27;流量&#x27;],rows:[[&#x27;08-19 08:02&#x27;,&#x27;08-19 10:24&#x27;,&#x27;10.24.8.**&#x27;,&#x27;46.2 GB&#x27;],[&#x27;08-18 07:54&#x27;,&#x27;08-18 18:16&#x27;,&#x27;10.24.8.**&#x27;,&#x27;121.0 GB&#x27;],[&#x27;08-17 08:10&#x27;,&#x27;08-17 17:21&#x27;,&#x27;10.24.7.**&#x27;,&#x27;97.4 GB&#x27;]]}
+          ]
+        },
+        userBase:{summary:[[&#x27;用户总数&#x27;,&#x27;24,936&#x27;],[&#x27;范围&#x27;,&#x27;待确认&#x27;],[&#x27;联调状态&#x27;,&#x27;S0&#x27;]],levels:[{title:&#x27;用户存量概览&#x27;,note:&#x27;无筛选 super-search 的权限和 totalCount 范围需联调。&#x27;,columns:[&#x27;状态&#x27;,&#x27;模拟人数&#x27;,&#x27;占比&#x27;,&#x27;口径&#x27;],rows:[[&#x27;正常&#x27;,&#x27;21,580&#x27;,&#x27;86.5%&#x27;,&#x27;待确认&#x27;],[&#x27;暂停&#x27;,&#x27;1,724&#x27;,&#x27;6.9%&#x27;,&#x27;待确认&#x27;],[&#x27;产品到期&#x27;,&#x27;1,248&#x27;,&#x27;5.0%&#x27;,&#x27;不同于全局过期&#x27;],[&#x27;其他&#x27;,&#x27;384&#x27;,&#x27;1.6%&#x27;,&#x27;待确认&#x27;]]},{title:&#x27;按用户组分布&#x27;,note:&#x27;该层需要搜索接口支持可靠分组过滤和总数。&#x27;,columns:[&#x27;用户组&#x27;,&#x27;用户数&#x27;,&#x27;活跃用户&#x27;,&#x27;活跃率&#x27;],rows:[[&#x27;用户组 A&#x27;,&#x27;7,842&#x27;,&#x27;6,184&#x27;,&#x27;78.9%&#x27;],[&#x27;用户组 B&#x27;,&#x27;6,315&#x27;,&#x27;4,760&#x27;,&#x27;75.4%&#x27;],[&#x27;用户组 C&#x27;,&#x27;4,982&#x27;,&#x27;3,680&#x27;,&#x27;73.9%&#x27;],[&#x27;其他&#x27;,&#x27;5,797&#x27;,&#x27;4,018&#x27;,&#x27;69.3%&#x27;]]}]},
+        expiry:{
+          summary:[[&#x27;未来30天&#x27;,&#x27;326人&#x27;],[&#x27;7天内&#x27;,&#x27;84人&#x27;],[&#x27;联调状态&#x27;,&#x27;S0&#x27;]],
+          levels:[
+            {title:&#x27;产品到期预警&#x27;,note:&#x27;该口径只表示产品到期，不等同于全系统过期用户。&#x27;,columns:[&#x27;到期区间&#x27;,&#x27;用户数&#x27;,&#x27;占比&#x27;,&#x27;动作&#x27;],rows:[[&#x27;7天内&#x27;,&#x27;84&#x27;,&#x27;25.8%&#x27;,&#x27;重点提醒&#x27;],[&#x27;8-15天&#x27;,&#x27;102&#x27;,&#x27;31.3%&#x27;,&#x27;批量触达&#x27;],[&#x27;16-30天&#x27;,&#x27;140&#x27;,&#x27;42.9%&#x27;,&#x27;持续观察&#x27;],[&#x27;已过期&#x27;,&#x27;待确认&#x27;,&#x27;--&#x27;,&#x27;另确认口径&#x27;]]},
+            {title:&#x27;按产品查看到期用户&#x27;,note:&#x27;需确认 product/expire 能否无产品条件查询并返回总数。&#x27;,columns:[&#x27;产品&#x27;,&#x27;7天内&#x27;,&#x27;30天内&#x27;,&#x27;占比&#x27;],rows:[[&#x27;产品 A&#x27;,&#x27;31&#x27;,&#x27;118&#x27;,&#x27;36.2%&#x27;],[&#x27;产品 B&#x27;,&#x27;24&#x27;,&#x27;92&#x27;,&#x27;28.2%&#x27;],[&#x27;产品 C&#x27;,&#x27;18&#x27;,&#x27;71&#x27;,&#x27;21.8%&#x27;],[&#x27;其他&#x27;,&#x27;11&#x27;,&#x27;45&#x27;,&#x27;13.8%&#x27;]]},
+            {title:&#x27;到期用户明细&#x27;,note:&#x27;账号脱敏；可进一步进入账号 360。&#x27;,columns:[&#x27;账号&#x27;,&#x27;产品&#x27;,&#x27;到期时间&#x27;,&#x27;用户组&#x27;],rows:[[&#x27;usr_12**&#x27;,&#x27;产品 A&#x27;,&#x27;2026-08-26&#x27;,&#x27;用户组 A&#x27;],[&#x27;usr_34**&#x27;,&#x27;产品 B&#x27;,&#x27;2026-08-27&#x27;,&#x27;用户组 B&#x27;],[&#x27;usr_56**&#x27;,&#x27;产品 A&#x27;,&#x27;2026-08-28&#x27;,&#x27;用户组 A&#x27;],[&#x27;usr_78**&#x27;,&#x27;产品 C&#x27;,&#x27;2026-08-29&#x27;,&#x27;用户组 C&#x27;]]}
+          ]
+        },
+        ops:{summary:[[&#x27;服务状态&#x27;,&#x27;正常&#x27;],[&#x27;CPU&#x27;,&#x27;57%&#x27;],[&#x27;内存&#x27;,&#x27;69%&#x27;]],levels:[{title:&#x27;系统资源概览&#x27;,note:&#x27;手册可见该功能，但 REST 文档未证明读取接口。&#x27;,columns:[&#x27;对象&#x27;,&#x27;当前值&#x27;,&#x27;阈值&#x27;,&#x27;状态&#x27;],rows:[[&#x27;主服务&#x27;,&#x27;在线&#x27;,&#x27;--&#x27;,&#x27;正常&#x27;],[&#x27;CPU&#x27;,&#x27;57%&#x27;,&#x27;80%&#x27;,&#x27;正常&#x27;],[&#x27;内存&#x27;,&#x27;69%&#x27;,&#x27;85%&#x27;,&#x27;正常&#x27;],[&#x27;系统负载&#x27;,&#x27;2.4&#x27;,&#x27;6.0&#x27;,&#x27;正常&#x27;]]},{title:&#x27;主机资源趋势&#x27;,note:&#x27;需监控平台提供主机、服务、采样时间和阈值。&#x27;,columns:[&#x27;时间&#x27;,&#x27;CPU&#x27;,&#x27;内存&#x27;,&#x27;负载&#x27;],rows:[[&#x27;10:00&#x27;,&#x27;51%&#x27;,&#x27;65%&#x27;,&#x27;2.1&#x27;],[&#x27;10:10&#x27;,&#x27;46%&#x27;,&#x27;64%&#x27;,&#x27;1.9&#x27;],[&#x27;10:20&#x27;,&#x27;59%&#x27;,&#x27;68%&#x27;,&#x27;2.5&#x27;],[&#x27;10:30&#x27;,&#x27;57%&#x27;,&#x27;69%&#x27;,&#x27;2.4&#x27;]]}]},
+        fault:{summary:[[&#x27;今日故障&#x27;,&#x27;7起&#x27;],[&#x27;处理中&#x27;,&#x27;2起&#x27;],[&#x27;超时 SLA&#x27;,&#x27;1起&#x27;]],levels:[{title:&#x27;故障与工单概览&#x27;,note:&#x27;当前为目标数据结构，需接入独立工单或故障数据源。&#x27;,columns:[&#x27;类型&#x27;,&#x27;新增&#x27;,&#x27;处理中&#x27;,&#x27;已恢复&#x27;],rows:[[&#x27;认证故障&#x27;,&#x27;3&#x27;,&#x27;1&#x27;,&#x27;2&#x27;],[&#x27;网络故障&#x27;,&#x27;2&#x27;,&#x27;1&#x27;,&#x27;1&#x27;],[&#x27;用户反馈&#x27;,&#x27;2&#x27;,&#x27;0&#x27;,&#x27;2&#x27;]]},{title:&#x27;故障状态与影响&#x27;,note:&#x27;需提供影响用户、开始/恢复时间和责任方。&#x27;,columns:[&#x27;故障编号&#x27;,&#x27;状态&#x27;,&#x27;影响用户&#x27;,&#x27;持续时间&#x27;],rows:[[&#x27;INC-0824-07&#x27;,&#x27;处理中&#x27;,&#x27;126&#x27;,&#x27;34分钟&#x27;],[&#x27;INC-0824-05&#x27;,&#x27;处理中&#x27;,&#x27;48&#x27;,&#x27;51分钟&#x27;],[&#x27;INC-0824-03&#x27;,&#x27;已恢复&#x27;,&#x27;302&#x27;,&#x27;18分钟&#x27;]]}]}
+      };
+
+      let profile = &#x27;standard&#x27;;
+      let moduleId = &#x27;overview&#x27;;
+      let period = &#x27;7d&#x27;;
+      let reviewMode = true;
+      let selectedId = null;
+      let drillStep = 0;
+      let noticeTimer = null;
+
+      const evidenceBadge = item =&gt; `&lt;span class=&quot;sc-evidence&quot; data-level=&quot;${item.evidence.charAt(0)}&quot;&gt;证据 ${item.evidence}&lt;/span&gt;`;
+      const statusBadge = item =&gt; `&lt;span class=&quot;sc-state&quot;&gt;联调 ${item.status}&lt;/span&gt;`;
+
+      function points(values, width = 320, height = 112) {
+        const min = Math.min(...values);
+        const max = Math.max(...values);
+        const span = Math.max(1, max - min);
+        return values.map((value, index) =&gt; {
+          const x = 8 + index * ((width - 16) / (values.length - 1));
+          const y = height - 22 - ((value - min) / span) * (height - 42);
+          return `${x.toFixed(1)},${y.toFixed(1)}`;
+        }).join(&#x27; &#x27;);
+      }
+
+      function lineChart(item) {
+        const primary = points(item.series);
+        const secondary = item.series2 ? `&lt;polyline class=&quot;sc-chart-secondary&quot; points=&quot;${points(item.series2)}&quot;&gt;&lt;/polyline&gt;` : &#x27;&#x27;;
+        const area = `8,90 ${primary} 312,90`;
+        const legend2 = item.legend?.[1] ? `&lt;circle cx=&quot;88&quot; cy=&quot;10&quot; r=&quot;3&quot; fill=&quot;var(--sc-purple)&quot;&gt;&lt;/circle&gt;&lt;text class=&quot;sc-chart-legend&quot; x=&quot;96&quot; y=&quot;13&quot;&gt;${item.legend[1]}&lt;/text&gt;` : &#x27;&#x27;;
+        return `&lt;svg class=&quot;sc-chart&quot; viewBox=&quot;0 0 320 112&quot; preserveAspectRatio=&quot;none&quot; role=&quot;img&quot; aria-label=&quot;${item.name}，单位 ${item.chartUnit || &#x27;&#x27;}&quot;&gt;
+          &lt;line class=&quot;sc-chart-grid&quot; x1=&quot;8&quot; y1=&quot;26&quot; x2=&quot;312&quot; y2=&quot;26&quot;&gt;&lt;/line&gt;&lt;line class=&quot;sc-chart-grid&quot; x1=&quot;8&quot; y1=&quot;58&quot; x2=&quot;312&quot; y2=&quot;58&quot;&gt;&lt;/line&gt;&lt;line class=&quot;sc-chart-grid&quot; x1=&quot;8&quot; y1=&quot;90&quot; x2=&quot;312&quot; y2=&quot;90&quot;&gt;&lt;/line&gt;
+          &lt;polygon class=&quot;sc-chart-area&quot; points=&quot;${area}&quot;&gt;&lt;/polygon&gt;${secondary}&lt;polyline class=&quot;sc-chart-primary&quot; points=&quot;${primary}&quot;&gt;&lt;/polyline&gt;
+          &lt;circle cx=&quot;10&quot; cy=&quot;10&quot; r=&quot;3&quot; fill=&quot;var(--sc-accent)&quot;&gt;&lt;/circle&gt;&lt;text class=&quot;sc-chart-legend&quot; x=&quot;18&quot; y=&quot;13&quot;&gt;${item.legend?.[0] || item.name}&lt;/text&gt;${legend2}
+          &lt;text class=&quot;sc-chart-label&quot; x=&quot;8&quot; y=&quot;106&quot;&gt;${periodLabels[period]}&lt;/text&gt;&lt;text class=&quot;sc-chart-label&quot; x=&quot;312&quot; y=&quot;106&quot; text-anchor=&quot;end&quot;&gt;单位：${item.chartUnit || &#x27;--&#x27;}&lt;/text&gt;
         &lt;/svg&gt;`;
       }
 
-      function barsChart(item){
-        const labels = chartLabels[item.id] || ['类别 A','类别 B','类别 C','其他'];
-        const widths = [82,64,47,29];
-        return `&lt;span class=&quot;cp-bar-list&quot; role=&quot;img&quot; aria-label=&quot;${item.name}分布示意&quot;&gt;${labels.map((label,i)=&gt;`&lt;span class=&quot;cp-bar-item&quot;&gt;&lt;span&gt;${label}&lt;/span&gt;&lt;span class=&quot;cp-bar-track&quot;&gt;&lt;span class=&quot;cp-bar-fill&quot; style=&quot;width:${widths[i]}%&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span&gt;${widths[i]}%&lt;/span&gt;&lt;/span&gt;`).join('')}&lt;/span&gt;`;
+      function barsChart(item) {
+        return `&lt;div class=&quot;sc-bars&quot; role=&quot;img&quot; aria-label=&quot;${item.name}结构分布&quot;&gt;${item.bars.map(row =&gt; `&lt;div class=&quot;sc-bar-row&quot;&gt;&lt;span class=&quot;sc-bar-name&quot;&gt;${row[0]}&lt;/span&gt;&lt;span class=&quot;sc-bar-track&quot;&gt;&lt;span class=&quot;sc-bar-fill&quot; style=&quot;width:${row[2]}%&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;sc-bar-value&quot;&gt;${row[1]}&lt;/span&gt;&lt;/div&gt;`).join(&#x27;&#x27;)}&lt;/div&gt;`;
       }
 
-      function kpiHtml(id){
-        const item = {...components[id],id};
-        return `&lt;button type=&quot;button&quot; class=&quot;cp-kpi&quot; data-component=&quot;${id}&quot; aria-label=&quot;查看${item.name}详情&quot;&gt;
-          &lt;span class=&quot;cp-kpi-head&quot;&gt;&lt;span class=&quot;cp-label&quot;&gt;${item.name}&lt;/span&gt;${grade(item)}&lt;/span&gt;
-          &lt;span class=&quot;cp-value&quot;&gt;${item.value} &lt;span class=&quot;cp-unit&quot;&gt;${item.unit || ''}&lt;/span&gt;&lt;/span&gt;
-          &lt;span class=&quot;cp-note&quot;&gt;${item.note}&lt;/span&gt;
+      function kpiHtml(id) {
+        const item = components[id];
+        const trendClass = item.trend === &#x27;up&#x27; ? &#x27;sc-trend-up&#x27; : item.trend === &#x27;warn&#x27; ? &#x27;sc-trend-warn&#x27; : &#x27;&#x27;;
+        return `&lt;button type=&quot;button&quot; class=&quot;sc-kpi&quot; data-component=&quot;${id}&quot; aria-label=&quot;查看${item.name}详情&quot;&gt;
+          &lt;span class=&quot;sc-kpi-head&quot;&gt;&lt;span class=&quot;sc-label&quot;&gt;${item.name}&lt;/span&gt;&lt;span&gt;${evidenceBadge(item)}${statusBadge(item)}&lt;/span&gt;&lt;/span&gt;
+          &lt;span class=&quot;sc-value&quot;&gt;${item.value || &#x27;--&#x27;} &lt;span class=&quot;sc-unit&quot;&gt;${item.unit || &#x27;&#x27;}&lt;/span&gt;&lt;/span&gt;
+          &lt;span class=&quot;sc-note ${trendClass}&quot;&gt;${item.note}&lt;/span&gt;
         &lt;/button&gt;`;
       }
 
-      function panelHtml(id, fallback){
-        const item = {...components[id],id};
-        const chart = item.type === 'line' ? lineChart(item) : barsChart(item);
-        return `&lt;button type=&quot;button&quot; class=&quot;cp-panel&quot; data-component=&quot;${id}&quot; aria-label=&quot;钻取${item.name}&quot;&gt;
-          &lt;span class=&quot;cp-panel-head&quot;&gt;&lt;span class=&quot;cp-panel-title&quot;&gt;${item.name}&lt;/span&gt;${grade(item)}&lt;/span&gt;
-          &lt;span class=&quot;cp-panel-body&quot;&gt;${chart}&lt;/span&gt;
-          ${fallback ? `&lt;span class=&quot;cp-fallback&quot;&gt;${fallback}&lt;/span&gt;` : ''}
+      function panelHtml(id, span) {
+        const item = components[id];
+        return `&lt;button type=&quot;button&quot; class=&quot;sc-panel&quot; data-component=&quot;${id}&quot; style=&quot;grid-column:span ${span}&quot; aria-label=&quot;钻取${item.name}&quot;&gt;
+          &lt;span class=&quot;sc-panel-head&quot;&gt;&lt;span class=&quot;sc-panel-title&quot;&gt;${item.name}&lt;/span&gt;&lt;span&gt;${evidenceBadge(item)}${statusBadge(item)}&lt;/span&gt;&lt;/span&gt;
+          &lt;span class=&quot;sc-panel-body&quot;&gt;${item.type === &#x27;line&#x27; ? lineChart(item) : barsChart(item)}&lt;/span&gt;
+          &lt;span class=&quot;sc-panel-foot&quot;&gt;&lt;span class=&quot;sc-status-line&quot;&gt;&lt;span class=&quot;sc-live-dot&quot;&gt;&lt;/span&gt;&lt;span&gt;${periodLabels[period]} · ${grainLabels[root.querySelector(&#x27;#sc-grain&#x27;).value]}粒度&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;sc-source-mini&quot;&gt;${item.source}&lt;/span&gt;&lt;/span&gt;
         &lt;/button&gt;`;
       }
 
-      function renderTabs(){
-        const host = root.querySelector('#cp-module-tabs');
-        host.innerHTML = modules.map(mod =&gt; `&lt;button type=&quot;button&quot; class=&quot;cp-module&quot; data-module=&quot;${mod.id}&quot; aria-selected=&quot;${mod.id===moduleId}&quot; ${profileRank[profile] &lt; mod.min ? 'disabled' : ''}&gt;${mod.name}&lt;/button&gt;`).join('');
-        host.querySelectorAll('[data-module]').forEach(button =&gt; button.addEventListener('click', () =&gt; {
+      function currentLayout() {
+        return layouts[profile]?.[moduleId] || null;
+      }
+
+      function renderProfileContext() {
+        const item = profiles[profile];
+        root.querySelector(&#x27;#sc-capability-line&#x27;).innerHTML = `&lt;span class=&quot;sc-profile-name&quot;&gt;${item.name}&lt;/span&gt;&lt;span&gt;·&lt;/span&gt;&lt;span&gt;${item.scope}&lt;/span&gt;&lt;span class=&quot;sc-capability-tag&quot;&gt;${item.drill}&lt;/span&gt;&lt;span class=&quot;sc-capability-tag&quot;&gt;${item.extra}&lt;/span&gt;&lt;span class=&quot;sc-capability-tag sc-blueprint-tag&quot;&gt;${item.blueprint}&lt;/span&gt;`;
+        root.querySelectorAll(&#x27;[data-profile]&#x27;).forEach(button =&gt; button.setAttribute(&#x27;aria-pressed&#x27;, String(button.dataset.profile === profile)));
+      }
+
+      function renderModules() {
+        const allowed = profiles[profile].modules;
+        root.querySelector(&#x27;#sc-module-tabs&#x27;).innerHTML = allowed.map(id =&gt; `&lt;button type=&quot;button&quot; class=&quot;sc-module&quot; data-module=&quot;${id}&quot; aria-selected=&quot;${id === moduleId}&quot;&gt;${modules[id]}&lt;/button&gt;`).join(&#x27;&#x27;);
+        root.querySelectorAll(&#x27;[data-module]&#x27;).forEach(button =&gt; button.addEventListener(&#x27;click&#x27;, () =&gt; {
           moduleId = button.dataset.module;
           closeDrawer();
           render();
         }));
       }
 
-      function render(){
-        if (moduleId === 'ops' &amp;&amp; profileRank[profile] &lt; 3) moduleId = 'overview';
-        const layout = layouts[moduleId][profile] || layouts[moduleId].enhanced;
-        root.querySelector('#cp-page-title').textContent = modules.find(m=&gt;m.id===moduleId).name;
-        root.querySelector('#cp-depth').textContent = `可钻取深度 ${profileRank[profile]}/3`;
-        root.querySelectorAll('[data-profile]').forEach(button =&gt; button.setAttribute('aria-pressed', String(button.dataset.profile===profile)));
-        root.querySelector('#cp-info-toggle').setAttribute('aria-pressed', String(reviewMode));
-        root.dataset.review = reviewMode ? 'on' : 'off';
-        renderTabs();
-        root.querySelector('#cp-kpis').innerHTML = layout.k.map(kpiHtml).join('');
-        root.querySelector('#cp-main-grid').innerHTML = layout.m.map(id =&gt; panelHtml(id, layout.fb[id])).join('');
-        root.querySelector('#cp-bottom-grid').innerHTML = layout.b.map(id =&gt; panelHtml(id, layout.fb[id])).join('');
-        root.querySelectorAll('[data-component]').forEach(button =&gt; button.addEventListener('click', () =&gt; openDrawer(button.dataset.component)));
+      function render() {
+        if (!profiles[profile].modules.includes(moduleId)) moduleId = &#x27;overview&#x27;;
+        const layout = currentLayout();
+        if (!layout) return;
+        root.dataset.review = reviewMode ? &#x27;on&#x27; : &#x27;off&#x27;;
+        pageTitle.textContent = modules[moduleId];
+        renderProfileContext();
+        renderModules();
+        const kpiGrid = root.querySelector(&#x27;#sc-kpi-grid&#x27;);
+        kpiGrid.style.setProperty(&#x27;--sc-kpi-count&#x27;, layout.k.length);
+        kpiGrid.innerHTML = layout.k.map(kpiHtml).join(&#x27;&#x27;);
+        root.querySelector(&#x27;#sc-panel-grid&#x27;).innerHTML = layout.p.map(([id, span]) =&gt; panelHtml(id, span)).join(&#x27;&#x27;);
+        root.querySelectorAll(&#x27;[data-component]&#x27;).forEach(button =&gt; button.addEventListener(&#x27;click&#x27;, () =&gt; openDrawer(button.dataset.component)));
       }
 
-      function drillRows(item, step){
-        const labelSets = {
-          1:['总体汇总','当前周期','上一周期','变化'],
-          2:chartLabels[item.id] || ['类别 A','类别 B','类别 C','其他'],
-          3:item.id.startsWith('O') ? ['账号 10086','账号 10247','账号 11308','账号 12456'] : item.id.startsWith('U') ? ['错误记录 001','错误记录 002','错误记录 003','错误记录 004'] : ['流水 20260819001','流水 20260819002','流水 20260819003','流水 20260819004']
-        };
-        const labels = labelSets[step];
-        return labels.map((label,i)=&gt;`&lt;div class=&quot;cp-drill-row&quot;&gt;&lt;span&gt;${label}&lt;/span&gt;&lt;span&gt;${[8426,4862,1284,438][i].toLocaleString()}&lt;/span&gt;&lt;span&gt;${['38.4%','27.8%','19.6%','14.2%'][i]}&lt;/span&gt;&lt;/div&gt;`).join('');
+      function allowedDepth(item) {
+        const modelDepth = drillModels[item.model].levels.length;
+        const evidenceDepth = item.status === &#x27;S0&#x27; &amp;&amp; profile !== &#x27;enhanced&#x27; ? 1 : modelDepth;
+        return Math.min(profileRank[profile], modelDepth, evidenceDepth);
       }
 
-      function openDrawer(id){
-        selectedComponent = id;
-        drillStep = 1;
-        root.querySelector('#cp-backdrop').classList.add('is-open');
-        root.querySelector('#cp-drawer').classList.add('is-open');
-        root.querySelector('#cp-drawer').setAttribute('aria-hidden','false');
+      function openDrawer(id) {
+        selectedId = id;
+        drillStep = 0;
+        root.querySelector(&#x27;#sc-backdrop&#x27;).classList.add(&#x27;is-open&#x27;);
+        root.querySelector(&#x27;#sc-drawer&#x27;).classList.add(&#x27;is-open&#x27;);
+        root.querySelector(&#x27;#sc-drawer&#x27;).setAttribute(&#x27;aria-hidden&#x27;, &#x27;false&#x27;);
         renderDrawer();
       }
 
-      function closeDrawer(){
-        root.querySelector('#cp-backdrop').classList.remove('is-open');
-        root.querySelector('#cp-drawer').classList.remove('is-open');
-        root.querySelector('#cp-drawer').setAttribute('aria-hidden','true');
-        selectedComponent = null;
+      function closeDrawer() {
+        root.querySelector(&#x27;#sc-backdrop&#x27;).classList.remove(&#x27;is-open&#x27;);
+        root.querySelector(&#x27;#sc-drawer&#x27;).classList.remove(&#x27;is-open&#x27;);
+        root.querySelector(&#x27;#sc-drawer&#x27;).setAttribute(&#x27;aria-hidden&#x27;, &#x27;true&#x27;);
+        selectedId = null;
+        drillStep = 0;
       }
 
-      function renderDrawer(){
-        if (!selectedComponent) return;
-        const item = {...components[selectedComponent],id:selectedComponent};
-        const depth = profileRank[profile];
-        const steps = ['指标汇总','结构分析','明细记录'];
-        root.querySelector('#cp-drawer-title').textContent = item.name;
-        root.querySelector('#cp-drawer-subtitle').textContent = `${profileLabels[profile]} · ${item.priority} · 数据等级 ${item.level}`;
-        root.querySelector('#cp-breadcrumb').innerHTML = steps.map((label,i)=&gt;`${i ? '&lt;span&gt;›&lt;/span&gt;' : ''}&lt;span class=&quot;${i+1===drillStep?'current':''}&quot;&gt;${i+1===drillStep?`&lt;strong&gt;${label}&lt;/strong&gt;`:label}&lt;/span&gt;`).join('');
-        root.querySelector('#cp-drill-summary').innerHTML = `&lt;div class=&quot;cp-drill-stat&quot;&gt;&lt;span&gt;当前值&lt;/span&gt;&lt;strong&gt;${item.value || '286,420'}&lt;/strong&gt;&lt;/div&gt;&lt;div class=&quot;cp-drill-stat&quot;&gt;&lt;span&gt;数据层级&lt;/span&gt;&lt;strong&gt;${item.level}&lt;/strong&gt;&lt;/div&gt;&lt;div class=&quot;cp-drill-stat&quot;&gt;&lt;span&gt;可用深度&lt;/span&gt;&lt;strong&gt;${depth}/3&lt;/strong&gt;&lt;/div&gt;`;
-        root.querySelector('#cp-drill-list').innerHTML = drillRows(item,drillStep);
-        const action = root.querySelector('#cp-drill-action');
-        const canContinue = drillStep &lt; depth;
-        action.disabled = !canContinue;
-        action.textContent = canContinue ? '继续下钻' : '当前版本到此层';
-        root.querySelector('#cp-drill-limit').textContent = depth &lt; 3 ? `升级到${depth===1?'标准':'增强'}版后可继续查看${steps[depth]}` : '增强版支持到明细记录';
-        const prov = [
-          ['数据/接口来源',item.endpoint],['关键字段',item.fields],['计算口径',item.formula],['文档参考点',item.ref],['确认状态',item.level==='A'||item.level==='B'?'S1 · 文档确认':'S0/S1 · 待沟通验证'],['降级策略',item.fallback]
+      function tableHtml(level) {
+        return `&lt;div class=&quot;sc-level-title&quot;&gt;${level.title}&lt;/div&gt;&lt;div class=&quot;sc-level-note&quot;&gt;${level.note}&lt;/div&gt;&lt;div class=&quot;sc-table-wrap&quot;&gt;&lt;table class=&quot;sc-table&quot;&gt;&lt;thead&gt;&lt;tr&gt;${level.columns.map(label =&gt; `&lt;th&gt;${label}&lt;/th&gt;`).join(&#x27;&#x27;)}&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;${level.rows.map(row =&gt; `&lt;tr&gt;${row.map(value =&gt; `&lt;td title=&quot;${value}&quot;&gt;${value}&lt;/td&gt;`).join(&#x27;&#x27;)}&lt;/tr&gt;`).join(&#x27;&#x27;)}&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;`;
+      }
+
+      function renderDrawer() {
+        if (!selectedId) return;
+        const item = components[selectedId];
+        const model = drillModels[item.model];
+        const depth = allowedDepth(item);
+        drillStep = Math.min(drillStep, depth - 1);
+        root.querySelector(&#x27;#sc-drawer-title&#x27;).textContent = item.name;
+        root.querySelector(&#x27;#sc-drawer-subtitle&#x27;).textContent = `${profiles[profile].name} · ${periodLabels[period]} · 模拟数据`;
+        root.querySelector(&#x27;#sc-crumbs&#x27;).innerHTML = model.levels.map((level, index) =&gt; `${index ? &#x27;&lt;span class=&quot;sc-crumb-arrow&quot;&gt;›&lt;/span&gt;&#x27; : &#x27;&#x27;}&lt;button type=&quot;button&quot; class=&quot;sc-crumb&quot; data-step=&quot;${index}&quot; aria-current=&quot;${index === drillStep ? &#x27;step&#x27; : &#x27;false&#x27;}&quot; ${index &gt;= depth ? &#x27;disabled&#x27; : &#x27;&#x27;}&gt;${level.title}&lt;/button&gt;`).join(&#x27;&#x27;);
+        root.querySelectorAll(&#x27;[data-step]&#x27;).forEach(button =&gt; button.addEventListener(&#x27;click&#x27;, () =&gt; {
+          drillStep = Number(button.dataset.step);
+          renderDrawer();
+        }));
+        root.querySelector(&#x27;#sc-drawer-summary&#x27;).innerHTML = model.summary.map(([label, value]) =&gt; `&lt;div class=&quot;sc-drawer-stat&quot;&gt;&lt;span&gt;${label}&lt;/span&gt;&lt;strong&gt;${value}&lt;/strong&gt;&lt;/div&gt;`).join(&#x27;&#x27;);
+        root.querySelector(&#x27;#sc-drill-content&#x27;).innerHTML = tableHtml(model.levels[drillStep]);
+        const next = root.querySelector(&#x27;#sc-drill-next&#x27;);
+        next.disabled = drillStep &gt;= depth - 1;
+        next.textContent = drillStep &lt; depth - 1 ? `进入${model.levels[drillStep + 1].title}` : &#x27;当前条件到此层&#x27;;
+        const totalDepth = model.levels.length;
+        const restriction = depth &lt; totalDepth ? `${profiles[profile].name}当前开放 ${depth}/${totalDepth} 层` : `该指标已开放全部 ${totalDepth} 层`;
+        root.querySelector(&#x27;#sc-limit&#x27;).textContent = item.status === &#x27;S0&#x27; ? `${restriction} · 真实环境需先取得样本` : restriction;
+        const provenance = [
+          [&#x27;接口/数据来源&#x27;, item.source],
+          [&#x27;关键字段&#x27;, item.fields],
+          [&#x27;计算口径&#x27;, item.formula],
+          [&#x27;文档参考&#x27;, item.ref],
+          [&#x27;文档证据&#x27;, item.evidence],
+          [&#x27;联调状态&#x27;, `${item.status} · 当前模拟数据`]
         ];
-        root.querySelector('#cp-provenance').innerHTML = prov.map(([label,value])=&gt;`&lt;div&gt;&lt;div class=&quot;cp-prov-label&quot;&gt;${label}&lt;/div&gt;&lt;div class=&quot;cp-prov-value&quot;&gt;${value}&lt;/div&gt;&lt;/div&gt;`).join('');
+        root.querySelector(&#x27;#sc-provenance&#x27;).innerHTML = provenance.map(([label, value]) =&gt; `&lt;div&gt;&lt;div class=&quot;sc-prov-label&quot;&gt;${label}&lt;/div&gt;&lt;div class=&quot;sc-prov-value&quot;&gt;${value}&lt;/div&gt;&lt;/div&gt;`).join(&#x27;&#x27;);
       }
 
-      root.querySelectorAll('[data-profile]').forEach(button =&gt; button.addEventListener('click', () =&gt; {
+      function showNotice(message) {
+        const notice = root.querySelector(&#x27;#sc-notice&#x27;);
+        notice.textContent = message;
+        notice.classList.add(&#x27;is-open&#x27;);
+        clearTimeout(noticeTimer);
+        noticeTimer = setTimeout(() =&gt; notice.classList.remove(&#x27;is-open&#x27;), 2100);
+      }
+
+      root.querySelectorAll(&#x27;[data-profile]&#x27;).forEach(button =&gt; button.addEventListener(&#x27;click&#x27;, () =&gt; {
+        const previous = profile;
         profile = button.dataset.profile;
-        if (selectedComponent) drillStep = Math.min(drillStep,profileRank[profile]);
+        closeDrawer();
+        if (!profiles[profile].modules.includes(moduleId)) moduleId = &#x27;overview&#x27;;
         render();
-        if (selectedComponent) renderDrawer();
+        showNotice(`${profiles[previous].name} → ${profiles[profile].name}：模块、指标和钻取权限已重新加载`);
       }));
-      root.querySelector('#cp-info-toggle').addEventListener('click', () =&gt; { reviewMode=!reviewMode; render(); if(selectedComponent) renderDrawer(); });
-      root.querySelector('#cp-close').addEventListener('click', closeDrawer);
-      root.querySelector('#cp-backdrop').addEventListener('click', closeDrawer);
-      root.querySelector('#cp-drill-action').addEventListener('click', () =&gt; { if(drillStep&lt;profileRank[profile]){ drillStep+=1; renderDrawer(); } });
-      root.dataset.review='on';
+
+      root.querySelectorAll(&#x27;[data-period]&#x27;).forEach(button =&gt; button.addEventListener(&#x27;click&#x27;, () =&gt; {
+        period = button.dataset.period;
+        root.querySelectorAll(&#x27;[data-period]&#x27;).forEach(item =&gt; item.setAttribute(&#x27;aria-pressed&#x27;, String(item.dataset.period === period)));
+        closeDrawer();
+        render();
+      }));
+
+      root.querySelector(&#x27;#sc-grain&#x27;).addEventListener(&#x27;change&#x27;, () =&gt; { closeDrawer(); render(); });
+      root.querySelector(&#x27;#sc-review&#x27;).addEventListener(&#x27;click&#x27;, event =&gt; {
+        reviewMode = !reviewMode;
+        event.currentTarget.setAttribute(&#x27;aria-pressed&#x27;, String(reviewMode));
+        render();
+        if (selectedId) renderDrawer();
+      });
+      root.querySelector(&#x27;#sc-close&#x27;).addEventListener(&#x27;click&#x27;, closeDrawer);
+      root.querySelector(&#x27;#sc-backdrop&#x27;).addEventListener(&#x27;click&#x27;, closeDrawer);
+      root.querySelector(&#x27;#sc-drill-next&#x27;).addEventListener(&#x27;click&#x27;, () =&gt; {
+        if (!selectedId) return;
+        const depth = allowedDepth(components[selectedId]);
+        if (drillStep &lt; depth - 1) {
+          drillStep += 1;
+          renderDrawer();
+        }
+      });
+      root.addEventListener(&#x27;keydown&#x27;, event =&gt; { if (event.key === &#x27;Escape&#x27;) closeDrawer(); });
       render();
     })();
   &lt;/script&gt;
 &lt;/div&gt;
-
-
-&lt;style id=&quot;codex-visualization-document-scrollbar&quot;&gt;html,body{scrollbar-width:none!important}html::-webkit-scrollbar,body::-webkit-scrollbar{display:none!important}&lt;/style&gt;
 
 &lt;script src=&quot;https://unpkg.com/@floating-ui/core@1.7.3/dist/floating-ui.core.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://unpkg.com/@floating-ui/dom@1.7.4/dist/floating-ui.dom.umd.min.js&quot;&gt;&lt;/script&gt;
@@ -2088,99 +2074,5 @@ html&gt;body{padding:0}&lt;/style&gt;
 &lt;/body&gt;
 &lt;/html&gt;
 "></iframe>
-<script>(() => {
-  const frame = document.getElementById("codex-visualization");
-  if (!(frame instanceof HTMLIFrameElement)) {
-    return;
-  }
-  let viewportHeight = globalThis.innerHeight;
-
-  const channel = new MessageChannel();
-  channel.port1.addEventListener("message", (event) => {
-    const data = event.data;
-    if (typeof data !== "object" || data == null) {
-      return;
-    }
-    if (data.type === "height") {
-      return;
-    }
-    if (data.type === "scroll-to") {
-      const top = data.top;
-      if (
-        typeof top === "number" &&
-        Number.isFinite(top) &&
-        top >= 0 &&
-        globalThis.navigator.userActivation?.isActive === true
-      ) {
-        globalThis.scrollTo({
-          top: Math.ceil(
-            globalThis.scrollY + frame.getBoundingClientRect().top + top,
-          ),
-        });
-      }
-      return;
-    }
-    if (data.type === "open-external") {
-      const rawHref = data.href;
-      if (typeof rawHref !== "string") {
-        return;
-      }
-      let href;
-      try {
-        const url = new URL(rawHref, document.baseURI);
-        if (url.protocol !== "https:") {
-          return;
-        }
-        href = url.href;
-      } catch {
-        return;
-      }
-      if (globalThis.navigator.userActivation?.isActive === true) {
-        const anchor = document.createElement("a");
-        anchor.href = href;
-        anchor.rel = "noopener noreferrer";
-        anchor.target = "_blank";
-        document.body.appendChild(anchor);
-        anchor.click();
-        anchor.remove();
-      }
-      return;
-    }
-    if (data.type === "follow-up") {
-      const prompt = data.prompt;
-      if (
-        typeof prompt !== "string" ||
-        globalThis.navigator.userActivation?.isActive !== true
-      ) {
-        return;
-      }
-      const title = data.title;
-      globalThis.prompt(typeof title === "string" ? title : prompt, prompt);
-    }
-  });
-  channel.port1.start();
-  const srcdoc = frame.dataset.srcdoc;
-  if (srcdoc == null) {
-    return;
-  }
-  globalThis.addEventListener("resize", () => {
-    viewportHeight = globalThis.innerHeight;
-    channel.port1.postMessage({ type: "measure" });
-  });
-  frame.addEventListener(
-    "load",
-    () => {
-      frame.contentWindow?.postMessage(
-        { type: "codex-visualization-initialize" },
-        "*",
-        [channel.port2],
-      );
-    },
-    { once: true },
-  );
-  frame.srcdoc = srcdoc;
-  delete frame.dataset.srcdoc;
-})();
-</script>
 </body>
 </html>
