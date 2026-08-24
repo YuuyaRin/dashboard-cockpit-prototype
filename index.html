@@ -1228,13 +1228,41 @@ html&gt;body{padding:0}&lt;/style&gt;
       box-shadow: 0 0 0 3px var(--sc-positive-soft);
     }
 
-    #srun-cockpit-v3 .sc-chart { width: 100%; height: 100%; min-height: 88px; }
+    #srun-cockpit-v3 .sc-line-chart {
+      width: 100%;
+      height: 100%;
+      min-height: 0;
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr) auto;
+      gap: 2px;
+    }
+    #srun-cockpit-v3 .sc-line-legend,
+    #srun-cockpit-v3 .sc-chart-meta {
+      min-width: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      color: var(--sc-muted);
+      font-size: clamp(9px, .56vw, 11px);
+      line-height: 1.2;
+      white-space: nowrap;
+    }
+    #srun-cockpit-v3 .sc-line-legend { justify-content: flex-start; color: var(--sc-text); }
+    #srun-cockpit-v3 .sc-legend-item { display: inline-flex; align-items: center; gap: 5px; min-width: 0; }
+    #srun-cockpit-v3 .sc-legend-swatch {
+      width: 13px;
+      height: 2px;
+      flex: 0 0 auto;
+      border-radius: 2px;
+      background: var(--sc-accent);
+    }
+    #srun-cockpit-v3 .sc-legend-swatch.is-secondary { background: var(--sc-purple); }
+    #srun-cockpit-v3 .sc-chart { width: 100%; height: 100%; min-height: 54px; }
     #srun-cockpit-v3 .sc-chart-grid { stroke: var(--sc-line); stroke-width: 1; opacity: .62; }
     #srun-cockpit-v3 .sc-chart-primary { fill: none; stroke: var(--sc-accent); stroke-width: 2.2; vector-effect: non-scaling-stroke; }
     #srun-cockpit-v3 .sc-chart-secondary { fill: none; stroke: var(--sc-purple); stroke-width: 1.7; vector-effect: non-scaling-stroke; }
     #srun-cockpit-v3 .sc-chart-area { fill: var(--sc-accent-soft); opacity: .72; }
-    #srun-cockpit-v3 .sc-chart-label { fill: var(--sc-muted); font-size: 9px; }
-    #srun-cockpit-v3 .sc-chart-legend { fill: var(--sc-text); font-size: 9px; }
 
     #srun-cockpit-v3 .sc-bars { height: 100%; display: grid; align-content: center; gap: clamp(7px, .7vh, 11px); }
     #srun-cockpit-v3 .sc-bar-row {
@@ -1659,13 +1687,15 @@ html&gt;body{padding:0}&lt;/style&gt;
         const primary = points(item.series);
         const secondary = item.series2 ? `&lt;polyline class=&quot;sc-chart-secondary&quot; points=&quot;${points(item.series2)}&quot;&gt;&lt;/polyline&gt;` : &#x27;&#x27;;
         const area = `8,90 ${primary} 312,90`;
-        const legend2 = item.legend?.[1] ? `&lt;circle cx=&quot;88&quot; cy=&quot;10&quot; r=&quot;3&quot; fill=&quot;var(--sc-purple)&quot;&gt;&lt;/circle&gt;&lt;text class=&quot;sc-chart-legend&quot; x=&quot;96&quot; y=&quot;13&quot;&gt;${item.legend[1]}&lt;/text&gt;` : &#x27;&#x27;;
-        return `&lt;svg class=&quot;sc-chart&quot; viewBox=&quot;0 0 320 112&quot; preserveAspectRatio=&quot;none&quot; role=&quot;img&quot; aria-label=&quot;${item.name}，单位 ${item.chartUnit || &#x27;&#x27;}&quot;&gt;
-          &lt;line class=&quot;sc-chart-grid&quot; x1=&quot;8&quot; y1=&quot;26&quot; x2=&quot;312&quot; y2=&quot;26&quot;&gt;&lt;/line&gt;&lt;line class=&quot;sc-chart-grid&quot; x1=&quot;8&quot; y1=&quot;58&quot; x2=&quot;312&quot; y2=&quot;58&quot;&gt;&lt;/line&gt;&lt;line class=&quot;sc-chart-grid&quot; x1=&quot;8&quot; y1=&quot;90&quot; x2=&quot;312&quot; y2=&quot;90&quot;&gt;&lt;/line&gt;
-          &lt;polygon class=&quot;sc-chart-area&quot; points=&quot;${area}&quot;&gt;&lt;/polygon&gt;${secondary}&lt;polyline class=&quot;sc-chart-primary&quot; points=&quot;${primary}&quot;&gt;&lt;/polyline&gt;
-          &lt;circle cx=&quot;10&quot; cy=&quot;10&quot; r=&quot;3&quot; fill=&quot;var(--sc-accent)&quot;&gt;&lt;/circle&gt;&lt;text class=&quot;sc-chart-legend&quot; x=&quot;18&quot; y=&quot;13&quot;&gt;${item.legend?.[0] || item.name}&lt;/text&gt;${legend2}
-          &lt;text class=&quot;sc-chart-label&quot; x=&quot;8&quot; y=&quot;106&quot;&gt;${periodLabels[period]}&lt;/text&gt;&lt;text class=&quot;sc-chart-label&quot; x=&quot;312&quot; y=&quot;106&quot; text-anchor=&quot;end&quot;&gt;单位：${item.chartUnit || &#x27;--&#x27;}&lt;/text&gt;
-        &lt;/svg&gt;`;
+        const legend2 = item.legend?.[1] ? `&lt;span class=&quot;sc-legend-item&quot;&gt;&lt;span class=&quot;sc-legend-swatch is-secondary&quot;&gt;&lt;/span&gt;${item.legend[1]}&lt;/span&gt;` : &#x27;&#x27;;
+        return `&lt;span class=&quot;sc-line-chart&quot; role=&quot;img&quot; aria-label=&quot;${item.name}，单位 ${item.chartUnit || &#x27;&#x27;}&quot;&gt;
+          &lt;span class=&quot;sc-line-legend&quot;&gt;&lt;span class=&quot;sc-legend-item&quot;&gt;&lt;span class=&quot;sc-legend-swatch&quot;&gt;&lt;/span&gt;${item.legend?.[0] || item.name}&lt;/span&gt;${legend2}&lt;/span&gt;
+          &lt;svg class=&quot;sc-chart&quot; viewBox=&quot;0 0 320 96&quot; preserveAspectRatio=&quot;none&quot; aria-hidden=&quot;true&quot;&gt;
+            &lt;line class=&quot;sc-chart-grid&quot; x1=&quot;8&quot; y1=&quot;26&quot; x2=&quot;312&quot; y2=&quot;26&quot;&gt;&lt;/line&gt;&lt;line class=&quot;sc-chart-grid&quot; x1=&quot;8&quot; y1=&quot;58&quot; x2=&quot;312&quot; y2=&quot;58&quot;&gt;&lt;/line&gt;&lt;line class=&quot;sc-chart-grid&quot; x1=&quot;8&quot; y1=&quot;90&quot; x2=&quot;312&quot; y2=&quot;90&quot;&gt;&lt;/line&gt;
+            &lt;polygon class=&quot;sc-chart-area&quot; points=&quot;${area}&quot;&gt;&lt;/polygon&gt;${secondary}&lt;polyline class=&quot;sc-chart-primary&quot; points=&quot;${primary}&quot;&gt;&lt;/polyline&gt;
+          &lt;/svg&gt;
+          &lt;span class=&quot;sc-chart-meta&quot;&gt;&lt;span&gt;${periodLabels[period]}&lt;/span&gt;&lt;span&gt;单位：${item.chartUnit || &#x27;--&#x27;}&lt;/span&gt;&lt;/span&gt;
+        &lt;/span&gt;`;
       }
 
       function barsChart(item) {
