@@ -1349,6 +1349,7 @@ html&gt;body{padding:0}&lt;/style&gt;
       border-top: 1px solid var(--sc-line);
     }
     #srun-cockpit-v3[data-review=&quot;on&quot;] .sc-provenance { display: grid; }
+    #srun-cockpit-v3 .sc-provenance &gt; div:nth-child(6) { grid-column: span 2; }
     #srun-cockpit-v3 .sc-prov-label { color: var(--sc-muted); font-size: 10px; }
     #srun-cockpit-v3 .sc-prov-value { margin-top: 2px; font-size: 11px; word-break: break-word; }
     #srun-cockpit-v3 .sc-scale-help {
@@ -1505,12 +1506,12 @@ html&gt;body{padding:0}&lt;/style&gt;
           &lt;summary&gt;等级含义与判定场景&lt;/summary&gt;
           &lt;div class=&quot;sc-scale-columns&quot;&gt;
             &lt;section class=&quot;sc-scale-group&quot; aria-label=&quot;文档证据等级&quot;&gt;
-              &lt;div class=&quot;sc-scale-group-title&quot;&gt;文档证据 A-E：设计依据有多强&lt;/div&gt;
-              &lt;div class=&quot;sc-scale-item&quot;&gt;&lt;span class=&quot;sc-scale-code&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;sc-scale-copy&quot;&gt;&lt;b&gt;接口直接返回&lt;/b&gt;：已发布读取接口含可展示字段。&lt;em&gt;例：当前在线用户数。&lt;/em&gt;&lt;/span&gt;&lt;/div&gt;
-              &lt;div class=&quot;sc-scale-item&quot;&gt;&lt;span class=&quot;sc-scale-code&quot;&gt;B&lt;/span&gt;&lt;span class=&quot;sc-scale-copy&quot;&gt;&lt;b&gt;组合或派生&lt;/b&gt;：依赖多个接口或本方公式。&lt;em&gt;例：平均单笔缴费。&lt;/em&gt;&lt;/span&gt;&lt;/div&gt;
-              &lt;div class=&quot;sc-scale-item&quot;&gt;&lt;span class=&quot;sc-scale-code&quot;&gt;C&lt;/span&gt;&lt;span class=&quot;sc-scale-copy&quot;&gt;&lt;b&gt;需要真实样本&lt;/b&gt;：接口存在，但 schema、参数或口径不完整。&lt;em&gt;例：月联网活跃用户。&lt;/em&gt;&lt;/span&gt;&lt;/div&gt;
-              &lt;div class=&quot;sc-scale-item&quot;&gt;&lt;span class=&quot;sc-scale-code&quot;&gt;D&lt;/span&gt;&lt;span class=&quot;sc-scale-copy&quot;&gt;&lt;b&gt;需要对方补充&lt;/b&gt;：手册有功能，REST 尚未证明读取能力。&lt;em&gt;例：产品收入排行。&lt;/em&gt;&lt;/span&gt;&lt;/div&gt;
-              &lt;div class=&quot;sc-scale-item&quot;&gt;&lt;span class=&quot;sc-scale-code&quot;&gt;E&lt;/span&gt;&lt;span class=&quot;sc-scale-copy&quot;&gt;&lt;b&gt;目标蓝图&lt;/b&gt;：需要多来源和统一业务口径闭环。&lt;em&gt;例：净收入、对账异常。&lt;/em&gt;&lt;/span&gt;&lt;/div&gt;
+              &lt;div class=&quot;sc-scale-group-title&quot;&gt;文档证据 A-E：已知条件与下一步动作&lt;/div&gt;
+              &lt;div class=&quot;sc-scale-item&quot;&gt;&lt;span class=&quot;sc-scale-code&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;sc-scale-copy&quot;&gt;&lt;b&gt;文档已给出接口和展示字段。&lt;/b&gt;&lt;em&gt;向对方确认：接口权限、部署版本、字段单位，并提供一份真实或脱敏响应样本。&lt;/em&gt;&lt;/span&gt;&lt;/div&gt;
+              &lt;div class=&quot;sc-scale-item&quot;&gt;&lt;span class=&quot;sc-scale-code&quot;&gt;B&lt;/span&gt;&lt;span class=&quot;sc-scale-copy&quot;&gt;&lt;b&gt;底层字段有依据，指标需要本方组合计算。&lt;/b&gt;&lt;em&gt;向对方确认：聚合范围、时间边界、异常数据纳入规则和计算口径。&lt;/em&gt;&lt;/span&gt;&lt;/div&gt;
+              &lt;div class=&quot;sc-scale-item&quot;&gt;&lt;span class=&quot;sc-scale-code&quot;&gt;C&lt;/span&gt;&lt;span class=&quot;sc-scale-copy&quot;&gt;&lt;b&gt;接口线索明确，返回结构与口径待验证。&lt;/b&gt;&lt;em&gt;请对方提供：真实/脱敏样本、参数和枚举字典、字段类型与单位、空值及异常示例。&lt;/em&gt;&lt;/span&gt;&lt;/div&gt;
+              &lt;div class=&quot;sc-scale-item&quot;&gt;&lt;span class=&quot;sc-scale-code&quot;&gt;D&lt;/span&gt;&lt;span class=&quot;sc-scale-copy&quot;&gt;&lt;b&gt;手册有后台功能，但没有证明第三方能够全局取数。&lt;/b&gt;&lt;em&gt;请对方确认：能否新增读取接口或数据文件，并说明最小字段、更新频率和历史范围。&lt;/em&gt;&lt;/span&gt;&lt;/div&gt;
+              &lt;div class=&quot;sc-scale-item&quot;&gt;&lt;span class=&quot;sc-scale-code&quot;&gt;E&lt;/span&gt;&lt;span class=&quot;sc-scale-copy&quot;&gt;&lt;b&gt;目标能力，现有文档尚无完整数据闭环。&lt;/b&gt;&lt;em&gt;先共同确认业务定义、责任数据源和系统边界；纳入范围后再规划跨系统接口或数据方案。&lt;/em&gt;&lt;/span&gt;&lt;/div&gt;
             &lt;/section&gt;
             &lt;section class=&quot;sc-scale-group&quot; aria-label=&quot;数据确认阶段&quot;&gt;
               &lt;div class=&quot;sc-scale-group-title&quot;&gt;数据确认阶段：从设计依据到真实接入&lt;/div&gt;
@@ -1538,9 +1539,17 @@ html&gt;body{padding:0}&lt;/style&gt;
         A: &#x27;接口直接返回，可直接展示&#x27;,
         B: &#x27;由已发布接口组合或计算得到&#x27;,
         &#x27;A/B&#x27;: &#x27;包含直接字段与派生口径&#x27;,
-        C: &#x27;接口存在，但需真实样本验证&#x27;,
+        C: &#x27;接口线索明确，返回结构与口径待验证&#x27;,
         D: &#x27;手册存在能力，需对方补充数据&#x27;,
-        E: &#x27;目标蓝图，需多来源和口径闭环&#x27;
+        E: &#x27;目标能力，现有文档尚无完整数据闭环&#x27;
+      };
+      const evidenceActions = {
+        A: &#x27;确认接口权限、部署版本和字段单位；提供一份真实或脱敏响应样本。&#x27;,
+        B: &#x27;确认聚合范围、时间边界、异常数据纳入规则和计算口径；提供相关接口样本。&#x27;,
+        &#x27;A/B&#x27;: &#x27;确认直接字段、派生公式、统计边界和异常数据纳入规则；提供相关接口样本。&#x27;,
+        C: &#x27;提供真实或脱敏响应样本、完整参数和枚举字典、字段类型与单位、空值及异常示例。&#x27;,
+        D: &#x27;确认能否新增读取接口或数据文件；说明最小字段、更新频率、历史范围和权限方式。&#x27;,
+        E: &#x27;共同确认业务定义、责任数据源和系统边界；纳入范围后规划跨系统接口或数据方案。&#x27;
       };
       const confirmationMeanings = {
         pending: &#x27;尚未与对方确认可用性、权限、字段和真实样本&#x27;,
@@ -1896,6 +1905,7 @@ html&gt;body{padding:0}&lt;/style&gt;
           [&#x27;计算口径&#x27;, item.formula],
           [&#x27;文档参考&#x27;, item.ref],
           [&#x27;文档证据&#x27;, `${item.evidence} · ${evidenceMeanings[item.evidence] || &#x27;待解释&#x27;}`],
+          [&#x27;下一步向对方确认/索取&#x27;, evidenceActions[item.evidence] || &#x27;根据具体指标补充确认问题和所需材料。&#x27;],
           [&#x27;数据确认阶段&#x27;, `${confirmationLabels[item.confirmation]} · ${confirmationMeanings[item.confirmation]}`]
         ];
         root.querySelector(&#x27;#sc-provenance&#x27;).innerHTML = provenance.map(([label, value]) =&gt; `&lt;div&gt;&lt;div class=&quot;sc-prov-label&quot;&gt;${label}&lt;/div&gt;&lt;div class=&quot;sc-prov-value&quot;&gt;${value}&lt;/div&gt;&lt;/div&gt;`).join(&#x27;&#x27;);
