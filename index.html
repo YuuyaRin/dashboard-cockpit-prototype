@@ -1353,16 +1353,54 @@ html&gt;body{padding:0}&lt;/style&gt;
     #srun-cockpit-v3 .sc-prov-value { margin-top: 2px; font-size: 11px; word-break: break-word; }
     #srun-cockpit-v3 .sc-scale-help {
       display: none;
-      gap: 4px;
-      padding: 8px 9px;
+      padding: 0 9px;
       border-radius: 7px;
       color: var(--sc-muted);
       background: var(--sc-surface-2);
       font-size: 10px;
       line-height: 1.45;
     }
-    #srun-cockpit-v3[data-review=&quot;on&quot;] .sc-scale-help { display: grid; }
-    #srun-cockpit-v3 .sc-scale-help strong { color: var(--sc-text); font-weight: 650; }
+    #srun-cockpit-v3[data-review=&quot;on&quot;] .sc-scale-help { display: block; }
+    #srun-cockpit-v3 .sc-scale-help summary {
+      min-height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      cursor: pointer;
+      color: var(--sc-text);
+      font-weight: 650;
+      list-style: none;
+    }
+    #srun-cockpit-v3 .sc-scale-help summary::-webkit-details-marker { display: none; }
+    #srun-cockpit-v3 .sc-scale-help summary::after { content: &#x27;展开&#x27;; color: var(--sc-accent); font-weight: 500; }
+    #srun-cockpit-v3 .sc-scale-help[open] summary::after { content: &#x27;收起&#x27;; }
+    #srun-cockpit-v3 .sc-scale-columns {
+      max-height: min(230px, 30vh);
+      overflow-y: auto;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      padding: 9px 0 10px;
+      border-top: 1px solid var(--sc-line);
+      scrollbar-width: thin;
+    }
+    #srun-cockpit-v3 .sc-scale-group { min-width: 0; display: grid; align-content: start; gap: 6px; }
+    #srun-cockpit-v3 .sc-scale-group-title { color: var(--sc-text); font-weight: 650; }
+    #srun-cockpit-v3 .sc-scale-item { min-width: 0; display: grid; grid-template-columns: 28px minmax(0, 1fr); gap: 6px; align-items: start; }
+    #srun-cockpit-v3 .sc-scale-code {
+      height: 20px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 4px;
+      color: var(--sc-accent);
+      background: var(--sc-accent-soft);
+      font-weight: 700;
+    }
+    #srun-cockpit-v3 .sc-scale-copy { min-width: 0; }
+    #srun-cockpit-v3 .sc-scale-copy b { color: var(--sc-text); font-weight: 650; }
+    #srun-cockpit-v3 .sc-scale-copy em { display: block; margin-top: 1px; color: var(--sc-muted); font-style: normal; opacity: .88; }
 
     #srun-cockpit-v3 .sc-notice {
       display: none;
@@ -1463,10 +1501,27 @@ html&gt;body{padding:0}&lt;/style&gt;
           &lt;button id=&quot;sc-drill-next&quot; type=&quot;button&quot; class=&quot;sc-drill-button&quot;&gt;继续下钻&lt;/button&gt;
         &lt;/div&gt;
         &lt;div id=&quot;sc-provenance&quot; class=&quot;sc-provenance&quot;&gt;&lt;/div&gt;
-        &lt;div id=&quot;sc-scale-help&quot; class=&quot;sc-scale-help&quot;&gt;
-          &lt;div&gt;&lt;strong&gt;证据：&lt;/strong&gt;A 直接返回 · B 组合派生 · C 待真实样本 · D 需对方补充 · E 目标蓝图&lt;/div&gt;
-          &lt;div&gt;&lt;strong&gt;联调：&lt;/strong&gt;S0 未确认 · S1 文档确认 · S2 已有样本 · S3 联调验证 · S4 不可用/关闭&lt;/div&gt;
-        &lt;/div&gt;
+        &lt;details id=&quot;sc-scale-help&quot; class=&quot;sc-scale-help&quot;&gt;
+          &lt;summary&gt;等级含义与判定场景&lt;/summary&gt;
+          &lt;div class=&quot;sc-scale-columns&quot;&gt;
+            &lt;section class=&quot;sc-scale-group&quot; aria-label=&quot;文档证据等级&quot;&gt;
+              &lt;div class=&quot;sc-scale-group-title&quot;&gt;文档证据 A-E：设计依据有多强&lt;/div&gt;
+              &lt;div class=&quot;sc-scale-item&quot;&gt;&lt;span class=&quot;sc-scale-code&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;sc-scale-copy&quot;&gt;&lt;b&gt;接口直接返回&lt;/b&gt;：已发布读取接口含可展示字段。&lt;em&gt;例：当前在线用户数。&lt;/em&gt;&lt;/span&gt;&lt;/div&gt;
+              &lt;div class=&quot;sc-scale-item&quot;&gt;&lt;span class=&quot;sc-scale-code&quot;&gt;B&lt;/span&gt;&lt;span class=&quot;sc-scale-copy&quot;&gt;&lt;b&gt;组合或派生&lt;/b&gt;：依赖多个接口或本方公式。&lt;em&gt;例：平均单笔缴费。&lt;/em&gt;&lt;/span&gt;&lt;/div&gt;
+              &lt;div class=&quot;sc-scale-item&quot;&gt;&lt;span class=&quot;sc-scale-code&quot;&gt;C&lt;/span&gt;&lt;span class=&quot;sc-scale-copy&quot;&gt;&lt;b&gt;需要真实样本&lt;/b&gt;：接口存在，但 schema、参数或口径不完整。&lt;em&gt;例：月联网活跃用户。&lt;/em&gt;&lt;/span&gt;&lt;/div&gt;
+              &lt;div class=&quot;sc-scale-item&quot;&gt;&lt;span class=&quot;sc-scale-code&quot;&gt;D&lt;/span&gt;&lt;span class=&quot;sc-scale-copy&quot;&gt;&lt;b&gt;需要对方补充&lt;/b&gt;：手册有功能，REST 尚未证明读取能力。&lt;em&gt;例：产品收入排行。&lt;/em&gt;&lt;/span&gt;&lt;/div&gt;
+              &lt;div class=&quot;sc-scale-item&quot;&gt;&lt;span class=&quot;sc-scale-code&quot;&gt;E&lt;/span&gt;&lt;span class=&quot;sc-scale-copy&quot;&gt;&lt;b&gt;目标蓝图&lt;/b&gt;：需要多来源和统一业务口径闭环。&lt;em&gt;例：净收入、对账异常。&lt;/em&gt;&lt;/span&gt;&lt;/div&gt;
+            &lt;/section&gt;
+            &lt;section class=&quot;sc-scale-group&quot; aria-label=&quot;接口联调状态&quot;&gt;
+              &lt;div class=&quot;sc-scale-group-title&quot;&gt;联调状态 S0-S4：数据接入走到哪一步&lt;/div&gt;
+              &lt;div class=&quot;sc-scale-item&quot;&gt;&lt;span class=&quot;sc-scale-code&quot;&gt;S0&lt;/span&gt;&lt;span class=&quot;sc-scale-copy&quot;&gt;&lt;b&gt;尚未确认&lt;/b&gt;：未确认权限、版本、字段或提供方式。&lt;em&gt;当前只能做需求设计。&lt;/em&gt;&lt;/span&gt;&lt;/div&gt;
+              &lt;div class=&quot;sc-scale-item&quot;&gt;&lt;span class=&quot;sc-scale-code&quot;&gt;S1&lt;/span&gt;&lt;span class=&quot;sc-scale-copy&quot;&gt;&lt;b&gt;文档确认&lt;/b&gt;：已找到文档依据，但没有真实响应。&lt;em&gt;原型使用模拟数据。&lt;/em&gt;&lt;/span&gt;&lt;/div&gt;
+              &lt;div class=&quot;sc-scale-item&quot;&gt;&lt;span class=&quot;sc-scale-code&quot;&gt;S2&lt;/span&gt;&lt;span class=&quot;sc-scale-copy&quot;&gt;&lt;b&gt;已有样本&lt;/b&gt;：已取得真实或脱敏响应。&lt;em&gt;还需验证空值、范围和口径。&lt;/em&gt;&lt;/span&gt;&lt;/div&gt;
+              &lt;div class=&quot;sc-scale-item&quot;&gt;&lt;span class=&quot;sc-scale-code&quot;&gt;S3&lt;/span&gt;&lt;span class=&quot;sc-scale-copy&quot;&gt;&lt;b&gt;联调通过&lt;/b&gt;：权限、字段、性能和统计口径均已验证。&lt;em&gt;达到正式上线准入条件。&lt;/em&gt;&lt;/span&gt;&lt;/div&gt;
+              &lt;div class=&quot;sc-scale-item&quot;&gt;&lt;span class=&quot;sc-scale-code&quot;&gt;S4&lt;/span&gt;&lt;span class=&quot;sc-scale-copy&quot;&gt;&lt;b&gt;关闭或不可用&lt;/b&gt;：无法提供、无权限、版本不支持或决定取消。&lt;em&gt;组件隐藏或执行降级。&lt;/em&gt;&lt;/span&gt;&lt;/div&gt;
+            &lt;/section&gt;
+          &lt;/div&gt;
+        &lt;/details&gt;
       &lt;/div&gt;
     &lt;/aside&gt;
     &lt;div id=&quot;sc-notice&quot; class=&quot;sc-notice&quot; role=&quot;status&quot;&gt;&lt;/div&gt;
