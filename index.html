@@ -4,905 +4,19 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="referrer" content="no-referrer">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; style-src 'unsafe-inline' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; img-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; font-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; media-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; worker-src blob:; connect-src blob: data:; frame-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
-<title>营收运营驾驶舱 V3</title>
-<style>:root{color-scheme:light dark;background:light-dark(rgb(255 255 255),rgb(24 24 24))}html,body{width:100%;height:100%;margin:0;overflow:hidden}body{box-sizing:border-box;background:inherit}iframe{display:block;width:100%;height:100%;margin:0;border:0}</style>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; frame-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>营收运营驾驶舱 V4</title>
+<style>html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#f5f8fa}iframe{display:block;width:100%;height:100%;margin:0;border:0}</style>
 </head>
 <body>
-<iframe sandbox="allow-scripts" referrerpolicy="no-referrer" title="营收运营驾驶舱 V3" srcdoc="&lt;!doctype html&gt;
-&lt;html lang=&quot;en&quot;&gt;
+<iframe sandbox="allow-scripts" referrerpolicy="no-referrer" title="营收运营驾驶舱 V4" srcdoc="&lt;!doctype html&gt;
+&lt;html lang=&quot;zh-CN&quot;&gt;
 &lt;head&gt;
 &lt;meta charset=&quot;utf-8&quot;&gt;
 &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
 &lt;meta name=&quot;referrer&quot; content=&quot;no-referrer&quot;&gt;
-&lt;meta http-equiv=&quot;Content-Security-Policy&quot; content=&quot;default-src &#x27;none&#x27;; script-src &#x27;unsafe-inline&#x27; &#x27;unsafe-eval&#x27; &#x27;wasm-unsafe-eval&#x27; blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; style-src &#x27;unsafe-inline&#x27; blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; img-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; font-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; media-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; worker-src blob:; connect-src blob: data:; frame-src &#x27;none&#x27;; object-src &#x27;none&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;&quot;&gt;
-&lt;title&gt;营收运营驾驶舱 V3&lt;/title&gt;
-&lt;style&gt;:root {
-  color-scheme: light dark;
-  background-color: var(
-    --background,
-    var(--color-background-primary, light-dark(rgb(255 255 255), rgb(24 24 24)))
-  ) !important;
-
-  /* Agent-facing contract; keep in sync with SKILL.md. */
-  --background: var(
-    --color-background-primary,
-    light-dark(rgb(255 255 255), rgb(24 24 24))
-  );
-  --foreground: var(
-    --color-text-primary,
-    light-dark(rgb(26 28 31), rgb(255 255 255))
-  );
-  --card: color-mix(in oklab, var(--foreground) 5%, var(--background));
-  --card-foreground: var(
-    --color-text-primary,
-    light-dark(rgb(26 28 31), rgb(255 255 255))
-  );
-  --popover: var(
-    --color-background-secondary,
-    light-dark(rgb(255 255 255), rgb(45 45 45))
-  );
-  --popover-foreground: var(
-    --color-text-primary,
-    light-dark(rgb(26 28 31), rgb(255 255 255))
-  );
-  --primary: var(
-    --color-text-info,
-    light-dark(rgb(51 156 255), rgb(131 195 255))
-  );
-  --primary-foreground: var(
-    --color-text-inverse,
-    light-dark(rgb(255 255 255), rgb(13 13 13))
-  );
-  --secondary: var(
-    --color-background-secondary,
-    light-dark(rgb(255 255 255 / 96%), rgb(54 54 54 / 96%))
-  );
-  --secondary-foreground: var(
-    --color-text-primary,
-    light-dark(rgb(26 28 31), rgb(255 255 255))
-  );
-  --muted: color-mix(in srgb, var(--foreground) 10%, transparent);
-  --muted-foreground: var(
-    --color-text-secondary,
-    light-dark(rgb(26 28 31 / 49.4%), rgb(255 255 255 / 49.8%))
-  );
-  --accent: var(
-    --color-background-info,
-    light-dark(rgb(229 242 255), rgb(13 39 63))
-  );
-  --accent-foreground: var(
-    --color-text-info,
-    light-dark(rgb(51 156 255), rgb(131 195 255))
-  );
-  --destructive: var(
-    --color-text-warning,
-    light-dark(rgb(226 85 7), rgb(255 133 73))
-  );
-  --border: var(
-    --color-border-secondary,
-    light-dark(rgb(26 28 31 / 8%), rgb(255 255 255 / 8.2%))
-  );
-  --input: var(
-    --color-border-primary,
-    light-dark(
-      rgb(26 28 31 / 11.8%),
-      color-mix(in oklab, rgb(0 0 0) 10%, transparent)
-    )
-  );
-  --ring: var(
-    --color-ring-primary,
-    light-dark(rgb(51 156 255), rgb(131 195 255 / 76%))
-  );
-  --font-size-base: var(--font-text-md-size, 14px);
-  --blue: light-dark(rgb(51 156 255), rgb(51 156 255));
-  --orange: light-dark(rgb(226 85 7), rgb(251 106 34));
-  --green: light-dark(rgb(0 162 64), rgb(64 201 119));
-  --red: light-dark(rgb(224 46 42), rgb(255 103 100));
-  --purple: light-dark(rgb(146 79 247), rgb(173 123 249));
-  --yellow: light-dark(rgb(255 195 0), rgb(255 210 64));
-  --viz-series-1: var(--primary);
-  --viz-series-2: light-dark(rgb(243 136 59), rgb(245 154 86));
-  --viz-series-3: light-dark(rgb(93 201 119), rgb(116 213 139));
-  --viz-series-4: light-dark(rgb(235 119 177), rgb(240 143 192));
-  --viz-series-5: light-dark(rgb(155 121 236), rgb(170 145 239));
-  --viz-series-6: light-dark(rgb(58 185 177), rgb(90 203 194));
-
-  /* Internal implementation variables; not part of the agent contract. */
-  --font-sans: -apple-system, system-ui, &quot;Segoe UI&quot;, sans-serif;
-  --font-mono:
-    ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;,
-    monospace;
-  --font-size-normal: max(11px, var(--font-size-base));
-  --font-size-tooltip: calc(var(--font-size-base) - 1px);
-  --font-size-small: max(11px, calc(var(--font-size-base) - 2px));
-  --font-size-h1: calc(var(--font-size-normal) * 1.7142857143);
-  --font-size-h2: calc(var(--font-size-normal) * 1.4285714286);
-  --font-size-h3: calc(var(--font-size-normal) * 1.2857142857);
-  --font-weight-normal: 430;
-  --font-weight-medium: 500;
-  --line-height-normal: calc(var(--font-size-normal) * 1.5);
-  --line-height-tooltip: calc(var(--font-size-tooltip) * 1.4285714286);
-  --line-height-small: calc(var(--font-size-small) + 4px);
-  --radius: var(--border-radius-lg, 12.5px);
-  --radius-sm: calc(var(--radius) * 0.6);
-  --radius-md: calc(var(--radius) * 0.8);
-  --radius-lg: var(--radius);
-  --radius-2xl: calc(var(--radius) * 1.6);
-  --radius-full: 9999px;
-  --shadow-sm: 0 1px 2px -1px rgb(0 0 0 / 8%);
-  --checkmark-image: url(&quot;data:image/svg+xml,%3Csvg xmlns=&#x27;http://www.w3.org/2000/svg&#x27; viewBox=&#x27;0 0 17 17&#x27;%3E%3Cpath d=&#x27;M12.8961 3.64101C13.1297 3.41418 13.4984 3.37523 13.7779 3.56581C14.0571 3.75635 14.1554 4.11331 14.0299 4.41347L13.9615 4.53847L7.71151 13.7045C7.59411 13.8767 7.4063 13.9877 7.19881 14.0072C6.99136 14.0267 6.78564 13.9533 6.63826 13.806L2.88826 10.056L2.79842 9.9457C2.6192 9.67407 2.64927 9.30496 2.88826 9.06581C3.12738 8.82669 3.49647 8.79676 3.76815 8.97597L3.8785 9.06581L7.03084 12.2182L12.8053 3.74941L12.8961 3.64101Z&#x27;/%3E%3C/svg%3E&quot;);
-
-  /* Legacy aliases; not part of the current agent contract. */
-  --viz-bg: transparent;
-  --viz-panel: var(--card);
-  --viz-border: var(--border);
-  --viz-text: var(--foreground);
-  --viz-muted: var(--muted-foreground);
-  --viz-accent: var(--primary);
-  --viz-accent-text: var(--primary-foreground);
-  --viz-accent-bg: var(--accent);
-  --viz-font-size: var(--font-size-base);
-  --viz-warning: var(--destructive);
-}
-
-:root[data-theme=&quot;light&quot;] {
-  color-scheme: light;
-}
-
-:root[data-theme=&quot;dark&quot;] {
-  color-scheme: dark;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-html &gt; body {
-  /* Preserve MCP aliases for older inline renderers without creating :root cycles. */
-  --color-background-primary: var(
-    --background,
-    light-dark(rgb(255 255 255), rgb(24 24 24))
-  );
-  --color-text-primary: var(
-    --foreground,
-    light-dark(rgb(26 28 31), rgb(255 255 255))
-  );
-  --color-border-secondary: var(
-    --border,
-    light-dark(rgb(26 28 31 / 8%), rgb(255 255 255 / 8.2%))
-  );
-
-  margin: 0;
-  padding: 5px;
-  color: var(--foreground);
-  background: transparent !important;
-  font-family: var(--font-sans) !important;
-  font-size: var(--font-size-normal);
-  font-weight: var(--font-weight-normal);
-  line-height: var(--line-height-normal);
-}
-
-a {
-  color: color-mix(in srgb, var(--viz-accent) 80%, var(--viz-text) 20%);
-  cursor: pointer;
-  font-weight: var(--font-weight-medium, 500);
-  text-decoration: none;
-  text-underline-offset: 2px;
-}
-
-a:is(:hover, :focus-visible) {
-  text-decoration-line: underline;
-  text-decoration-style: dashed;
-  text-decoration-thickness: 0.5px;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p {
-  margin-block: 0;
-}
-
-h1 {
-  font-size: var(--font-size-h1);
-  font-weight: var(--font-weight-medium);
-  line-height: 1.25;
-}
-
-h2 {
-  font-size: var(--font-size-h2);
-  font-weight: var(--font-weight-medium);
-  line-height: 1.25;
-}
-
-h3,
-h4,
-h5,
-h6 {
-  font-size: var(--font-size-h3);
-  font-weight: var(--font-weight-medium);
-  line-height: 1.3;
-}
-
-b,
-strong,
-th {
-  font-weight: var(--font-weight-medium);
-}
-
-code:not(pre code) {
-  display: inline;
-  padding: 1px 6px;
-  border-radius: var(--radius-sm);
-  corner-shape: superellipse(1.5);
-  background: var(--muted);
-  font-family: var(--font-mono);
-  font-size: 0.92em;
-  overflow-wrap: anywhere;
-  -webkit-box-decoration-break: clone;
-  box-decoration-break: clone;
-  word-break: break-word;
-}
-
-.table-responsive {
-  width: 100%;
-  overflow-x: auto;
-  scrollbar-width: thin;
-}
-
-.table {
-  width: 100%;
-  border-collapse: collapse;
-  color: var(--foreground);
-  font: inherit;
-  text-align: start;
-}
-
-.table :is(th, td) {
-  padding-block: 10px;
-  padding-inline: 0 24px;
-  overflow-wrap: anywhere;
-  border-bottom: 1px solid var(--border);
-  text-align: start;
-  vertical-align: top;
-}
-
-.table-responsive &gt; .table :is(th, td) {
-  overflow-wrap: break-word;
-}
-
-.table :is(th, td):last-child {
-  padding-inline-end: 0;
-}
-
-.table :is(caption, thead th) {
-  font-weight: 600;
-}
-
-.table thead th {
-  padding-block: 8px;
-  border-bottom-color: color-mix(in srgb, var(--foreground) 16%, transparent);
-}
-
-.table tbody tr:last-child :is(th, td) {
-  border-bottom: 0;
-}
-
-.table.table-sm :is(th, td) {
-  padding-block: 6px;
-}
-
-.table.table-sm :is(th, td):not(:last-child) {
-  padding-inline-end: 16px;
-}
-
-.table :is(.text-end, [align=&quot;right&quot;]) {
-  text-align: end;
-  font-variant-numeric: tabular-nums;
-}
-
-.table :is(.text-center, [align=&quot;center&quot;]) {
-  text-align: center;
-}
-
-.table .text-nowrap {
-  white-space: nowrap;
-}
-
-#widget {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  width: 100%;
-  padding: 0;
-  background: transparent !important;
-}
-
-.card {
-  min-width: 0;
-  padding: 12px;
-  overflow: hidden;
-  overflow-wrap: break-word;
-  border-radius: var(--radius-2xl);
-  corner-shape: superellipse(1.5);
-  color: var(--card-foreground);
-  background: var(--card);
-}
-
-#widget &gt; :not(.card, .progress) {
-  width: 100% !important;
-  max-width: none !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  border: 0 !important;
-  border-radius: 0 !important;
-  background: transparent !important;
-  box-shadow: none !important;
-}
-
-.tooltip {
-  position: fixed;
-  z-index: 50;
-  top: 0;
-  left: 0;
-  width: max-content;
-  max-width: min(
-    20rem,
-    var(--tooltip-available-width, calc(100vw - 10px)),
-    calc(100vw - 10px)
-  );
-  max-height: min(
-    var(--tooltip-available-height, calc(100vh - 10px)),
-    calc(100vh - 10px)
-  );
-  padding: 4px 8px;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  corner-shape: superellipse(1.5);
-  color: var(--popover-foreground);
-  background: var(--popover);
-  box-shadow: none;
-  font-size: var(--font-size-tooltip);
-  line-height: var(--line-height-tooltip);
-  overflow-wrap: break-word;
-  white-space: normal;
-  pointer-events: none;
-  user-select: none;
-}
-
-.viz-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(max(180px, 24%), 1fr));
-  gap: 10px;
-}
-
-.viz-stat {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.viz-stat-value {
-  font-size: var(--font-size-h2);
-  font-weight: var(--font-weight-medium);
-  line-height: 1.25;
-}
-
-.viz-row {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 10px;
-}
-
-.progress {
-  display: flex;
-  height: 6px;
-  margin-block: calc((var(--line-height-normal, 1.5em) - 6px) / 2);
-  overflow: hidden;
-  border: 0;
-  border-radius: var(--radius-full);
-  background: var(--muted);
-}
-
-.progress-bar {
-  height: 100%;
-  flex-shrink: 0;
-  border: 0;
-  background: var(--viz-series-1);
-}
-
-.viz-badge {
-  padding: 3px 8px;
-  border-radius: var(--radius-full);
-  color: var(--accent-foreground);
-  background: var(--accent);
-  font-weight: var(--font-weight-medium);
-}
-
-small,
-.text-small,
-.viz-badge {
-  font-size: var(--font-size-small);
-  line-height: var(--line-height-small);
-}
-
-.text-muted {
-  color: var(--muted-foreground);
-}
-
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-}
-
-.viz-controls {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 8px;
-}
-
-.viz-controls &gt; .form-label {
-  display: grid;
-  min-width: min(100%, 260px);
-  flex: 1 1 280px;
-  grid-template-columns: minmax(0, 1fr) auto;
-  align-items: baseline;
-  gap: 2px 12px;
-  margin-bottom: 0;
-}
-
-.viz-controls &gt; .form-label &gt; :is(.form-control, .form-range, .form-select) {
-  grid-column: 1 / -1;
-}
-
-.btn,
-.form-check-input,
-.form-control,
-.form-range,
-.form-select {
-  font: inherit;
-}
-
-.btn {
-  appearance: button;
-  display: inline-flex;
-  inline-size: fit-content;
-  max-inline-size: 100%;
-  min-height: 28px;
-  align-items: center;
-  justify-content: center;
-  gap: 4px;
-  margin: 0;
-  padding: 0 8px;
-  -webkit-app-region: no-drag;
-  border: 1px solid var(--input);
-  border-radius: var(--radius-lg);
-  corner-shape: superellipse(1.5);
-  color: var(--secondary-foreground);
-  background: var(--secondary);
-  cursor: var(--cursor-interaction, pointer);
-  text-align: center;
-  text-decoration: none;
-  white-space: nowrap;
-  user-select: none;
-  -webkit-font-smoothing: antialiased;
-}
-
-.btn:is(.btn-block, .viz-tile) {
-  inline-size: 100%;
-}
-
-.btn.viz-tile {
-  min-width: 0;
-  overflow-wrap: anywhere;
-  white-space: normal;
-}
-
-a.btn {
-  cursor: pointer;
-  text-decoration: none;
-}
-
-.btn:not(:disabled):hover {
-  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
-}
-
-.btn-primary {
-  border-color: transparent;
-  color: var(--primary-foreground);
-  background: var(--foreground);
-  background-clip: padding-box;
-}
-
-.btn-primary .text-muted {
-  color: color-mix(in srgb, var(--primary-foreground) 50%, transparent);
-}
-
-.btn-primary:not(:disabled):hover {
-  background: color-mix(in srgb, var(--foreground) 80%, transparent);
-  background-clip: padding-box;
-}
-
-.btn-ghost {
-  border-color: transparent;
-  color: var(--muted-foreground);
-  background: transparent;
-}
-
-.btn-ghost:not(:disabled):hover {
-  color: var(--foreground);
-  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
-}
-
-.btn:disabled {
-  cursor: not-allowed;
-  opacity: 0.4;
-}
-
-[data-lucide] {
-  stroke-width: 1.6;
-}
-
-.form-label {
-  display: block;
-  margin-bottom: 6px;
-  color: var(--foreground);
-}
-
-.form-control {
-  display: block;
-  width: 100%;
-  min-height: 28px;
-  padding: 0 8px;
-  outline: none;
-  border: 1px solid var(--input);
-  border-radius: var(--radius-lg);
-  corner-shape: superellipse(1.5);
-  color: var(--foreground);
-  background: var(--secondary);
-}
-
-.form-control::placeholder {
-  color: var(--muted-foreground);
-}
-
-.form-control[type=&quot;file&quot;] {
-  padding: 0;
-  overflow: hidden;
-  cursor: var(--cursor-interaction, pointer);
-}
-
-.form-control[type=&quot;file&quot;]::file-selector-button {
-  min-height: 26px;
-  margin-right: 8px;
-  padding: 0 8px;
-  border: 0;
-  border-right: 1px solid var(--input);
-  color: var(--secondary-foreground);
-  background: var(--secondary);
-  cursor: inherit;
-  font: inherit;
-}
-
-.form-control[type=&quot;file&quot;]:not(:disabled):hover::file-selector-button {
-  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
-}
-
-.form-control-color[type=&quot;color&quot;] {
-  width: 40px;
-  height: 28px;
-  padding: 3px;
-  cursor: var(--cursor-interaction, pointer);
-}
-
-.form-control-color[type=&quot;color&quot;]::-webkit-color-swatch-wrapper {
-  padding: 0;
-}
-
-.form-control-color[type=&quot;color&quot;]::-webkit-color-swatch {
-  border: 0;
-  border-radius: calc(var(--radius-lg) - 4px);
-  corner-shape: superellipse(1.5);
-}
-
-textarea.form-control {
-  height: auto;
-  min-height: 72px;
-  padding: 8px 10px;
-  resize: vertical;
-}
-
-.form-control:focus-visible {
-  border-color: var(--ring);
-  box-shadow: inset 0 0 0 1px var(--ring);
-}
-
-.form-control:disabled,
-.form-select:disabled {
-  cursor: not-allowed;
-  opacity: 0.4;
-}
-
-.form-select {
-  appearance: none;
-  display: block;
-  width: 100%;
-  min-height: 28px;
-  margin: 0;
-  padding: 0 32px 0 8px;
-  outline: none;
-  border: 1px solid var(--input);
-  border-radius: var(--radius-lg);
-  corner-shape: superellipse(1.5);
-  color: var(--foreground);
-  background-color: var(--secondary);
-  background-image:
-    linear-gradient(45deg, transparent 50%, var(--muted-foreground) 50%),
-    linear-gradient(135deg, var(--muted-foreground) 50%, transparent 50%);
-  background-position:
-    calc(100% - 14px) 50%,
-    calc(100% - 10px) 50%;
-  background-repeat: no-repeat;
-  background-size: 4px 4px;
-  cursor: var(--cursor-interaction, default);
-}
-
-.form-select:not(:disabled):hover {
-  background-color: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
-}
-
-.form-select:focus-visible {
-  border-color: var(--ring);
-  box-shadow: inset 0 0 0 1px var(--ring);
-}
-
-.form-check {
-  display: flex;
-  min-height: 20px;
-  align-items: center;
-  gap: 6px;
-}
-
-.form-check-input {
-  appearance: none;
-  width: 14px;
-  height: 14px;
-  flex: 0 0 auto;
-  margin: 0;
-  border: 1px solid var(--input);
-  color: var(--primary-foreground);
-  background-color: transparent;
-  cursor: var(--cursor-interaction, default);
-  transition:
-    background-color 150ms,
-    border-color 150ms,
-    box-shadow 150ms;
-}
-
-.form-check:not(.form-switch) .form-check-input[type=&quot;checkbox&quot;] {
-  border-color: var(--input);
-  border-radius: var(--radius-sm);
-  corner-shape: superellipse(1.5);
-  background-color: var(--secondary);
-  box-shadow: var(--shadow-sm);
-}
-
-.form-check:not(.form-switch)
-  .form-check-input:not(:disabled):not(:checked):hover {
-  background-color: var(--card);
-}
-
-.form-check:not(.form-switch) .form-check-input[type=&quot;checkbox&quot;]:checked {
-  border-color: var(--primary);
-  background-color: var(--primary);
-}
-
-.form-check:not(.form-switch)
-  .form-check-input[type=&quot;checkbox&quot;]:checked::before {
-  display: block;
-  width: 100%;
-  height: 100%;
-  background: var(--primary-foreground);
-  content: &quot;&quot;;
-  mask: var(--checkmark-image) center / 12px 12px no-repeat;
-}
-
-.form-check-input[type=&quot;radio&quot;] {
-  width: 14px;
-  height: 14px;
-  border-radius: var(--radius-full);
-}
-
-.form-check-input[type=&quot;radio&quot;]:checked {
-  border: 2px solid var(--primary);
-  background:
-    radial-gradient(circle, var(--primary-foreground) 0 2.5px, transparent 3px),
-    var(--primary);
-}
-
-.form-check:not(.form-switch) .form-check-input:focus-visible {
-  outline: 2px solid var(--ring);
-  outline-offset: 2px;
-}
-
-.form-check:not(.form-switch) .form-check-input:disabled {
-  cursor: not-allowed;
-  pointer-events: none;
-}
-
-.form-check:not(.form-switch) .form-check-input:disabled + .form-check-label {
-  cursor: not-allowed;
-}
-
-.form-switch .form-check-input:disabled,
-.form-switch .form-check-input:disabled + .form-check-label {
-  cursor: not-allowed;
-  opacity: 0.6;
-}
-
-.form-check-label {
-  color: var(--foreground);
-  cursor: var(--cursor-interaction, default);
-}
-
-.form-switch .form-check-input {
-  position: relative;
-  width: 32px;
-  height: 20px;
-  border: 0;
-  border-radius: var(--radius-full);
-  background: var(--muted);
-  box-shadow: none;
-  transition: background-color 200ms cubic-bezier(0, 0, 0.2, 1);
-}
-
-.form-switch .form-check-input::before {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  width: 16px;
-  height: 16px;
-  box-sizing: border-box;
-  border: 1px solid light-dark(var(--primary-foreground), var(--foreground));
-  border-radius: var(--radius-full);
-  background: light-dark(var(--primary-foreground), var(--foreground));
-  box-shadow: var(--shadow-sm);
-  content: &quot;&quot;;
-  transform: translate(2px, -50%);
-  transition: transform 200ms cubic-bezier(0, 0, 0.2, 1);
-}
-
-.form-switch .form-check-input:checked {
-  background: var(--primary);
-}
-
-.form-switch .form-check-input:checked::before {
-  transform: translate(14px, -50%);
-}
-
-.form-switch .form-check-input:focus-visible {
-  box-shadow: 0 0 0 2px var(--ring);
-}
-
-.form-range {
-  appearance: none;
-  display: block;
-  width: 100%;
-  height: 28px;
-  flex: 1;
-  margin: 0;
-  padding: 0;
-  outline: none;
-  border: 0;
-  accent-color: var(--primary);
-  background: linear-gradient(
-      color-mix(in srgb, var(--foreground) 7%, transparent),
-      color-mix(in srgb, var(--foreground) 7%, transparent)
-    )
-    center / 100% 2px no-repeat;
-}
-
-.form-range::-webkit-slider-runnable-track {
-  height: 28px;
-  background: transparent;
-}
-
-.form-range::-webkit-slider-thumb {
-  appearance: none;
-  width: 20px;
-  height: 20px;
-  margin-top: 4px;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-full);
-  background: light-dark(var(--primary-foreground), var(--foreground));
-}
-
-.form-range:focus-visible::-webkit-slider-thumb {
-  border-color: var(--ring);
-  box-shadow: inset 0 0 0 1px var(--ring);
-}
-
-.form-range::-moz-range-track {
-  height: 28px;
-  background: transparent;
-}
-
-.form-range::-moz-range-thumb {
-  width: 20px;
-  height: 20px;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-full);
-  background: light-dark(var(--primary-foreground), var(--foreground));
-}
-
-.form-range:focus-visible::-moz-range-thumb {
-  border-color: var(--ring);
-  box-shadow: inset 0 0 0 1px var(--ring);
-}
-
-.form-range:disabled {
-  cursor: not-allowed;
-  opacity: 0.4;
-}
-
-.btn:not(.btn-primary, .viz-tile):is(
-  [aria-pressed=&quot;true&quot;],
-  [aria-selected=&quot;true&quot;],
-  .is-selected
-) {
-  border-color: var(--primary);
-  color: var(--primary-foreground);
-  background: var(--primary);
-}
-
-.btn.viz-tile:is([aria-pressed=&quot;true&quot;], [aria-selected=&quot;true&quot;], .is-selected) {
-  border-color: var(--primary);
-  box-shadow: inset 0 0 0 1px var(--primary);
-}
-
-.btn:focus-visible {
-  outline: 2px solid var(--ring);
-  outline-offset: 2px;
-}
-
-svg {
-  display: block;
-  max-width: 100%;
-  height: auto;
-}
-
-#widget &gt; svg {
-  width: 100%;
-}
-
-/* Model-authored chart rules can otherwise stretch icons after these styles load. */
-svg.lucide {
-  display: block;
-  width: 16px !important;
-  height: 16px !important;
-  flex: none;
-  margin: 0 !important;
-  stroke-width: 1.6;
-}
-
-.text-warning,
-.text-destructive {
-  color: var(--destructive);
-}
-
-html&gt;body{padding:0}&lt;/style&gt;
+&lt;meta http-equiv=&quot;Content-Security-Policy&quot; content=&quot;default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data: blob:; font-src data:; connect-src 'none'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'&quot;&gt;
+&lt;title&gt;营收运营驾驶舱 V4&lt;/title&gt;
 &lt;/head&gt;
 &lt;body&gt;
 &lt;div id=&quot;srun-cockpit-v3&quot;&gt;
@@ -1349,7 +463,8 @@ html&gt;body{padding:0}&lt;/style&gt;
       border-top: 1px solid var(--sc-line);
     }
     #srun-cockpit-v3[data-review=&quot;on&quot;] .sc-provenance { display: grid; }
-    #srun-cockpit-v3 .sc-provenance &gt; div:nth-child(6) { grid-column: span 2; }
+    #srun-cockpit-v3 .sc-provenance &gt; div:first-child,
+    #srun-cockpit-v3 .sc-provenance &gt; div:nth-last-child(-n + 2) { grid-column: 1 / -1; }
     #srun-cockpit-v3 .sc-prov-label { color: var(--sc-muted); font-size: 10px; }
     #srun-cockpit-v3 .sc-prov-value { margin-top: 2px; font-size: 11px; word-break: break-word; }
     #srun-cockpit-v3 .sc-scale-help {
@@ -1374,8 +489,8 @@ html&gt;body{padding:0}&lt;/style&gt;
       list-style: none;
     }
     #srun-cockpit-v3 .sc-scale-help summary::-webkit-details-marker { display: none; }
-    #srun-cockpit-v3 .sc-scale-help summary::after { content: &#x27;展开&#x27;; color: var(--sc-accent); font-weight: 500; }
-    #srun-cockpit-v3 .sc-scale-help[open] summary::after { content: &#x27;收起&#x27;; }
+    #srun-cockpit-v3 .sc-scale-help summary::after { content: '展开'; color: var(--sc-accent); font-weight: 500; }
+    #srun-cockpit-v3 .sc-scale-help[open] summary::after { content: '收起'; }
     #srun-cockpit-v3 .sc-scale-columns {
       max-height: min(230px, 30vh);
       overflow-y: auto;
@@ -1445,16 +560,16 @@ html&gt;body{padding:0}&lt;/style&gt;
     }
   &lt;/style&gt;
 
-  &lt;section class=&quot;sc-shell&quot; aria-label=&quot;营收运营驾驶舱结构原型 V3&quot;&gt;
+  &lt;section class=&quot;sc-shell&quot; aria-label=&quot;营收运营驾驶舱结构原型 V4&quot;&gt;
     &lt;header class=&quot;sc-topbar&quot;&gt;
       &lt;div class=&quot;sc-brand&quot;&gt;
         &lt;div id=&quot;sc-page-title&quot; class=&quot;sc-title&quot;&gt;经营总览&lt;/div&gt;
-        &lt;div class=&quot;sc-subtitle&quot;&gt;模拟数据 · 口径时区 Asia/Shanghai · 原型版本 V3&lt;/div&gt;
+        &lt;div class=&quot;sc-subtitle&quot;&gt;模拟数据 · 统计时区 Asia/Shanghai · 原型版本 V4&lt;/div&gt;
       &lt;/div&gt;
-      &lt;div class=&quot;sc-profile-controls&quot; aria-label=&quot;能力版本&quot;&gt;
-        &lt;button type=&quot;button&quot; class=&quot;sc-profile&quot; data-profile=&quot;basic&quot; aria-pressed=&quot;false&quot;&gt;基础 · 运行可见&lt;/button&gt;
+      &lt;div class=&quot;sc-profile-controls&quot; aria-label=&quot;功能版本&quot;&gt;
+        &lt;button type=&quot;button&quot; class=&quot;sc-profile&quot; data-profile=&quot;basic&quot; aria-pressed=&quot;false&quot;&gt;基础 · 核心看板&lt;/button&gt;
         &lt;button type=&quot;button&quot; class=&quot;sc-profile&quot; data-profile=&quot;standard&quot; aria-pressed=&quot;true&quot;&gt;标准 · 运营分析&lt;/button&gt;
-        &lt;button type=&quot;button&quot; class=&quot;sc-profile&quot; data-profile=&quot;enhanced&quot; aria-pressed=&quot;false&quot;&gt;增强 · 经营闭环&lt;/button&gt;
+        &lt;button type=&quot;button&quot; class=&quot;sc-profile&quot; data-profile=&quot;enhanced&quot; aria-pressed=&quot;false&quot;&gt;增强 · 财务与运维&lt;/button&gt;
       &lt;/div&gt;
     &lt;/header&gt;
 
@@ -1475,7 +590,7 @@ html&gt;body{padding:0}&lt;/style&gt;
           &lt;/select&gt;
           &lt;button id=&quot;sc-review&quot; type=&quot;button&quot; class=&quot;sc-review&quot; aria-pressed=&quot;true&quot;&gt;数据评审&lt;/button&gt;
         &lt;/div&gt;
-        &lt;div id=&quot;sc-refresh&quot; class=&quot;sc-refresh&quot;&gt;全局刷新 10:30 · 在线延迟 1 分钟 · 财务延迟 15 分钟&lt;/div&gt;
+        &lt;div id=&quot;sc-refresh&quot; class=&quot;sc-refresh&quot;&gt;模拟更新时间 10:30 · 在线延迟示例 1 分钟 · 财务延迟示例 15 分钟&lt;/div&gt;
       &lt;/div&gt;
     &lt;/section&gt;
 
@@ -1503,23 +618,23 @@ html&gt;body{padding:0}&lt;/style&gt;
         &lt;/div&gt;
         &lt;div id=&quot;sc-provenance&quot; class=&quot;sc-provenance&quot;&gt;&lt;/div&gt;
         &lt;details id=&quot;sc-scale-help&quot; class=&quot;sc-scale-help&quot;&gt;
-          &lt;summary&gt;等级含义与判定场景&lt;/summary&gt;
+          &lt;summary&gt;这些标签分别表示什么&lt;/summary&gt;
           &lt;div class=&quot;sc-scale-columns&quot;&gt;
-            &lt;section class=&quot;sc-scale-group&quot; aria-label=&quot;文档证据等级&quot;&gt;
-              &lt;div class=&quot;sc-scale-group-title&quot;&gt;文档证据 A-E：已知条件与下一步动作&lt;/div&gt;
-              &lt;div class=&quot;sc-scale-item&quot;&gt;&lt;span class=&quot;sc-scale-code&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;sc-scale-copy&quot;&gt;&lt;b&gt;文档已给出接口和展示字段。&lt;/b&gt;&lt;em&gt;向对方确认：接口权限、部署版本、字段单位，并提供一份真实或脱敏响应样本。&lt;/em&gt;&lt;/span&gt;&lt;/div&gt;
-              &lt;div class=&quot;sc-scale-item&quot;&gt;&lt;span class=&quot;sc-scale-code&quot;&gt;B&lt;/span&gt;&lt;span class=&quot;sc-scale-copy&quot;&gt;&lt;b&gt;底层字段有依据，指标需要本方组合计算。&lt;/b&gt;&lt;em&gt;向对方确认：聚合范围、时间边界、异常数据纳入规则和计算口径。&lt;/em&gt;&lt;/span&gt;&lt;/div&gt;
-              &lt;div class=&quot;sc-scale-item&quot;&gt;&lt;span class=&quot;sc-scale-code&quot;&gt;C&lt;/span&gt;&lt;span class=&quot;sc-scale-copy&quot;&gt;&lt;b&gt;接口线索明确，返回结构与口径待验证。&lt;/b&gt;&lt;em&gt;请对方提供：真实/脱敏样本、参数和枚举字典、字段类型与单位、空值及异常示例。&lt;/em&gt;&lt;/span&gt;&lt;/div&gt;
-              &lt;div class=&quot;sc-scale-item&quot;&gt;&lt;span class=&quot;sc-scale-code&quot;&gt;D&lt;/span&gt;&lt;span class=&quot;sc-scale-copy&quot;&gt;&lt;b&gt;手册有后台功能，但没有证明第三方能够全局取数。&lt;/b&gt;&lt;em&gt;请对方确认：能否新增读取接口或数据文件，并说明最小字段、更新频率和历史范围。&lt;/em&gt;&lt;/span&gt;&lt;/div&gt;
-              &lt;div class=&quot;sc-scale-item&quot;&gt;&lt;span class=&quot;sc-scale-code&quot;&gt;E&lt;/span&gt;&lt;span class=&quot;sc-scale-copy&quot;&gt;&lt;b&gt;目标能力，现有文档尚无完整数据闭环。&lt;/b&gt;&lt;em&gt;先共同确认业务定义、责任数据源和系统边界；纳入范围后再规划跨系统接口或数据方案。&lt;/em&gt;&lt;/span&gt;&lt;/div&gt;
+            &lt;section class=&quot;sc-scale-group&quot; aria-label=&quot;文档依据等级&quot;&gt;
+              &lt;div class=&quot;sc-scale-group-title&quot;&gt;文档依据 A-E：目前能确认到什么程度&lt;/div&gt;
+              &lt;div class=&quot;sc-scale-item&quot;&gt;&lt;span class=&quot;sc-scale-code&quot;&gt;A&lt;/span&gt;&lt;span class=&quot;sc-scale-copy&quot;&gt;&lt;b&gt;接口和返回字段写得比较完整。&lt;/b&gt;&lt;em&gt;还要确认现场版本和权限，并取得一份实际或脱敏返回样本。&lt;/em&gt;&lt;/span&gt;&lt;/div&gt;
+              &lt;div class=&quot;sc-scale-item&quot;&gt;&lt;span class=&quot;sc-scale-code&quot;&gt;B&lt;/span&gt;&lt;span class=&quot;sc-scale-copy&quot;&gt;&lt;b&gt;所需字段在文档中能找到，但指标需要我们计算。&lt;/b&gt;&lt;em&gt;还要确认统计范围、时间边界、去重方式以及退费、冲正等数据是否计入。&lt;/em&gt;&lt;/span&gt;&lt;/div&gt;
+              &lt;div class=&quot;sc-scale-item&quot;&gt;&lt;span class=&quot;sc-scale-code&quot;&gt;C&lt;/span&gt;&lt;span class=&quot;sc-scale-copy&quot;&gt;&lt;b&gt;文档中有接口，但部分说明不完整或互相矛盾。&lt;/b&gt;&lt;em&gt;请对方提供实际/脱敏样本、参数取值、字段单位以及空值和报错示例。&lt;/em&gt;&lt;/span&gt;&lt;/div&gt;
+              &lt;div class=&quot;sc-scale-item&quot;&gt;&lt;span class=&quot;sc-scale-code&quot;&gt;D&lt;/span&gt;&lt;span class=&quot;sc-scale-copy&quot;&gt;&lt;b&gt;管理后台有这个功能，但接口文档没有相应的全局取数接口。&lt;/b&gt;&lt;em&gt;请对方确认能否新增查询接口，或按约定提供数据文件。&lt;/em&gt;&lt;/span&gt;&lt;/div&gt;
+              &lt;div class=&quot;sc-scale-item&quot;&gt;&lt;span class=&quot;sc-scale-code&quot;&gt;E&lt;/span&gt;&lt;span class=&quot;sc-scale-copy&quot;&gt;&lt;b&gt;这是希望以后实现的功能，现有两份文档还不能支持。&lt;/b&gt;&lt;em&gt;需要先确定指标定义、数据由哪个系统提供，再讨论是否新增跨系统接口。&lt;/em&gt;&lt;/span&gt;&lt;/div&gt;
             &lt;/section&gt;
             &lt;section class=&quot;sc-scale-group&quot; aria-label=&quot;数据确认阶段&quot;&gt;
-              &lt;div class=&quot;sc-scale-group-title&quot;&gt;数据确认阶段：从设计依据到真实接入&lt;/div&gt;
-              &lt;div class=&quot;sc-scale-item&quot;&gt;&lt;span class=&quot;sc-scale-code&quot;&gt;待沟通&lt;/span&gt;&lt;span class=&quot;sc-scale-copy&quot;&gt;&lt;b&gt;当前阶段&lt;/b&gt;：尚未向对方确认权限、版本、字段和提供方式。&lt;em&gt;原型仅使用模拟数据表达设计意图。&lt;/em&gt;&lt;/span&gt;&lt;/div&gt;
-              &lt;div class=&quot;sc-scale-item&quot;&gt;&lt;span class=&quot;sc-scale-code&quot;&gt;已确认&lt;/span&gt;&lt;span class=&quot;sc-scale-copy&quot;&gt;&lt;b&gt;可提供&lt;/b&gt;：对方已明确数据或接口可以提供，但还没有取得真实响应。&lt;/span&gt;&lt;/div&gt;
-              &lt;div class=&quot;sc-scale-item&quot;&gt;&lt;span class=&quot;sc-scale-code&quot;&gt;已取样&lt;/span&gt;&lt;span class=&quot;sc-scale-copy&quot;&gt;&lt;b&gt;开始验证&lt;/b&gt;：已取得真实或脱敏样本，正在核对字段、空值、单位和统计口径。&lt;/span&gt;&lt;/div&gt;
-              &lt;div class=&quot;sc-scale-item&quot;&gt;&lt;span class=&quot;sc-scale-code&quot;&gt;已验证&lt;/span&gt;&lt;span class=&quot;sc-scale-copy&quot;&gt;&lt;b&gt;联调完成&lt;/b&gt;：权限、字段、性能和统计口径均已验证。&lt;em&gt;达到正式上线准入条件。&lt;/em&gt;&lt;/span&gt;&lt;/div&gt;
-              &lt;div class=&quot;sc-scale-item&quot;&gt;&lt;span class=&quot;sc-scale-code&quot;&gt;不可提供&lt;/span&gt;&lt;span class=&quot;sc-scale-copy&quot;&gt;&lt;b&gt;执行降级&lt;/b&gt;：无接口、无权限、版本不支持或决定取消。&lt;em&gt;组件替换、隐藏或降低钻取深度。&lt;/em&gt;&lt;/span&gt;&lt;/div&gt;
+              &lt;div class=&quot;sc-scale-group-title&quot;&gt;确认进度：目前和对方确认到哪一步&lt;/div&gt;
+              &lt;div class=&quot;sc-scale-item&quot;&gt;&lt;span class=&quot;sc-scale-code&quot;&gt;待沟通&lt;/span&gt;&lt;span class=&quot;sc-scale-copy&quot;&gt;&lt;b&gt;当前状态。&lt;/b&gt;还没有确认接口能否使用、有哪些权限、能提供哪些字段。&lt;em&gt;页面中的数字和明细均为模拟数据。&lt;/em&gt;&lt;/span&gt;&lt;/div&gt;
+              &lt;div class=&quot;sc-scale-item&quot;&gt;&lt;span class=&quot;sc-scale-code&quot;&gt;已确认&lt;/span&gt;&lt;span class=&quot;sc-scale-copy&quot;&gt;&lt;b&gt;对方已答复可以提供。&lt;/b&gt;但我们还没有拿到实际返回结果。&lt;/span&gt;&lt;/div&gt;
+              &lt;div class=&quot;sc-scale-item&quot;&gt;&lt;span class=&quot;sc-scale-code&quot;&gt;已取样&lt;/span&gt;&lt;span class=&quot;sc-scale-copy&quot;&gt;&lt;b&gt;已经拿到实际或脱敏样本。&lt;/b&gt;正在核对字段、单位、空值和统计规则。&lt;/span&gt;&lt;/div&gt;
+              &lt;div class=&quot;sc-scale-item&quot;&gt;&lt;span class=&quot;sc-scale-code&quot;&gt;已验证&lt;/span&gt;&lt;span class=&quot;sc-scale-copy&quot;&gt;&lt;b&gt;已经用实际接口完成测试。&lt;/b&gt;权限、字段、性能和统计规则均已确认，可进入上线准备。&lt;/span&gt;&lt;/div&gt;
+              &lt;div class=&quot;sc-scale-item&quot;&gt;&lt;span class=&quot;sc-scale-code&quot;&gt;不可提供&lt;/span&gt;&lt;span class=&quot;sc-scale-copy&quot;&gt;&lt;b&gt;确认无法提供。&lt;/b&gt;对应功能将被替换、隐藏，或者只保留较浅的查询层级。&lt;/span&gt;&lt;/div&gt;
             &lt;/section&gt;
           &lt;/div&gt;
         &lt;/details&gt;
@@ -1530,243 +645,310 @@ html&gt;body{padding:0}&lt;/style&gt;
 
   &lt;script&gt;
     (() =&gt; {
-      const root = document.getElementById(&#x27;srun-cockpit-v3&#x27;);
-      const pageTitle = root.querySelector(&#x27;#sc-page-title&#x27;);
+      const root = document.getElementById('srun-cockpit-v3');
+      const pageTitle = root.querySelector('#sc-page-title');
       const profileRank = { basic: 1, standard: 2, enhanced: 3 };
-      const periodLabels = { today: &#x27;今日&#x27;, &#x27;7d&#x27;: &#x27;近 7 日&#x27;, month: &#x27;本月&#x27; };
-      const grainLabels = { hour: &#x27;小时&#x27;, day: &#x27;日&#x27;, month: &#x27;月&#x27; };
+      const periodLabels = { today: '今日', '7d': '近 7 日', month: '本月' };
+      const grainLabels = { hour: '小时', day: '日', month: '月' };
       const evidenceMeanings = {
-        A: &#x27;接口直接返回，可直接展示&#x27;,
-        B: &#x27;由已发布接口组合或计算得到&#x27;,
-        &#x27;A/B&#x27;: &#x27;包含直接字段与派生口径&#x27;,
-        C: &#x27;接口线索明确，返回结构与口径待验证&#x27;,
-        D: &#x27;手册存在能力，需对方补充数据&#x27;,
-        E: &#x27;目标能力，现有文档尚无完整数据闭环&#x27;
+        A: '接口和返回字段在文档中写得比较完整',
+        B: '所需字段有文档依据，但指标需要本方计算',
+        'A/B': '既使用接口直接返回字段，也包含本方计算结果',
+        C: '文档中有接口，但部分说明不完整或互相矛盾',
+        D: '管理后台有此功能，但接口文档没有相应的全局取数接口',
+        E: '希望以后实现，现有两份文档还不能支持'
       };
       const evidenceActions = {
-        A: &#x27;确认接口权限、部署版本和字段单位；提供一份真实或脱敏响应样本。&#x27;,
-        B: &#x27;确认聚合范围、时间边界、异常数据纳入规则和计算口径；提供相关接口样本。&#x27;,
-        &#x27;A/B&#x27;: &#x27;确认直接字段、派生公式、统计边界和异常数据纳入规则；提供相关接口样本。&#x27;,
-        C: &#x27;提供真实或脱敏响应样本、完整参数和枚举字典、字段类型与单位、空值及异常示例。&#x27;,
-        D: &#x27;确认能否新增读取接口或数据文件；说明最小字段、更新频率、历史范围和权限方式。&#x27;,
-        E: &#x27;共同确认业务定义、责任数据源和系统边界；纳入范围后规划跨系统接口或数据方案。&#x27;
+        A: '请确认现场版本、接口权限和字段单位，并提供一份实际或脱敏的请求与返回样本。',
+        B: '除接口样本外，请确认统计范围、时间边界、去重方式，以及退费、冲正等数据是否计入。',
+        'A/B': '请确认直接返回字段和本方计算规则，包括统计范围、时间边界、去重和异常数据处理。',
+        C: '请提供实际或脱敏样本、完整参数取值、字段类型和单位，以及空值和报错示例。',
+        D: '请确认能否新增查询接口或提供数据文件，并说明字段、更新频率、历史范围和权限。',
+        E: '请先确认指标定义、数据由哪个系统负责提供，以及是否纳入本次或后续建设范围。'
       };
       const confirmationMeanings = {
-        pending: &#x27;尚未与对方确认可用性、权限、字段和真实样本&#x27;,
-        confirmed: &#x27;对方已明确可以提供，尚未取得真实响应&#x27;,
-        sampled: &#x27;已取得真实或脱敏样本，正在验证字段与口径&#x27;,
-        verified: &#x27;已完成接口联调和口径验证&#x27;,
-        unavailable: &#x27;不可提供、无权限或已决定关闭&#x27;
+        pending: '尚未与对方确认可用性、权限、字段和真实样本',
+        confirmed: '对方已明确可以提供，尚未取得真实响应',
+        sampled: '已取得实际或脱敏样本，正在核对字段与统计规则',
+        verified: '已完成实际接口测试，字段、权限和统计规则均已确认',
+        unavailable: '不可提供、无权限或已决定关闭'
       };
-      const confirmationLabels = { pending: &#x27;待沟通&#x27;, confirmed: &#x27;已确认&#x27;, sampled: &#x27;已取样&#x27;, verified: &#x27;已验证&#x27;, unavailable: &#x27;不可提供&#x27; };
+      const confirmationLabels = { pending: '待沟通', confirmed: '已确认', sampled: '已取样', verified: '已验证', unavailable: '不可提供' };
 
       const profiles = {
         basic: {
-          name: &#x27;基础版 · 运行可见&#x27;,
-          modules: [&#x27;overview&#x27;, &#x27;online&#x27;, &#x27;auth&#x27;],
-          scope: &#x27;文档确定性接口 · 聚合视图&#x27;,
-          drill: &#x27;最多 1 层&#x27;,
-          extra: &#x27;不开放账号明细&#x27;,
-          blueprint: &#x27;增强候选 8 项&#x27;
+          name: '基础版 · 核心看板',
+          modules: ['overview', 'online', 'auth'],
+          scope: '优先展示文档说明较完整的汇总指标',
+          drill: '最多 1 层',
+          extra: '不开放账号明细',
+          blueprint: '待补充功能 8 项'
         },
         standard: {
-          name: &#x27;标准版 · 运营分析&#x27;,
-          modules: [&#x27;overview&#x27;, &#x27;finance&#x27;, &#x27;users&#x27;, &#x27;online&#x27;, &#x27;auth&#x27;],
-          scope: &#x27;聚合 + 维度分析 · 账号 360 入口&#x27;,
-          drill: &#x27;最多 2 层&#x27;,
-          extra: &#x27;C 级需真实样本&#x27;,
-          blueprint: &#x27;增强候选 5 项&#x27;
+          name: '标准版 · 运营分析',
+          modules: ['overview', 'finance', 'users', 'online', 'auth'],
+          scope: '增加分类分析和账号级查询入口',
+          drill: '最多 2 层',
+          extra: '部分接口需样本确认',
+          blueprint: '待补充功能 5 项'
         },
         enhanced: {
-          name: &#x27;增强版 · 经营闭环&#x27;,
-          modules: [&#x27;overview&#x27;, &#x27;finance&#x27;, &#x27;users&#x27;, &#x27;online&#x27;, &#x27;auth&#x27;, &#x27;ops&#x27;],
-          scope: &#x27;A-D 级能力 · 补充数据接入&#x27;,
-          drill: &#x27;按指标最多 3 层&#x27;,
-          extra: &#x27;含权限化明细&#x27;,
-          blueprint: &#x27;E 级蓝图未启用&#x27;
+          name: '增强版 · 财务与运维',
+          modules: ['overview', 'finance', 'users', 'online', 'auth', 'ops'],
+          scope: '增加对方补充数据、财务管理和运维内容',
+          drill: '按指标最多 3 层',
+          extra: '敏感明细按权限开放',
+          blueprint: '跨系统目标功能暂不启用'
         }
       };
 
       const modules = {
-        overview: &#x27;经营总览&#x27;,
-        finance: &#x27;财务分析&#x27;,
-        users: &#x27;用户分析&#x27;,
-        online: &#x27;在线运营&#x27;,
-        auth: &#x27;认证质量&#x27;,
-        ops: &#x27;系统运维&#x27;
+        overview: '经营总览',
+        finance: '财务分析',
+        users: '用户分析',
+        online: '在线运营',
+        auth: '认证质量',
+        ops: '系统运维'
       };
 
       const components = {
-        F01:{name:&#x27;周期缴费总额&#x27;,value:&#x27;¥286,420&#x27;,unit:&#x27;&#x27;,note:&#x27;较上一周期 +8.4%&#x27;,trend:&#x27;up&#x27;,evidence:&#x27;B&#x27;,confirmation:&#x27;pending&#x27;,source:&#x27;/financial/pay-type + /financial/payment-overview&#x27;,fields:&#x27;pay_type_id, totalPayment&#x27;,formula:&#x27;按缴费方式求和&#x27;,ref:&#x27;REST 073、088&#x27;,model:&#x27;financeTotal&#x27;,type:&#x27;line&#x27;,series:[19,24,21,31,38,43,52],series2:[17,19,24,26,31,38,41],legend:[&#x27;缴费金额&#x27;,&#x27;上一周期&#x27;],chartUnit:&#x27;万元&#x27;},
-        F02:{name:&#x27;周期缴费笔数&#x27;,value:&#x27;4,862&#x27;,unit:&#x27;笔&#x27;,note:&#x27;较上一周期 +5.2%&#x27;,trend:&#x27;up&#x27;,evidence:&#x27;B&#x27;,confirmation:&#x27;pending&#x27;,source:&#x27;/financial/payment-overview&#x27;,fields:&#x27;totalNum&#x27;,formula:&#x27;按缴费方式求和&#x27;,ref:&#x27;REST 088&#x27;,model:&#x27;financeCount&#x27;,type:&#x27;line&#x27;,series:[520,608,574,661,706,834,959],legend:[&#x27;缴费笔数&#x27;],chartUnit:&#x27;笔&#x27;},
-        F03:{name:&#x27;平均单笔缴费&#x27;,value:&#x27;58.91&#x27;,unit:&#x27;元&#x27;,note:&#x27;金额 ÷ 笔数&#x27;,evidence:&#x27;B&#x27;,confirmation:&#x27;pending&#x27;,source:&#x27;F01 + F02 派生&#x27;,fields:&#x27;totalPayment, totalNum&#x27;,formula:&#x27;缴费总额 / 缴费笔数&#x27;,ref:&#x27;REST 088 派生&#x27;,model:&#x27;financeAverage&#x27;,type:&#x27;bars&#x27;,bars:[[&#x27;电子钱包&#x27;,&#x27;62.40元&#x27;,84],[&#x27;微信支付&#x27;,&#x27;57.80元&#x27;,77],[&#x27;支付宝&#x27;,&#x27;54.60元&#x27;,72],[&#x27;其他&#x27;,&#x27;46.20元&#x27;,61]]},
-        F04:{name:&#x27;周期变化&#x27;,value:&#x27;+8.4%&#x27;,unit:&#x27;&#x27;,note:&#x27;等长周期比较&#x27;,trend:&#x27;up&#x27;,evidence:&#x27;B&#x27;,confirmation:&#x27;pending&#x27;,source:&#x27;/financial/payment-overview&#x27;,fields:&#x27;当前期、上一等长周期&#x27;,formula:&#x27;(本期-上期)/上期&#x27;,ref:&#x27;REST 088 派生&#x27;,model:&#x27;financeCompare&#x27;,type:&#x27;line&#x27;,series:[5.1,3.7,6.2,4.8,7.1,6.4,8.4],legend:[&#x27;环比变化&#x27;],chartUnit:&#x27;%&#x27;},
-        F05:{name:&#x27;缴费金额与笔数趋势&#x27;,value:&#x27;&#x27;,note:&#x27;金额与笔数双口径&#x27;,evidence:&#x27;B&#x27;,confirmation:&#x27;pending&#x27;,source:&#x27;/financial/payment-overview&#x27;,fields:&#x27;totalPayment, totalNum&#x27;,formula:&#x27;按时间桶与缴费方式聚合&#x27;,ref:&#x27;REST 073、088；手册财务详情&#x27;,model:&#x27;financeTotal&#x27;,type:&#x27;line&#x27;,series:[24,31,28,42,39,49,57],series2:[21,25,27,32,36,41,46],legend:[&#x27;金额&#x27;,&#x27;笔数指数&#x27;],chartUnit:&#x27;指数&#x27;},
-        F06:{name:&#x27;缴费方式构成&#x27;,value:&#x27;&#x27;,note:&#x27;金额占比 · 4 类&#x27;,evidence:&#x27;B&#x27;,confirmation:&#x27;pending&#x27;,source:&#x27;/financial/pay-type + /financial/payment-overview&#x27;,fields:&#x27;pay_name, totalPayment, totalNum&#x27;,formula:&#x27;单方式金额 / 总金额&#x27;,ref:&#x27;REST 073、088&#x27;,model:&#x27;financeMethod&#x27;,type:&#x27;bars&#x27;,bars:[[&#x27;电子钱包&#x27;,&#x27;¥118,420&#x27;,82],[&#x27;微信支付&#x27;,&#x27;¥86,760&#x27;,60],[&#x27;支付宝&#x27;,&#x27;¥61,940&#x27;,43],[&#x27;其他&#x27;,&#x27;¥19,300&#x27;,14]]},
-        F08:{name:&#x27;退费金额&#x27;,value:&#x27;¥12,680&#x27;,unit:&#x27;&#x27;,note:&#x27;需要全局退费数据&#x27;,trend:&#x27;warn&#x27;,evidence:&#x27;D&#x27;,confirmation:&#x27;pending&#x27;,source:&#x27;需对方提供全局退费汇总&#x27;,fields:&#x27;refund_amount, refund_count&#x27;,formula:&#x27;同周期全局汇总&#x27;,ref:&#x27;手册财务管理-退费&#x27;,model:&#x27;refund&#x27;,type:&#x27;line&#x27;,series:[1.1,1.8,1.4,2.2,1.7,2.5,2.0],legend:[&#x27;退费金额&#x27;],chartUnit:&#x27;千元&#x27;},
-        F10:{name:&#x27;产品收入排行&#x27;,value:&#x27;&#x27;,note:&#x27;需要产品维度收入&#x27;,evidence:&#x27;D&#x27;,confirmation:&#x27;pending&#x27;,source:&#x27;需对方提供产品收入接口&#x27;,fields:&#x27;product_id, product_name, revenue&#x27;,formula:&#x27;需确认退款和历史归属&#x27;,ref:&#x27;手册产品收入统计&#x27;,model:&#x27;productRevenue&#x27;,type:&#x27;bars&#x27;,bars:[[&#x27;产品 A&#x27;,&#x27;¥96,800&#x27;,88],[&#x27;产品 B&#x27;,&#x27;¥78,420&#x27;,71],[&#x27;产品 C&#x27;,&#x27;¥54,300&#x27;,49],[&#x27;其他&#x27;,&#x27;¥56,900&#x27;,52]]},
-        F11:{name:&#x27;用户组收入排行&#x27;,value:&#x27;&#x27;,note:&#x27;需要用户组维度收入&#x27;,evidence:&#x27;D&#x27;,confirmation:&#x27;pending&#x27;,source:&#x27;需对方提供用户组收入接口&#x27;,fields:&#x27;group_id, group_name, revenue&#x27;,formula:&#x27;按确认后的历史归属汇总&#x27;,ref:&#x27;手册用户组收入统计&#x27;,model:&#x27;groupRevenue&#x27;,type:&#x27;bars&#x27;,bars:[[&#x27;用户组 A&#x27;,&#x27;¥84,100&#x27;,91],[&#x27;用户组 B&#x27;,&#x27;¥71,800&#x27;,78],[&#x27;用户组 C&#x27;,&#x27;¥52,600&#x27;,57],[&#x27;其他&#x27;,&#x27;¥77,920&#x27;,84]]},
-        F12:{name:&#x27;结算统计&#x27;,value:&#x27;¥241,600&#x27;,unit:&#x27;&#x27;,note:&#x27;本月已结算&#x27;,evidence:&#x27;D&#x27;,confirmation:&#x27;pending&#x27;,source:&#x27;需对方提供结算统计&#x27;,fields:&#x27;period, product/group, amount, status&#x27;,formula:&#x27;按结算周期汇总&#x27;,ref:&#x27;手册结算统计&#x27;,model:&#x27;settlement&#x27;,type:&#x27;line&#x27;,series:[18,28,35,44,61,76,89],legend:[&#x27;结算进度&#x27;],chartUnit:&#x27;%&#x27;},
-        O01:{name:&#x27;当前在线用户&#x27;,value:&#x27;8,426&#x27;,unit:&#x27;人&#x27;,note:&#x27;实时账号快照&#x27;,evidence:&#x27;A&#x27;,confirmation:&#x27;pending&#x27;,source:&#x27;/base/get-online-count&#x27;,fields:&#x27;data.user_count&#x27;,formula:&#x27;直接展示&#x27;,ref:&#x27;REST 170&#x27;,model:&#x27;onlineUser&#x27;,type:&#x27;line&#x27;,series:[6120,7035,7520,6984,7840,8120,8426],legend:[&#x27;在线用户&#x27;],chartUnit:&#x27;人&#x27;},
-        O02:{name:&#x27;当前在线设备&#x27;,value:&#x27;10,315&#x27;,unit:&#x27;台&#x27;,note:&#x27;人均 1.22 台&#x27;,evidence:&#x27;A&#x27;,confirmation:&#x27;pending&#x27;,source:&#x27;/base/get-online-count&#x27;,fields:&#x27;data.device_count&#x27;,formula:&#x27;直接展示&#x27;,ref:&#x27;REST 170&#x27;,model:&#x27;onlineDevice&#x27;,type:&#x27;line&#x27;,series:[7440,8160,8810,8420,9360,9840,10315],legend:[&#x27;在线设备&#x27;],chartUnit:&#x27;台&#x27;},
-        O03:{name:&#x27;在线用户趋势&#x27;,value:&#x27;&#x27;,note:&#x27;约 5 分钟粒度&#x27;,evidence:&#x27;A&#x27;,confirmation:&#x27;pending&#x27;,source:&#x27;/online-report/index?type=user&#x27;,fields:&#x27;data.detail, data.table&#x27;,formula:&#x27;接口时间序列&#x27;,ref:&#x27;REST 167；手册在线数统计&#x27;,model:&#x27;onlineUser&#x27;,type:&#x27;line&#x27;,series:[6900,7230,7810,7480,8130,7980,8426],series2:[7020,7110,7350,7620,7770,8010,8150],legend:[&#x27;今日&#x27;,&#x27;昨日&#x27;],chartUnit:&#x27;人&#x27;},
-        O04:{name:&#x27;在线设备趋势&#x27;,value:&#x27;&#x27;,note:&#x27;约 5 分钟粒度&#x27;,evidence:&#x27;A&#x27;,confirmation:&#x27;pending&#x27;,source:&#x27;/online-report/index?type=device&#x27;,fields:&#x27;data.detail, data.table&#x27;,formula:&#x27;接口时间序列&#x27;,ref:&#x27;REST 167&#x27;,model:&#x27;onlineDevice&#x27;,type:&#x27;line&#x27;,series:[8240,8610,9180,8870,9510,9860,10315],series2:[8050,8320,8710,9020,9240,9480,9720],legend:[&#x27;今日&#x27;,&#x27;昨日&#x27;],chartUnit:&#x27;台&#x27;},
-        O05:{name:&#x27;在线用户组分布&#x27;,value:&#x27;&#x27;,note:&#x27;账号与设备双口径&#x27;,evidence:&#x27;A&#x27;,confirmation:&#x27;pending&#x27;,source:&#x27;/base/get-online-count&#x27;,fields:&#x27;group_sort[]&#x27;,formula:&#x27;按用户组直接展示&#x27;,ref:&#x27;REST 170&#x27;,model:&#x27;onlineGroup&#x27;,type:&#x27;bars&#x27;,bars:[[&#x27;用户组 A&#x27;,&#x27;2,840人&#x27;,84],[&#x27;用户组 B&#x27;,&#x27;2,126人&#x27;,63],[&#x27;用户组 C&#x27;,&#x27;1,705人&#x27;,50],[&#x27;其他&#x27;,&#x27;1,755人&#x27;,52]]},
-        O06:{name:&#x27;在线产品分布&#x27;,value:&#x27;&#x27;,note:&#x27;当前在线产品结构&#x27;,evidence:&#x27;A&#x27;,confirmation:&#x27;pending&#x27;,source:&#x27;/base/get-online-count&#x27;,fields:&#x27;product_sort[]&#x27;,formula:&#x27;按产品直接展示&#x27;,ref:&#x27;REST 170；手册在线分析&#x27;,model:&#x27;onlineProduct&#x27;,type:&#x27;bars&#x27;,bars:[[&#x27;产品 A&#x27;,&#x27;3,126人&#x27;,89],[&#x27;产品 B&#x27;,&#x27;2,408人&#x27;,69],[&#x27;产品 C&#x27;,&#x27;1,684人&#x27;,48],[&#x27;其他&#x27;,&#x27;1,208人&#x27;,35]]},
-        O09:{name:&#x27;在线设备明细&#x27;,value:&#x27;10,315&#x27;,unit:&#x27;台&#x27;,note:&#x27;标准版开放列表&#x27;,evidence:&#x27;A&#x27;,confirmation:&#x27;pending&#x27;,source:&#x27;/base/online-equipment&#x27;,fields:&#x27;user_name, user_ip, user_mac, bytes_in/out, add_time, os_name&#x27;,formula:&#x27;分页明细&#x27;,ref:&#x27;REST 在线设备接口&#x27;,model:&#x27;onlineDevice&#x27;,type:&#x27;bars&#x27;,bars:[[&#x27;Windows&#x27;,&#x27;4,620台&#x27;,92],[&#x27;Android&#x27;,&#x27;2,860台&#x27;,57],[&#x27;iOS&#x27;,&#x27;1,946台&#x27;,39],[&#x27;其他&#x27;,&#x27;889台&#x27;,18]]},
-        O11:{name:&#x27;终端与 OS 结构&#x27;,value:&#x27;&#x27;,note:&#x27;响应结构待样本确认&#x27;,evidence:&#x27;C&#x27;,confirmation:&#x27;pending&#x27;,source:&#x27;/online-report/other&#x27;,fields:&#x27;legend, xAxis, series&#x27;,formula:&#x27;按 type 切换维度&#x27;,ref:&#x27;REST 168；手册在线分析&#x27;,model:&#x27;terminal&#x27;,type:&#x27;bars&#x27;,bars:[[&#x27;Windows&#x27;,&#x27;44.8%&#x27;,90],[&#x27;Android&#x27;,&#x27;27.7%&#x27;,56],[&#x27;iOS&#x27;,&#x27;18.9%&#x27;,38],[&#x27;其他&#x27;,&#x27;8.6%&#x27;,17]]},
-        U01:{name:&#x27;昨日认证次数&#x27;,value:&#x27;31,908&#x27;,unit:&#x27;次&#x27;,note:&#x27;固定昨日口径&#x27;,evidence:&#x27;A&#x27;,confirmation:&#x27;pending&#x27;,source:&#x27;/api/v1/detail/auth-count&#x27;,fields:&#x27;data&#x27;,formula:&#x27;直接展示&#x27;,ref:&#x27;REST 143&#x27;,model:&#x27;authVolume&#x27;,type:&#x27;line&#x27;,series:[3160,4010,4860,5120,4770,5240,4748],legend:[&#x27;认证次数&#x27;],chartUnit:&#x27;次&#x27;},
-        U02:{name:&#x27;日联网用户&#x27;,value:&#x27;16,284&#x27;,unit:&#x27;人&#x27;,note:&#x27;按下线时间统计&#x27;,evidence:&#x27;A&#x27;,confirmation:&#x27;pending&#x27;,source:&#x27;/detail/count&#x27;,fields:&#x27;data.count&#x27;,formula:&#x27;指定日期直接展示&#x27;,ref:&#x27;REST 172&#x27;,model:&#x27;activeUser&#x27;,type:&#x27;line&#x27;,series:[14920,15380,15110,15840,16020,15980,16284],legend:[&#x27;日联网用户&#x27;],chartUnit:&#x27;人&#x27;},
-        U03:{name:&#x27;月联网活跃用户&#x27;,value:&#x27;18,642&#x27;,unit:&#x27;人&#x27;,note:&#x27;月份参数待样本确认&#x27;,evidence:&#x27;C&#x27;,confirmation:&#x27;pending&#x27;,source:&#x27;/detail/month-count&#x27;,fields:&#x27;data.count&#x27;,formula:&#x27;月度去重账号数&#x27;,ref:&#x27;REST 173&#x27;,model:&#x27;activeUser&#x27;,type:&#x27;line&#x27;,series:[16810,17240,17680,17390,18120,18410,18642],legend:[&#x27;月活跃用户&#x27;],chartUnit:&#x27;人&#x27;},
-        U04:{name:&#x27;流量 Top&#x27;,value:&#x27;&#x27;,note:&#x27;账号总流量排行&#x27;,evidence:&#x27;A&#x27;,confirmation:&#x27;pending&#x27;,source:&#x27;/detail/top&#x27;,fields:&#x27;user_name, total_bytes&#x27;,formula:&#x27;周期内按总流量降序&#x27;,ref:&#x27;REST 145&#x27;,model:&#x27;traffic&#x27;,type:&#x27;bars&#x27;,bars:[[&#x27;usr_10**&#x27;,&#x27;842 GB&#x27;,92],[&#x27;usr_08**&#x27;,&#x27;731 GB&#x27;,80],[&#x27;usr_31**&#x27;,&#x27;596 GB&#x27;,65],[&#x27;usr_22**&#x27;,&#x27;468 GB&#x27;,51]]},
-        U05:{name:&#x27;认证失败分析&#x27;,value:&#x27;1,284&#x27;,unit:&#x27;次&#x27;,note:&#x27;失败率需口径确认&#x27;,trend:&#x27;warn&#x27;,evidence:&#x27;A/B&#x27;,confirmation:&#x27;pending&#x27;,source:&#x27;/log/auth-err + /log/login&#x27;,fields:&#x27;auth_err, top_err_msg, top_auth_err, err_msg&#x27;,formula:&#x27;失败总数及原因/账号聚合&#x27;,ref:&#x27;REST 157、158&#x27;,model:&#x27;authError&#x27;,type:&#x27;bars&#x27;,bars:[[&#x27;密码错误&#x27;,&#x27;516次&#x27;,100],[&#x27;账号状态&#x27;,&#x27;294次&#x27;,57],[&#x27;并发限制&#x27;,&#x27;187次&#x27;,36],[&#x27;其他&#x27;,&#x27;287次&#x27;,56]]},
-        U06:{name:&#x27;用户总数&#x27;,value:&#x27;24,936&#x27;,unit:&#x27;人&#x27;,note:&#x27;无筛选范围待确认&#x27;,evidence:&#x27;C&#x27;,confirmation:&#x27;pending&#x27;,source:&#x27;/user/super-search&#x27;,fields:&#x27;_meta.totalCount&#x27;,formula:&#x27;无筛选分页总数&#x27;,ref:&#x27;REST 021&#x27;,model:&#x27;userBase&#x27;,type:&#x27;bars&#x27;,bars:[[&#x27;正常&#x27;,&#x27;21,580人&#x27;,91],[&#x27;暂停&#x27;,&#x27;1,724人&#x27;,7],[&#x27;产品到期&#x27;,&#x27;1,248人&#x27;,5],[&#x27;其他&#x27;,&#x27;384人&#x27;,2]]},
-        U08:{name:&#x27;产品到期预警&#x27;,value:&#x27;326&#x27;,unit:&#x27;人&#x27;,note:&#x27;未来 30 天&#x27;,trend:&#x27;warn&#x27;,evidence:&#x27;C&#x27;,confirmation:&#x27;pending&#x27;,source:&#x27;/product/expire&#x27;,fields:&#x27;user_name, products_id, expired_at, group_id&#x27;,formula:&#x27;按到期时间窗分页统计&#x27;,ref:&#x27;REST 100&#x27;,model:&#x27;expiry&#x27;,type:&#x27;bars&#x27;,bars:[[&#x27;7 天内&#x27;,&#x27;84人&#x27;,26],[&#x27;8-15 天&#x27;,&#x27;102人&#x27;,31],[&#x27;16-30 天&#x27;,&#x27;140人&#x27;,43],[&#x27;已过期&#x27;,&#x27;待确认&#x27;,12]]},
-        U10:{name:&#x27;系统资源监控&#x27;,value:&#x27;正常&#x27;,unit:&#x27;&#x27;,note:&#x27;需要监控数据源&#x27;,evidence:&#x27;D&#x27;,confirmation:&#x27;pending&#x27;,source:&#x27;需监控平台或新增接口&#x27;,fields:&#x27;cpu, memory, load, service_status&#x27;,formula:&#x27;分钟级采样&#x27;,ref:&#x27;手册业务监控&#x27;,model:&#x27;ops&#x27;,type:&#x27;line&#x27;,series:[42,47,51,46,59,54,57],series2:[61,63,65,64,68,70,69],legend:[&#x27;CPU&#x27;,&#x27;内存&#x27;],chartUnit:&#x27;%&#x27;},
-        U11:{name:&#x27;故障与工单&#x27;,value:&#x27;7&#x27;,unit:&#x27;起&#x27;,note:&#x27;2 起处理中&#x27;,trend:&#x27;warn&#x27;,evidence:&#x27;D&#x27;,confirmation:&#x27;pending&#x27;,source:&#x27;需工单或故障数据源&#x27;,fields:&#x27;type, status, created_at, affected_users&#x27;,formula:&#x27;按状态与类型汇总&#x27;,ref:&#x27;手册网络故障管理&#x27;,model:&#x27;fault&#x27;,type:&#x27;bars&#x27;,bars:[[&#x27;认证故障&#x27;,&#x27;3起&#x27;,75],[&#x27;网络故障&#x27;,&#x27;2起&#x27;,50],[&#x27;用户反馈&#x27;,&#x27;2起&#x27;,50],[&#x27;超时 SLA&#x27;,&#x27;1起&#x27;,25]]}
+        F01:{name:'周期缴费总额',value:'¥286,420',unit:'',note:'较上一周期 +8.4%',trend:'up',evidence:'B',confirmation:'pending',source:'/api/v2/financial/pay-type + /api/v2/financial/payment-overview',fields:'pay_type_id, totalPayment',formula:'分别查询各缴费方式，再把 totalPayment 相加',ref:'接口文档 073、088；用户手册第 7 页“财务详情”',model:'financeTotal',type:'line',series:[19,24,21,31,38,43,52],series2:[17,19,24,26,31,38,41],legend:['缴费金额','上一周期'],chartUnit:'万元'},
+        F02:{name:'周期缴费笔数',value:'4,862',unit:'笔',note:'较上一周期 +5.2%',trend:'up',evidence:'B',confirmation:'pending',source:'/api/v2/financial/payment-overview',fields:'totalNum',formula:'分别查询各缴费方式，再把 totalNum 相加',ref:'接口文档 088',model:'financeCount',type:'line',series:[520,608,574,661,706,834,959],legend:['缴费笔数'],chartUnit:'笔'},
+        F03:{name:'平均单笔缴费',value:'58.91',unit:'元',note:'金额 ÷ 笔数',evidence:'B',confirmation:'pending',source:'由 F01“周期缴费总额”和 F02“周期缴费笔数”计算',fields:'totalPayment, totalNum',formula:'周期缴费总额 ÷ 周期缴费笔数；笔数为 0 时显示 --',ref:'接口文档 088，本方计算指标',model:'financeAverage',type:'bars',bars:[['电子钱包','62.40元',84],['微信支付','57.80元',77],['支付宝','54.60元',72],['其他','46.20元',61]]},
+        F04:{name:'周期变化',value:'+8.4%',unit:'',note:'等长周期比较',trend:'up',evidence:'B',confirmation:'pending',source:'/api/v2/financial/payment-overview',fields:'本期 totalPayment、上一等长周期 totalPayment',formula:'（本期金额 - 上期金额）÷ 上期金额；上期为 0 时不显示百分比',ref:'接口文档 088，本方计算指标',model:'financeCompare',type:'line',series:[5.1,3.7,6.2,4.8,7.1,6.4,8.4],legend:['环比变化'],chartUnit:'%'},
+        F05:{name:'缴费金额与笔数趋势',value:'',note:'同时展示金额和笔数',evidence:'B',confirmation:'pending',source:'/api/v2/financial/payment-overview',fields:'start_time, stop_time, pay_type_id, totalPayment, totalNum',formula:'按小时或自然日分段查询，再按时间顺序展示金额和笔数',ref:'接口文档 073、088；用户手册第 7 页“财务详情”',model:'financeTotal',type:'line',series:[24,31,28,42,39,49,57],series2:[21,25,27,32,36,41,46],legend:['金额','笔数指数'],chartUnit:'指数'},
+        F06:{name:'缴费方式构成',value:'',note:'金额占比 · 4 类',evidence:'B',confirmation:'pending',source:'/api/v2/financial/pay-type + /api/v2/financial/payment-overview',fields:'pay_type_id, pay_name, totalPayment, totalNum',formula:'每种缴费方式金额 ÷ 全部缴费金额',ref:'接口文档 073、088；用户手册第 88-90 页“财务报表”',model:'financeMethod',type:'bars',bars:[['电子钱包','¥118,420',82],['微信支付','¥86,760',60],['支付宝','¥61,940',43],['其他','¥19,300',14]]},
+        F08:{name:'退费金额',value:'¥12,680',unit:'',note:'需要全局退费数据',trend:'warn',evidence:'D',confirmation:'pending',source:'现有 /api/v2/financial/refund 只能按账号查询；全局退费需对方补充',fields:'refund_amount, refund_count, refund_time, original_order_no',formula:'统计所选周期内全部有效退费金额和笔数',ref:'接口文档 089（单账号退费）；用户手册第 7 页“财务详情”、第 47 页“退费清单”',model:'refund',type:'line',series:[1.1,1.8,1.4,2.2,1.7,2.5,2.0],legend:['退费金额'],chartUnit:'千元'},
+        F10:{name:'产品收入排行',value:'',note:'需要产品维度收入',evidence:'D',confirmation:'pending',source:'需对方新增产品收入查询接口或提供数据文件',fields:'product_id, product_name, payment_amount, refund_amount, order_count',formula:'按产品汇总所选周期内的缴费金额；是否扣除退费需先确认',ref:'用户手册第 90 页“产品收入统计”',model:'productRevenue',type:'bars',bars:[['产品 A','¥96,800',88],['产品 B','¥78,420',71],['产品 C','¥54,300',49],['其他','¥56,900',52]]},
+        F11:{name:'用户组收入排行',value:'',note:'需要用户组维度收入',evidence:'D',confirmation:'pending',source:'需对方新增用户组收入查询接口或提供数据文件',fields:'group_id, group_name, payment_amount, refund_amount, user_count',formula:'按交易发生时或当前用户组汇总，归属方式需先确认',ref:'用户手册第 90 页“按用户组收入统计”',model:'groupRevenue',type:'bars',bars:[['用户组 A','¥84,100',91],['用户组 B','¥71,800',78],['用户组 C','¥52,600',57],['其他','¥77,920',84]]},
+        F12:{name:'结算统计',value:'¥241,600',unit:'',note:'本月已结算',evidence:'D',confirmation:'pending',source:'需对方新增结算统计查询接口或提供数据文件',fields:'settlement_period, product_id/group_id, payable, settled, unsettled, status',formula:'按结算周期汇总应结、已结和未结金额',ref:'用户手册第 90 页“结算统计”',model:'settlement',type:'line',series:[18,28,35,44,61,76,89],legend:['结算进度'],chartUnit:'%'},
+        O01:{name:'当前在线用户',value:'8,426',unit:'人',note:'实时账号快照',evidence:'A',confirmation:'pending',source:'/api/v2/base/get-online-count',fields:'data.user_count',formula:'直接展示接口返回的在线用户数；账号去重规则需确认',ref:'接口文档 170；用户手册第 7 页“在线人数统计”',model:'onlineUser',type:'line',series:[6120,7035,7520,6984,7840,8120,8426],legend:['在线用户'],chartUnit:'人'},
+        O02:{name:'当前在线设备',value:'10,315',unit:'台',note:'人均 1.22 台',evidence:'A',confirmation:'pending',source:'/api/v2/base/get-online-count',fields:'data.device_count',formula:'直接展示接口返回的在线设备数；设备去重规则需确认',ref:'接口文档 170；用户手册第 7 页系统概况截图',model:'onlineDevice',type:'line',series:[7440,8160,8810,8420,9360,9840,10315],legend:['在线设备'],chartUnit:'台'},
+        O03:{name:'在线用户趋势',value:'',note:'约 5 分钟粒度',evidence:'A',confirmation:'pending',source:'/api/v2/online-report/index?type=user',fields:'start_time, end_time, type, data.detail, data.table',formula:'按接口返回的时间点展示在线用户数',ref:'接口文档 167；用户手册第 94 页“在线数统计”',model:'onlineUser',type:'line',series:[6900,7230,7810,7480,8130,7980,8426],series2:[7020,7110,7350,7620,7770,8010,8150],legend:['今日','昨日'],chartUnit:'人'},
+        O04:{name:'在线设备趋势',value:'',note:'约 5 分钟粒度',evidence:'A',confirmation:'pending',source:'/api/v2/online-report/index?type=device',fields:'start_time, end_time, type, data.detail, data.table',formula:'按接口返回的时间点展示在线设备数',ref:'接口文档 167；用户手册第 94 页“在线数统计”',model:'onlineDevice',type:'line',series:[8240,8610,9180,8870,9510,9860,10315],series2:[8050,8320,8710,9020,9240,9480,9720],legend:['今日','昨日'],chartUnit:'台'},
+        O05:{name:'在线用户组分布',value:'',note:'同时展示账号和设备',evidence:'A',confirmation:'pending',source:'/api/v2/base/get-online-count',fields:'data.group_sort[].id/name/online_user_count/device_count/user_count',formula:'按用户组展示在线账号数和设备数',ref:'接口文档 170',model:'onlineGroup',type:'bars',bars:[['用户组 A','2,840人',84],['用户组 B','2,126人',63],['用户组 C','1,705人',50],['其他','1,755人',52]]},
+        O06:{name:'在线产品分布',value:'',note:'当前在线产品结构',evidence:'A',confirmation:'pending',source:'/api/v2/base/get-online-count',fields:'data.product_sort[].id/name/online_user_count/device_count/user_count',formula:'按产品展示在线账号数和设备数',ref:'接口文档 170；用户手册第 94 页“产品分布”',model:'onlineProduct',type:'bars',bars:[['产品 A','3,126人',89],['产品 B','2,408人',69],['产品 C','1,684人',48],['其他','1,208人',35]]},
+        O09:{name:'在线设备明细',value:'10,315',unit:'台',note:'标准版开放列表',evidence:'A',confirmation:'pending',source:'/api/v2/base/online-equipment',fields:'user_name, user_ip, user_mac, bytes_in, bytes_out, add_time, os_name',formula:'按接口分页展示当前在线设备；总数不使用当前页行数计算',ref:'接口文档 140',model:'onlineDevice',type:'bars',bars:[['Windows','4,620台',92],['Android','2,860台',57],['iOS','1,946台',39],['其他','889台',18]]},
+        O11:{name:'终端、系统与策略',value:'',note:'返回内容待样本确认',evidence:'C',confirmation:'pending',source:'/api/v2/online-report/other',fields:'type=os_name/control/group/products/billing 等；data.legend/xAxis/series',formula:'按 type 选择统计维度，再展示接口返回的时间序列或分类结果',ref:'接口文档 168；用户手册第 94-96 页“运营-在线分析”',model:'terminal',type:'bars',bars:[['Windows','44.8%',90],['Android','27.7%',56],['iOS','18.9%',38],['其他','8.6%',17]]},
+        U01:{name:'昨日认证次数',value:'31,908',unit:'次',note:'固定统计昨日',evidence:'A',confirmation:'pending',source:'/api/v1/detail/auth-count',fields:'data',formula:'直接展示接口返回的昨日认证次数；是否包含失败认证需确认',ref:'接口文档 143',model:'authVolume',type:'line',series:[3160,4010,4860,5120,4770,5240,4748],legend:['认证次数'],chartUnit:'次'},
+        U02:{name:'日联网用户',value:'16,284',unit:'人',note:'按下线时间统计',evidence:'A',confirmation:'pending',source:'/api/v2/detail/count',fields:'drop_time, data.count',formula:'按接口说明，以指定日期的下线时间统计当天联网账号数',ref:'接口文档 172（注明 2024-07-25 接口版本后支持）',model:'activeUser',type:'line',series:[14920,15380,15110,15840,16020,15980,16284],legend:['日联网用户'],chartUnit:'人'},
+        U03:{name:'月联网活跃用户',value:'18,642',unit:'人',note:'月份参数待样本确认',evidence:'C',confirmation:'pending',source:'/api/v2/detail/month-count',fields:'date, data.count',formula:'直接展示接口返回的月活跃账号数；去重方式和月份边界需确认',ref:'接口文档 173（date 说明、类型和示例互相矛盾）',model:'activeUser',type:'line',series:[16810,17240,17680,17390,18120,18410,18642],legend:['月活跃用户'],chartUnit:'人'},
+        U04:{name:'账号流量排行',value:'',note:'按总流量从高到低',evidence:'A',confirmation:'pending',source:'/api/v2/detail/top',fields:'add_time, drop_time, limit, data[].user_name, data[].total_bytes',formula:'按所选周期的 total_bytes 从高到低排列；文档单位为 Byte',ref:'接口文档 145',model:'traffic',type:'bars',bars:[['usr_10**','842 GB',92],['usr_08**','731 GB',80],['usr_31**','596 GB',65],['usr_22**','468 GB',51]]},
+        U05:{name:'认证失败分析',value:'1,284',unit:'次',note:'失败率算法待确认',trend:'warn',evidence:'A/B',confirmation:'pending',source:'/api/v2/log/auth-err + /api/v2/log/login',fields:'auth_err, top_err_msg, top_auth_err, err_msg, user_name, user_ip, user_mac',formula:'接口 158 返回错误趋势和排行；接口 157 用于查看对应的认证日志明细',ref:'接口文档 157、158；用户手册第 93 页“认证错误”',model:'authError',type:'bars',bars:[['密码错误','516次',100],['账号状态','294次',57],['并发限制','187次',36],['其他','287次',56]]},
+        U06:{name:'用户总数',value:'24,936',unit:'人',note:'无筛选范围待确认',evidence:'C',confirmation:'pending',source:'/api/v2/user/super-search',fields:'_meta.totalCount',formula:'不填写筛选条件时读取 totalCount；是否代表全系统用户及权限范围需确认',ref:'接口文档 021',model:'userBase',type:'bars',bars:[['正常','21,580人',91],['暂停','1,724人',7],['产品到期','1,248人',5],['其他','384人',2]]},
+        U08:{name:'产品到期预警',value:'326',unit:'人',note:'未来 30 天',trend:'warn',evidence:'C',confirmation:'pending',source:'/api/v2/product/expire',fields:'products_id, start_at, stop_at, page, per-page, data[].user_name/expired_at/group_id',formula:'按未来时间段分页查询并累计；文档未给总数和结束标志，需用样本确认分页方式',ref:'接口文档 100',model:'expiry',type:'bars',bars:[['7 天内','84人',26],['8-15 天','102人',31],['16-30 天','140人',43],['已过期','待确认',12]]},
+        U10:{name:'系统资源监控',value:'正常',unit:'',note:'需要监控数据源',evidence:'D',confirmation:'pending',source:'需由计费系统监控模块或独立监控平台提供',fields:'server/service, cpu, memory, load, status, sampled_at, threshold',formula:'按分钟采集并展示当前值、趋势和超限状态',ref:'用户手册第 101-102 页“业务监控”；现有 REST 文档未找到对应接口',model:'ops',type:'line',series:[42,47,51,46,59,54,57],series2:[61,63,65,64,68,70,69],legend:['CPU','内存'],chartUnit:'%'},
+        U11:{name:'故障与工单',value:'7',unit:'起',note:'2 起处理中',trend:'warn',evidence:'D',confirmation:'pending',source:'需由网络故障管理、服务反馈或独立工单系统提供',fields:'ticket_id, type, status, created_at, recovered_at, affected_users, owner, sla',formula:'按所选周期和处理状态统计故障数量，并计算持续时间',ref:'用户手册第 74 页“网络故障管理”、第 101 页“业务监控”；现有 REST 文档未找到对应接口',model:'fault',type:'bars',bars:[['认证故障','3起',75],['网络故障','2起',50],['用户反馈','2起',50],['超时 SLA','1起',25]]}
+      };
+
+      const componentDescriptions = {
+        F01:'表示所选时间范围内的缴费金额合计，用于观察收费规模。当前名称是“缴费总额”，不等同于扣除退费、冲正和调整后的净收入。',
+        F02:'表示所选时间范围内发生的缴费笔数，用于判断金额变化主要来自交易数量还是单笔金额。哪些订单状态计入需要对方确认。',
+        F03:'表示平均每笔缴费金额，由周期缴费总额除以周期缴费笔数得到。',
+        F04:'比较当前周期和上一段相同时长的缴费金额，用于判断收入是上升还是下降。',
+        F05:'按时间展示缴费金额和缴费笔数的变化，用于定位高峰、低谷和异常波动。',
+        F06:'展示不同缴费方式贡献的金额和笔数，例如电子钱包、微信、支付宝和其他方式。',
+        F08:'表示所选周期内的全局退费金额。当前接口文档只证明可以按账号查询退费记录，因此页面内容属于待补数据的设计示意。',
+        F10:'按产品比较缴费收入，用于判断哪些产品贡献较高。当前手册有报表页面，但接口文档没有全局产品收入接口。',
+        F11:'按用户组比较缴费收入，用于观察不同用户群体的收入贡献。用户组按交易发生时还是当前归属统计需要确认。',
+        F12:'展示某个结算周期内应结、已结和未结金额及处理状态。当前只有手册页面依据，没有相应读取接口。',
+        O01:'表示当前在线的账号数量，是一个实时快照；它不同于一天或一个月内曾经联网的账号数。',
+        O02:'表示当前在线设备数量。同一账号可能对应多台设备，因此设备数通常会高于在线账号数。',
+        O03:'按时间展示在线账号数量变化，用于观察当前和历史时段的在线高峰与低谷。',
+        O04:'按时间展示在线设备数量变化，用于观察设备规模和多设备接入情况。',
+        O05:'按用户组展示当前在线账号和设备分布，用于判断哪些用户组占用较多在线资源。',
+        O06:'按产品展示当前在线账号和设备分布，用于观察不同产品的在线使用情况。',
+        O09:'列出当前在线设备的账号、IP、MAC、系统、上线时间和流量等信息。敏感字段需按角色授权并脱敏。',
+        O11:'按操作系统、产品、用户组、计费策略等维度观察在线流量或时长。接口返回结构没有完整定义，必须取得样本后确定最终图表。',
+        U01:'表示系统在昨日记录的认证次数。该数值是否同时包含成功和失败认证，需要向对方确认。',
+        U02:'表示指定自然日内有联网记录的账号数。接口文档说明按下线时间统计，因此它不是当前在线人数。',
+        U03:'表示指定月份内的活跃账号数。月份参数格式、账号去重方式和月份边界在文档中没有写清楚。',
+        U04:'按所选时间范围内的总流量给账号排序，用于发现流量使用较高的账号；文档说明原始单位为 Byte。',
+        U05:'展示认证失败的时间变化、主要原因和高频账号，并可继续查看对应的认证日志。失败总数和失败率的统计方法需要确认。',
+        U06:'尝试用用户搜索接口在不加筛选条件时返回的 totalCount 表示用户总数。该数字是否覆盖全系统、是否受账号权限限制，需要确认。',
+        U08:'统计未来一段时间内产品即将到期的账号，用于提前提醒续费或处理。它不等同于“全系统过期用户数”。',
+        U10:'展示服务器或服务的 CPU、内存、负载和运行状态，用于发现系统运行异常。现有接口文档没有对应数据接口。',
+        U11:'汇总故障、用户反馈或工单的数量、处理状态、影响范围和持续时间。需要确认数据来自计费系统还是独立工单系统。'
+      };
+
+      const componentQuestions = {
+        F01:'确认 073、088 在现场版本中是否可用；提供完整缴费方式列表和至少一份 088 返回样本；说明金额单位以及失败订单、冲正和历史缴费方式是否计入。',
+        F02:'确认哪些订单状态算一笔；退款或冲正是否影响笔数；各缴费方式是否互斥；提供包含 totalNum 的实际或脱敏样本。',
+        F03:'确认总金额和总笔数是否使用完全相同的订单范围；说明小数位和四舍五入规则。',
+        F04:'确认本期与上期的时区、起止边界、缴费方式范围是否一致；说明上期为 0 时希望怎样展示。',
+        F05:'确认 088 的最大查询跨度和调用次数限制；说明 detail 参数能否直接返回趋势；如不能，确认是否允许按小时或按日分段查询。',
+        F06:'提供 073 的完整方式 ID 与名称；说明已删除方式、历史名称和“其他”如何处理；确认各方式能否直接相加。',
+        F08:'确认是否有管理员级全局退费接口或数据文件；至少提供退费金额、时间、状态、原因、原订单号和账号；说明金额正负、冲正和撤销规则。',
+        F10:'确认能否提供产品收入接口或文件；至少需要产品 ID/名称、缴费金额、退费金额、订单数和时间；说明产品归属按交易发生时还是当前产品。',
+        F11:'确认能否提供用户组收入接口或文件；至少需要用户组、缴费金额、退费金额、用户数和时间；说明换组账号及退费如何归属。',
+        F12:'确认能否提供结算统计接口或文件；至少需要结算周期、批次、应结、已结、未结、调整金额和状态。',
+        O01:'确认在线账号的去重规则、统计范围和更新时间；提供 170 的实际或脱敏样本，并核对总数是否应等于各用户组或产品分组之和。',
+        O02:'确认在线设备的唯一标识和去重规则；说明同一 MAC、IP 或账号多设备时怎样统计；提供 170 的实际或脱敏样本。',
+        O03:'提供 167 在 type=user 时的跨日样本；说明时间点粒度、可查历史范围以及 detail、table 各自表示什么。',
+        O04:'提供 167 在 type=device 时的跨日样本；确认设备趋势采用的去重规则和当前设备总数一致。',
+        O05:'说明 group_sort 中每个字段的含义；确认未知用户组怎样归类，以及各组在线账号数能否相加得到总在线账号数。',
+        O06:'说明一个账号有多个产品时怎样归属；确认 product_sort 各组能否相加，以及停用或历史产品怎样显示。',
+        O09:'确认 140 在当前部署版本中是否保留；提供分页样本、流量单位和在线判断规则；确认账号、IP、MAC 的查看权限与脱敏要求。',
+        O11:'对准备使用的每个 type 分别提供请求与返回样本；说明每个数值代表用户数、设备数、流量还是时长，并给出单位和空值示例。',
+        U01:'确认接口是否固定统计昨日自然日、采用哪个时区，以及返回次数是否同时包含成功和失败认证。',
+        U02:'确认现场版本是否支持 172；说明是否按账号去重、跨日会话归到哪一天，并提供至少两个日期的样本。',
+        U03:'提供一份能够成功调用 173 的请求和返回；明确 date 到底传年月字符串还是时间戳，并说明月度去重和月份边界。',
+        U04:'确认 total_bytes 是否为上行和下行之和；说明时间边界、最多返回多少名、Byte 换算规则和账号脱敏要求。',
+        U05:'提供 158 的完整样本和错误原因说明，并提供 157 的脱敏分页样本；确认失败总数怎样求和、失败率用什么作分母。',
+        U06:'确认 021 不填写筛选条件时能否查询；说明 _meta.totalCount 是全系统还是当前权限范围，以及是否包含过期、禁用和销户账号。',
+        U08:'确认 100 能否不指定产品查询；说明怎样判断分页结束并取得完整数量；明确产品到期和全系统用户过期的区别。',
+        U10:'确认数据由计费系统还是独立监控平台提供；列出服务器和服务范围，并提供 CPU、内存、负载、状态、采样时间和阈值。',
+        U11:'确认故障数据来自计费系统还是工单系统；至少提供故障编号、类型、状态、开始/恢复时间、影响用户、负责人和处理时限。'
+      };
+
+      const componentFallbacks = {
+        F01:'核心指标保留；接口调用失败时显示“缴费数据暂不可用”，不用其他数字代替。', F02:'核心指标保留；调用失败时显示不可用。', F03:'隐藏平均单笔缴费。', F04:'只显示当前周期金额，不显示变化率。', F05:'降低到按日展示或只保留周期汇总。', F06:'只展示已确认的缴费方式，其余合并为“其他”。',
+        F08:'隐藏退费金额、退费率和净收入。', F10:'改用缴费方式构成。', F11:'改用在线用户组分布。', F12:'改用月度缴费趋势。',
+        O01:'保留位置并显示接口不可用，不用列表行数代替。', O02:'保留位置并显示接口不可用。', O03:'改为当前在线用户及用户组分布。', O04:'与在线用户趋势合并，或只显示当前设备数。', O05:'只显示当前在线总数。', O06:'改用在线用户组分布。', O09:'只保留设备总量及分布，不开放明细列表。', O11:'改用在线产品或用户组分布。',
+        U01:'保留固定“昨日认证次数”，不扩展为任意日期趋势。', U02:'未确认版本支持前不展示日联网用户。', U03:'改用日联网用户或在线趋势。', U04:'改用在线产品分布。', U05:'只显示昨日认证次数，或隐藏错误分析。', U06:'隐藏，或改名为“当前权限范围内用户数”。', U08:'隐藏预警，不改成“全系统过期用户数”。', U10:'关闭系统运维模块。', U11:'关闭故障模块。'
       };
 
       const layouts = {
         basic: {
-          overview:{k:[&#x27;F01&#x27;,&#x27;F02&#x27;,&#x27;O01&#x27;,&#x27;O02&#x27;],p:[[&#x27;O03&#x27;,7],[&#x27;F06&#x27;,5],[&#x27;O05&#x27;,4],[&#x27;O06&#x27;,4],[&#x27;U01&#x27;,4]]},
-          online:{k:[&#x27;O01&#x27;,&#x27;O02&#x27;,&#x27;U02&#x27;,&#x27;U01&#x27;],p:[[&#x27;O03&#x27;,7],[&#x27;O05&#x27;,5],[&#x27;O04&#x27;,4],[&#x27;O06&#x27;,4],[&#x27;U04&#x27;,4]]},
-          auth:{k:[&#x27;U01&#x27;,&#x27;U02&#x27;,&#x27;O01&#x27;,&#x27;O02&#x27;],p:[[&#x27;U01&#x27;,7],[&#x27;O03&#x27;,5],[&#x27;U04&#x27;,4],[&#x27;O05&#x27;,4],[&#x27;O06&#x27;,4]]}
+          overview:{k:['F01','F02','O01','O02'],p:[['F05',7],['F06',5],['O03',4],['O05',4],['U01',4]]},
+          online:{k:['O01','O02','U02','U01'],p:[['O03',7],['O05',5],['O04',4],['O06',4],['U04',4]]},
+          auth:{k:['U01','U02','O01','O02'],p:[['U01',7],['O03',5],['U04',4],['O05',4],['O06',4]]}
         },
         standard: {
-          overview:{k:[&#x27;F01&#x27;,&#x27;F02&#x27;,&#x27;F03&#x27;,&#x27;U03&#x27;,&#x27;O01&#x27;,&#x27;O02&#x27;],p:[[&#x27;F05&#x27;,6],[&#x27;F06&#x27;,3],[&#x27;O03&#x27;,3],[&#x27;U05&#x27;,3],[&#x27;U04&#x27;,3],[&#x27;O05&#x27;,3],[&#x27;O06&#x27;,3]]},
-          finance:{k:[&#x27;F01&#x27;,&#x27;F02&#x27;,&#x27;F03&#x27;,&#x27;F04&#x27;,&#x27;O01&#x27;,&#x27;U03&#x27;],p:[[&#x27;F05&#x27;,6],[&#x27;F06&#x27;,3],[&#x27;F02&#x27;,3],[&#x27;F04&#x27;,3],[&#x27;U04&#x27;,3],[&#x27;O06&#x27;,3],[&#x27;O03&#x27;,3]]},
-          users:{k:[&#x27;U06&#x27;,&#x27;U03&#x27;,&#x27;U02&#x27;,&#x27;U08&#x27;,&#x27;O01&#x27;,&#x27;O02&#x27;],p:[[&#x27;U02&#x27;,6],[&#x27;U04&#x27;,3],[&#x27;U08&#x27;,3],[&#x27;O05&#x27;,3],[&#x27;O06&#x27;,3],[&#x27;O03&#x27;,3],[&#x27;U01&#x27;,3]]},
-          online:{k:[&#x27;O01&#x27;,&#x27;O02&#x27;,&#x27;U03&#x27;,&#x27;U02&#x27;,&#x27;O09&#x27;,&#x27;U01&#x27;],p:[[&#x27;O03&#x27;,6],[&#x27;O05&#x27;,3],[&#x27;O06&#x27;,3],[&#x27;O04&#x27;,3],[&#x27;O09&#x27;,3],[&#x27;U04&#x27;,3],[&#x27;O11&#x27;,3]]},
-          auth:{k:[&#x27;U01&#x27;,&#x27;U05&#x27;,&#x27;U02&#x27;,&#x27;U03&#x27;,&#x27;O01&#x27;,&#x27;O02&#x27;],p:[[&#x27;U05&#x27;,6],[&#x27;U01&#x27;,3],[&#x27;O03&#x27;,3],[&#x27;U04&#x27;,3],[&#x27;O05&#x27;,3],[&#x27;O11&#x27;,3],[&#x27;O06&#x27;,3]]}
+          overview:{k:['F01','F02','F03','U03','O01','O02'],p:[['F05',6],['F06',3],['O03',3],['U05',3],['U04',3],['O05',3],['O06',3]]},
+          finance:{k:['F01','F02','F03','F04','O01','U03'],p:[['F05',6],['F06',3],['F02',3],['F04',3],['U04',3],['O06',3],['O03',3]]},
+          users:{k:['U06','U03','U02','U08','O01','O02'],p:[['U02',6],['U04',3],['U08',3],['O05',3],['O06',3],['O03',3],['U01',3]]},
+          online:{k:['O01','O02','U03','U02','O09','U01'],p:[['O03',6],['O05',3],['O06',3],['O04',3],['O09',3],['U04',3],['O11',3]]},
+          auth:{k:['U01','U05','U02','U03','O01','O02'],p:[['U05',6],['U01',3],['O03',3],['U04',3],['O05',3],['O11',3],['O06',3]]}
         },
         enhanced: {
-          overview:{k:[&#x27;F01&#x27;,&#x27;F08&#x27;,&#x27;F02&#x27;,&#x27;U03&#x27;,&#x27;O01&#x27;,&#x27;O02&#x27;],p:[[&#x27;F05&#x27;,6],[&#x27;F10&#x27;,3],[&#x27;F06&#x27;,3],[&#x27;F11&#x27;,3],[&#x27;U05&#x27;,3],[&#x27;O03&#x27;,3],[&#x27;U08&#x27;,3]]},
-          finance:{k:[&#x27;F01&#x27;,&#x27;F08&#x27;,&#x27;F02&#x27;,&#x27;F03&#x27;,&#x27;F04&#x27;,&#x27;F12&#x27;],p:[[&#x27;F05&#x27;,6],[&#x27;F10&#x27;,3],[&#x27;F11&#x27;,3],[&#x27;F06&#x27;,3],[&#x27;F12&#x27;,3],[&#x27;F08&#x27;,3],[&#x27;U04&#x27;,3]]},
-          users:{k:[&#x27;U06&#x27;,&#x27;U08&#x27;,&#x27;U03&#x27;,&#x27;U02&#x27;,&#x27;O01&#x27;,&#x27;O02&#x27;],p:[[&#x27;U02&#x27;,6],[&#x27;U08&#x27;,3],[&#x27;U04&#x27;,3],[&#x27;O05&#x27;,3],[&#x27;O06&#x27;,3],[&#x27;U05&#x27;,3],[&#x27;O03&#x27;,3]]},
-          online:{k:[&#x27;O01&#x27;,&#x27;O02&#x27;,&#x27;O09&#x27;,&#x27;U03&#x27;,&#x27;U02&#x27;,&#x27;U01&#x27;],p:[[&#x27;O03&#x27;,6],[&#x27;O05&#x27;,3],[&#x27;O06&#x27;,3],[&#x27;O04&#x27;,3],[&#x27;O09&#x27;,3],[&#x27;O11&#x27;,3],[&#x27;U04&#x27;,3]]},
-          auth:{k:[&#x27;U01&#x27;,&#x27;U05&#x27;,&#x27;U02&#x27;,&#x27;U03&#x27;,&#x27;O01&#x27;,&#x27;O02&#x27;],p:[[&#x27;U05&#x27;,6],[&#x27;U01&#x27;,3],[&#x27;O03&#x27;,3],[&#x27;U04&#x27;,3],[&#x27;O05&#x27;,3],[&#x27;O11&#x27;,3],[&#x27;U08&#x27;,3]]},
-          ops:{k:[&#x27;U10&#x27;,&#x27;U11&#x27;,&#x27;O01&#x27;,&#x27;O02&#x27;,&#x27;U05&#x27;,&#x27;U01&#x27;],p:[[&#x27;U10&#x27;,6],[&#x27;U11&#x27;,3],[&#x27;O03&#x27;,3],[&#x27;U05&#x27;,3],[&#x27;O11&#x27;,3],[&#x27;O04&#x27;,3],[&#x27;U04&#x27;,3]]}
+          overview:{k:['F01','F08','F02','U03','O01','O02'],p:[['F05',6],['F10',3],['F06',3],['F11',3],['U05',3],['O03',3],['U08',3]]},
+          finance:{k:['F01','F08','F02','F03','F04','F12'],p:[['F05',6],['F10',3],['F11',3],['F06',3],['F12',3],['F08',3],['U04',3]]},
+          users:{k:['U06','U08','U03','U02','O01','O02'],p:[['U02',6],['U08',3],['U04',3],['O05',3],['O06',3],['U05',3],['O03',3]]},
+          online:{k:['O01','O02','O09','U03','U02','U01'],p:[['O03',6],['O05',3],['O06',3],['O04',3],['O09',3],['O11',3],['U04',3]]},
+          auth:{k:['U01','U05','U02','U03','O01','O02'],p:[['U05',6],['U01',3],['O03',3],['U04',3],['O05',3],['O11',3],['U08',3]]},
+          ops:{k:['U10','U11','O01','O02','U05','U01'],p:[['U10',6],['U11',3],['O03',3],['U05',3],['O11',3],['O04',3],['U04',3]]}
         }
       };
 
       const drillModels = {
         financeTotal:{
-          summary:[[&#x27;周期缴费&#x27;,&#x27;¥286,420&#x27;],[&#x27;缴费笔数&#x27;,&#x27;4,862 笔&#x27;],[&#x27;平均单笔&#x27;,&#x27;58.91 元&#x27;]],
+          summary:[['周期缴费','¥286,420'],['缴费笔数','4,862 笔'],['平均单笔','58.91 元']],
           levels:[
-            {title:&#x27;周期经营摘要&#x27;,note:&#x27;金额、笔数和上一等长周期使用同一时间边界。&#x27;,columns:[&#x27;口径&#x27;,&#x27;当前周期&#x27;,&#x27;上一周期&#x27;,&#x27;变化&#x27;],rows:[[&#x27;缴费金额&#x27;,&#x27;¥286,420&#x27;,&#x27;¥264,210&#x27;,&#x27;+8.4%&#x27;],[&#x27;缴费笔数&#x27;,&#x27;4,862&#x27;,&#x27;4,621&#x27;,&#x27;+5.2%&#x27;],[&#x27;平均单笔&#x27;,&#x27;58.91元&#x27;,&#x27;57.18元&#x27;,&#x27;+3.0%&#x27;],[&#x27;有缴费方式&#x27;,&#x27;4类&#x27;,&#x27;4类&#x27;,&#x27;持平&#x27;]]},
-            {title:&#x27;按日期拆分&#x27;,note:&#x27;由 payment-overview 按时间桶、缴费方式循环调用后聚合。&#x27;,columns:[&#x27;日期&#x27;,&#x27;缴费金额&#x27;,&#x27;缴费笔数&#x27;,&#x27;平均单笔&#x27;],rows:[[&#x27;08-13&#x27;,&#x27;¥31,420&#x27;,&#x27;538&#x27;,&#x27;58.40元&#x27;],[&#x27;08-14&#x27;,&#x27;¥38,760&#x27;,&#x27;642&#x27;,&#x27;60.37元&#x27;],[&#x27;08-15&#x27;,&#x27;¥36,280&#x27;,&#x27;618&#x27;,&#x27;58.71元&#x27;],[&#x27;08-16&#x27;,&#x27;¥42,940&#x27;,&#x27;721&#x27;,&#x27;59.56元&#x27;],[&#x27;08-17&#x27;,&#x27;¥39,510&#x27;,&#x27;684&#x27;,&#x27;57.76元&#x27;],[&#x27;08-18&#x27;,&#x27;¥45,720&#x27;,&#x27;773&#x27;,&#x27;59.15元&#x27;],[&#x27;08-19&#x27;,&#x27;¥51,790&#x27;,&#x27;886&#x27;,&#x27;58.45元&#x27;]]}
+            {title:'缴费概览',note:'金额、笔数和上一周期必须使用相同的起止时间。',columns:['指标','当前周期','上一周期','变化'],rows:[['缴费金额','¥286,420','¥264,210','+8.4%'],['缴费笔数','4,862','4,621','+5.2%'],['平均单笔','58.91元','57.18元','+3.0%'],['有缴费方式','4类','4类','持平']]},
+            {title:'按日期拆分',note:'由 payment-overview 按时间桶、缴费方式循环调用后聚合。',columns:['日期','缴费金额','缴费笔数','平均单笔'],rows:[['08-13','¥31,420','538','58.40元'],['08-14','¥38,760','642','60.37元'],['08-15','¥36,280','618','58.71元'],['08-16','¥42,940','721','59.56元'],['08-17','¥39,510','684','57.76元'],['08-18','¥45,720','773','59.15元'],['08-19','¥51,790','886','58.45元']]}
           ]
         },
         financeCount:{
-          summary:[[&#x27;周期笔数&#x27;,&#x27;4,862&#x27;],[&#x27;日均笔数&#x27;,&#x27;695&#x27;],[&#x27;最高日&#x27;,&#x27;886&#x27;]],
+          summary:[['周期笔数','4,862'],['日均笔数','695'],['最高日','886']],
           levels:[
-            {title:&#x27;缴费笔数摘要&#x27;,note:&#x27;只使用 totalNum，不把单用户缴费记录当作全局流水。&#x27;,columns:[&#x27;指标&#x27;,&#x27;本周期&#x27;,&#x27;上周期&#x27;,&#x27;变化&#x27;],rows:[[&#x27;总笔数&#x27;,&#x27;4,862&#x27;,&#x27;4,621&#x27;,&#x27;+5.2%&#x27;],[&#x27;日均笔数&#x27;,&#x27;695&#x27;,&#x27;660&#x27;,&#x27;+5.3%&#x27;],[&#x27;最高日&#x27;,&#x27;886&#x27;,&#x27;821&#x27;,&#x27;+7.9%&#x27;],[&#x27;最低日&#x27;,&#x27;538&#x27;,&#x27;512&#x27;,&#x27;+5.1%&#x27;]]},
-            {title:&#x27;按缴费方式拆分&#x27;,note:&#x27;需先取得完整缴费方式字典。&#x27;,columns:[&#x27;缴费方式&#x27;,&#x27;笔数&#x27;,&#x27;金额&#x27;,&#x27;笔数占比&#x27;],rows:[[&#x27;电子钱包&#x27;,&#x27;1,986&#x27;,&#x27;¥118,420&#x27;,&#x27;40.8%&#x27;],[&#x27;微信支付&#x27;,&#x27;1,468&#x27;,&#x27;¥86,760&#x27;,&#x27;30.2%&#x27;],[&#x27;支付宝&#x27;,&#x27;1,102&#x27;,&#x27;¥61,940&#x27;,&#x27;22.7%&#x27;],[&#x27;其他&#x27;,&#x27;306&#x27;,&#x27;¥19,300&#x27;,&#x27;6.3%&#x27;]]}
+            {title:'缴费笔数摘要',note:'只使用 totalNum，不把单用户缴费记录当作全局流水。',columns:['指标','本周期','上周期','变化'],rows:[['总笔数','4,862','4,621','+5.2%'],['日均笔数','695','660','+5.3%'],['最高日','886','821','+7.9%'],['最低日','538','512','+5.1%']]},
+            {title:'按缴费方式拆分',note:'需先取得完整缴费方式字典。',columns:['缴费方式','笔数','金额','笔数占比'],rows:[['电子钱包','1,986','¥118,420','40.8%'],['微信支付','1,468','¥86,760','30.2%'],['支付宝','1,102','¥61,940','22.7%'],['其他','306','¥19,300','6.3%']]}
           ]
         },
         financeAverage:{
-          summary:[[&#x27;总体客单价&#x27;,&#x27;58.91元&#x27;],[&#x27;最高方式&#x27;,&#x27;电子钱包&#x27;],[&#x27;上期&#x27;,&#x27;57.18元&#x27;]],
+          summary:[['总体客单价','58.91元'],['最高方式','电子钱包'],['上期','57.18元']],
           levels:[
-            {title:&#x27;平均单笔缴费&#x27;,note:&#x27;总笔数为 0 时显示 --，不显示无穷或 0 元。&#x27;,columns:[&#x27;缴费方式&#x27;,&#x27;金额&#x27;,&#x27;笔数&#x27;,&#x27;平均单笔&#x27;],rows:[[&#x27;电子钱包&#x27;,&#x27;¥118,420&#x27;,&#x27;1,898&#x27;,&#x27;62.39元&#x27;],[&#x27;微信支付&#x27;,&#x27;¥86,760&#x27;,&#x27;1,501&#x27;,&#x27;57.80元&#x27;],[&#x27;支付宝&#x27;,&#x27;¥61,940&#x27;,&#x27;1,134&#x27;,&#x27;54.62元&#x27;],[&#x27;其他&#x27;,&#x27;¥19,300&#x27;,&#x27;418&#x27;,&#x27;46.17元&#x27;]]},
-            {title:&#x27;按日期观察客单价&#x27;,note:&#x27;用于判断金额变化由笔数还是客单价驱动。&#x27;,columns:[&#x27;日期&#x27;,&#x27;平均单笔&#x27;,&#x27;金额变化&#x27;,&#x27;笔数变化&#x27;],rows:[[&#x27;08-15&#x27;,&#x27;58.71元&#x27;,&#x27;-6.4%&#x27;,&#x27;-3.7%&#x27;],[&#x27;08-16&#x27;,&#x27;59.56元&#x27;,&#x27;+18.4%&#x27;,&#x27;+16.7%&#x27;],[&#x27;08-17&#x27;,&#x27;57.76元&#x27;,&#x27;-8.0%&#x27;,&#x27;-5.1%&#x27;],[&#x27;08-18&#x27;,&#x27;59.15元&#x27;,&#x27;+15.7%&#x27;,&#x27;+13.0%&#x27;],[&#x27;08-19&#x27;,&#x27;58.45元&#x27;,&#x27;+13.3%&#x27;,&#x27;+14.6%&#x27;]]}
+            {title:'平均单笔缴费',note:'总笔数为 0 时显示 --，不显示无穷或 0 元。',columns:['缴费方式','金额','笔数','平均单笔'],rows:[['电子钱包','¥118,420','1,898','62.39元'],['微信支付','¥86,760','1,501','57.80元'],['支付宝','¥61,940','1,134','54.62元'],['其他','¥19,300','418','46.17元']]},
+            {title:'按日期观察客单价',note:'用于判断金额变化由笔数还是客单价驱动。',columns:['日期','平均单笔','金额变化','笔数变化'],rows:[['08-15','58.71元','-6.4%','-3.7%'],['08-16','59.56元','+18.4%','+16.7%'],['08-17','57.76元','-8.0%','-5.1%'],['08-18','59.15元','+15.7%','+13.0%'],['08-19','58.45元','+13.3%','+14.6%']]}
           ]
         },
         financeCompare:{
-          summary:[[&#x27;金额环比&#x27;,&#x27;+8.4%&#x27;],[&#x27;笔数环比&#x27;,&#x27;+5.2%&#x27;],[&#x27;客单价环比&#x27;,&#x27;+3.0%&#x27;]],
+          summary:[['金额环比','+8.4%'],['笔数环比','+5.2%'],['客单价环比','+3.0%']],
           levels:[
-            {title:&#x27;等长周期比较&#x27;,note:&#x27;当前周期和上一周期必须使用相同时长、时区与缴费方式范围。&#x27;,columns:[&#x27;指标&#x27;,&#x27;本期&#x27;,&#x27;上期&#x27;,&#x27;差额&#x27;],rows:[[&#x27;缴费金额&#x27;,&#x27;¥286,420&#x27;,&#x27;¥264,210&#x27;,&#x27;+¥22,210&#x27;],[&#x27;缴费笔数&#x27;,&#x27;4,862&#x27;,&#x27;4,621&#x27;,&#x27;+241&#x27;],[&#x27;平均单笔&#x27;,&#x27;58.91元&#x27;,&#x27;57.18元&#x27;,&#x27;+1.73元&#x27;]]},
-            {title:&#x27;变化贡献&#x27;,note:&#x27;用于解释总体变化来自哪些缴费方式。&#x27;,columns:[&#x27;缴费方式&#x27;,&#x27;本期金额&#x27;,&#x27;变化额&#x27;,&#x27;贡献度&#x27;],rows:[[&#x27;电子钱包&#x27;,&#x27;¥118,420&#x27;,&#x27;+¥10,840&#x27;,&#x27;48.8%&#x27;],[&#x27;微信支付&#x27;,&#x27;¥86,760&#x27;,&#x27;+¥6,210&#x27;,&#x27;28.0%&#x27;],[&#x27;支付宝&#x27;,&#x27;¥61,940&#x27;,&#x27;+¥4,680&#x27;,&#x27;21.1%&#x27;],[&#x27;其他&#x27;,&#x27;¥19,300&#x27;,&#x27;+¥480&#x27;,&#x27;2.1%&#x27;]]}
+            {title:'等长周期比较',note:'当前周期和上一周期必须使用相同时长、时区与缴费方式范围。',columns:['指标','本期','上期','差额'],rows:[['缴费金额','¥286,420','¥264,210','+¥22,210'],['缴费笔数','4,862','4,621','+241'],['平均单笔','58.91元','57.18元','+1.73元']]},
+            {title:'变化贡献',note:'用于解释总体变化来自哪些缴费方式。',columns:['缴费方式','本期金额','变化额','贡献度'],rows:[['电子钱包','¥118,420','+¥10,840','48.8%'],['微信支付','¥86,760','+¥6,210','28.0%'],['支付宝','¥61,940','+¥4,680','21.1%'],['其他','¥19,300','+¥480','2.1%']]}
           ]
         },
         financeMethod:{
-          summary:[[&#x27;缴费方式&#x27;,&#x27;4类&#x27;],[&#x27;第一方式&#x27;,&#x27;电子钱包&#x27;],[&#x27;金额占比&#x27;,&#x27;41.3%&#x27;]],
+          summary:[['缴费方式','4类'],['第一方式','电子钱包'],['金额占比','41.3%']],
           levels:[
-            {title:&#x27;缴费方式构成&#x27;,note:&#x27;金额和笔数同时展示，避免只看金额占比。&#x27;,columns:[&#x27;缴费方式&#x27;,&#x27;缴费金额&#x27;,&#x27;缴费笔数&#x27;,&#x27;金额占比&#x27;],rows:[[&#x27;电子钱包&#x27;,&#x27;¥118,420&#x27;,&#x27;1,898&#x27;,&#x27;41.3%&#x27;],[&#x27;微信支付&#x27;,&#x27;¥86,760&#x27;,&#x27;1,501&#x27;,&#x27;30.3%&#x27;],[&#x27;支付宝&#x27;,&#x27;¥61,940&#x27;,&#x27;1,134&#x27;,&#x27;21.6%&#x27;],[&#x27;其他&#x27;,&#x27;¥19,300&#x27;,&#x27;418&#x27;,&#x27;6.8%&#x27;]]},
-            {title:&#x27;方式的日期趋势&#x27;,note:&#x27;选择某个方式后按日查看金额和笔数。&#x27;,columns:[&#x27;日期&#x27;,&#x27;电子钱包金额&#x27;,&#x27;笔数&#x27;,&#x27;平均单笔&#x27;],rows:[[&#x27;08-15&#x27;,&#x27;¥15,820&#x27;,&#x27;252&#x27;,&#x27;62.78元&#x27;],[&#x27;08-16&#x27;,&#x27;¥17,460&#x27;,&#x27;281&#x27;,&#x27;62.14元&#x27;],[&#x27;08-17&#x27;,&#x27;¥16,940&#x27;,&#x27;269&#x27;,&#x27;62.97元&#x27;],[&#x27;08-18&#x27;,&#x27;¥18,670&#x27;,&#x27;302&#x27;,&#x27;61.82元&#x27;],[&#x27;08-19&#x27;,&#x27;¥20,310&#x27;,&#x27;326&#x27;,&#x27;62.30元&#x27;]]}
+            {title:'缴费方式构成',note:'金额和笔数同时展示，避免只看金额占比。',columns:['缴费方式','缴费金额','缴费笔数','金额占比'],rows:[['电子钱包','¥118,420','1,898','41.3%'],['微信支付','¥86,760','1,501','30.3%'],['支付宝','¥61,940','1,134','21.6%'],['其他','¥19,300','418','6.8%']]},
+            {title:'方式的日期趋势',note:'选择某个方式后按日查看金额和笔数。',columns:['日期','电子钱包金额','笔数','平均单笔'],rows:[['08-15','¥15,820','252','62.78元'],['08-16','¥17,460','281','62.14元'],['08-17','¥16,940','269','62.97元'],['08-18','¥18,670','302','61.82元'],['08-19','¥20,310','326','62.30元']]}
           ]
         },
         refund:{
-          summary:[[&#x27;退费金额&#x27;,&#x27;¥12,680&#x27;],[&#x27;退费笔数&#x27;,&#x27;待提供&#x27;],[&#x27;退费率&#x27;,&#x27;待确认&#x27;]],
+          summary:[['退费金额','¥12,680'],['退费笔数','待提供'],['退费率','待确认']],
           levels:[
-            {title:&#x27;退费能力确认&#x27;,note:&#x27;当前为手册证据和模拟值，现有 REST 只证明单用户退费查询。&#x27;,columns:[&#x27;所需能力&#x27;,&#x27;文档状态&#x27;,&#x27;数据确认&#x27;,&#x27;降级&#x27;],rows:[[&#x27;全局退费汇总&#x27;,&#x27;手册可见&#x27;,&#x27;待沟通&#x27;,&#x27;隐藏退费率&#x27;],[&#x27;退费明细&#x27;,&#x27;需补接口&#x27;,&#x27;待沟通&#x27;,&#x27;停在汇总&#x27;],[&#x27;原订单关联&#x27;,&#x27;需补字段&#x27;,&#x27;待沟通&#x27;,&#x27;不计算净额&#x27;],[&#x27;退费原因&#x27;,&#x27;需补字典&#x27;,&#x27;待沟通&#x27;,&#x27;不展示原因分布&#x27;]]},
-            {title:&#x27;模拟退费结构&#x27;,note:&#x27;仅用于沟通希望对方提供的最小数据结构。&#x27;,columns:[&#x27;退费类型&#x27;,&#x27;金额&#x27;,&#x27;笔数&#x27;,&#x27;占比&#x27;],rows:[[&#x27;产品退订&#x27;,&#x27;¥5,420&#x27;,&#x27;68&#x27;,&#x27;42.7%&#x27;],[&#x27;重复缴费&#x27;,&#x27;¥3,160&#x27;,&#x27;41&#x27;,&#x27;24.9%&#x27;],[&#x27;人工调整&#x27;,&#x27;¥2,480&#x27;,&#x27;29&#x27;,&#x27;19.6%&#x27;],[&#x27;其他&#x27;,&#x27;¥1,620&#x27;,&#x27;18&#x27;,&#x27;12.8%&#x27;]]}
+            {title:'退费功能需要确认什么',note:'用户手册中有退费功能，但接口文档 089 只能按账号查询；当前数字仅为设计示例。',columns:['需要的数据','目前依据','确认进度','无法提供时'],rows:[['全局退费汇总','用户手册有退费功能','待沟通','隐藏退费率'],['退费明细','需新增接口或数据文件','待沟通','只展示汇总'],['原订单关联','需补原订单号','待沟通','不计算净额'],['退费原因','需补原因字典','待沟通','不展示原因分布']]},
+            {title:'模拟退费结构',note:'仅用于沟通希望对方提供的最小数据结构。',columns:['退费类型','金额','笔数','占比'],rows:[['产品退订','¥5,420','68','42.7%'],['重复缴费','¥3,160','41','24.9%'],['人工调整','¥2,480','29','19.6%'],['其他','¥1,620','18','12.8%']]}
           ]
         },
-        productRevenue:{summary:[[&#x27;产品数&#x27;,&#x27;4&#x27;],[&#x27;Top 产品&#x27;,&#x27;产品 A&#x27;],[&#x27;数据状态&#x27;,&#x27;待提供&#x27;]],levels:[{title:&#x27;产品收入能力确认&#x27;,note:&#x27;手册存在产品收入报表，REST 未证明全局接口。&#x27;,columns:[&#x27;产品&#x27;,&#x27;模拟金额&#x27;,&#x27;订单数&#x27;,&#x27;证据&#x27;],rows:[[&#x27;产品 A&#x27;,&#x27;¥96,800&#x27;,&#x27;1,424&#x27;,&#x27;D&#x27;],[&#x27;产品 B&#x27;,&#x27;¥78,420&#x27;,&#x27;1,218&#x27;,&#x27;D&#x27;],[&#x27;产品 C&#x27;,&#x27;¥54,300&#x27;,&#x27;986&#x27;,&#x27;D&#x27;],[&#x27;其他&#x27;,&#x27;¥56,900&#x27;,&#x27;1,234&#x27;,&#x27;D&#x27;]]},{title:&#x27;需要对方补充的字段&#x27;,note:&#x27;退款和历史产品归属必须一起确认。&#x27;,columns:[&#x27;字段&#x27;,&#x27;必要性&#x27;,&#x27;口径问题&#x27;,&#x27;数据确认&#x27;],rows:[[&#x27;product_id/name&#x27;,&#x27;必需&#x27;,&#x27;历史名称&#x27;,&#x27;待沟通&#x27;],[&#x27;payment_amount&#x27;,&#x27;必需&#x27;,&#x27;失败/冲正&#x27;,&#x27;待沟通&#x27;],[&#x27;refund_amount&#x27;,&#x27;必需&#x27;,&#x27;原订单归属&#x27;,&#x27;待沟通&#x27;],[&#x27;order_count&#x27;,&#x27;建议&#x27;,&#x27;订单去重&#x27;,&#x27;待沟通&#x27;]]}]},
-        groupRevenue:{summary:[[&#x27;用户组数&#x27;,&#x27;4&#x27;],[&#x27;Top 用户组&#x27;,&#x27;用户组 A&#x27;],[&#x27;数据状态&#x27;,&#x27;待提供&#x27;]],levels:[{title:&#x27;用户组收入能力确认&#x27;,note:&#x27;当前仅有手册证据。&#x27;,columns:[&#x27;用户组&#x27;,&#x27;模拟金额&#x27;,&#x27;用户数&#x27;,&#x27;证据&#x27;],rows:[[&#x27;用户组 A&#x27;,&#x27;¥84,100&#x27;,&#x27;7,842&#x27;,&#x27;D&#x27;],[&#x27;用户组 B&#x27;,&#x27;¥71,800&#x27;,&#x27;6,315&#x27;,&#x27;D&#x27;],[&#x27;用户组 C&#x27;,&#x27;¥52,600&#x27;,&#x27;4,982&#x27;,&#x27;D&#x27;],[&#x27;其他&#x27;,&#x27;¥77,920&#x27;,&#x27;5,797&#x27;,&#x27;D&#x27;]]},{title:&#x27;归属口径确认&#x27;,note:&#x27;需要明确按交易时归属还是当前用户组归属。&#x27;,columns:[&#x27;口径项&#x27;,&#x27;方案 A&#x27;,&#x27;方案 B&#x27;,&#x27;待确认&#x27;],rows:[[&#x27;用户组归属&#x27;,&#x27;交易时&#x27;,&#x27;当前&#x27;,&#x27;是&#x27;],[&#x27;跨组用户&#x27;,&#x27;保留历史&#x27;,&#x27;追溯重算&#x27;,&#x27;是&#x27;],[&#x27;退费归属&#x27;,&#x27;原组&#x27;,&#x27;当前组&#x27;,&#x27;是&#x27;]]}]},
-        settlement:{summary:[[&#x27;本月已结&#x27;,&#x27;¥241,600&#x27;],[&#x27;完成率&#x27;,&#x27;89%&#x27;],[&#x27;未结金额&#x27;,&#x27;¥29,820&#x27;]],levels:[{title:&#x27;结算概览&#x27;,note:&#x27;当前为目标数据结构，不代表接口已提供。&#x27;,columns:[&#x27;结算状态&#x27;,&#x27;金额&#x27;,&#x27;批次&#x27;,&#x27;占比&#x27;],rows:[[&#x27;已结算&#x27;,&#x27;¥241,600&#x27;,&#x27;12&#x27;,&#x27;89.0%&#x27;],[&#x27;待结算&#x27;,&#x27;¥21,420&#x27;,&#x27;3&#x27;,&#x27;7.9%&#x27;],[&#x27;调整中&#x27;,&#x27;¥8,400&#x27;,&#x27;2&#x27;,&#x27;3.1%&#x27;]]},{title:&#x27;按产品结算&#x27;,note:&#x27;需对方提供结算周期、产品/用户组及调整字段。&#x27;,columns:[&#x27;产品&#x27;,&#x27;应结&#x27;,&#x27;已结&#x27;,&#x27;状态&#x27;],rows:[[&#x27;产品 A&#x27;,&#x27;¥92,800&#x27;,&#x27;¥92,800&#x27;,&#x27;已完成&#x27;],[&#x27;产品 B&#x27;,&#x27;¥76,240&#x27;,&#x27;¥70,100&#x27;,&#x27;部分完成&#x27;],[&#x27;产品 C&#x27;,&#x27;¥53,400&#x27;,&#x27;¥49,900&#x27;,&#x27;部分完成&#x27;],[&#x27;其他&#x27;,&#x27;¥49,580&#x27;,&#x27;¥28,800&#x27;,&#x27;处理中&#x27;]]}]},
+        productRevenue:{summary:[['产品数','4'],['收入最高','产品 A'],['数据情况','待对方提供']],levels:[{title:'产品收入展示示例',note:'用户手册第 90 页有产品收入报表，但接口文档没有全局产品收入接口；以下金额均为模拟。',columns:['产品','模拟金额','订单数','文档依据'],rows:[['产品 A','¥96,800','1,424','手册第90页'],['产品 B','¥78,420','1,218','手册第90页'],['产品 C','¥54,300','986','手册第90页'],['其他','¥56,900','1,234','手册第90页']]},{title:'需要对方补充哪些字段',note:'还要确认失败订单、冲正和退费应归到哪个产品。',columns:['字段','是否必需','需要确认的问题','确认进度'],rows:[['product_id/name','必需','历史产品名称','待沟通'],['payment_amount','必需','失败/冲正是否计入','待沟通'],['refund_amount','必需','退费归到原产品','待沟通'],['order_count','建议','订单如何去重','待沟通']]}]},
+        groupRevenue:{summary:[['用户组数','4'],['收入最高','用户组 A'],['数据情况','待对方提供']],levels:[{title:'用户组收入展示示例',note:'用户手册第 90 页有按用户组收入统计，但接口文档没有相应的全局查询接口；以下金额均为模拟。',columns:['用户组','模拟金额','用户数','文档依据'],rows:[['用户组 A','¥84,100','7,842','手册第90页'],['用户组 B','¥71,800','6,315','手册第90页'],['用户组 C','¥52,600','4,982','手册第90页'],['其他','¥77,920','5,797','手册第90页']]},{title:'收入归到哪个用户组',note:'需要明确按交易发生时的用户组，还是按查询时的当前用户组统计。',columns:['需要确认的内容','做法一','做法二','确认进度'],rows:[['用户组归属','交易发生时','当前用户组','待沟通'],['用户后来换组','保留原归属','按当前组重算','待沟通'],['退费归属','原交易用户组','当前用户组','待沟通']]}]},
+        settlement:{summary:[['本月已结','¥241,600'],['完成率','89%'],['未结金额','¥29,820']],levels:[{title:'结算情况展示示例',note:'用户手册第 90 页有结算统计页面，但接口文档没有相应查询接口；以下内容均为模拟。',columns:['结算状态','金额','批次','占比'],rows:[['已结算','¥241,600','12','89.0%'],['待结算','¥21,420','3','7.9%'],['调整中','¥8,400','2','3.1%']]},{title:'按产品查看结算',note:'需要对方提供结算周期、产品或用户组、应结金额、已结金额、调整金额和状态。',columns:['产品','应结','已结','状态'],rows:[['产品 A','¥92,800','¥92,800','已完成'],['产品 B','¥76,240','¥70,100','部分完成'],['产品 C','¥53,400','¥49,900','部分完成'],['其他','¥49,580','¥28,800','处理中']]}]},
         onlineUser:{
-          summary:[[&#x27;在线账号&#x27;,&#x27;8,426&#x27;],[&#x27;在线设备&#x27;,&#x27;10,315&#x27;],[&#x27;更新时间&#x27;,&#x27;10:30&#x27;]],
+          summary:[['在线账号','8,426'],['在线设备','10,315'],['模拟时间','10:30']],
           levels:[
-            {title:&#x27;当前在线概览&#x27;,note:&#x27;账号数和设备数均使用 get-online-count 的直接返回值。&#x27;,columns:[&#x27;指标&#x27;,&#x27;当前值&#x27;,&#x27;较 1 小时前&#x27;,&#x27;口径&#x27;],rows:[[&#x27;在线账号&#x27;,&#x27;8,426&#x27;,&#x27;+4.8%&#x27;,&#x27;账号去重待确认&#x27;],[&#x27;在线设备&#x27;,&#x27;10,315&#x27;,&#x27;+5.2%&#x27;,&#x27;设备去重待确认&#x27;],[&#x27;人均设备&#x27;,&#x27;1.22&#x27;,&#x27;+0.01&#x27;,&#x27;派生&#x27;],[&#x27;数据延迟&#x27;,&#x27;1分钟&#x27;,&#x27;持平&#x27;,&#x27;模拟&#x27;]]},
-            {title:&#x27;用户组在线分布&#x27;,note:&#x27;点击用户组可作为同模块联动筛选。&#x27;,columns:[&#x27;用户组&#x27;,&#x27;在线账号&#x27;,&#x27;在线设备&#x27;,&#x27;设备/账号&#x27;],rows:[[&#x27;用户组 A&#x27;,&#x27;2,840&#x27;,&#x27;3,612&#x27;,&#x27;1.27&#x27;],[&#x27;用户组 B&#x27;,&#x27;2,126&#x27;,&#x27;2,548&#x27;,&#x27;1.20&#x27;],[&#x27;用户组 C&#x27;,&#x27;1,705&#x27;,&#x27;2,036&#x27;,&#x27;1.19&#x27;],[&#x27;其他&#x27;,&#x27;1,755&#x27;,&#x27;2,119&#x27;,&#x27;1.21&#x27;]]},
-            {title:&#x27;在线会话明细&#x27;,note:&#x27;账号、IP 和 MAC 默认脱敏；同账号可能有多条设备会话。&#x27;,columns:[&#x27;账号&#x27;,&#x27;用户 IP&#x27;,&#x27;设备 MAC&#x27;,&#x27;上线时间&#x27;],rows:[[&#x27;usr_10**&#x27;,&#x27;10.24.8.**&#x27;,&#x27;A4:7B:**:**:12:8E&#x27;,&#x27;10:24:16&#x27;],[&#x27;usr_08**&#x27;,&#x27;10.24.11.**&#x27;,&#x27;5C:91:**:**:7D:20&#x27;,&#x27;10:21:03&#x27;],[&#x27;usr_31**&#x27;,&#x27;10.25.3.**&#x27;,&#x27;8A:4F:**:**:19:B1&#x27;,&#x27;10:18:44&#x27;],[&#x27;usr_22**&#x27;,&#x27;10.27.9.**&#x27;,&#x27;C2:18:**:**:A0:36&#x27;,&#x27;10:16:27&#x27;]]}
+            {title:'当前在线概览',note:'账号数和设备数准备使用接口 170 /api/v2/base/get-online-count 的直接返回值。',columns:['指标','当前值','较 1 小时前','统计说明'],rows:[['在线账号','8,426','+4.8%','账号去重待确认'],['在线设备','10,315','+5.2%','设备去重待确认'],['人均设备','1.22','+0.01','本方计算'],['数据延迟','1分钟','持平','模拟']]},
+            {title:'用户组在线分布',note:'点击用户组可作为同模块联动筛选。',columns:['用户组','在线账号','在线设备','设备/账号'],rows:[['用户组 A','2,840','3,612','1.27'],['用户组 B','2,126','2,548','1.20'],['用户组 C','1,705','2,036','1.19'],['其他','1,755','2,119','1.21']]},
+            {title:'在线会话明细',note:'账号、IP 和 MAC 默认脱敏；同账号可能有多条设备会话。',columns:['账号','用户 IP','设备 MAC','上线时间'],rows:[['usr_10**','10.24.8.**','A4:7B:**:**:12:8E','10:24:16'],['usr_08**','10.24.11.**','5C:91:**:**:7D:20','10:21:03'],['usr_31**','10.25.3.**','8A:4F:**:**:19:B1','10:18:44'],['usr_22**','10.27.9.**','C2:18:**:**:A0:36','10:16:27']]}
           ]
         },
         onlineDevice:{
-          summary:[[&#x27;在线设备&#x27;,&#x27;10,315&#x27;],[&#x27;在线账号&#x27;,&#x27;8,426&#x27;],[&#x27;主要 OS&#x27;,&#x27;Windows&#x27;]],
+          summary:[['在线设备','10,315'],['在线账号','8,426'],['主要 OS','Windows']],
           levels:[
-            {title:&#x27;在线设备概览&#x27;,note:&#x27;设备总数使用 get-online-count，不以列表数组长度计算。&#x27;,columns:[&#x27;指标&#x27;,&#x27;当前值&#x27;,&#x27;上个快照&#x27;,&#x27;变化&#x27;],rows:[[&#x27;在线设备&#x27;,&#x27;10,315&#x27;,&#x27;9,804&#x27;,&#x27;+5.2%&#x27;],[&#x27;在线账号&#x27;,&#x27;8,426&#x27;,&#x27;8,040&#x27;,&#x27;+4.8%&#x27;],[&#x27;人均设备&#x27;,&#x27;1.22&#x27;,&#x27;1.22&#x27;,&#x27;持平&#x27;],[&#x27;活跃 OS&#x27;,&#x27;4类&#x27;,&#x27;4类&#x27;,&#x27;持平&#x27;]]},
-            {title:&#x27;操作系统结构&#x27;,note:&#x27;O11 的真实 schema 和 type 字典仍需样本确认。&#x27;,columns:[&#x27;操作系统&#x27;,&#x27;设备数&#x27;,&#x27;占比&#x27;,&#x27;状态&#x27;],rows:[[&#x27;Windows&#x27;,&#x27;4,620&#x27;,&#x27;44.8%&#x27;,&#x27;模拟&#x27;],[&#x27;Android&#x27;,&#x27;2,860&#x27;,&#x27;27.7%&#x27;,&#x27;模拟&#x27;],[&#x27;iOS&#x27;,&#x27;1,946&#x27;,&#x27;18.9%&#x27;,&#x27;模拟&#x27;],[&#x27;其他&#x27;,&#x27;889&#x27;,&#x27;8.6%&#x27;,&#x27;模拟&#x27;]]},
-            {title:&#x27;设备明细&#x27;,note:&#x27;来源为 online-equipment；字段需按角色控制。&#x27;,columns:[&#x27;账号&#x27;,&#x27;设备 MAC&#x27;,&#x27;OS&#x27;,&#x27;上行/下行&#x27;],rows:[[&#x27;usr_10**&#x27;,&#x27;A4:7B:**:**:12:8E&#x27;,&#x27;Windows&#x27;,&#x27;1.8/6.4 GB&#x27;],[&#x27;usr_08**&#x27;,&#x27;5C:91:**:**:7D:20&#x27;,&#x27;Android&#x27;,&#x27;0.9/4.1 GB&#x27;],[&#x27;usr_31**&#x27;,&#x27;8A:4F:**:**:19:B1&#x27;,&#x27;iOS&#x27;,&#x27;1.2/3.8 GB&#x27;],[&#x27;usr_22**&#x27;,&#x27;C2:18:**:**:A0:36&#x27;,&#x27;Windows&#x27;,&#x27;0.7/3.2 GB&#x27;]]}
+            {title:'在线设备概览',note:'设备总数准备使用接口 170 /api/v2/base/get-online-count，不以明细列表行数计算。',columns:['指标','当前值','上个快照','变化'],rows:[['在线设备','10,315','9,804','+5.2%'],['在线账号','8,426','8,040','+4.8%'],['人均设备','1.22','1.22','持平'],['操作系统','4类','4类','持平']]},
+            {title:'操作系统分布',note:'接口 168 的返回字段和统计类型需要用实际样本确认。',columns:['操作系统','设备数','占比','数据说明'],rows:[['Windows','4,620','44.8%','模拟'],['Android','2,860','27.7%','模拟'],['iOS','1,946','18.9%','模拟'],['其他','889','8.6%','模拟']]},
+            {title:'设备明细',note:'来源为接口 140 /api/v2/base/online-equipment；敏感字段需按角色控制并脱敏。',columns:['账号','设备 MAC','操作系统','上行/下行'],rows:[['usr_10**','A4:7B:**:**:12:8E','Windows','1.8/6.4 GB'],['usr_08**','5C:91:**:**:7D:20','Android','0.9/4.1 GB'],['usr_31**','8A:4F:**:**:19:B1','iOS','1.2/3.8 GB'],['usr_22**','C2:18:**:**:A0:36','Windows','0.7/3.2 GB']]}
           ]
         },
-        onlineGroup:{summary:[[&#x27;在线账号&#x27;,&#x27;8,426&#x27;],[&#x27;用户组&#x27;,&#x27;4类&#x27;],[&#x27;Top 用户组&#x27;,&#x27;用户组 A&#x27;]],levels:[{title:&#x27;在线用户组分布&#x27;,note:&#x27;账号和设备使用两个不同字段。&#x27;,columns:[&#x27;用户组&#x27;,&#x27;在线账号&#x27;,&#x27;在线设备&#x27;,&#x27;注册用户&#x27;],rows:[[&#x27;用户组 A&#x27;,&#x27;2,840&#x27;,&#x27;3,612&#x27;,&#x27;7,842&#x27;],[&#x27;用户组 B&#x27;,&#x27;2,126&#x27;,&#x27;2,548&#x27;,&#x27;6,315&#x27;],[&#x27;用户组 C&#x27;,&#x27;1,705&#x27;,&#x27;2,036&#x27;,&#x27;4,982&#x27;],[&#x27;其他&#x27;,&#x27;1,755&#x27;,&#x27;2,119&#x27;,&#x27;5,797&#x27;]]},{title:&#x27;用户组结构比较&#x27;,note:&#x27;注册用户范围是否包含过期、禁用或销户仍需确认。&#x27;,columns:[&#x27;用户组&#x27;,&#x27;在线率&#x27;,&#x27;设备/账号&#x27;,&#x27;口径状态&#x27;],rows:[[&#x27;用户组 A&#x27;,&#x27;36.2%&#x27;,&#x27;1.27&#x27;,&#x27;待确认&#x27;],[&#x27;用户组 B&#x27;,&#x27;33.7%&#x27;,&#x27;1.20&#x27;,&#x27;待确认&#x27;],[&#x27;用户组 C&#x27;,&#x27;34.2%&#x27;,&#x27;1.19&#x27;,&#x27;待确认&#x27;],[&#x27;其他&#x27;,&#x27;30.3%&#x27;,&#x27;1.21&#x27;,&#x27;待确认&#x27;]]}]},
-        onlineProduct:{summary:[[&#x27;在线账号&#x27;,&#x27;8,426&#x27;],[&#x27;产品&#x27;,&#x27;4类&#x27;],[&#x27;Top 产品&#x27;,&#x27;产品 A&#x27;]],levels:[{title:&#x27;在线产品分布&#x27;,note:&#x27;产品订购用户可能重复，不得求和当作总用户数。&#x27;,columns:[&#x27;产品&#x27;,&#x27;在线账号&#x27;,&#x27;在线设备&#x27;,&#x27;订购用户&#x27;],rows:[[&#x27;产品 A&#x27;,&#x27;3,126&#x27;,&#x27;3,882&#x27;,&#x27;8,420&#x27;],[&#x27;产品 B&#x27;,&#x27;2,408&#x27;,&#x27;2,905&#x27;,&#x27;6,840&#x27;],[&#x27;产品 C&#x27;,&#x27;1,684&#x27;,&#x27;2,004&#x27;,&#x27;4,730&#x27;],[&#x27;其他&#x27;,&#x27;1,208&#x27;,&#x27;1,524&#x27;,&#x27;3,910&#x27;]]},{title:&#x27;产品在线结构&#x27;,note:&#x27;只表示当前在线结构，不可替代产品收入排行。&#x27;,columns:[&#x27;产品&#x27;,&#x27;在线占比&#x27;,&#x27;设备/账号&#x27;,&#x27;证据&#x27;],rows:[[&#x27;产品 A&#x27;,&#x27;37.1%&#x27;,&#x27;1.24&#x27;,&#x27;A&#x27;],[&#x27;产品 B&#x27;,&#x27;28.6%&#x27;,&#x27;1.21&#x27;,&#x27;A&#x27;],[&#x27;产品 C&#x27;,&#x27;20.0%&#x27;,&#x27;1.19&#x27;,&#x27;A&#x27;],[&#x27;其他&#x27;,&#x27;14.3%&#x27;,&#x27;1.26&#x27;,&#x27;A&#x27;]]}]},
-        terminal:{summary:[[&#x27;主要 OS&#x27;,&#x27;Windows&#x27;],[&#x27;设备占比&#x27;,&#x27;44.8%&#x27;],[&#x27;数据确认&#x27;,&#x27;待沟通&#x27;]],levels:[{title:&#x27;终端与 OS 模拟结构&#x27;,note:&#x27;接口 schema 为空，当前只用于确认期望展示。&#x27;,columns:[&#x27;类别&#x27;,&#x27;设备数&#x27;,&#x27;占比&#x27;,&#x27;证据&#x27;],rows:[[&#x27;Windows&#x27;,&#x27;4,620&#x27;,&#x27;44.8%&#x27;,&#x27;C&#x27;],[&#x27;Android&#x27;,&#x27;2,860&#x27;,&#x27;27.7%&#x27;,&#x27;C&#x27;],[&#x27;iOS&#x27;,&#x27;1,946&#x27;,&#x27;18.9%&#x27;,&#x27;C&#x27;],[&#x27;其他&#x27;,&#x27;889&#x27;,&#x27;8.6%&#x27;,&#x27;C&#x27;]]},{title:&#x27;需确认的 type 字典&#x27;,note:&#x27;每个拟采用的 type 都要取得真实样本和单位。&#x27;,columns:[&#x27;维度&#x27;,&#x27;期望 type&#x27;,&#x27;单位&#x27;,&#x27;数据确认&#x27;],rows:[[&#x27;操作系统&#x27;,&#x27;待确认&#x27;,&#x27;设备数&#x27;,&#x27;待沟通&#x27;],[&#x27;终端类型&#x27;,&#x27;待确认&#x27;,&#x27;设备数&#x27;,&#x27;待沟通&#x27;],[&#x27;计费策略&#x27;,&#x27;待确认&#x27;,&#x27;用户/时长&#x27;,&#x27;待沟通&#x27;],[&#x27;控制策略&#x27;,&#x27;待确认&#x27;,&#x27;用户/流量&#x27;,&#x27;待沟通&#x27;]]}]},
+        onlineGroup:{summary:[['在线账号','8,426'],['用户组','4类'],['在线最多','用户组 A']],levels:[{title:'在线用户组分布',note:'在线账号数和在线设备数是两个不同字段，不能混在一起。',columns:['用户组','在线账号','在线设备','注册用户'],rows:[['用户组 A','2,840','3,612','7,842'],['用户组 B','2,126','2,548','6,315'],['用户组 C','1,705','2,036','4,982'],['其他','1,755','2,119','5,797']]},{title:'用户组在线情况比较',note:'注册用户数是否包含过期、禁用或销户账号仍需确认。',columns:['用户组','在线率','设备/账号','统计规则'],rows:[['用户组 A','36.2%','1.27','待确认'],['用户组 B','33.7%','1.20','待确认'],['用户组 C','34.2%','1.19','待确认'],['其他','30.3%','1.21','待确认']]}]},
+        onlineProduct:{summary:[['在线账号','8,426'],['产品','4类'],['在线最多','产品 A']],levels:[{title:'在线产品分布',note:'一个账号可能订购多个产品，订购用户数不能直接相加作为用户总数。',columns:['产品','在线账号','在线设备','订购用户'],rows:[['产品 A','3,126','3,882','8,420'],['产品 B','2,408','2,905','6,840'],['产品 C','1,684','2,004','4,730'],['其他','1,208','1,524','3,910']]},{title:'各产品在线占比',note:'这里表示当前在线情况，不能用来代替产品收入排行。',columns:['产品','在线占比','设备/账号','文档依据'],rows:[['产品 A','37.1%','1.24','接口170'],['产品 B','28.6%','1.21','接口170'],['产品 C','20.0%','1.19','接口170'],['其他','14.3%','1.26','接口170']]}]},
+        terminal:{summary:[['主要系统','Windows'],['设备占比','44.8%'],['确认进度','待沟通']],levels:[{title:'操作系统分布展示示例',note:'接口 168 没有完整定义返回字段，当前只用于和对方确认希望怎样展示。',columns:['类别','设备数','占比','文档依据'],rows:[['Windows','4,620','44.8%','接口168'],['Android','2,860','27.7%','接口168'],['iOS','1,946','18.9%','接口168'],['其他','889','8.6%','接口168']]},{title:'需要确认的统计类型',note:'每个准备使用的 type 都要取得实际样本，并确认返回数值的含义和单位。',columns:['统计维度','文档中的 type','期望单位','确认进度'],rows:[['操作系统','os_name','设备数或用户数','待沟通'],['用户组','group','用户数/流量/时长','待沟通'],['计费策略','billing','用户数/流量/时长','待沟通'],['控制策略','control','用户数/流量/时长','待沟通']]}]},
         authVolume:{
-          summary:[[&#x27;昨日认证&#x27;,&#x27;31,908&#x27;],[&#x27;统计口径&#x27;,&#x27;固定昨日&#x27;],[&#x27;数据确认&#x27;,&#x27;待沟通&#x27;]],
+          summary:[['昨日认证','31,908'],['统计范围','固定昨日'],['确认进度','待沟通']],
           levels:[
-            {title:&#x27;认证量摘要&#x27;,note:&#x27;auth-count 固定为昨日，不伪装成任意日期趋势。&#x27;,columns:[&#x27;指标&#x27;,&#x27;数值&#x27;,&#x27;时间范围&#x27;,&#x27;证据&#x27;],rows:[[&#x27;认证次数&#x27;,&#x27;31,908&#x27;,&#x27;昨日自然日&#x27;,&#x27;A&#x27;],[&#x27;日联网用户&#x27;,&#x27;16,284&#x27;,&#x27;指定日期&#x27;,&#x27;A&#x27;],[&#x27;人均认证&#x27;,&#x27;1.96&#x27;,&#x27;派生&#x27;,&#x27;B&#x27;],[&#x27;失败次数&#x27;,&#x27;1,284&#x27;,&#x27;近7日模拟&#x27;,&#x27;A/B&#x27;]]},
-            {title:&#x27;认证时段分布&#x27;,note:&#x27;如需小时趋势，应由认证日志或聚合接口支持。&#x27;,columns:[&#x27;时段&#x27;,&#x27;认证次数&#x27;,&#x27;占比&#x27;,&#x27;异常提示&#x27;],rows:[[&#x27;00-06&#x27;,&#x27;3,160&#x27;,&#x27;9.9%&#x27;,&#x27;正常&#x27;],[&#x27;06-12&#x27;,&#x27;8,870&#x27;,&#x27;27.8%&#x27;,&#x27;正常&#x27;],[&#x27;12-18&#x27;,&#x27;11,420&#x27;,&#x27;35.8%&#x27;,&#x27;峰值&#x27;],[&#x27;18-24&#x27;,&#x27;8,458&#x27;,&#x27;26.5%&#x27;,&#x27;正常&#x27;]]}
+            {title:'认证次数概览',note:'接口 143 固定返回昨日认证次数，不能直接作为任意日期的认证趋势。',columns:['指标','数值','时间范围','文档依据'],rows:[['认证次数','31,908','昨日自然日','接口143'],['日联网用户','16,284','指定日期','接口172'],['人均认证','1.96','本方计算','接口143+172'],['失败次数','1,284','近7日模拟','接口157+158']]},
+            {title:'认证时段分布',note:'如需小时趋势，应由认证日志或聚合接口支持。',columns:['时段','认证次数','占比','异常提示'],rows:[['00-06','3,160','9.9%','正常'],['06-12','8,870','27.8%','正常'],['12-18','11,420','35.8%','峰值'],['18-24','8,458','26.5%','正常']]}
           ]
         },
         authError:{
-          summary:[[&#x27;失败次数&#x27;,&#x27;1,284&#x27;],[&#x27;Top 原因&#x27;,&#x27;密码错误&#x27;],[&#x27;数据确认&#x27;,&#x27;待沟通&#x27;]],
+          summary:[['失败次数','1,284'],['主要原因','密码错误'],['确认进度','待沟通']],
           levels:[
-            {title:&#x27;认证失败摘要&#x27;,note:&#x27;聚合接口可提供错误趋势、错误原因和高频账号；失败率仍需统一分母。&#x27;,columns:[&#x27;分析视角&#x27;,&#x27;Top 项&#x27;,&#x27;次数&#x27;,&#x27;占比&#x27;],rows:[[&#x27;错误原因&#x27;,&#x27;密码错误&#x27;,&#x27;516&#x27;,&#x27;40.2%&#x27;],[&#x27;高频账号&#x27;,&#x27;usr_10**&#x27;,&#x27;42&#x27;,&#x27;3.3%&#x27;],[&#x27;峰值时段&#x27;,&#x27;09:00-10:00&#x27;,&#x27;186&#x27;,&#x27;14.5%&#x27;],[&#x27;NAS 节点&#x27;,&#x27;10.1.0.**&#x27;,&#x27;274&#x27;,&#x27;21.3%&#x27;]]},
-            {title:&#x27;错误原因与高频账号&#x27;,note:&#x27;来自 log/auth-err 的 top_err_msg 与 top_auth_err。&#x27;,columns:[&#x27;错误原因&#x27;,&#x27;次数&#x27;,&#x27;高频账号&#x27;,&#x27;账号次数&#x27;],rows:[[&#x27;密码错误&#x27;,&#x27;516&#x27;,&#x27;usr_10**&#x27;,&#x27;42&#x27;],[&#x27;账号状态异常&#x27;,&#x27;294&#x27;,&#x27;usr_08**&#x27;,&#x27;31&#x27;],[&#x27;并发限制&#x27;,&#x27;187&#x27;,&#x27;usr_31**&#x27;,&#x27;28&#x27;],[&#x27;其他&#x27;,&#x27;287&#x27;,&#x27;usr_22**&#x27;,&#x27;24&#x27;]]},
-            {title:&#x27;认证失败日志&#x27;,note:&#x27;来自 log/login；账号、IP、NAS 和 MAC 默认脱敏。&#x27;,columns:[&#x27;账号&#x27;,&#x27;错误原因&#x27;,&#x27;用户 IP&#x27;,&#x27;时间&#x27;],rows:[[&#x27;usr_10**&#x27;,&#x27;密码错误&#x27;,&#x27;10.24.8.**&#x27;,&#x27;10:24:16&#x27;],[&#x27;usr_08**&#x27;,&#x27;账号状态异常&#x27;,&#x27;10.24.11.**&#x27;,&#x27;10:21:03&#x27;],[&#x27;usr_31**&#x27;,&#x27;并发限制&#x27;,&#x27;10.25.3.**&#x27;,&#x27;10:18:44&#x27;],[&#x27;usr_22**&#x27;,&#x27;密码错误&#x27;,&#x27;10.27.9.**&#x27;,&#x27;10:16:27&#x27;]]}
+            {title:'认证失败概览',note:'接口 158 可以提供错误趋势、主要原因和高频账号；失败率用哪个总数作分母仍需确认。',columns:['查看角度','主要项','次数','占比'],rows:[['错误原因','密码错误','516','40.2%'],['高频账号','usr_10**','42','3.3%'],['峰值时段','09:00-10:00','186','14.5%'],['NAS 节点','10.1.0.**','274','21.3%']]},
+            {title:'错误原因与高频账号',note:'准备使用接口 158 /api/v2/log/auth-err 返回的 top_err_msg 和 top_auth_err。',columns:['错误原因','次数','高频账号','账号次数'],rows:[['密码错误','516','usr_10**','42'],['账号状态异常','294','usr_08**','31'],['并发限制','187','usr_31**','28'],['其他','287','usr_22**','24']]},
+            {title:'认证失败日志',note:'准备使用接口 157 /api/v2/log/login；账号、IP、NAS 和 MAC 默认脱敏。',columns:['账号','错误原因','用户 IP','时间'],rows:[['usr_10**','密码错误','10.24.8.**','10:24:16'],['usr_08**','账号状态异常','10.24.11.**','10:21:03'],['usr_31**','并发限制','10.25.3.**','10:18:44'],['usr_22**','密码错误','10.27.9.**','10:16:27']]}
           ]
         },
         activeUser:{
-          summary:[[&#x27;日联网用户&#x27;,&#x27;16,284&#x27;],[&#x27;月活跃&#x27;,&#x27;18,642&#x27;],[&#x27;月口径&#x27;,&#x27;待确认&#x27;]],
+          summary:[['日联网用户','16,284'],['月活跃','18,642'],['月统计规则','待确认']],
           levels:[
-            {title:&#x27;联网活跃概览&#x27;,note:&#x27;日统计和月统计必须分别标明口径，不能与当前在线快照混用。&#x27;,columns:[&#x27;指标&#x27;,&#x27;人数&#x27;,&#x27;周期&#x27;,&#x27;数据确认&#x27;],rows:[[&#x27;当前在线&#x27;,&#x27;8,426&#x27;,&#x27;实时快照&#x27;,&#x27;待沟通&#x27;],[&#x27;日联网用户&#x27;,&#x27;16,284&#x27;,&#x27;指定自然日&#x27;,&#x27;待沟通&#x27;],[&#x27;月联网活跃&#x27;,&#x27;18,642&#x27;,&#x27;本月&#x27;,&#x27;待沟通&#x27;],[&#x27;用户总数&#x27;,&#x27;24,936&#x27;,&#x27;当前范围&#x27;,&#x27;待沟通&#x27;]]},
-            {title:&#x27;活跃趋势与覆盖&#x27;,note:&#x27;月参数格式、去重规则和用户总数范围仍需确认。&#x27;,columns:[&#x27;日期&#x27;,&#x27;日联网用户&#x27;,&#x27;相对总量&#x27;,&#x27;状态&#x27;],rows:[[&#x27;08-15&#x27;,&#x27;15,110&#x27;,&#x27;60.6%&#x27;,&#x27;模拟&#x27;],[&#x27;08-16&#x27;,&#x27;15,840&#x27;,&#x27;63.5%&#x27;,&#x27;模拟&#x27;],[&#x27;08-17&#x27;,&#x27;16,020&#x27;,&#x27;64.2%&#x27;,&#x27;模拟&#x27;],[&#x27;08-18&#x27;,&#x27;15,980&#x27;,&#x27;64.1%&#x27;,&#x27;模拟&#x27;],[&#x27;08-19&#x27;,&#x27;16,284&#x27;,&#x27;65.3%&#x27;,&#x27;模拟&#x27;]]}
+            {title:'联网活跃概览',note:'日统计和月统计必须分别说明计算方法，不能与当前在线快照混用。',columns:['指标','人数','周期','确认进度'],rows:[['当前在线','8,426','实时快照','待沟通'],['日联网用户','16,284','指定自然日','待沟通'],['月联网活跃','18,642','本月','待沟通'],['用户总数','24,936','当前范围','待沟通']]},
+            {title:'活跃趋势与覆盖',note:'月参数格式、去重规则和用户总数范围仍需确认。',columns:['日期','日联网用户','相对总量','状态'],rows:[['08-15','15,110','60.6%','模拟'],['08-16','15,840','63.5%','模拟'],['08-17','16,020','64.2%','模拟'],['08-18','15,980','64.1%','模拟'],['08-19','16,284','65.3%','模拟']]}
           ]
         },
         traffic:{
-          summary:[[&#x27;Top 账号&#x27;,&#x27;usr_10**&#x27;],[&#x27;周期流量&#x27;,&#x27;842 GB&#x27;],[&#x27;单位&#x27;,&#x27;Byte 转 GB&#x27;]],
+          summary:[['排名第 1 账号','usr_10**'],['周期流量','842 GB'],['单位换算','Byte 转 GB']],
           levels:[
-            {title:&#x27;流量 Top 账号&#x27;,note:&#x27;主排行来源为 detail/top，需确认是否包含上下行总和。&#x27;,columns:[&#x27;账号&#x27;,&#x27;总流量&#x27;,&#x27;占 Top10&#x27;,&#x27;排名&#x27;],rows:[[&#x27;usr_10**&#x27;,&#x27;842 GB&#x27;,&#x27;14.8%&#x27;,&#x27;1&#x27;],[&#x27;usr_08**&#x27;,&#x27;731 GB&#x27;,&#x27;12.9%&#x27;,&#x27;2&#x27;],[&#x27;usr_31**&#x27;,&#x27;596 GB&#x27;,&#x27;10.5%&#x27;,&#x27;3&#x27;],[&#x27;usr_22**&#x27;,&#x27;468 GB&#x27;,&#x27;8.2%&#x27;,&#x27;4&#x27;]]},
-            {title:&#x27;选中账号的日流量与时长&#x27;,note:&#x27;必须先选择账号，再调用 day-byte 和 day-time。&#x27;,columns:[&#x27;日期&#x27;,&#x27;上行&#x27;,&#x27;下行&#x27;,&#x27;在线时长&#x27;],rows:[[&#x27;08-15&#x27;,&#x27;38 GB&#x27;,&#x27;92 GB&#x27;,&#x27;8.2h&#x27;],[&#x27;08-16&#x27;,&#x27;41 GB&#x27;,&#x27;108 GB&#x27;,&#x27;9.4h&#x27;],[&#x27;08-17&#x27;,&#x27;35 GB&#x27;,&#x27;97 GB&#x27;,&#x27;8.7h&#x27;],[&#x27;08-18&#x27;,&#x27;44 GB&#x27;,&#x27;121 GB&#x27;,&#x27;10.1h&#x27;],[&#x27;08-19&#x27;,&#x27;47 GB&#x27;,&#x27;126 GB&#x27;,&#x27;10.6h&#x27;]]},
-            {title:&#x27;账号上网明细&#x27;,note:&#x27;来源为 /details；字段、历史范围和会话主键需真实样本。&#x27;,columns:[&#x27;开始时间&#x27;,&#x27;结束时间&#x27;,&#x27;IP&#x27;,&#x27;流量&#x27;],rows:[[&#x27;08-19 08:02&#x27;,&#x27;08-19 10:24&#x27;,&#x27;10.24.8.**&#x27;,&#x27;46.2 GB&#x27;],[&#x27;08-18 07:54&#x27;,&#x27;08-18 18:16&#x27;,&#x27;10.24.8.**&#x27;,&#x27;121.0 GB&#x27;],[&#x27;08-17 08:10&#x27;,&#x27;08-17 17:21&#x27;,&#x27;10.24.7.**&#x27;,&#x27;97.4 GB&#x27;]]}
+            {title:'流量排行账号',note:'排行来自接口 145，需要确认 total_bytes 是否为上行和下行流量之和。',columns:['账号','总流量','占前10名流量','排名'],rows:[['usr_10**','842 GB','14.8%','1'],['usr_08**','731 GB','12.9%','2'],['usr_31**','596 GB','10.5%','3'],['usr_22**','468 GB','8.2%','4']]},
+            {title:'选中账号的日流量与时长',note:'必须先选择账号，再调用接口 160 /api/v2/statistics/day-byte 和 161 /api/v2/statistics/day-time。',columns:['日期','上行','下行','在线时长'],rows:[['08-15','38 GB','92 GB','8.2h'],['08-16','41 GB','108 GB','9.4h'],['08-17','35 GB','97 GB','8.7h'],['08-18','44 GB','121 GB','10.1h'],['08-19','47 GB','126 GB','10.6h']]},
+            {title:'账号上网明细',note:'准备使用接口 144 /api/v2/details；字段、历史范围和会话唯一标识需通过真实样本确认。',columns:['开始时间','结束时间','IP','流量'],rows:[['08-19 08:02','08-19 10:24','10.24.8.**','46.2 GB'],['08-18 07:54','08-18 18:16','10.24.8.**','121.0 GB'],['08-17 08:10','08-17 17:21','10.24.7.**','97.4 GB']]}
           ]
         },
-        userBase:{summary:[[&#x27;用户总数&#x27;,&#x27;24,936&#x27;],[&#x27;范围&#x27;,&#x27;待确认&#x27;],[&#x27;数据确认&#x27;,&#x27;待沟通&#x27;]],levels:[{title:&#x27;用户存量概览&#x27;,note:&#x27;无筛选 super-search 的权限和 totalCount 范围需与对方确认。&#x27;,columns:[&#x27;状态&#x27;,&#x27;模拟人数&#x27;,&#x27;占比&#x27;,&#x27;口径&#x27;],rows:[[&#x27;正常&#x27;,&#x27;21,580&#x27;,&#x27;86.5%&#x27;,&#x27;待确认&#x27;],[&#x27;暂停&#x27;,&#x27;1,724&#x27;,&#x27;6.9%&#x27;,&#x27;待确认&#x27;],[&#x27;产品到期&#x27;,&#x27;1,248&#x27;,&#x27;5.0%&#x27;,&#x27;不同于全局过期&#x27;],[&#x27;其他&#x27;,&#x27;384&#x27;,&#x27;1.6%&#x27;,&#x27;待确认&#x27;]]},{title:&#x27;按用户组分布&#x27;,note:&#x27;该层需要搜索接口支持可靠分组过滤和总数。&#x27;,columns:[&#x27;用户组&#x27;,&#x27;用户数&#x27;,&#x27;活跃用户&#x27;,&#x27;活跃率&#x27;],rows:[[&#x27;用户组 A&#x27;,&#x27;7,842&#x27;,&#x27;6,184&#x27;,&#x27;78.9%&#x27;],[&#x27;用户组 B&#x27;,&#x27;6,315&#x27;,&#x27;4,760&#x27;,&#x27;75.4%&#x27;],[&#x27;用户组 C&#x27;,&#x27;4,982&#x27;,&#x27;3,680&#x27;,&#x27;73.9%&#x27;],[&#x27;其他&#x27;,&#x27;5,797&#x27;,&#x27;4,018&#x27;,&#x27;69.3%&#x27;]]}]},
+        userBase:{summary:[['用户总数','24,936'],['统计范围','待确认'],['确认进度','待沟通']],levels:[{title:'用户存量概览',note:'需要确认接口 021 /api/v2/user/super-search 不加筛选时的权限和 _meta.totalCount 统计范围。',columns:['状态','模拟人数','占比','统计说明'],rows:[['正常','21,580','86.5%','待确认'],['暂停','1,724','6.9%','待确认'],['产品到期','1,248','5.0%','不同于全局过期'],['其他','384','1.6%','待确认']]},{title:'按用户组分布',note:'需要确认搜索接口是否支持按用户组筛选并返回准确总数。',columns:['用户组','用户数','活跃用户','活跃率'],rows:[['用户组 A','7,842','6,184','78.9%'],['用户组 B','6,315','4,760','75.4%'],['用户组 C','4,982','3,680','73.9%'],['其他','5,797','4,018','69.3%']]}]},
         expiry:{
-          summary:[[&#x27;未来30天&#x27;,&#x27;326人&#x27;],[&#x27;7天内&#x27;,&#x27;84人&#x27;],[&#x27;数据确认&#x27;,&#x27;待沟通&#x27;]],
+          summary:[['未来30天','326人'],['7天内','84人'],['数据确认','待沟通']],
           levels:[
-            {title:&#x27;产品到期预警&#x27;,note:&#x27;该口径只表示产品到期，不等同于全系统过期用户。&#x27;,columns:[&#x27;到期区间&#x27;,&#x27;用户数&#x27;,&#x27;占比&#x27;,&#x27;动作&#x27;],rows:[[&#x27;7天内&#x27;,&#x27;84&#x27;,&#x27;25.8%&#x27;,&#x27;重点提醒&#x27;],[&#x27;8-15天&#x27;,&#x27;102&#x27;,&#x27;31.3%&#x27;,&#x27;批量触达&#x27;],[&#x27;16-30天&#x27;,&#x27;140&#x27;,&#x27;42.9%&#x27;,&#x27;持续观察&#x27;],[&#x27;已过期&#x27;,&#x27;待确认&#x27;,&#x27;--&#x27;,&#x27;另确认口径&#x27;]]},
-            {title:&#x27;按产品查看到期用户&#x27;,note:&#x27;需确认 product/expire 能否无产品条件查询并返回总数。&#x27;,columns:[&#x27;产品&#x27;,&#x27;7天内&#x27;,&#x27;30天内&#x27;,&#x27;占比&#x27;],rows:[[&#x27;产品 A&#x27;,&#x27;31&#x27;,&#x27;118&#x27;,&#x27;36.2%&#x27;],[&#x27;产品 B&#x27;,&#x27;24&#x27;,&#x27;92&#x27;,&#x27;28.2%&#x27;],[&#x27;产品 C&#x27;,&#x27;18&#x27;,&#x27;71&#x27;,&#x27;21.8%&#x27;],[&#x27;其他&#x27;,&#x27;11&#x27;,&#x27;45&#x27;,&#x27;13.8%&#x27;]]},
-            {title:&#x27;到期用户明细&#x27;,note:&#x27;账号脱敏；可进一步进入账号 360。&#x27;,columns:[&#x27;账号&#x27;,&#x27;产品&#x27;,&#x27;到期时间&#x27;,&#x27;用户组&#x27;],rows:[[&#x27;usr_12**&#x27;,&#x27;产品 A&#x27;,&#x27;2026-08-26&#x27;,&#x27;用户组 A&#x27;],[&#x27;usr_34**&#x27;,&#x27;产品 B&#x27;,&#x27;2026-08-27&#x27;,&#x27;用户组 B&#x27;],[&#x27;usr_56**&#x27;,&#x27;产品 A&#x27;,&#x27;2026-08-28&#x27;,&#x27;用户组 A&#x27;],[&#x27;usr_78**&#x27;,&#x27;产品 C&#x27;,&#x27;2026-08-29&#x27;,&#x27;用户组 C&#x27;]]}
+            {title:'产品到期预警',note:'这里统计的是产品到期，不等同于全系统过期用户。',columns:['到期区间','用户数','占比','处理建议'],rows:[['7天内','84','25.8%','重点提醒'],['8-15天','102','31.3%','批量通知'],['16-30天','140','42.9%','持续观察'],['已过期','待确认','--','另行确认统计规则']]},
+            {title:'按产品查看到期用户',note:'需确认接口 100 /api/v2/product/expire 能否不指定产品查询，以及怎样取得完整数量。',columns:['产品','7天内','30天内','占比'],rows:[['产品 A','31','118','36.2%'],['产品 B','24','92','28.2%'],['产品 C','18','71','21.8%'],['其他','11','45','13.8%']]},
+            {title:'到期用户明细',note:'账号默认脱敏；确认权限后可继续进入账号详情。',columns:['账号','产品','到期时间','用户组'],rows:[['usr_12**','产品 A','2026-08-26','用户组 A'],['usr_34**','产品 B','2026-08-27','用户组 B'],['usr_56**','产品 A','2026-08-28','用户组 A'],['usr_78**','产品 C','2026-08-29','用户组 C']]}
           ]
         },
-        ops:{summary:[[&#x27;服务状态&#x27;,&#x27;正常&#x27;],[&#x27;CPU&#x27;,&#x27;57%&#x27;],[&#x27;内存&#x27;,&#x27;69%&#x27;]],levels:[{title:&#x27;系统资源概览&#x27;,note:&#x27;手册可见该功能，但 REST 文档未证明读取接口。&#x27;,columns:[&#x27;对象&#x27;,&#x27;当前值&#x27;,&#x27;阈值&#x27;,&#x27;状态&#x27;],rows:[[&#x27;主服务&#x27;,&#x27;在线&#x27;,&#x27;--&#x27;,&#x27;正常&#x27;],[&#x27;CPU&#x27;,&#x27;57%&#x27;,&#x27;80%&#x27;,&#x27;正常&#x27;],[&#x27;内存&#x27;,&#x27;69%&#x27;,&#x27;85%&#x27;,&#x27;正常&#x27;],[&#x27;系统负载&#x27;,&#x27;2.4&#x27;,&#x27;6.0&#x27;,&#x27;正常&#x27;]]},{title:&#x27;主机资源趋势&#x27;,note:&#x27;需监控平台提供主机、服务、采样时间和阈值。&#x27;,columns:[&#x27;时间&#x27;,&#x27;CPU&#x27;,&#x27;内存&#x27;,&#x27;负载&#x27;],rows:[[&#x27;10:00&#x27;,&#x27;51%&#x27;,&#x27;65%&#x27;,&#x27;2.1&#x27;],[&#x27;10:10&#x27;,&#x27;46%&#x27;,&#x27;64%&#x27;,&#x27;1.9&#x27;],[&#x27;10:20&#x27;,&#x27;59%&#x27;,&#x27;68%&#x27;,&#x27;2.5&#x27;],[&#x27;10:30&#x27;,&#x27;57%&#x27;,&#x27;69%&#x27;,&#x27;2.4&#x27;]]}]},
-        fault:{summary:[[&#x27;今日故障&#x27;,&#x27;7起&#x27;],[&#x27;处理中&#x27;,&#x27;2起&#x27;],[&#x27;超时 SLA&#x27;,&#x27;1起&#x27;]],levels:[{title:&#x27;故障与工单概览&#x27;,note:&#x27;当前为目标数据结构，需接入独立工单或故障数据源。&#x27;,columns:[&#x27;类型&#x27;,&#x27;新增&#x27;,&#x27;处理中&#x27;,&#x27;已恢复&#x27;],rows:[[&#x27;认证故障&#x27;,&#x27;3&#x27;,&#x27;1&#x27;,&#x27;2&#x27;],[&#x27;网络故障&#x27;,&#x27;2&#x27;,&#x27;1&#x27;,&#x27;1&#x27;],[&#x27;用户反馈&#x27;,&#x27;2&#x27;,&#x27;0&#x27;,&#x27;2&#x27;]]},{title:&#x27;故障状态与影响&#x27;,note:&#x27;需提供影响用户、开始/恢复时间和责任方。&#x27;,columns:[&#x27;故障编号&#x27;,&#x27;状态&#x27;,&#x27;影响用户&#x27;,&#x27;持续时间&#x27;],rows:[[&#x27;INC-0824-07&#x27;,&#x27;处理中&#x27;,&#x27;126&#x27;,&#x27;34分钟&#x27;],[&#x27;INC-0824-05&#x27;,&#x27;处理中&#x27;,&#x27;48&#x27;,&#x27;51分钟&#x27;],[&#x27;INC-0824-03&#x27;,&#x27;已恢复&#x27;,&#x27;302&#x27;,&#x27;18分钟&#x27;]]}]}
+        ops:{summary:[['服务状态','正常'],['CPU','57%'],['内存','69%']],levels:[{title:'系统资源概览',note:'手册可见该功能，但 REST 文档未证明读取接口。',columns:['对象','当前值','阈值','状态'],rows:[['主服务','在线','--','正常'],['CPU','57%','80%','正常'],['内存','69%','85%','正常'],['系统负载','2.4','6.0','正常']]},{title:'主机资源趋势',note:'需监控平台提供主机、服务、采样时间和阈值。',columns:['时间','CPU','内存','负载'],rows:[['10:00','51%','65%','2.1'],['10:10','46%','64%','1.9'],['10:20','59%','68%','2.5'],['10:30','57%','69%','2.4']]}]},
+        fault:{summary:[['今日故障','7起'],['处理中','2起'],['超过处理时限','1起']],levels:[{title:'故障与工单展示示例',note:'以下内容均为模拟，需要接入计费系统故障记录或独立工单系统。',columns:['类型','新增','处理中','已恢复'],rows:[['认证故障','3','1','2'],['网络故障','2','1','1'],['用户反馈','2','0','2']]},{title:'故障处理情况',note:'需要对方提供影响用户、开始时间、恢复时间、负责人和处理时限。',columns:['故障编号','状态','影响用户','持续时间'],rows:[['INC-0824-07','处理中','126','34分钟'],['INC-0824-05','处理中','48','51分钟'],['INC-0824-03','已恢复','302','18分钟']]}]}
       };
 
-      let profile = &#x27;standard&#x27;;
-      let moduleId = &#x27;overview&#x27;;
-      let period = &#x27;7d&#x27;;
+      let profile = 'standard';
+      let moduleId = 'overview';
+      let period = '7d';
       let reviewMode = true;
       let selectedId = null;
       let drillStep = 0;
       let noticeTimer = null;
 
-      const evidenceBadge = item =&gt; `&lt;span class=&quot;sc-evidence&quot; data-level=&quot;${item.evidence.charAt(0)}&quot; title=&quot;文档证据 ${item.evidence}：${evidenceMeanings[item.evidence] || &#x27;待解释&#x27;}&quot;&gt;证据 ${item.evidence}&lt;/span&gt;`;
-      const confirmationBadge = item =&gt; `&lt;span class=&quot;sc-state&quot; title=&quot;数据确认：${confirmationLabels[item.confirmation]}；${confirmationMeanings[item.confirmation]}&quot;&gt;${confirmationLabels[item.confirmation]}&lt;/span&gt;`;
+      const evidenceBadge = item =&gt; `&lt;span class=&quot;sc-evidence&quot; data-level=&quot;${item.evidence.charAt(0)}&quot; title=&quot;文档依据 ${item.evidence}：${evidenceMeanings[item.evidence] || '待说明'}&quot;&gt;依据 ${item.evidence}&lt;/span&gt;`;
+      const confirmationBadge = item =&gt; `&lt;span class=&quot;sc-state&quot; title=&quot;确认进度：${confirmationLabels[item.confirmation]}；${confirmationMeanings[item.confirmation]}&quot;&gt;${confirmationLabels[item.confirmation]}&lt;/span&gt;`;
 
       function points(values, width = 320, height = 112) {
         const min = Math.min(...values);
@@ -1776,34 +958,34 @@ html&gt;body{padding:0}&lt;/style&gt;
           const x = 8 + index * ((width - 16) / (values.length - 1));
           const y = height - 22 - ((value - min) / span) * (height - 42);
           return `${x.toFixed(1)},${y.toFixed(1)}`;
-        }).join(&#x27; &#x27;);
+        }).join(' ');
       }
 
       function lineChart(item) {
         const primary = points(item.series);
-        const secondary = item.series2 ? `&lt;polyline class=&quot;sc-chart-secondary&quot; points=&quot;${points(item.series2)}&quot;&gt;&lt;/polyline&gt;` : &#x27;&#x27;;
+        const secondary = item.series2 ? `&lt;polyline class=&quot;sc-chart-secondary&quot; points=&quot;${points(item.series2)}&quot;&gt;&lt;/polyline&gt;` : '';
         const area = `8,90 ${primary} 312,90`;
-        const legend2 = item.legend?.[1] ? `&lt;span class=&quot;sc-legend-item&quot;&gt;&lt;span class=&quot;sc-legend-swatch is-secondary&quot;&gt;&lt;/span&gt;${item.legend[1]}&lt;/span&gt;` : &#x27;&#x27;;
-        return `&lt;span class=&quot;sc-line-chart&quot; role=&quot;img&quot; aria-label=&quot;${item.name}，单位 ${item.chartUnit || &#x27;&#x27;}&quot;&gt;
+        const legend2 = item.legend?.[1] ? `&lt;span class=&quot;sc-legend-item&quot;&gt;&lt;span class=&quot;sc-legend-swatch is-secondary&quot;&gt;&lt;/span&gt;${item.legend[1]}&lt;/span&gt;` : '';
+        return `&lt;span class=&quot;sc-line-chart&quot; role=&quot;img&quot; aria-label=&quot;${item.name}，单位 ${item.chartUnit || ''}&quot;&gt;
           &lt;span class=&quot;sc-line-legend&quot;&gt;&lt;span class=&quot;sc-legend-item&quot;&gt;&lt;span class=&quot;sc-legend-swatch&quot;&gt;&lt;/span&gt;${item.legend?.[0] || item.name}&lt;/span&gt;${legend2}&lt;/span&gt;
           &lt;svg class=&quot;sc-chart&quot; viewBox=&quot;0 0 320 96&quot; preserveAspectRatio=&quot;none&quot; aria-hidden=&quot;true&quot;&gt;
             &lt;line class=&quot;sc-chart-grid&quot; x1=&quot;8&quot; y1=&quot;26&quot; x2=&quot;312&quot; y2=&quot;26&quot;&gt;&lt;/line&gt;&lt;line class=&quot;sc-chart-grid&quot; x1=&quot;8&quot; y1=&quot;58&quot; x2=&quot;312&quot; y2=&quot;58&quot;&gt;&lt;/line&gt;&lt;line class=&quot;sc-chart-grid&quot; x1=&quot;8&quot; y1=&quot;90&quot; x2=&quot;312&quot; y2=&quot;90&quot;&gt;&lt;/line&gt;
             &lt;polygon class=&quot;sc-chart-area&quot; points=&quot;${area}&quot;&gt;&lt;/polygon&gt;${secondary}&lt;polyline class=&quot;sc-chart-primary&quot; points=&quot;${primary}&quot;&gt;&lt;/polyline&gt;
           &lt;/svg&gt;
-          &lt;span class=&quot;sc-chart-meta&quot;&gt;&lt;span&gt;${periodLabels[period]}&lt;/span&gt;&lt;span&gt;单位：${item.chartUnit || &#x27;--&#x27;}&lt;/span&gt;&lt;/span&gt;
+          &lt;span class=&quot;sc-chart-meta&quot;&gt;&lt;span&gt;${periodLabels[period]}&lt;/span&gt;&lt;span&gt;单位：${item.chartUnit || '--'}&lt;/span&gt;&lt;/span&gt;
         &lt;/span&gt;`;
       }
 
       function barsChart(item) {
-        return `&lt;div class=&quot;sc-bars&quot; role=&quot;img&quot; aria-label=&quot;${item.name}结构分布&quot;&gt;${item.bars.map(row =&gt; `&lt;div class=&quot;sc-bar-row&quot;&gt;&lt;span class=&quot;sc-bar-name&quot;&gt;${row[0]}&lt;/span&gt;&lt;span class=&quot;sc-bar-track&quot;&gt;&lt;span class=&quot;sc-bar-fill&quot; style=&quot;width:${row[2]}%&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;sc-bar-value&quot;&gt;${row[1]}&lt;/span&gt;&lt;/div&gt;`).join(&#x27;&#x27;)}&lt;/div&gt;`;
+        return `&lt;div class=&quot;sc-bars&quot; role=&quot;img&quot; aria-label=&quot;${item.name}结构分布&quot;&gt;${item.bars.map(row =&gt; `&lt;div class=&quot;sc-bar-row&quot;&gt;&lt;span class=&quot;sc-bar-name&quot;&gt;${row[0]}&lt;/span&gt;&lt;span class=&quot;sc-bar-track&quot;&gt;&lt;span class=&quot;sc-bar-fill&quot; style=&quot;width:${row[2]}%&quot;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;sc-bar-value&quot;&gt;${row[1]}&lt;/span&gt;&lt;/div&gt;`).join('')}&lt;/div&gt;`;
       }
 
       function kpiHtml(id) {
         const item = components[id];
-        const trendClass = item.trend === &#x27;up&#x27; ? &#x27;sc-trend-up&#x27; : item.trend === &#x27;warn&#x27; ? &#x27;sc-trend-warn&#x27; : &#x27;&#x27;;
+        const trendClass = item.trend === 'up' ? 'sc-trend-up' : item.trend === 'warn' ? 'sc-trend-warn' : '';
         return `&lt;button type=&quot;button&quot; class=&quot;sc-kpi&quot; data-component=&quot;${id}&quot; aria-label=&quot;查看${item.name}详情&quot;&gt;
           &lt;span class=&quot;sc-kpi-head&quot;&gt;&lt;span class=&quot;sc-label&quot;&gt;${item.name}&lt;/span&gt;&lt;span&gt;${evidenceBadge(item)}${confirmationBadge(item)}&lt;/span&gt;&lt;/span&gt;
-          &lt;span class=&quot;sc-value&quot;&gt;${item.value || &#x27;--&#x27;} &lt;span class=&quot;sc-unit&quot;&gt;${item.unit || &#x27;&#x27;}&lt;/span&gt;&lt;/span&gt;
+          &lt;span class=&quot;sc-value&quot;&gt;${item.value || '--'} &lt;span class=&quot;sc-unit&quot;&gt;${item.unit || ''}&lt;/span&gt;&lt;/span&gt;
           &lt;span class=&quot;sc-note ${trendClass}&quot;&gt;${item.note}&lt;/span&gt;
         &lt;/button&gt;`;
       }
@@ -1812,8 +994,8 @@ html&gt;body{padding:0}&lt;/style&gt;
         const item = components[id];
         return `&lt;button type=&quot;button&quot; class=&quot;sc-panel&quot; data-component=&quot;${id}&quot; style=&quot;grid-column:span ${span}&quot; aria-label=&quot;钻取${item.name}&quot;&gt;
           &lt;span class=&quot;sc-panel-head&quot;&gt;&lt;span class=&quot;sc-panel-title&quot;&gt;${item.name}&lt;/span&gt;&lt;span&gt;${evidenceBadge(item)}${confirmationBadge(item)}&lt;/span&gt;&lt;/span&gt;
-          &lt;span class=&quot;sc-panel-body&quot;&gt;${item.type === &#x27;line&#x27; ? lineChart(item) : barsChart(item)}&lt;/span&gt;
-          &lt;span class=&quot;sc-panel-foot&quot;&gt;&lt;span class=&quot;sc-status-line&quot;&gt;&lt;span class=&quot;sc-live-dot&quot;&gt;&lt;/span&gt;&lt;span&gt;${periodLabels[period]} · ${grainLabels[root.querySelector(&#x27;#sc-grain&#x27;).value]}粒度&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;sc-source-mini&quot;&gt;${item.source}&lt;/span&gt;&lt;/span&gt;
+          &lt;span class=&quot;sc-panel-body&quot;&gt;${item.type === 'line' ? lineChart(item) : barsChart(item)}&lt;/span&gt;
+          &lt;span class=&quot;sc-panel-foot&quot;&gt;&lt;span class=&quot;sc-status-line&quot;&gt;&lt;span class=&quot;sc-live-dot&quot;&gt;&lt;/span&gt;&lt;span&gt;${periodLabels[period]} · ${grainLabels[root.querySelector('#sc-grain').value]}粒度&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;sc-source-mini&quot;&gt;${item.source}&lt;/span&gt;&lt;/span&gt;
         &lt;/button&gt;`;
       }
 
@@ -1823,14 +1005,14 @@ html&gt;body{padding:0}&lt;/style&gt;
 
       function renderProfileContext() {
         const item = profiles[profile];
-        root.querySelector(&#x27;#sc-capability-line&#x27;).innerHTML = `&lt;span class=&quot;sc-profile-name&quot;&gt;${item.name}&lt;/span&gt;&lt;span&gt;·&lt;/span&gt;&lt;span&gt;${item.scope}&lt;/span&gt;&lt;span class=&quot;sc-capability-tag&quot;&gt;${item.drill}&lt;/span&gt;&lt;span class=&quot;sc-capability-tag&quot;&gt;${item.extra}&lt;/span&gt;&lt;span class=&quot;sc-capability-tag sc-blueprint-tag&quot;&gt;${item.blueprint}&lt;/span&gt;`;
-        root.querySelectorAll(&#x27;[data-profile]&#x27;).forEach(button =&gt; button.setAttribute(&#x27;aria-pressed&#x27;, String(button.dataset.profile === profile)));
+        root.querySelector('#sc-capability-line').innerHTML = `&lt;span class=&quot;sc-profile-name&quot;&gt;${item.name}&lt;/span&gt;&lt;span&gt;·&lt;/span&gt;&lt;span&gt;${item.scope}&lt;/span&gt;&lt;span class=&quot;sc-capability-tag&quot;&gt;${item.drill}&lt;/span&gt;&lt;span class=&quot;sc-capability-tag&quot;&gt;${item.extra}&lt;/span&gt;&lt;span class=&quot;sc-capability-tag sc-blueprint-tag&quot;&gt;${item.blueprint}&lt;/span&gt;`;
+        root.querySelectorAll('[data-profile]').forEach(button =&gt; button.setAttribute('aria-pressed', String(button.dataset.profile === profile)));
       }
 
       function renderModules() {
         const allowed = profiles[profile].modules;
-        root.querySelector(&#x27;#sc-module-tabs&#x27;).innerHTML = allowed.map(id =&gt; `&lt;button type=&quot;button&quot; class=&quot;sc-module&quot; data-module=&quot;${id}&quot; aria-selected=&quot;${id === moduleId}&quot;&gt;${modules[id]}&lt;/button&gt;`).join(&#x27;&#x27;);
-        root.querySelectorAll(&#x27;[data-module]&#x27;).forEach(button =&gt; button.addEventListener(&#x27;click&#x27;, () =&gt; {
+        root.querySelector('#sc-module-tabs').innerHTML = allowed.map(id =&gt; `&lt;button type=&quot;button&quot; class=&quot;sc-module&quot; data-module=&quot;${id}&quot; aria-selected=&quot;${id === moduleId}&quot;&gt;${modules[id]}&lt;/button&gt;`).join('');
+        root.querySelectorAll('[data-module]').forEach(button =&gt; button.addEventListener('click', () =&gt; {
           moduleId = button.dataset.module;
           closeDrawer();
           render();
@@ -1838,18 +1020,18 @@ html&gt;body{padding:0}&lt;/style&gt;
       }
 
       function render() {
-        if (!profiles[profile].modules.includes(moduleId)) moduleId = &#x27;overview&#x27;;
+        if (!profiles[profile].modules.includes(moduleId)) moduleId = 'overview';
         const layout = currentLayout();
         if (!layout) return;
-        root.dataset.review = reviewMode ? &#x27;on&#x27; : &#x27;off&#x27;;
+        root.dataset.review = reviewMode ? 'on' : 'off';
         pageTitle.textContent = modules[moduleId];
         renderProfileContext();
         renderModules();
-        const kpiGrid = root.querySelector(&#x27;#sc-kpi-grid&#x27;);
-        kpiGrid.style.setProperty(&#x27;--sc-kpi-count&#x27;, layout.k.length);
-        kpiGrid.innerHTML = layout.k.map(kpiHtml).join(&#x27;&#x27;);
-        root.querySelector(&#x27;#sc-panel-grid&#x27;).innerHTML = layout.p.map(([id, span]) =&gt; panelHtml(id, span)).join(&#x27;&#x27;);
-        root.querySelectorAll(&#x27;[data-component]&#x27;).forEach(button =&gt; button.addEventListener(&#x27;click&#x27;, () =&gt; openDrawer(button.dataset.component)));
+        const kpiGrid = root.querySelector('#sc-kpi-grid');
+        kpiGrid.style.setProperty('--sc-kpi-count', layout.k.length);
+        kpiGrid.innerHTML = layout.k.map(kpiHtml).join('');
+        root.querySelector('#sc-panel-grid').innerHTML = layout.p.map(([id, span]) =&gt; panelHtml(id, span)).join('');
+        root.querySelectorAll('[data-component]').forEach(button =&gt; button.addEventListener('click', () =&gt; openDrawer(button.dataset.component)));
       }
 
       function allowedDepth(item) {
@@ -1860,22 +1042,22 @@ html&gt;body{padding:0}&lt;/style&gt;
       function openDrawer(id) {
         selectedId = id;
         drillStep = 0;
-        root.querySelector(&#x27;#sc-backdrop&#x27;).classList.add(&#x27;is-open&#x27;);
-        root.querySelector(&#x27;#sc-drawer&#x27;).classList.add(&#x27;is-open&#x27;);
-        root.querySelector(&#x27;#sc-drawer&#x27;).setAttribute(&#x27;aria-hidden&#x27;, &#x27;false&#x27;);
+        root.querySelector('#sc-backdrop').classList.add('is-open');
+        root.querySelector('#sc-drawer').classList.add('is-open');
+        root.querySelector('#sc-drawer').setAttribute('aria-hidden', 'false');
         renderDrawer();
       }
 
       function closeDrawer() {
-        root.querySelector(&#x27;#sc-backdrop&#x27;).classList.remove(&#x27;is-open&#x27;);
-        root.querySelector(&#x27;#sc-drawer&#x27;).classList.remove(&#x27;is-open&#x27;);
-        root.querySelector(&#x27;#sc-drawer&#x27;).setAttribute(&#x27;aria-hidden&#x27;, &#x27;true&#x27;);
+        root.querySelector('#sc-backdrop').classList.remove('is-open');
+        root.querySelector('#sc-drawer').classList.remove('is-open');
+        root.querySelector('#sc-drawer').setAttribute('aria-hidden', 'true');
         selectedId = null;
         drillStep = 0;
       }
 
       function tableHtml(level) {
-        return `&lt;div class=&quot;sc-level-title&quot;&gt;${level.title}&lt;/div&gt;&lt;div class=&quot;sc-level-note&quot;&gt;${level.note}&lt;/div&gt;&lt;div class=&quot;sc-table-wrap&quot;&gt;&lt;table class=&quot;sc-table&quot;&gt;&lt;thead&gt;&lt;tr&gt;${level.columns.map(label =&gt; `&lt;th&gt;${label}&lt;/th&gt;`).join(&#x27;&#x27;)}&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;${level.rows.map(row =&gt; `&lt;tr&gt;${row.map(value =&gt; `&lt;td title=&quot;${value}&quot;&gt;${value}&lt;/td&gt;`).join(&#x27;&#x27;)}&lt;/tr&gt;`).join(&#x27;&#x27;)}&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;`;
+        return `&lt;div class=&quot;sc-level-title&quot;&gt;${level.title}&lt;/div&gt;&lt;div class=&quot;sc-level-note&quot;&gt;${level.note}&lt;/div&gt;&lt;div class=&quot;sc-table-wrap&quot;&gt;&lt;table class=&quot;sc-table&quot;&gt;&lt;thead&gt;&lt;tr&gt;${level.columns.map(label =&gt; `&lt;th&gt;${label}&lt;/th&gt;`).join('')}&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;${level.rows.map(row =&gt; `&lt;tr&gt;${row.map(value =&gt; `&lt;td title=&quot;${value}&quot;&gt;${value}&lt;/td&gt;`).join('')}&lt;/tr&gt;`).join('')}&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;`;
       }
 
       function renderDrawer() {
@@ -1884,67 +1066,74 @@ html&gt;body{padding:0}&lt;/style&gt;
         const model = drillModels[item.model];
         const depth = allowedDepth(item);
         drillStep = Math.min(drillStep, depth - 1);
-        root.querySelector(&#x27;#sc-drawer-title&#x27;).textContent = item.name;
-        root.querySelector(&#x27;#sc-drawer-subtitle&#x27;).textContent = `${profiles[profile].name} · ${periodLabels[period]} · 模拟数据`;
-        root.querySelector(&#x27;#sc-crumbs&#x27;).innerHTML = model.levels.map((level, index) =&gt; `${index ? &#x27;&lt;span class=&quot;sc-crumb-arrow&quot;&gt;›&lt;/span&gt;&#x27; : &#x27;&#x27;}&lt;button type=&quot;button&quot; class=&quot;sc-crumb&quot; data-step=&quot;${index}&quot; aria-current=&quot;${index === drillStep ? &#x27;step&#x27; : &#x27;false&#x27;}&quot; ${index &gt;= depth ? &#x27;disabled&#x27; : &#x27;&#x27;}&gt;${level.title}&lt;/button&gt;`).join(&#x27;&#x27;);
-        root.querySelectorAll(&#x27;[data-step]&#x27;).forEach(button =&gt; button.addEventListener(&#x27;click&#x27;, () =&gt; {
+        root.querySelector('#sc-drawer-title').textContent = item.name;
+        root.querySelector('#sc-drawer-subtitle').textContent = `${profiles[profile].name} · ${periodLabels[period]} · 模拟数据`;
+        root.querySelector('#sc-crumbs').innerHTML = model.levels.map((level, index) =&gt; `${index ? '&lt;span class=&quot;sc-crumb-arrow&quot;&gt;›&lt;/span&gt;' : ''}&lt;button type=&quot;button&quot; class=&quot;sc-crumb&quot; data-step=&quot;${index}&quot; aria-current=&quot;${index === drillStep ? 'step' : 'false'}&quot; ${index &gt;= depth ? 'disabled' : ''}&gt;${level.title}&lt;/button&gt;`).join('');
+        root.querySelectorAll('[data-step]').forEach(button =&gt; button.addEventListener('click', () =&gt; {
           drillStep = Number(button.dataset.step);
           renderDrawer();
         }));
-        root.querySelector(&#x27;#sc-drawer-summary&#x27;).innerHTML = model.summary.map(([label, value]) =&gt; `&lt;div class=&quot;sc-drawer-stat&quot;&gt;&lt;span&gt;${label}&lt;/span&gt;&lt;strong&gt;${value}&lt;/strong&gt;&lt;/div&gt;`).join(&#x27;&#x27;);
-        root.querySelector(&#x27;#sc-drill-content&#x27;).innerHTML = tableHtml(model.levels[drillStep]);
-        const next = root.querySelector(&#x27;#sc-drill-next&#x27;);
+        root.querySelector('#sc-drawer-summary').innerHTML = model.summary.map(([label, value]) =&gt; `&lt;div class=&quot;sc-drawer-stat&quot;&gt;&lt;span&gt;${label}&lt;/span&gt;&lt;strong&gt;${value}&lt;/strong&gt;&lt;/div&gt;`).join('');
+        root.querySelector('#sc-drill-content').innerHTML = tableHtml(model.levels[drillStep]);
+        const next = root.querySelector('#sc-drill-next');
         next.disabled = drillStep &gt;= depth - 1;
-        next.textContent = drillStep &lt; depth - 1 ? `进入${model.levels[drillStep + 1].title}` : &#x27;当前条件到此层&#x27;;
+        next.textContent = drillStep &lt; depth - 1 ? `进入${model.levels[drillStep + 1].title}` : '当前条件到此层';
         const totalDepth = model.levels.length;
-        const restriction = depth &lt; totalDepth ? `${profiles[profile].name}当前开放 ${depth}/${totalDepth} 层` : `该指标已开放全部 ${totalDepth} 层`;
-        root.querySelector(&#x27;#sc-limit&#x27;).textContent = `${restriction} · 当前为设计原型，钻取内容使用模拟数据`;
+        const restriction = depth &lt; totalDepth ? `${profiles[profile].name}在原型中展示 ${depth}/${totalDepth} 层` : `原型展示该指标的全部 ${totalDepth} 层`;
+        root.querySelector('#sc-limit').textContent = `${restriction} · 当前为设计原型，钻取内容使用模拟数据`;
         const provenance = [
-          [&#x27;接口/数据来源&#x27;, item.source],
-          [&#x27;关键字段&#x27;, item.fields],
-          [&#x27;计算口径&#x27;, item.formula],
-          [&#x27;文档参考&#x27;, item.ref],
-          [&#x27;文档证据&#x27;, `${item.evidence} · ${evidenceMeanings[item.evidence] || &#x27;待解释&#x27;}`],
-          [&#x27;下一步向对方确认/索取&#x27;, evidenceActions[item.evidence] || &#x27;根据具体指标补充确认问题和所需材料。&#x27;],
-          [&#x27;数据确认阶段&#x27;, `${confirmationLabels[item.confirmation]} · ${confirmationMeanings[item.confirmation]}`]
+          ['这个功能表示什么', componentDescriptions[selectedId]],
+          ['接口/数据来源', item.source],
+          ['准备使用的返回字段', item.fields],
+          ['指标怎么计算', item.formula],
+          ['文档位置', item.ref],
+          ['文档依据等级', `${item.evidence} · ${evidenceMeanings[item.evidence] || '待说明'}`],
+          ['当前确认进度', `${confirmationLabels[item.confirmation]} · ${confirmationMeanings[item.confirmation]}`],
+          ['需要向对方确认或索取', componentQuestions[selectedId] || evidenceActions[item.evidence] || '根据具体指标补充确认问题和所需材料。'],
+          ['如果对方无法提供', componentFallbacks[selectedId] || '隐藏该功能或换成文档依据更明确的内容。']
         ];
-        root.querySelector(&#x27;#sc-provenance&#x27;).innerHTML = provenance.map(([label, value]) =&gt; `&lt;div&gt;&lt;div class=&quot;sc-prov-label&quot;&gt;${label}&lt;/div&gt;&lt;div class=&quot;sc-prov-value&quot;&gt;${value}&lt;/div&gt;&lt;/div&gt;`).join(&#x27;&#x27;);
+        root.querySelector('#sc-provenance').innerHTML = provenance.map(([label, value]) =&gt; `&lt;div&gt;&lt;div class=&quot;sc-prov-label&quot;&gt;${label}&lt;/div&gt;&lt;div class=&quot;sc-prov-value&quot;&gt;${value}&lt;/div&gt;&lt;/div&gt;`).join('');
       }
 
       function showNotice(message) {
-        const notice = root.querySelector(&#x27;#sc-notice&#x27;);
+        const notice = root.querySelector('#sc-notice');
         notice.textContent = message;
-        notice.classList.add(&#x27;is-open&#x27;);
+        notice.classList.add('is-open');
         clearTimeout(noticeTimer);
-        noticeTimer = setTimeout(() =&gt; notice.classList.remove(&#x27;is-open&#x27;), 2100);
+        noticeTimer = setTimeout(() =&gt; notice.classList.remove('is-open'), 2100);
       }
 
-      root.querySelectorAll(&#x27;[data-profile]&#x27;).forEach(button =&gt; button.addEventListener(&#x27;click&#x27;, () =&gt; {
+      root.querySelectorAll('[data-profile]').forEach(button =&gt; button.addEventListener('click', () =&gt; {
         const previous = profile;
         profile = button.dataset.profile;
         closeDrawer();
-        if (!profiles[profile].modules.includes(moduleId)) moduleId = &#x27;overview&#x27;;
+        if (!profiles[profile].modules.includes(moduleId)) moduleId = 'overview';
         render();
-        showNotice(`${profiles[previous].name} → ${profiles[profile].name}：模块、指标和钻取权限已重新加载`);
+        showNotice(`${profiles[previous].name} → ${profiles[profile].name}：原型展示内容和钻取层级已切换`);
       }));
 
-      root.querySelectorAll(&#x27;[data-period]&#x27;).forEach(button =&gt; button.addEventListener(&#x27;click&#x27;, () =&gt; {
+      root.querySelectorAll('[data-period]').forEach(button =&gt; button.addEventListener('click', () =&gt; {
         period = button.dataset.period;
-        root.querySelectorAll(&#x27;[data-period]&#x27;).forEach(item =&gt; item.setAttribute(&#x27;aria-pressed&#x27;, String(item.dataset.period === period)));
+        root.querySelectorAll('[data-period]').forEach(item =&gt; item.setAttribute('aria-pressed', String(item.dataset.period === period)));
         closeDrawer();
         render();
+        showNotice(`已切换为${periodLabels[period]}；当前为模拟原型，数值不会重新查询`);
       }));
 
-      root.querySelector(&#x27;#sc-grain&#x27;).addEventListener(&#x27;change&#x27;, () =&gt; { closeDrawer(); render(); });
-      root.querySelector(&#x27;#sc-review&#x27;).addEventListener(&#x27;click&#x27;, event =&gt; {
+      root.querySelector('#sc-grain').addEventListener('change', event =&gt; {
+        closeDrawer();
+        render();
+        showNotice(`已切换为${grainLabels[event.target.value]}粒度；当前为模拟原型，数值不会重新查询`);
+      });
+      root.querySelector('#sc-review').addEventListener('click', event =&gt; {
         reviewMode = !reviewMode;
-        event.currentTarget.setAttribute(&#x27;aria-pressed&#x27;, String(reviewMode));
+        event.currentTarget.setAttribute('aria-pressed', String(reviewMode));
         render();
         if (selectedId) renderDrawer();
       });
-      root.querySelector(&#x27;#sc-close&#x27;).addEventListener(&#x27;click&#x27;, closeDrawer);
-      root.querySelector(&#x27;#sc-backdrop&#x27;).addEventListener(&#x27;click&#x27;, closeDrawer);
-      root.querySelector(&#x27;#sc-drill-next&#x27;).addEventListener(&#x27;click&#x27;, () =&gt; {
+      root.querySelector('#sc-close').addEventListener('click', closeDrawer);
+      root.querySelector('#sc-backdrop').addEventListener('click', closeDrawer);
+      root.querySelector('#sc-drill-next').addEventListener('click', () =&gt; {
         if (!selectedId) return;
         const depth = allowedDepth(components[selectedId]);
         if (drillStep &lt; depth - 1) {
@@ -1952,253 +1141,13 @@ html&gt;body{padding:0}&lt;/style&gt;
           renderDrawer();
         }
       });
-      root.addEventListener(&#x27;keydown&#x27;, event =&gt; { if (event.key === &#x27;Escape&#x27;) closeDrawer(); });
+      root.addEventListener('keydown', event =&gt; { if (event.key === 'Escape') closeDrawer(); });
       render();
     })();
   &lt;/script&gt;
 &lt;/div&gt;
 
-&lt;script src=&quot;https://unpkg.com/@floating-ui/core@1.7.3/dist/floating-ui.core.umd.min.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@floating-ui/dom@1.7.4/dist/floating-ui.dom.umd.min.js&quot;&gt;&lt;/script&gt;
-&lt;script&gt;
-(() =&gt; {
-  if (window.FloatingUIDOM == null) {
-    return;
-  }
-  const { autoUpdate, computePosition, flip, offset, shift, size } =
-    window.FloatingUIDOM;
-  const tooltipPlacements = new Set([&quot;top&quot;, &quot;right&quot;, &quot;bottom&quot;, &quot;left&quot;]);
-  const tooltipId = `codex-visualization-tooltip-${
-    window.crypto?.randomUUID?.() ?? Date.now().toString(36)
-  }`;
-  const tooltipGap = 5;
-  const hoverDelay = 700;
-  const skipDelay = 300;
-  let activeTrigger = null;
-  let pendingTrigger = null;
-  let tooltip = null;
-  let openTimeout = null;
-  let autoUpdateCleanup = null;
-  let positionRequest = 0;
-  let skipDelayUntil = 0;
-
-  const getTrigger = (target) =&gt;
-    target?.nodeType === Node.ELEMENT_NODE
-      ? target.closest(&quot;[data-tooltip]&quot;)
-      : null;
-  const containsTarget = (trigger, target) =&gt;
-    target?.nodeType != null &amp;&amp; trigger.contains(target);
-  const getContent = (trigger) =&gt;
-    trigger.getAttribute(&quot;data-tooltip&quot;)?.trim() ?? &quot;&quot;;
-  const getPlacement = (trigger) =&gt; {
-    const placement = trigger.getAttribute(&quot;data-tooltip-placement&quot;);
-    return tooltipPlacements.has(placement) ? placement : &quot;top&quot;;
-  };
-  const getTooltip = () =&gt; {
-    if (tooltip == null) {
-      tooltip = document.createElement(&quot;div&quot;);
-      tooltip.id = tooltipId;
-      tooltip.className = &quot;tooltip&quot;;
-      tooltip.setAttribute(&quot;role&quot;, &quot;tooltip&quot;);
-    }
-    return tooltip;
-  };
-  const setDescribedBy = (trigger, described) =&gt; {
-    const ids = new Set(
-      (trigger.getAttribute(&quot;aria-describedby&quot;) ?? &quot;&quot;)
-        .split(/\s+/)
-        .filter(Boolean),
-    );
-    if (described) {
-      ids.add(tooltipId);
-    } else {
-      ids.delete(tooltipId);
-    }
-    if (ids.size === 0) {
-      trigger.removeAttribute(&quot;aria-describedby&quot;);
-    } else {
-      trigger.setAttribute(&quot;aria-describedby&quot;, [...ids].join(&quot; &quot;));
-    }
-  };
-  const clearOpenTimeout = () =&gt; {
-    if (openTimeout != null) {
-      window.clearTimeout(openTimeout);
-      openTimeout = null;
-    }
-    pendingTrigger = null;
-  };
-  const closeTooltip = (activateSkipDelay = true) =&gt; {
-    clearOpenTimeout();
-    positionRequest += 1;
-    autoUpdateCleanup?.();
-    autoUpdateCleanup = null;
-    if (activeTrigger == null) {
-      return;
-    }
-    setDescribedBy(activeTrigger, false);
-    activeTrigger = null;
-    tooltip?.remove();
-    if (activateSkipDelay) {
-      skipDelayUntil = Date.now() + skipDelay;
-    }
-  };
-  const updatePosition = (trigger, floating) =&gt; {
-    const request = ++positionRequest;
-    void computePosition(trigger, floating, {
-      middleware: [
-        offset(tooltipGap),
-        flip({ padding: tooltipGap }),
-        shift({ padding: tooltipGap }),
-        size({
-          padding: tooltipGap,
-          apply({ availableHeight, availableWidth, elements }) {
-            elements.floating.style.setProperty(
-              &quot;--tooltip-available-width&quot;,
-              `${Math.max(0, availableWidth)}px`,
-            );
-            elements.floating.style.setProperty(
-              &quot;--tooltip-available-height&quot;,
-              `${Math.max(0, availableHeight)}px`,
-            );
-          },
-        }),
-      ],
-      placement: getPlacement(trigger),
-      strategy: &quot;fixed&quot;,
-    })
-      .then(({ x, y }) =&gt; {
-        if (activeTrigger !== trigger || request !== positionRequest) {
-          return;
-        }
-        const scale = window.devicePixelRatio || 1;
-        floating.style.transform = `translate(${Math.round(x * scale) / scale}px, ${Math.round(y * scale) / scale}px)`;
-        floating.style.visibility = &quot;visible&quot;;
-      })
-      .catch(() =&gt; {
-        if (activeTrigger === trigger &amp;&amp; request === positionRequest) {
-          closeTooltip(false);
-        }
-      });
-  };
-  const openTooltip = (trigger) =&gt; {
-    const content = getContent(trigger);
-    if (!trigger.isConnected || content.length === 0) {
-      return;
-    }
-    clearOpenTimeout();
-    if (activeTrigger === trigger) {
-      return;
-    }
-    closeTooltip();
-    const floating = getTooltip();
-    floating.textContent = content;
-    floating.style.visibility = &quot;hidden&quot;;
-    floating.style.transform = &quot;translate(0, 0)&quot;;
-    document.body.appendChild(floating);
-    activeTrigger = trigger;
-    setDescribedBy(trigger, true);
-    autoUpdateCleanup = autoUpdate(trigger, floating, () =&gt; {
-      updatePosition(trigger, floating);
-    });
-  };
-  const requestOpen = (trigger, immediate = false) =&gt; {
-    if (
-      getContent(trigger).length === 0 ||
-      activeTrigger === trigger ||
-      pendingTrigger === trigger
-    ) {
-      return;
-    }
-    clearOpenTimeout();
-    pendingTrigger = trigger;
-    const delay =
-      immediate || activeTrigger != null || Date.now() &lt; skipDelayUntil
-        ? 0
-        : hoverDelay;
-    if (delay === 0) {
-      openTooltip(trigger);
-      return;
-    }
-    openTimeout = window.setTimeout(() =&gt; {
-      openTimeout = null;
-      pendingTrigger = null;
-      openTooltip(trigger);
-    }, delay);
-  };
-  const handlePointerOpen = (event) =&gt; {
-    if (event.pointerType === &quot;touch&quot;) {
-      return;
-    }
-    const trigger = getTrigger(event.target);
-    if (trigger == null || containsTarget(trigger, event.relatedTarget)) {
-      return;
-    }
-    requestOpen(trigger);
-  };
-  const handleLeave = (event) =&gt; {
-    const trigger = getTrigger(event.target);
-    if (trigger == null || containsTarget(trigger, event.relatedTarget)) {
-      return;
-    }
-    if (activeTrigger === trigger || pendingTrigger === trigger) {
-      closeTooltip();
-    }
-  };
-  const handleFocusIn = (event) =&gt; {
-    const trigger = getTrigger(event.target);
-    if (trigger?.matches(&quot;:focus-visible&quot;)) {
-      requestOpen(trigger, true);
-    }
-  };
-  const handleKeyDown = (event) =&gt; {
-    if (event.key === &quot;Escape&quot;) {
-      closeTooltip();
-    }
-  };
-  const handleContextMenu = (event) =&gt; {
-    const trigger = getTrigger(event.target);
-    if (activeTrigger === trigger || pendingTrigger === trigger) {
-      closeTooltip();
-    }
-  };
-  const destroy = () =&gt; {
-    closeTooltip(false);
-    document.removeEventListener(&quot;pointerover&quot;, handlePointerOpen);
-    document.removeEventListener(&quot;pointerout&quot;, handleLeave);
-    document.removeEventListener(&quot;focusin&quot;, handleFocusIn);
-    document.removeEventListener(&quot;focusout&quot;, handleLeave);
-    document.removeEventListener(&quot;keydown&quot;, handleKeyDown);
-    document.removeEventListener(&quot;contextmenu&quot;, handleContextMenu);
-    tooltip = null;
-  };
-
-  document.addEventListener(&quot;pointerover&quot;, handlePointerOpen);
-  document.addEventListener(&quot;pointerout&quot;, handleLeave);
-  document.addEventListener(&quot;focusin&quot;, handleFocusIn);
-  document.addEventListener(&quot;focusout&quot;, handleLeave);
-  document.addEventListener(&quot;keydown&quot;, handleKeyDown);
-  document.addEventListener(&quot;contextmenu&quot;, handleContextMenu);
-  window.addEventListener(&quot;pagehide&quot;, destroy, { once: true });
-})();
-&lt;/script&gt;
-&lt;script id=&quot;codex-visualization-lucide&quot; async src=&quot;https://unpkg.com/lucide@1.17.0/dist/umd/lucide.js&quot;&gt;&lt;/script&gt;
-&lt;script&gt;
-(() =&gt; {
-  const initialize = () =&gt; {
-    globalThis.lucide?.createIcons({ attrs: { width: 16, height: 16 } });
-  };
-  if (globalThis.lucide != null) {
-    initialize();
-    return;
-  }
-  document
-    .getElementById(&quot;codex-visualization-lucide&quot;)
-    ?.addEventListener(&quot;load&quot;, initialize, { once: true });
-})();
-&lt;/script&gt;
-
 &lt;/body&gt;
-&lt;/html&gt;
-"></iframe>
+&lt;/html&gt;"></iframe>
 </body>
 </html>
